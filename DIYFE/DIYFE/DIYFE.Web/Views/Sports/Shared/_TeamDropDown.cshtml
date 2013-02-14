@@ -1,0 +1,75 @@
+﻿   <script type="text/javascript">
+       $(document).ready(function () {
+
+           var currentURL = window.location.href.toLowerCase();
+           //alert(currentURL);
+           var serviceURL = GetRootURL() + 'Sports/GetAllTeams';
+
+           if (currentURL.indexOf('/mlb') != -1) {
+               serviceURL += '?leagueId=1';
+           }
+           if (currentURL.indexOf('/nba') != -1) {
+               serviceURL += '?leagueId=2';
+           }
+           if (currentURL.indexOf('/nhl') != -1) {
+               serviceURL += '?leagueId=3';
+           }
+           if (currentURL.indexOf('/nfl') != -1) {
+               serviceURL += '?leagueId=4';
+           }
+
+           //alert(serviceURL);
+
+           var $dropDown = $('#TeamSelect');
+           var dlTeam = { teamId: 0 };
+           mediator.installTo(dlTeam);
+
+           dlTeam.subscribe('TeamSelectionChange', function (arg) {
+               $dropDown.val(arg.teamId);
+           });
+
+           $('#TeamSelect').change(function () {
+               if ($(this).val() != '0') {
+                   dlTeam.publish('TeamDropDownChange', { teamId: $(this).val() });
+               }
+           });
+
+           $.ajax({
+               url: serviceURL,
+               //url: GetRootURL() + 'Sports/GetAllTeams?leagueId=5',
+               type: 'POST',
+               contentType: 'application/json; charset=utf-8',
+               success: function (data) {
+                   if (data.success) {
+
+                       var selectOptions = '';
+
+                       $.each(data.teams, function (index) {
+                           selectOptions += '<option value="' + data.teams[index].TeamId + '">' + data.teams[index].City + ' ' + data.teams[index].Name + '</option>';
+                       });
+
+                       $dropDown.append(selectOptions);
+
+                       var teamId = GetQueryString('teamId');
+                       if (teamId != '') {
+                           $dropDown.val(teamId);
+                       }
+
+                   } else {
+                       //show error
+                       mediator.publish('pageError', { error: data.message, method: 'Load team from _TeamDropdown' });
+
+                   }
+               },
+               error: function () {
+                   mediator.publish('logError', { error: 'Error with service for team', method: 'pageload _TeamDropdown' });
+               }
+           });
+
+       });
+   </script>
+     
+      <select id="TeamSelect">
+            <option value="0">Select Team</option>
+            <option value="00">All Teams</option>
+       </select>

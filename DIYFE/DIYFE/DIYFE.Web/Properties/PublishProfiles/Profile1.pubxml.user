@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2012-11-02T10:43:17.4492649-05:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/DIYFE.Web.dll">
+      <publishTime>01/25/2013 15:10:38</publishTime>
+    </File>
+    <File Include="bin/DIYFE.Web.pdb">
+      <publishTime>11/02/2012 10:43:15</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.xml">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.dll">
+      <publishTime>04/18/2012 14:34:17</publishTime>
+    </File>
+    <File Include="bin/Sports.dll">
+      <publishTime>01/24/2013 15:33:33</publishTime>
+    </File>
+    <File Include="bin/Sports.pdb">
+      <publishTime>11/02/2012 10:20:23</publishTime>
+    </File>
+    <File Include="Content/img/loading.gif">
+      <publishTime>11/01/2012 08:19:40</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>09/21/2012 11:51:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>09/21/2012 11:51:18</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>09/21/2012 11:51:17</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>09/21/2012 11:51:16</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/21/2012 11:51:14</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/21/2012 11:51:19</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/mediator.js">
+      <publishTime>02/14/2012 10:02:09</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/model.js">
+      <publishTime>02/15/2012 09:31:34</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/pager.js">
+      <publishTime>05/18/2012 12:48:55</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/css/bootstrap-responsive.css">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/css/bootstrap-responsive.min.css">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/css/bootstrap.css">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/css/bootstrap.min.css">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/img/glyphicons-halflings-white.png">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/img/glyphicons-halflings.png">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/js/bootstrap.js">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/Twitter/js/bootstrap.min.js">
+      <publishTime>02/14/2012 09:58:41</publishTime>
+    </File>
+    <File Include="Scripts/Bootstrap/usefull.js">
+      <publishTime>02/15/2012 10:55:23</publishTime>
+    </File>
+    <File Include="Scripts/core.js">
+      <publishTime>11/19/2012 07:56:05</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.min.js">
+      <publishTime>02/14/2012 11:29:58</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>02/14/2012 09:38:37</publishTime>
+    </File>
+    <File Include="Scripts/modernizr.2.5.js">
+      <publishTime>02/15/2012 16:27:55</publishTime>
+    </File>
+    <File Include="Scripts/Sports/MLB.js">
+      <publishTime>10/09/2012 10:25:42</publishTime>
+    </File>
+    <File Include="Scripts/Sports/Models.js">
+      <publishTime>11/05/2012 07:35:23</publishTime>
+    </File>
+    <File Include="Scripts/Sports/NBA.js">
+      <publishTime>11/28/2012 08:44:38</publishTime>
+    </File>
+    <File Include="Scripts/Sports/NBA/Scraping.js">
+      <publishTime>11/16/2012 10:47:24</publishTime>
+    </File>
+    <File Include="Scripts/Sports/NHL.js">
+      <publishTime>10/09/2012 10:26:05</publishTime>
+    </File>
+    <File Include="Views/Account/ChangePassword.cshtml">
+      <publishTime>09/21/2012 12:16:36</publishTime>
+    </File>
+    <File Include="Views/Account/ChangePasswordSuccess.cshtml">
+      <publishTime>02/15/2012 14:53:51</publishTime>
+    </File>
+    <File Include="Views/Account/LogOn.cshtml">
+      <publishTime>09/21/2012 12:16:36</publishTime>
+    </File>
+    <File Include="Views/Account/Profile.cshtml">
+      <publishTime>02/15/2012 14:54:05</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>09/21/2012 12:16:35</publishTime>
+    </File>
+    <File Include="Views/EmailTemplates/Welcome.cshtml">
+      <publishTime>06/15/2012 07:52:39</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>02/15/2012 14:53:33</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>02/15/2012 14:53:41</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>09/21/2012 13:31:30</publishTime>
+    </File>
+    <File Include="Views/Home/Search.cshtml">
+      <publishTime>09/21/2012 12:16:35</publishTime>
+    </File>
+    <File Include="Views/Shared/DefaultError.cshtml">
+      <publishTime>09/20/2012 09:28:26</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/21/2012 11:51:14</publishTime>
+    </File>
+    <File Include="Views/Shared/ServerError.cshtml">
+      <publishTime>02/15/2012 16:38:12</publishTime>
+    </File>
+    <File Include="Views/Shared/_ErrorPageHandler.cshtml">
+      <publishTime>10/11/2012 13:34:37</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>11/29/2012 09:53:06</publishTime>
+    </File>
+    <File Include="Views/Shared/_LogonForm.cshtml">
+      <publishTime>09/21/2012 12:16:39</publishTime>
+    </File>
+    <File Include="Views/Shared/_LogOnPartialLink.cshtml">
+      <publishTime>02/14/2012 15:51:16</publishTime>
+    </File>
+    <File Include="Views/Sports/Index.cshtml">
+      <publishTime>11/02/2012 09:36:04</publishTime>
+    </File>
+    <File Include="Views/Sports/MLB/Index.cshtml">
+      <publishTime>11/02/2012 09:47:29</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/BankTest.cshtml">
+      <publishTime>12/03/2012 14:27:01</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/BetDetails.cshtml">
+      <publishTime>11/06/2012 15:40:09</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/BetGameList.cshtml">
+      <publishTime>11/09/2012 10:44:04</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/BetList.cshtml">
+      <publishTime>01/24/2013 08:53:05</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/ByDate.cshtml">
+      <publishTime>01/24/2013 10:01:01</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/Excel.cshtml">
+      <publishTime>01/25/2013 10:20:01</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/GameDetail.cshtml">
+      <publishTime>12/13/2012 10:44:22</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/Index.cshtml">
+      <publishTime>11/14/2012 07:59:57</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/Scraping.cshtml">
+      <publishTime>11/16/2012 10:17:05</publishTime>
+    </File>
+    <File Include="Views/Sports/NBA/TeamSchedule.cshtml">
+      <publishTime>11/19/2012 13:29:52</publishTime>
+    </File>
+    <File Include="Views/Sports/NHL/Index.cshtml">
+      <publishTime>11/02/2012 09:47:46</publishTime>
+    </File>
+    <File Include="Views/Sports/Shared/_BettingType.cshtml">
+      <publishTime>11/14/2012 07:59:05</publishTime>
+    </File>
+    <File Include="Views/Sports/Shared/_SeasonDropDown.cshtml">
+      <publishTime>11/19/2012 08:45:45</publishTime>
+    </File>
+    <File Include="Views/Sports/Shared/_TeamDropDown.cshtml">
+      <publishTime>11/19/2012 08:13:25</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/21/2012 11:51:14</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>02/14/2012 09:38:32</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/25/2013 15:10:38</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

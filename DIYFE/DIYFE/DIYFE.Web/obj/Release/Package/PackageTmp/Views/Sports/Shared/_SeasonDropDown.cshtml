@@ -1,0 +1,40 @@
+﻿   <script type="text/javascript">
+       $(document).ready(function () {
+           var $dropDown = $('#SeasonSelect');
+           var dlSeason = { SeasonId: 0 };
+           mediator.installTo(dlSeason);
+
+           dlSeason.subscribe('SeasonSelectionChange', function (arg) {
+               $dropDown.val(arg.SeasonId);
+           });
+
+           $('#SeasonSelect').change(function () {
+               if ($(this).val() != 0) {
+                   dlSeason.publish('SeasonDropDownChange', { SeasonId: $(this).val(), SeasonValue: $(this).find('option:selected').text() });
+               }
+           });
+
+           var seasonId = GetQueryString('seasonId');
+           if (seasonId != '') {
+               $dropDown.val(seasonId);
+               dlSeason.publish('SeasonDropDownChange', { SeasonId: seasonId, SeasonValue: $("#SeasonSelect option:selected").text() });
+           }
+
+       });
+   </script>
+     
+      <select id="SeasonSelect">
+            <option value="0">Select Season</option>
+            <option value="12">2013</option>
+            <option value="11">2012</option>
+            <option value="10">2011</option>
+            <option value="9">2010</option>
+            <option value="8">2009</option>
+            <option value="7">2008</option>
+            <option value="6">2007</option>
+            <option value="5">2006</option>
+            <option value="4">2005</option>
+            <option value="3">2004</option>
+            <option value="2">2003</option>
+            <option value="1">2002</option>
+       </select>

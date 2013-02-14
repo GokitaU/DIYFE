@@ -1,0 +1,109 @@
+﻿@model DIYFE.Web.Models.Sports.TeamSchedule
+@{
+    ViewBag.Title = "TeamSchedule";
+}
+
+<h2>TeamSchedule</h2>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+
+        $('#loadTeamSchedule').click(function () {
+            window.location = location.protocol + '//' + location.host + '/sports-betting/nba/TeamSchedule?teamId=' + $('#TeamSelect').val() + '&seasonId=' + $('#SeasonSelect').val();
+        });
+
+        var hasLoad = false;
+
+        var htmlHolder = $('#htmlHolder');
+        var html = $('<div></div>');
+        var dlSeason = { SeasonId: 0 };
+        mediator.installTo(html);
+
+        html.subscribe('SeasonDropDownChange', function (arg) {
+
+            if (!hasLoad) {
+
+                var selectedSeason = arg.SeasonValue;
+                var scrapUrl =  $('#scrapUrl').val().replace('[year]', selectedSeason);
+
+                html.load(scrapUrl + ' #my-teams-table .tablehead', function (response, status, xhr) {
+                    if (status == "error") {
+                        mediator.publish('pageError', { error: xhr.status + " " + xhr.statusText, method: 'loading ' + scrapUrl + ' for scrapping - -' });
+                    } else {
+
+                        htmlHolder.append(html);
+                        $('.team-logo-small').remove();
+                        $('.floatright').remove();
+                        $('.tablehead').attr('cellspacing', '0');
+                        $('.tablehead').attr('cellpadding', '0');
+                        var tempVal = '';
+                        $('.tablehead li').each(function (index) {
+                            tempVal = $(this).html();
+                            $(this).replaceWith(tempVal);
+                        });
+                        $('[colspan="1"]').remove();
+                        $('[title="Points Leader"]').remove();
+                        $('[title="Rebounds Leader"]').remove();
+                        $('[title="Assists Leader"]').remove();
+
+                        $('#scrapGameCount').html($('.oddrow, .evenrow').length);
+                        //statusDiv.append(team.ScrapUrl + ' Done</br>');
+                    }
+                });
+
+                hasLoad = true;
+            }
+        });
+
+        
+    });
+
+</script>
+
+@Html.Partial("_ErrorPageHandler")
+
+<div class="container">
+    <input id="scrapUrl" type="hidden" value="@Model.Games[0].ScrapUrl" />
+    <div class="span12">
+        @Html.Partial("~/Views/Sports/Shared/_TeamDropDown.cshtml") - @Html.Partial("~/Views/Sports/Shared/_SeasonDropDown.cshtml") <br />
+        <a  class="btn btn-primary btn-large" id="loadTeamSchedule" href="#">View &raquo;</a>
+    </div>
+    <div class="row">
+        <div class="span6">
+                @Model.Games.Count()
+               <table class="table table-condensed">
+                   <tr>
+                       <th>Date</th>
+                       <th>Home</th>
+                       <th>Away</th>
+                       <th>Score</th>
+                   </tr>
+                   @foreach (Sports.Game game in Model.Games)
+                   { 
+                       <tr>
+                           <td><a href="GameDetail?gameId=@game.GameId">@game.GameDateFormated</a></td>
+                           <td>@game.HomeTeamName</td>
+                           <td>@game.AwayTeamName</td>
+                           <td>@game.HomeTeamScore - @game.AwayTeamScore
+                               @if(game.WinningTeamId == Model.TeamId){
+                                    @:(W)
+                               }else{
+                                    @:(L)
+                               }
+                            </td>
+                       </tr>
+                   }
+               
+               </table>
+
+        </div>
+
+        <div class="span6">
+            <label id="scrapGameCount"></label>
+            <div id="htmlHolder">
+
+            </div>
+        </div>
+    </div>
+
+</div>

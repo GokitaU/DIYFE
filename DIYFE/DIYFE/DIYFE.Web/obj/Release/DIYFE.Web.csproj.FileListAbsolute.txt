@@ -1,0 +1,9 @@
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFE.Web.dll
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFE.Web.pdb
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.dll
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\Sports.dll
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\Sports.pdb
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.xml
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.csprojResolveAssemblyReference.cache
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.dll
+C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.pdb

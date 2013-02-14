@@ -1,0 +1,511 @@
+﻿@model DIYFE.Web.Models.Sports.GameDetails
+@{
+    ViewBag.Title = "GameDetails";
+}
+<script src="@Url.Content("~/Scripts/Sports/Models.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Sports/NBA.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var htmlHolder = $('#dataHoldElm');
+        var gameId = $('#GameId').val();
+
+        var gameIndex = 0;
+        var gameArray = []; 
+        $('.gameLink a').each(function(){
+            gameArray.push($(this).html());
+         });
+
+        gameIndex = jQuery.inArray(gameId, gameArray);
+        //alert(gameIndex);
+
+        $(".nav-list li a:contains('" + gameId + "')").parent().addClass('active');
+
+
+        $('#HomeTeamLine').focusout(function () {
+            $('#AwayTeamLine').val(($(this).val() * -1));
+        })
+
+        $.fn.RunNBASpreadScrap = function (game) {
+
+            if (game.HomeTeamCity == "Brooklyn") {
+                game.HomeTeamCity = "New Jersey";
+            }
+            if (game.HomeTeamName == "Los Angeles Lakers") {
+                game.HomeTeamCity = "L.A. Lakers";
+            }
+            if (game.HomeTeamName == "Los Angeles Clippers") {
+                game.HomeTeamCity = "L.A. Clippers";
+            }
+
+            var htmlHolder = $('#dataHoldElm');
+            var scrapErr = $('#scrapError');
+            htmlHolder.empty();
+            var html = $('<div></div>');
+            var moneyLine = $('<div></div>');
+            html.load('http://www.sbrforum.com/nba-basketball/odds-scores/' + game.GameDate + ' .tbl-odds:contains("' + game.HomeTeamCity + '")', function (response, status, xhr) {
+                //html.load('http://www.sbrforum.com/nba-basketball/odds-scores/' + game.GameDate + ' .tbl-odds:contains("' + game.HomeTeamCity + '")', function (response, status, xhr) {
+                //html.load('http://www.sbrforum.com/nba-basketball/odds-scores/' + game.GameDate + ' td:contains("' + game.HomeTeamCity + '")', function (response, status, xhr) {
+                if (status == "error") {
+                    mediator.publish('pageError', { error: xhr.status + " " + xhr.statusText, method: 'loading ' + game.GameDate + ' for scrapping - -' });
+                    scrapErr.append(game.GameDate + ' ' + game.GameId + ' ' + game.HomeTeamCity + "</br>");
+                } else {
+
+                    htmlHolder.append(html);
+
+
+
+                    var moneyLine = $('<div></div>');
+
+                    if (htmlHolder.html() == '<div></div>') {
+                        scrapErr.append(game.GameDate + ' ' + game.GameId + ' ' + game.HomeTeamCity + "</br>");
+                        //mediator.publish('pageError', { error: 'coudnt find game scraping', method: 'loading ' + game.GameDate + ' for scrapping - -' });
+                        if (game.RunSave) {
+                            mediator.publish('NBASpreadScrap', { GameId: game.GameId });
+                        }
+
+                    } else {
+
+                        var moneyLine = $('<div></div>');
+
+                        //var lineUrl = htmlHolder.find('a:contains("Money Line")').attr("href"); //.slice(0, -1);
+                        //moneyLine.load(lineUrl + ' .AlternatingData1', function (response, status, xhr) {
+
+                        //    // alert('FUSKLDFJ');
+                        //    if (status == "error") {
+                        //        scrapErr.append(game.GameDate + ' ' + game.GameId + ' ' + game.HomeTeamCity + "</br>");
+                        //        mediator.publish('pageError', { error: xhr.status + " " + xhr.statusText, method: 'loading ' + game.GameDate + ' for scrapping - -' });
+                        //    } else {
+                        //        htmlHolder.append(moneyLine);
+
+
+                        //        if (game.RunSave) {
+                        //            mediator.publish('NBASpreadScrap', { GameId: game.GameId });
+                        //        }
+                        //        //alert(moneyLine);
+                        //    }
+                        //});
+
+
+                        var lineUrl2 = 'http://www.sbrforum.com/betting-odds/nba-basketball/money-line/?date=' + game.GameDate;
+                        htmlHolder.append(lineUrl2 + '<br>');
+                        //moneyLine.load(lineUrl + ' .tbl-lines-history-link'), function (response, status, xhr) {
+                        //+ ' .tbl-lines-history-link  div:contains("Bookmaker Odds History")'
+                        moneyLine.load(lineUrl2 + ' .content-final', function (response, status, xhr) {
+
+                            // alert('FUSKLDFJ');
+                            if (status == "error") {
+                                scrapErr.append(game.GameDate + ' ' + game.GameId + ' ' + game.HomeTeamCity + "</br>");
+                                mediator.publish('pageError', { error: xhr.status + " " + xhr.statusText, method: 'loading ' + game.GameDate + ' for scrapping - -' });
+                            } else {
+                                
+                                //htmlHolder.find('eventLine-team').index()
+                                
+                                //htmlHolder.append(moneyLine);
+                                var teamIndex  =-1;
+                                moneyLine.find('.eventLine-team').each(function(index){
+                                    if ($(this).html().indexOf(game.HomeTeamCity) > -1){
+                                        teamIndex = index;
+                                    }
+                                });
+                                
+                                if(teamIndex > -1){
+                                    teamIndex = (teamIndex * 10) +3;
+                                    htmlHolder.append(moneyLine.find('.eventLine-book:eq('+ teamIndex +')').html());
+                                }
+
+                                
+                                $(".nav-list li a:contains('" + game.GameId + "')").parent().addClass('active');
+
+                               // alert(htmlHolder.find('.eventLine-team').index('div:contains("' + game.HomeTeamCity + '")'));
+                                //htmlHolder.inde
+                                //.eventLine-book:eq(3)
+                                //eventLine-team
+
+                                if (game.RunSave) {
+                                    mediator.publish('NBASpreadScrap', { GameId: game.GameId });
+                                }
+                                //alert(moneyLine);
+                            }
+                        });
+
+                    }
+
+
+
+                    //                htmlHolder.find('.tbl-odds-c5').each(function (index) {
+                    //                    alert(index + ': ' + $(this).text());
+                    //                });
+                    //                htmlHolder.find('.tbl-odds-c7').each(function (index) {
+                    //                    alert(index + ': ' + $(this).text());
+                    //                });
+                }
+            });
+        }
+
+        $.fn.RunNBASpreadScrap({ 
+                GameDate: @Model.game.GameDate.ToString("yyyyMMdd", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")),
+                 HomeTeamName: '@Model.game.HomeTeamName',
+                HomeTeamCity: '@Model.game.GameLocationName',
+                GameId : @Model.game.GameId,
+                RunSave:false
+                });
+         
+         mediator.subscribe('NBASpreadScrap', function (arg) {      
+
+               var replacementText = '';
+               //c4 - Spread Open
+               htmlHolder.find('.tbl-odds-c4 nobr').each(function (index) {
+                    
+                    replacementText = $(this).html().replace("½", ".5");
+                    var spreadArray = replacementText.split("&nbsp;");
+
+                    if (index ==0){
+                        $('#AwayTeamSpreadOpen').val(spreadArray[0]);
+                        $('#AwayTeamSpreadPayOpen').val(spreadArray[1]);
+                    }
+                    if(index == 1){
+                        $('#HomeTeamSpreadOpen').val(spreadArray[0]);
+                        $('#HomeTeamSpreadPayOpen').val(spreadArray[1]);
+                    }
+                });
+                
+               //c5 - Spread Current
+               htmlHolder.find('.tbl-odds-c5 div').each(function (index) {
+
+                    replacementText = $(this).html().replace("½", ".5");
+                    var spreadArray = replacementText.split("&nbsp;");
+
+                    if (index ==0){
+                        $('#AwayTeamSpread').val(spreadArray[0]);
+                        $('#AwayTeamSpreadPay').val(spreadArray[1]);
+                    }
+                    if(index == 1){
+                        $('#HomeTeamSpread').val(spreadArray[0]);
+                        $('#HomeTeamSpreadPay').val(spreadArray[1]);
+                    }
+                });
+
+                //c-6 MoneyLine Open
+                //htmlHolder.find('.tbl-odds-c6 nobr').each(function (index) {
+
+                //    replacementText = $(this).html().replace("½", ".5");
+                //    var spreadArray = replacementText.split("&nbsp;");
+
+                //    if (index ==0){
+                //        $('#AwayTeamMoneyLineOpen').val(spreadArray[0]);
+                //    }
+                //    if(index == 1){
+                //        $('#HomeTeamMoneyLineOpen').val(spreadArray[0]);
+                //    }
+                //});
+
+                //c-7 MoneyLine Current
+//                htmlHolder.find('.AlternatingData1:eq(0) .hs_Price').each(function (index) {
+//                    //alert($(this).html());
+////                    replacementText = $(this).html().replace("½", ".5");
+////                    var spreadArray = replacementText.split("&nbsp;");
+////                    
+//                    if (index ==0){
+//                        $('#AwayTeamMoneyLine').val($(this).html());
+//                    }
+//                    if(index == 1){
+//                        $('#HomeTeamMoneyLine').val($(this).html());
+//                    }
+//                });
+                
+               //MONEY LINE CURRENT
+               htmlHolder.find('.eventLine-book-value b').each(function (index) {
+                   //alert($(this).html());
+                   replacementText = $(this).html().replace("&nbsp;", "");
+                   // var spreadArray = replacementText.split("&nbsp;");
+                   //                    
+                   if (index ==0){
+                       $('#AwayTeamMoneyLine').val(replacementText);
+                   }
+                   if(index == 1){
+                       $('#HomeTeamMoneyLine').val(replacementText);
+                   }
+               });
+
+                var game = { 
+                GameId: arg.GameId,
+                HomeTeamLine: $('#HomeTeamLine').val(),
+                AwayTeamLine: $('#AwayTeamLine').val(),
+                HomeTeamSpread: $('#HomeTeamSpread').val(),
+                HomeTeamSpreadPay: $('#HomeTeamSpreadPay').val(),
+                HomeTeamSpreadOpen: $('#HomeTeamSpreadOpen').val(),
+                HomeTeamSpreadPayOpen: $('#HomeTeamSpreadPayOpen').val(),
+                HomeTeamMoneyLine: $('#HomeTeamMoneyLine').val(),
+                HomeTeamMoneyLineOpen: $('#HomeTeamMoneyLineOpen').val(),
+                AwayTeamSpread: $('#AwayTeamSpread').val(),
+                AwayTeamSpreadPay: $('#AwayTeamSpreadPay').val(),
+                AwayTeamSpreadOpen: $('#AwayTeamSpreadOpen').val(),
+                AwayTeamSpreadPayOpen: $('#AwayTeamSpreadPayOpen').val(),
+                AwayTeamMoneyLine: $('#AwayTeamMoneyLine').val(),
+                AwayTeamMoneyLineOpen: $('#AwayTeamMoneyLineOpen').val(),
+                WonSpread: $('#WonSpread').is(':checked'),
+                WonMoneyLine: $('#WonLine').is(':checked')
+            };
+           // alert(gameArray.length + ' ' + gameIndex + ' ' + gameArray[gameIndex]);
+            
+                $.ajax({
+                    //url: GetRootURL() + 'sports/nba/UpdateGameLines?gameId=' + $('#GameId').val() + '&homeLine=' + $('#HomeTeamLine').val() + '&awayLine=' + $('#AwayTeamLine').val(),
+                    url: GetRootURL() + 'sports-betting/nba/UpdateGameLines',
+                    data: JSON.stringify(game),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            //alert('updated');
+                            //$('#updateNote').show();
+                            gameIndex++;
+                            if (gameArray.length > gameIndex){
+                                
+                                $.ajax({    
+                                        url: GetRootURL() + 'Sports/GetGameDetails?gameId=' + gameArray[gameIndex],
+                                        type: 'POST',
+                                        contentType: 'application/json; charset=utf-8',
+                                        success: function (data) {
+                                            if (data.success) {
+                                                $.fn.RunNBASpreadScrap({ 
+                                                    GameDate: data.game.GameDateFormated, 
+                                                    HomeTeamName:data.game.HomeTeamName,
+                                                    HomeTeamCity: data.game.GameLocationName,
+                                                    GameId: gameArray[gameIndex],
+                                                    RunSave:true
+                                                     });
+                                            } else {
+                                                //show error
+                                                mediator.publish('pageError', { error: data.message, method: 'Load Game for spread scrap' });
+                                            }
+                                        },
+                                        error: function () {
+                                            mediator.publish('logError', { error: 'Error with service for Geting Game Deatils', method: 'GameDetails' });
+                                        }
+                                    });
+                            }
+                        } else {
+                            //show error
+                            mediator.publish('pageError', { error: data.message, method: 'upDateGameLine' });
+                        }
+                    },
+                    error: function () {
+                        mediator.publish('logError', { error: 'Error with service for upDateGameLine', method: 'upDateGameLine' });
+                    }
+                });
+         });
+
+         $('#allSpreadScraping').click(function(){
+            //$.fn.RunAllSpreadScraping({ gameId:4 });
+         
+             $.fn.RunNBASpreadScrap({ 
+                GameDate: @Model.game.GameDate.ToString("yyyyMMdd", System.Globalization.CultureInfo.CreateSpecificCulture("en-US")), 
+                HomeTeamName: '@Model.game.HomeTeamName',
+                HomeTeamCity: '@Model.game.GameLocationName',
+                GameId: @Model.game.GameId,
+                RunSave:true
+                 });
+            return false;
+         });
+
+         $('#PostValues').click(function(){
+         //var lineUrl = htmlHolder.find('a:contains("Money Line")').attr("href") + ' div:contains("Bookmaker Odds History")';a:contains("Bookmaker Odds History")
+                                   var replacementText = '';
+               //c4 - Spread Open
+               htmlHolder.find('.tbl-odds-c4 nobr').each(function (index) {
+                    
+                    replacementText = $(this).html().replace("½", ".5");
+                    var spreadArray = replacementText.split("&nbsp;");
+
+                    if (index ==0){
+                        $('#AwayTeamSpreadOpen').val(spreadArray[0]);
+                        $('#AwayTeamSpreadPayOpen').val(spreadArray[1]);
+                    }
+                    if(index == 1){
+                        $('#HomeTeamSpreadOpen').val(spreadArray[0]);
+                        $('#HomeTeamSpreadPayOpen').val(spreadArray[1]);
+                    }
+                });
+                
+               //c5 - Spread Current
+               htmlHolder.find('.tbl-odds-c5 div').each(function (index) {
+
+                    replacementText = $(this).html().replace("½", ".5");
+                    var spreadArray = replacementText.split("&nbsp;");
+
+                    if (index ==0){
+                        $('#AwayTeamSpread').val(spreadArray[0]);
+                        $('#AwayTeamSpreadPay').val(spreadArray[1]);
+                    }
+                    if(index == 1){
+                        $('#HomeTeamSpread').val(spreadArray[0]);
+                        $('#HomeTeamSpreadPay').val(spreadArray[1]);
+                    }
+                });
+
+                //c-6 MoneyLine Open
+                //htmlHolder.find('.tbl-odds-c6 nobr').each(function (index) {
+
+                //    replacementText = $(this).html().replace("½", ".5");
+                //    var spreadArray = replacementText.split("&nbsp;");
+
+                //    if (index ==0){
+                //        $('#AwayTeamMoneyLineOpen').val(spreadArray[0]);
+                //    }
+                //    if(index == 1){
+                //        $('#HomeTeamMoneyLineOpen').val(spreadArray[0]);
+                //    }
+                //});
+
+                //c-7 MoneyLine Current
+//                htmlHolder.find('.AlternatingData1:eq(0) .hs_Price').each(function (index) {
+//                    //alert($(this).html());
+////                    replacementText = $(this).html().replace("½", ".5");
+////                    var spreadArray = replacementText.split("&nbsp;");
+////                    
+//                    if (index ==0){
+//                        $('#AwayTeamMoneyLine').val($(this).html());
+//                    }
+//                    if(index == 1){
+//                        $('#HomeTeamMoneyLine').val($(this).html());
+//                    }
+             //                });
+
+             //c-7 MoneyLine Current
+                //htmlHolder.find('.AlternatingData1:eq(0) .hs_Price').each(function (index) {
+                //    //alert($(this).html());
+                //    //                    replacementText = $(this).html().replace("½", ".5");
+                //    //                    var spreadArray = replacementText.split("&nbsp;");
+                //    //                    
+                //    if (index ==0){
+                //        $('#AwayTeamMoneyLine').val($(this).html());
+                //    }
+                //    if(index == 1){
+                //        $('#HomeTeamMoneyLine').val($(this).html());
+                //    }
+                //});
+
+                htmlHolder.find('.eventLine-book-value b').each(function (index) {
+                    //alert($(this).html());
+                    replacementText = $(this).html().replace("&nbsp;", "");
+                    // var spreadArray = replacementText.split("&nbsp;");
+                    //                    
+                    if (index ==0){
+                        $('#AwayTeamMoneyLine').val(replacementText);
+                    }
+                    if(index == 1){
+                        $('#HomeTeamMoneyLine').val(replacementText);
+                    }
+                });
+
+            return false;
+
+         });
+
+    });
+
+</script>
+
+@Html.Partial("_ErrorPageHandler")
+ <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Active Game's With Bets</li>
+              <li><a href="#" id="PostValues">Load Form Values</a></li>
+              @foreach (int i in Model.gameLinks)
+              {
+                  <li class="gameLink"><a href="GameDetail?gameId=@i">@i</a></li>
+              }
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        <h1>Game Details</h1>
+        <h3 id="updateNote" style="color:Green; display:none;">Updated!</h3>
+          <a href="#" onclick="javascript:window.open('http://www.sbrforum.com/nba-basketball/odds-scores/@Model.game.GameDate.ToString("yyyyMMdd", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))', 'spreadWin');">Spread Details</a>
+            <br />
+            <a href="#" onclick="javascript:window.open('http://www.sbrforum.com/betting-odds/nba-basketball/?date=@Model.game.GameDate.ToString("yyyyMMdd", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))', 'spreadWin');">Spread Details new Link</a>
+            <br />
+            <a href="#" onclick="javascript:window.open('http://www.sbrforum.com/betting-odds/nba-basketball/money-line/?date=@Model.game.GameDate.ToString("yyyyMMdd", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))', 'spreadWin');">MoneyLine Details</a>
+            <input type="hidden" id="GameId" value="@Model.game.GameId" />
+            <input type="hidden" id="AwayTeamId" value="@Model.game.AwayTeamId" />
+            <input type="hidden" id="HomeTeamId" value="@Model.game.HomeTeamId" />
+          <table>
+            
+            <tr><td colspan="2">AWAY TEAM</td></tr>
+            <tr>
+                <td>Away Team Name</td><td>@Model.game.AwayTeamName</td>
+            </tr>
+            <tr>
+                <td>Away Team Score</td><td><input id="AwayTeamScore" type="text" value="@Model.game.AwayTeamScore" /></td>
+            </tr>
+            <tr>
+                <td>Away Team Spread</td><td><input id="AwayTeamSpread" type="text" value="@Model.game.AwayTeamSpread" /></td>
+            </tr>
+            <tr>
+                <td>Away Team Spread Pay</td><td><input id="AwayTeamSpreadPay" type="text" value="@Model.game.AwayTeamSpreadPay" /></td>
+            </tr>
+            <tr>
+                <td>Away Team Spread - OPEN</td><td><input id="AwayTeamSpreadOpen" type="text" value="@Model.game.AwayTeamSpreadOpen" /></td>
+            </tr>
+            <tr>
+                <td>Away Team Spread Pay - OPEN</td><td><input id="AwayTeamSpreadPayOpen" type="text" value="@Model.game.AwayTeamSpreadPayOpen" /></td>
+            </tr>
+            <tr>
+                <td>Away Team MoneyLine</td><td><input id="AwayTeamMoneyLine" type="text" value="@Model.game.AwayTeamMoneyLine" /></td>
+            </tr>
+            <tr>
+                <td>Away Team MoenyLine - OPEN</td><td><input id="AwayTeamMoneyLineOpen" type="text" value="@Model.game.AwayTeamMoneyLineOpen" /></td>
+            </tr>
+             <tr>
+                <td>Home Team Score</td><td>@Model.game.HomeTeamScore</td>
+            </tr>
+            <tr>
+                <td>Away Team Score</td><td>@Model.game.AwayTeamScore</td>
+            </tr>
+            <tr>
+                <td>Won Spread</td><td>@Html.CheckBox("WonSpread", Model.game.WonSpread)</td>
+            </tr>
+              <tr>
+                <td>Won Line</td><td>@Html.CheckBox("WonLine", Model.game.WonMoneyLine)</td>
+            </tr>
+              <tr>
+                <td>Home Team Name</td><td>@Model.game.HomeTeamName</td>
+            </tr>
+            <tr>
+                <td>Home Team Score</td><td><input id="HomeTeamScore" type="text" value="@Model.game.HomeTeamScore" /></td>
+            </tr>
+            <tr>
+                <td>Home Team Spread</td><td><input id="HomeTeamSpread" type="text" value="@Model.game.HomeTeamSpread" /></td>
+            </tr>
+            <tr>
+                <td>Home Team Spread Pay</td><td><input id="HomeTeamSpreadPay" type="text" value="@Model.game.HomeTeamSpreadPay" /></td>
+            </tr>
+            <tr>
+                <td>Home Team Spread - OPEN</td><td><input id="HomeTeamSpreadOpen" type="text" value="@Model.game.HomeTeamSpreadOpen" /></td>
+            </tr>
+            <tr>
+                <td>Home Team Spread Pay - OPEN</td><td><input id="HomeTeamSpreadPayOpen" type="text" value="@Model.game.HomeTeamSpreadPayOpen" /></td>
+            </tr>
+            <tr>
+                <td>Home Team MoneyLine</td><td><input id="HomeTeamMoneyLine" type="text" value="@Model.game.HomeTeamMoneyLine" /></td>
+            </tr>
+            <tr>
+                <td>Home Team MoenyLine - OPEN</td><td><input id="HomeTeamMoneyLineOpen" type="text" value="@Model.game.HomeTeamMoneyLineOpen" /></td>
+            </tr>
+            <tr><td colspan="2"><input type="button" value="Update" id="upDateGameLine" /></td></tr>
+          </table>
+        </div>
+        <div class="span9">
+            <a href="#" id="allSpreadScraping">Run All Spread Sraping</a>
+        </div>
+        <div class="span9">
+           <div id="dataHoldElm">
+           </div>
+           <div id="spreadHolder"></div>
+           <div id="scrapError">test</div>
+        </div>
+</div>

@@ -1,0 +1,17 @@
+﻿   <script type="text/javascript">
+       $(document).ready(function () {
+
+           //HOW TO SUBSCRIBE AN OBJECT TO AN EVENT
+           pageError = { errorDiv: $('#pageErrorDiv'), errorLabel: $('#pageErrorText') };
+           //YOU MUST "install" THE OBJECT TO THE mediator
+           mediator.installTo(pageError);
+           pageError.subscribe('pageError', function (arg) {
+               this.errorDiv.show();
+               this.errorLabel.html(arg.error + ' ' + arg.method + ' - This text is added to error and is responce to the published event pageError - Responding object is located in Index view');
+           });
+       });
+   </script>
+     
+      <div id="pageErrorDiv" class="span8 offset2">
+        <label id="pageErrorText"></label>
+      </div>
