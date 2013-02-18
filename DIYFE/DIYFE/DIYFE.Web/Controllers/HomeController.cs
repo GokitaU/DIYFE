@@ -18,7 +18,7 @@ namespace DIYFE.Web.Controllers
             PageModel.Description = "";
             PageModel.Author = "Do it yourself for everyone.";
             PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
-            PageModel.ActiveTopNavLink = "MainNavHome";
+            //PageModel.ActiveTopNavLink = "MainNavHome";
 
             //Test error handeling
             //throw new Exception();

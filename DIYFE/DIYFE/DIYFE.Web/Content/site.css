@@ -1,14 +1,18 @@
 /*!
  * DIYFE Site
  *
- */
+#7D1935
+#66BEDA
+#F5F3ED
+#FFFFFF
+    */
 
 body
 {
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-    background-color: #fff;
+    background-color: #F5F3ED;
 }
 
 header,
@@ -17,6 +21,51 @@ nav,
 section {
     display: block;
 }
+
+.dark-to-light-gradient {
+    background: -moz-linear-gradient(left center , #DD3257 0%, #FFB516 100%) repeat scroll 0 0 transparent;
+    height: 100%;
+}
+
+.act-now-bar {
+    display: block;
+}
+.act-now-bar {
+    height: 140px;
+    left: 0;
+    position: absolute;
+    top: 185px;
+    width: 100%;
+    z-index: -1;
+}
+.box-shadow {
+    box-shadow: 0 0 10px #E42B00 inset;
+}
+
+.box-content-hero
+{
+    min-height:400px;
+}
+.box-content {
+    min-height: 150px;
+}
+.box-content, .box-content-hero
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #E4E4E4 #E4E4E4 #C9C9C9;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 20px;
+    padding: 30px;
+    position: relative;
+}
+
+
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
@@ -77,4 +126,27 @@ textarea
 .validation-summary-valid
 {
     display: none;
+}
+
+
+/* Bootstrap Overrights
+    -----------------------------------------------------------*/
+.hero-unit
+{
+    margin-bottom:15px;
+    padding:20px 40px 30px 40px;
+}
+
+.hero-unit h1 {
+    color:#7D1935;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    color:#7D1935;
+}
+
+.show-grid {
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
