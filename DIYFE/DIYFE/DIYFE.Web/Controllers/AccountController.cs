@@ -17,10 +17,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult LogOn()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View();
@@ -29,10 +29,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult LogOff()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
 
@@ -44,10 +44,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult Register()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View();
@@ -57,10 +57,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult ChangePassword()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View();
@@ -69,10 +69,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult ChangePasswordSuccess()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View();

@@ -16,10 +16,10 @@ namespace DIYFE.Web.Controllers.Sports
 
         public ActionResult Index()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View("~/Views/Sports/MLB/Index.cshtml");
@@ -27,10 +27,10 @@ namespace DIYFE.Web.Controllers.Sports
 
         public ActionResult Scraping()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View("~/Views/Sports/MLB/Scraping.cshtml");

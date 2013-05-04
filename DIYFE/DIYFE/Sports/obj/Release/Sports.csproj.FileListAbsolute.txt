@@ -3,3 +3,8 @@ C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\bin\Release\Sports.pdb
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\obj\Release\Sports.csprojResolveAssemblyReference.cache
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\obj\Release\Sports.dll
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\obj\Release\Sports.pdb
+C:\JT-Personal\DIYFE\DIYFE\Sports\bin\Release\Sports.dll
+C:\JT-Personal\DIYFE\DIYFE\Sports\bin\Release\Sports.pdb
+C:\JT-Personal\DIYFE\DIYFE\Sports\obj\Release\Sports.csprojResolveAssemblyReference.cache
+C:\JT-Personal\DIYFE\DIYFE\Sports\obj\Release\Sports.dll
+C:\JT-Personal\DIYFE\DIYFE\Sports\obj\Release\Sports.pdb

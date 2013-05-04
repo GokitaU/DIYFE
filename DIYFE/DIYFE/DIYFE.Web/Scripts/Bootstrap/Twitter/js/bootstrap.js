@@ -663,7 +663,7 @@
     , Dropdown = function (element) {
         var $el = $(element).on('click.dropdown.data-api', this.toggle)
         $('html').on('click.dropdown.data-api', function () {
-          $el.parent().removeClass('open')
+            $el.parent().removeClass('open')
         })
       }
 
@@ -679,15 +679,19 @@
       if ($this.is('.disabled, :disabled')) return
 
       $parent = getParent($this)
+      //alert($parent.html());
+      if ($parent.is(':focus')) {
+          alert('FUCKY');
+      }
 
       isActive = $parent.hasClass('open')
-
+      
       clearMenus()
 
       if (!isActive) {
         $parent.toggleClass('open')
       }
-
+     
       $this.focus()
 
       return false
@@ -789,11 +793,19 @@
    * =================================== */
 
   $(document)
-    .on('click.dropdown.data-api', clearMenus)
-    .on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('.dropdown-menu', function (e) { e.stopPropagation() })
-    .on('click.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
-    .on('keydown.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+    //.on('click.dropdown.data-api', clearMenus)
+    //.on('click.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    //.on('.dropdown-menu', function (e) { e.stopPropagation() })
+    //.on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    //.on('keydown.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+
+    .on('mouseenter.dropdown.data-api', clearMenus)
+    .on('mouseenter.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('mouseenter.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('mouseleave.dropdown.data-api', clearMenus)
+    .on('mouseleave.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    //.on('mouseleave.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+
 
 }(window.jQuery);
 /* =========================================================

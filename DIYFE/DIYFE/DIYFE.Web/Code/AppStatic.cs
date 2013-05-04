@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DIYFELib;
 using Sports;
 
 namespace DIYFE.Web
@@ -16,7 +17,10 @@ namespace DIYFE.Web
             //    HttpContext.Current.Application["communicationType"] = context.CommunicationType.ToList();
             //}
             HttpContext.Current.Application["someVarName"] = "This is a test.  Normally a  list of objects but since no DB connection is made it's only a string...le sigh, poor string.";
-            
+
+            DIYFELib.ListAccess la = new DIYFELib.ListAccess();
+            HttpContext.Current.Application["Categories"] = la.AllCategory();
+
         }
         //EXAMPLE OF HOW TO USE WITH A ORM TOOL
         //public static List<CommunicationType> AllCommunicationTypes
@@ -33,7 +37,7 @@ namespace DIYFE.Web
             get {
                 if (HttpContext.Current.Application["MLBTeams"] == null)
                 {
-                    ListAccess la = new ListAccess();
+                    Sports.ListAccess la = new Sports.ListAccess();
                     HttpContext.Current.Application["MLBTeams"] = la.AllTeams(1);
                 }
                 return (List<Team>)(HttpContext.Current.Application["MLBTeams"]);
@@ -45,7 +49,7 @@ namespace DIYFE.Web
             {
                 if (HttpContext.Current.Application["NBATeams"] == null)
                 {
-                    ListAccess la = new ListAccess();
+                    Sports.ListAccess la = new Sports.ListAccess();
                     HttpContext.Current.Application["NBATeams"] = la.AllTeams(2);
                 }
                 return (List<Team>)(HttpContext.Current.Application["NBATeams"]);
@@ -57,7 +61,7 @@ namespace DIYFE.Web
             {
                 if (HttpContext.Current.Application["NHLTeams"] == null)
                 {
-                    ListAccess la = new ListAccess();
+                    Sports.ListAccess la = new Sports.ListAccess();
                     HttpContext.Current.Application["NHLTeams"] = la.AllTeams(3);
                 }
                 return (List<Team>)(HttpContext.Current.Application["NHLTeams"]);
@@ -69,7 +73,7 @@ namespace DIYFE.Web
             {
                 if (HttpContext.Current.Application["NFLTeams"] == null)
                 {
-                    ListAccess la = new ListAccess();
+                    Sports.ListAccess la = new Sports.ListAccess();
                     HttpContext.Current.Application["NFLTeams"] = la.AllTeams(4);
                 }
                 return (List<Team>)(HttpContext.Current.Application["NFLTeams"]);
@@ -86,6 +90,14 @@ namespace DIYFE.Web
             }
         }
 
+        public static List<Category> Categories
+        {
+            get
+            {
+                return (List<Category>)(HttpContext.Current.Application["Categories"]);
+            }
+        }
+
         public static string LunceneIndexLocation
         {
             get
@@ -99,6 +111,16 @@ namespace DIYFE.Web
             get
             {
                 return System.Configuration.ConfigurationManager.AppSettings["TestAppSetting"].ToString();
+            }
+        }
+
+        public static string BaseSiteUrl
+        {
+            get
+            {
+                HttpContext context = HttpContext.Current;
+                string baseUrl = context.Request.Url.Scheme + "://" + context.Request.Url.Authority + context.Request.ApplicationPath.TrimEnd('/') + '/';
+                return baseUrl;
             }
         }
 

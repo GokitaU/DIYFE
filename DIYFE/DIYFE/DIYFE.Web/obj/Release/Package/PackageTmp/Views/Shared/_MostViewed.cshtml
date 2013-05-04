@@ -1,0 +1,23 @@
+﻿@model List<DIYFELib.CustomHtmlLink>
+
+<div class="row-fluid">
+   <div class="span12 box-content" style="height:200px;">Top Viewed Projects
+        <table class="table table-condensed">
+            <thead>
+                        <tr>
+                          <th>Views</th>
+                          <th>Link</th>
+                        </tr>
+                      </thead>
+            <tbody> 
+                          @foreach (DIYFELib.CustomHtmlLink link in Model)
+                          {
+                              <tr>
+                                  <td>@link.Views.ToString()</td>
+                                  <td>@Html.Raw(link.GenerateHtml)</td>
+                              </tr>
+                          }
+                      </tbody>
+         </table>
+    </div>
+</div>

@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.PageModel.Title</title>
-    <meta name="description" content="@ViewBag.PageModel.Description">
-    <meta name="author" content="@ViewBag.PageModel.Author">
-    <meta name="keywords" content="@ViewBag.PageModel.Keywords" />
+    <title>@ViewBag.PageModel.ArticleContent.Title</title>
+    <meta name="description" content="@ViewBag.PageModel.ArticleContent.Description">
+    <meta name="author" content="@ViewBag.PageModel.ArticleContent.Author">
+    <meta name="keywords" content="@ViewBag.PageModel.ArticleContent.Keywords" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -13,24 +13,32 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="@Url.Content("~/Scripts/Bootstrap/Twitter/css/bootstrap.css")" rel="stylesheet">
+@*    <link href="@Url.Content("~/Scripts/Bootstrap/Twitter/css/bootstrap.css")" rel="stylesheet">*@
     <style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 0px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="@Url.Content("~/Scripts/Bootstrap/Twitter/css/bootstrap-responsive.css")" rel="stylesheet">
+@*    <link href="@Url.Content("~/Scripts/Bootstrap/Twitter/css/bootstrap-responsive.css")" rel="stylesheet">*@
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="@Url.Content("~/Content/Images/favicon.ico")">
-    <link rel="apple-touch-icon" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon.png")">
-    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon-72x72.png")">
-    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon-114x114.png")">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/img/favicon.ico")">
 
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    
-    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+@*    <link rel="apple-touch-icon" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon.png")">
+    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon-72x72.png")">
+    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/Content/Images/Apple/images/apple-touch-icon-114x114.png")">*@
+
+    <link href="@Url.Content("~/Content/min/DIYFE_min.css")" rel="stylesheet" type="text/css" />
+@*    <script type="text/javascript">
+        var script = document.createElement("script");
+        script.src = @Url.Content("~/Content/min/DIYFE_min.js")
+        document.head.appendChild(script);
+    </script>*@
+ 
+   
+     @*  
+  <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr.2.5.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Bootstrap/Twitter/js/bootstrap.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
@@ -40,63 +48,24 @@
     <script src="@Url.Content("~/Scripts/Bootstrap/usefull.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Bootstrap/pager.js")" type="text/javascript"></script>
     
-    <script src="@Url.Content("~/Scripts/core.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/core.js")" type="text/javascript"></script>*@
     
     <script type="text/javascript">
         var topNavSelectedId = '#@ViewBag.PageModel.ActiveTopNavLink';
     </script>
 </head>
 <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              
-              @*<li class="dropdown-submenu">
-                <a tabindex="-1" href="#">More options</a>
-                    <ul class="dropdown-menu">
-                        <li id="">@Html.ActionLink("Who", "Who", "Home")</li>
-                        <li id="">@Html.ActionLink("Goals", "Goals", "Home")</li>
-                    </ul>
-              </li>  *@           
-              
-            </ul>
-            <ul role="navigation" class="nav">
-                    <li id="MainNavHome">@Html.ActionLink("Home", "Index", "Home")</li>
-              <li id="MainNavAbout">@Html.ActionLink("Who", "Who", "Home")</li>
-              <li id="MainNavGoals">@Html.ActionLink("Goals", "Goals", "Home")</li>
-                    <li class="dropdown" id="MainNavProjects">
-                      <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#" id="drop1">Projects <b class="caret"></b></a>
-                      <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
-                        <li><a href="#" tabindex="-1">View All</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" tabindex="-1">Steam powered sun driven</a></li>
-                        <li><a href="#" tabindex="-1">Diy hho gas</a></li>
-                        <li><a href="#" tabindex="-1">Converting rock and soil to sillica</a></li>
-                        <li><a href="#" tabindex="-1">Cermaic housing </a></li>
-                        <li><a href="#" tabindex="-1">Food production </a></li>
-                        <li><a href="#" tabindex="-1">Aquaponictes</a></li>
-                        <li><a href="#" tabindex="-1">Synsepalum dulcificum</a></li>
-                        <li><a href="#" tabindex="-1">Vitamin testing</a></li>
-                        <li><a href="#" tabindex="-1">Home manufacturing </a></li>
-                        <li><a href="#" tabindex="-1">Home water purification</a></li>
-                        <li><a href="#" tabindex="-1">Home dairy and algie</a></li>
-                        <li><a href="#" tabindex="-1">Chesses culture</a></li>
-                        <li><a href="#" tabindex="-1">Seed repository</a></li>
-                        <li><a href="#" tabindex="-1">Spirulina algae</a></li>
-                        <li><a href="#" tabindex="-1">Private Communincation, free network</a></li>
-                        <li><a href="#" tabindex="-1">Real Chemistry Set</a></li>
-                      </ul>
-                    </li>
-               <li class="dropdown" id="MainNavSports">
+    <div class="container">
+   <div class="navbar">
+       <ul class="nav pull-right" style="margin-left:20px; margin-right:20px;">
+              <li id="MainNavHome">@Html.ActionLink("Home", "Index", "Home")</li>
+              <li>@Html.ActionLink("About", "About", "Home")</li>
+              <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+              <li>@Html.ActionLink("Who", "Who", "Home")</li>
+              <li>@Html.ActionLink("Goals", "Goals", "Home")</li>
+              <li id="MainNavSearch">@Html.ActionLink("Search", "Search", "Home")</li>
+              <li id="MainNavDonations">@Html.ActionLink("Donations", "Donations", "Home")</li>
+             @*   <li class="dropdown" id="MainNavSports">
                       <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#" id="sportsDrop">Sports <b class="caret"></b></a>
                       <ul aria-labelledby="sportsDrop" role="menu" class="dropdown-menu">
                         <li><a href="#" tabindex="-1">View All</a></li>
@@ -106,24 +75,350 @@
                         <li><a target="_blank" href="http://www.nba.com/statistics/player/Efficiency.jsp">Player Efficiency</a></li>
                       </ul>
                     </li> 
-               <li id="MainNavDonations">@Html.ActionLink("Donations", "Donations", "Home")</li>
-              <li id="MainNavContact">@Html.ActionLink("Contact", "Contact", "Home")</li>
-              <li id="MainNavSearch">@Html.ActionLink("Search", "Search", "Home")</li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>*@
+            </ul>
+        @Html.Partial("_LogOnPartialLink")
+   </div>
+        
+ </div>
+    
+  @RenderSection("SecondHeader", required:false)
+    <div class="container">
+@*        <div class="hero">
+            <div style="height:60px; width:60px; border:solid 1px grey; margin-bottom:10px;margin-left:35px;" />
+        </div>*@
+        <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse">
+              <ul role="navigation" class="nav">
+                  <li class="dropdown" id="MainNavProjects">
+                      <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="@Url.Content("~/project")">Projects <b class="caret"></b></a>
+                      <ul aria-labelledby="drop1" role="menu" class="dropdown-menu">
+                          <li><a href="@Url.Content("~/project")" tabindex="-1">View All</a></li>
+                          <li class="divider"></li>
+                            <li><a href="#" tabindex="-1">Wind & Water Tower</a></li>
+                            <li><a href="#" tabindex="-1">Darknet - Free & Open Internet</a></li>
+                            <li><a href="#" tabindex="-1">Mineral Accretion</a></li>
+                            <li><a href="#" tabindex="-1">Arduino ADK Appliances</a></li>
+                            <li><a href="#" tabindex="-1">Aeration of Water for Aquaponictes and Natural Pools</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#" tabindex="-1">Steam powered sun driven</a></li>
+                          <li><a href="#" tabindex="-1">Diy hho gas</a></li>
+                          <li><a href="#" tabindex="-1">Converting rock and soil to sillica</a></li>
+                          <li><a href="#" tabindex="-1">Cermaic housing </a></li>
+                          <li><a href="#" tabindex="-1">Food production </a></li>
+                          <li><a href="#" tabindex="-1">Aquaponictes</a></li>
+                          <li><a href="#" tabindex="-1">Synsepalum dulcificum</a></li>
+                          <li><a href="#" tabindex="-1">Vitamin testing</a></li>
+                          <li><a href="#" tabindex="-1">Home manufacturing </a></li>
+                          <li><a href="#" tabindex="-1">Home water purification</a></li>
+                          <li><a href="#" tabindex="-1">Home dairy and algie</a></li>
+                          <li><a href="#" tabindex="-1">Chesses culture</a></li>
+                          <li><a href="#" tabindex="-1">Seed repository</a></li>
+                          <li><a href="#" tabindex="-1">Spirulina algae</a></li>
+                          <li><a href="#" tabindex="-1">Private Communincation, free network</a></li>
+                          <li><a href="#" tabindex="-1">Real Chemistry Set</a></li>
+                      </ul>
+                  </li>
+@*                  <li class="dropdown" id="MainNavProducts">
+                      <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="@Url.Content("~/products")">Products <b class="caret"></b></a>
+                      <ul aria-labelledby="drop1" role="menu" class="dropdown-menu" style="width: 750px;">
+                          <li><a href="#" tabindex="-1" class="view-all">View All</a></li>
+                          <li class="divider"></li>
+                          <li>
+                              <div class="dropdown-menu-sub">
+                                  <h4><a href="#">Header Catigroy</a></h4>
+                                  <ul class="nav nav-list">
+                                      <li><a href="#" tabindex="-1">Steam powered sun driven</a></li>
+                                      <li><a href="#" tabindex="-1">Diy hho gas</a></li>
+                                      <li><a href="#" tabindex="-1">Converting rock and soil to sillica</a></li>
+                                      <li><a href="#" tabindex="-1">Cermaic housing </a></li>
+                                      <li><a href="#" tabindex="-1">Food production </a></li>
+                                      <li><a href="#" tabindex="-1">Aquaponictes</a></li>
+                                      <li><a href="#" tabindex="-1">Synsepalum dulcificum</a></li>
+                                      <li><a href="#" tabindex="-1">Vitamin testing</a></li>
+                                      <li><a href="#" tabindex="-1">Home manufacturing </a></li>
+                                      <li><a href="#" tabindex="-1">Home water purification</a></li>
+                                      <li><a href="#" tabindex="-1">Home dairy and algie</a></li>
+                                      <li><a href="#" tabindex="-1">Chesses culture</a></li>
+                                      <li><a href="#" tabindex="-1">Seed repository</a></li>
+                                      <li><a href="#" tabindex="-1">Spirulina algae</a></li>
+                                      <li><a href="#" tabindex="-1">Private Communincation, free network</a></li>
+                                      <li><a href="#" tabindex="-1">Real Chemistry Set</a></li>
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown-menu-sub">
+                                  <h4><a href="#">header itema</a></h4>
+                                  <ul class="nav nav-list">
+                                      <li><a href="#" tabindex="-1">Steam powered sun driven</a></li>
+                                      <li><a href="#" tabindex="-1">Diy hho gas</a></li>
+                                      <li><a href="#" tabindex="-1">Converting rock and soil to sillica</a></li>
+                                      <li><a href="#" tabindex="-1">Cermaic housing </a></li>
+                                      <li><a href="#" tabindex="-1">Food production </a></li>
+                                      <li><a href="#" tabindex="-1">Aquaponictes</a></li>
+                                      <li><a href="#" tabindex="-1">Synsepalum dulcificum</a></li>
+                                      <li><a href="#" tabindex="-1">Vitamin testing</a></li>
+                                      <li><a href="#" tabindex="-1">Home manufacturing </a></li>
+                                      <li><a href="#" tabindex="-1">Home water purification</a></li>
+                                      <li><a href="#" tabindex="-1">Home dairy and algie</a></li>
+                                      <li><a href="#" tabindex="-1">Chesses culture</a></li>
+                                      <li><a href="#" tabindex="-1">Seed repository</a></li>
+                                      <li><a href="#" tabindex="-1">Spirulina algae</a></li>
+                                      <li><a href="#" tabindex="-1">Private Communincation, free network</a></li>
+                                      <li><a href="#" tabindex="-1">Real Chemistry Set</a></li>
+                                  </ul>
+                              </div>
+
+                              <div class="dropdown-menu-sub">
+                                  <h4><a href="#">header itema</a></h4>
+                                  <ul class="nav nav-list">
+                                      <li><a href="#" tabindex="-1">Steam powered sun driven</a></li>
+                                      <li><a href="#" tabindex="-1">Diy hho gas</a></li>
+                                      <li><a href="#" tabindex="-1">Converting rock and soil to sillica</a></li>
+                                      <li><a href="#" tabindex="-1">Cermaic housing </a></li>
+                                      <li><a href="#" tabindex="-1">Food production </a></li>
+                                      <li><a href="#" tabindex="-1">Aquaponictes</a></li>
+                                      <li><a href="#" tabindex="-1">Synsepalum dulcificum</a></li>
+                                      <li><a href="#" tabindex="-1">Vitamin testing</a></li>
+                                      <li><a href="#" tabindex="-1">Home manufacturing </a></li>
+                                      <li><a href="#" tabindex="-1">Home water purification</a></li>
+                                      <li><a href="#" tabindex="-1">Home dairy and algie</a></li>
+                                      <li><a href="#" tabindex="-1">Chesses culture</a></li>
+                                      <li><a href="#" tabindex="-1">Seed repository</a></li>
+                                      <li><a href="#" tabindex="-1">Spirulina algae</a></li>
+                                      <li><a href="#" tabindex="-1">Private Communincation, free network</a></li>
+                                      <li><a href="#" tabindex="-1">Real Chemistry Set</a></li>
+                                  </ul>
+                              </div>
+                          </li>
+
+                      </ul>
+
+                  </li>*@
+
+              </ul>
+
+               <ul role="navigation" class="nav pull-right">
+                   <li class="dropdown" id="MainNav-Water">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/water")">Water <b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                          <li><a href="@Url.Content("~/project/water/homesystem.html")">Complete Home Systems</a></li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/water/access")">Access</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/water/access/wells")">Wells</a></li>
+                                  <li><a href="@Url.Content("~/post/water/access/ponds-lakes")">Ponds/Lakes</a></li>
+                                  <li><a href="@Url.Content("~/post/water/access/rain")">Rain</a></li>
+                                  <li><a href="@Url.Content("~/post/water/access/condensation-vapor")">Condisation & Evaperation</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/water/storage")">Storage</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/water/storage/natural")">Natural</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/clean-water")">Clean Water</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/plastic")">Plastic</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/wood")">Wood</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/steel")">Steel</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/cistern")">Cistern</a></li>
+                                  <li><a href="@Url.Content("~/post/water/storage/aquifer")">Aquifer</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/water/reuse")">Reuse</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/water/reuse/drainage")">Correct Drainage</a></li>
+                                  <li><a href="@Url.Content("~/post/water/reuse/evaperation-chamber")">Evaperation Chamaber</a></li>
+                                  <li><a href="@Url.Content("~/post/water/reuse/grey-water")">Grey Waters</a></li>
+                                  <li><a href="@Url.Content("~/post/water/reuse/Insime(Garbage Warrior")">Insime(Garbage Warrior</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a tabindex="-1" href="@Url.Content("~/post/water/delivery")">Delivery</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/water/delivery/home-plumbing-design")">Home Plumbing Design</a></li>
+                                  <li><a href="@Url.Content("~/post/water/delivery/pumps-pipes")">Pumps & Pipes</a></li>
+                                  <li><a href="@Url.Content("~/post/water/delivery/heating")">Heating</a></li>
+                                  <li><a href="@Url.Content("~/post/water/delivery/water-pressure")">Water Pressure</a></li>
+                                  <!--<li><a href="@Url.Content("~/post/water/delivery/water-pressure")">Water Presuer Requirments</a></li>-->
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/water/quality")">Quality</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/water/quality/testing")">Testing</a></li>
+                                  <li><a href="@Url.Content("~/post/water/quality/chemical")">Chemical</a></li>
+                                  <li><a href="@Url.Content("~/post/water/quality/mineral")">Mineral</a></li>
+                                  <li><a href="@Url.Content("~/post/water/quality/filtering")">Filtering</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="dropdown" id="MainNav-Shelter">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/shelter")">Shelter <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="@Url.Content("~/post/shelter/buying-land")">Buying Land</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/quick-temporary")">Quick and Temporary</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/modular-homes")">Modular</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/natural-homes")">Natural</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/recycled-homes")">Recycled</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/heating-homes")">Heating</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/cooling-homes")">Cooling</a></li>
+                          <li><a href="@Url.Content("~/post/shelter/small-homes")">Small Homse</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown" id="MainNav-Food">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/food")">Food <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/food/livestock")">Livestock</a>
+                              <ul class="dropdown-menu">
+                                  @* All this has the following category or articles
+                                  Houseing & Living
+                                  Feed
+                                  Health
+                                  Recsipies
+                                     *@
+                                  <li><a href="@Url.Content("~/post/food/livestock/hens")">Hens</a> @* Eggs *@ </li>
+                                  <li><a href="@Url.Content("~/post/food/livestock/rabbits")">Rabbits</a>@* Food and Fear *@</li>
+                                  <li><a href="@Url.Content("~/post/food/livestock/sheep")">Sheep</a>@* Wool *@</li>
+                                  <li><a href="@Url.Content("~/post/food/livestock/goats")">Goats</a>@* Milk *@</li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/food/fish")">Fish</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/food/fish/aquaponics")">Aquaponics</a></li>
+                                  <li><a href="@Url.Content("~/post/food/fish/commerical")">Commerical</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/food/plants")">Plants</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/food/plants/herbs")">Herbs</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/gardens")">Gardens</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/permaculture")">Peremaculter</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/hugelkultur")">Hugelkultur</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/aquaponics")">Aquaponics</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/compost")">Compost</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/one-straw")">One Straw</a></li>
+                                  <li><a href="@Url.Content("~/post/food/plants/ecosystem")">Ecosystem</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                              <a href="@Url.Content("~/post/food/other")">Other</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/food/other/bees")">Bees</a></li>
+                                  <li><a href="@Url.Content("~/post/food/other/wild")">Wild</a></li>
+                                  <li><a href="@Url.Content("~/post/food/other/algae")">Algae</a></li>
+                                  <li><a href="@Url.Content("~/post/food/other/fungi")">Fungi</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="dropdown" id="MainNav-Med">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/hygiene-health")">Health & Med <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="@Url.Content("~/post/hygiene-health/biology")">Biology</a></li>
+                          <li><a href="@Url.Content("~/post/hygiene-health/herbs")">Herbs</a></li>
+                          <li><a href="@Url.Content("~/post/hygiene-health/basic")">Basic</a></li>
+                          <li><a href="@Url.Content("~/post/hygiene-health/emergcy")">Emergcy</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown" id="MainNav-Comm">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/communication-education")">Comm. & Edu. <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="@Url.Content("~/post/communication-education/open-source")">Open Source</a></li>
+                          <li><a href="@Url.Content("~/post/communication-education/resources")">Resources</a></li>
+                          <li><a href="@Url.Content("~/post/communication-education/internet")">Internet</a></li>
+                          <li><a href="@Url.Content("~/post/communication-education/communication")">Communication</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown" id="MainNav-Mfg">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="@Url.Content("~/post/manufacturing")">Manufactured Goods <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li class="dropdown-submenu">
+                              <a tabindex="-1" href="@Url.Content("~/post/manufacturing/tools")">Tools</a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="@Url.Content("~/post/manufacturing/tools/basic")">Basic</a></li>
+                                  <li><a href="@Url.Content("~/post/manufacturing/tools/elc-tools")">Elc Tools</a></li>
+                                  <li><a href="@Url.Content("~/post/manufacturing/tools/cnc")">CNC</a></li>
+                                  <li><a href="@Url.Content("~/post/manufacturing/tools/welding")">Welding</a></li>
+@*                                  <li class="dropdown-submenu">
+                                      <a tabindex="-1" href="">Heating</a>
+                                      <ul class="dropdown-menu">
+                                          <li><a href="#">Storage</a></li>
+                                          <li><a href="#">Resuse</a></li>
+                                      </ul>
+                                  </li>
+                                  <li><a href="#">Water Presuer Requirments</a></li>*@
+                              </ul>
+                          </li>
+                          <li><a href="@Url.Content("~/post/manufacturing/electricy")">Electricy</a></li>
+                          <li><a href="@Url.Content("~/post/manufacturing/furniture")">Furniture</a></li>
+                          <li><a href="@Url.Content("~/post/manufacturing/hygine-cleaning")">Hygine & Cleaning</a></li>
+                          <li><a href="@Url.Content("~/post/manufacturing/clothing")">Clothing</a></li>
+                          <li><a href="@Url.Content("~/post/manufacturing/machines")">Machines</a></li>
+                          <li><a href="@Url.Content("~/post/manufacturing/chemistry")">Chemeistry</a></li>
+                      </ul>
+                  </li>
+@*
+                <li class="divider-vertical"></li>
+                   <li>@Html.ActionLink("Water", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Shelter", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Food", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Health & Med.", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Comm & Edu.", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Manufactured Goods", "Index", "Home")</li>
+
+               <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">More options</a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Water", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Shelter", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Food", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Health & Med.", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Comm & Edu.", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Manufactured Goods", "Index", "Home")</li>
+                            </ul>
+                            </li>*@
+        @*  <li id="MainNavContact">@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+              
 
                   </ul>
-
-
+             
             @*<p class="navbar-text pull-right" id="loggedInIndicator>Logged in as <a href="#">username</a></p>*@
-               @Html.Partial("_LogOnPartialLink")
+              
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-
-    <div class="container">
+        
+           
         <div id="masterErrorDiv">
-            <label id="masterErrorText"></label>
+            <div class="alert alert-error">
+                 <p id="masterErrorText"></p>
+            </div>
         </div>
+            
         @RenderBody()
       <hr>
      
@@ -132,51 +427,9 @@
       </footer>
 
     </div>
-@*    @if (!Request.IsAuthenticated)
-    {*@
-        <script type="text/javascript">
-            $(document).ready(function () {
+    
+    <script src="@Url.Content("~/Content/min/DIYFE_min.js")" type="text/javascript"></script>
+    @Html.Partial("_LogOnForm")   
 
-                //HOW TO SUBSCRIBE AN OBJECT TO AN EVENT
-                var masterPageError = { errorDiv: $('#masterErrorDiv'), errorLabel: $('#masterErrorText') };
-                //YOU MUST "install" THE OBJECT TO THE mediator
-                mediator.installTo(masterPageError);
-                masterPageError.subscribe('masterPageError', function (arg) {
-                    this.errorDiv.show();
-                    this.errorLabel.html(arg.error + ' ' + arg.method + '<br/> - This text is added to error and is responce to the published event masterPageError - Responding object is located in _Layout');
-                });
-
-                //HOW TO RISE AN EVENT IF NOT OBJECT BASED
-                //mediator.publish('masterPageError', { error: 'MEDIATOR - ERROR', method: 'this is supposed to be the name of the method causing error.  Error is rased in _Layout, on document ready.' });
-                //IF THE MEDIATOR CODE WAS PLACED ABOVE THE INIT OF THE masterPageError OBJECT NOTHING WOULD HAPPEND BECUASE THERE ARE NO SUBSCRIBERS TO THE EVENT
-
-//                $('#JavascriptDelegation').click(function () {
-//                    //HOW TO RISE AND EVENT USING AND OBJECT
-//                    masterPageError.publish('masterPageError', { error: '_LAYOUT LINK CLICK- ERROR', method: 'this is supposed to be the name of the method causing error.  Error is rased in _Layout, on Javascript Event Notifications CLICK.' });
-//                    return false;
-//                });
-
-                $.ajax({
-                    url: GetRootURL() + 'Partial/LogonForm',
-                    type: 'POST',
-                    contentType: 'html; charset=utf-8',
-                    success: function (data) {
-                        $('body').append(data);
-                        //                    if (data.success) {
-                        //                        alert(total + ' ' + tempIndex);
-                        //                        $('#memberCurrent ul').append('<li class=\"regDetails\"><div class=\"regDescription\"><a onclick=\"LoadRegDetails(\'../member/MemberRegistrationDetails?productId=' + productId + '&memberId=' + memberId + '\')\" href=\"#\">' + productDescription + '</a></div><div class=\"regCode\">' + regCode + '</div></li>');
-
-                        //                    } else {
-                        //                        show error
-                        //                        alert(data.message);
-                        //                    }
-                    },
-                    error: function () {
-                        masterPageError.publish('masterPageError', { error: 'There was an error generating login form.', method: 'onLoad - get login html form.' });
-                    }
-                });
-            });
-        </script>
- @*   }*@
 </body>
 </html>

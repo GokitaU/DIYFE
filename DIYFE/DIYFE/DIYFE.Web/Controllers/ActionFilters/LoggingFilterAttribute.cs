@@ -22,7 +22,6 @@ namespace DIYFE.Web.Controllers
             //NOTE:PUT ERROR LOGGING CODE HERE
             if (filterContext.Exception != null)
             {
-
                 DIYFE.Web.Models.ErrorModel err = new Models.ErrorModel();
                 err.InsertError(filterContext.Exception);
                 

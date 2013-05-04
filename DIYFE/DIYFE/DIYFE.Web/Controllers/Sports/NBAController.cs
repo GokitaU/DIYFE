@@ -18,10 +18,10 @@ namespace DIYFE.Web.Controllers
         public ActionResult Index()
         {
 
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View("~/Views/Sports/NBA/Index.cshtml");
@@ -229,10 +229,10 @@ namespace DIYFE.Web.Controllers
 
         public ActionResult BetDetails()
         {
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             //List<Team> team = AppStatic.NBATeams;
@@ -269,10 +269,10 @@ namespace DIYFE.Web.Controllers
         public ActionResult Scraping()
         {
 
-            PageModel.Title = "Bootstrap Home Page";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Bootstrap Home Page";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavHome";
 
             return View("~/Views/Sports/NBA/Scraping.cshtml");

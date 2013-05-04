@@ -14,10 +14,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
-            PageModel.Title = "DiyFe";
-            PageModel.Description = "";
-            PageModel.Author = "Do it yourself for everyone.";
-            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.ArticleContent.Title = "DiyFe";
+            PageModel.ArticleContent.Description = "";
+            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
+            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             //PageModel.ActiveTopNavLink = "MainNavHome";
 
             //Test error handeling
@@ -91,10 +91,10 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult About()
         {
-            PageModel.Title = "About DiyFe";
-            PageModel.Description = "";
-            PageModel.Author = "Do it yourself for everyone.";
-            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.ArticleContent.Title = "About DiyFe";
+            PageModel.ArticleContent.Description = "";
+            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
+            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             PageModel.ActiveTopNavLink = "MainNavAbout";
 
             return View();
@@ -103,23 +103,84 @@ namespace DIYFE.Web.Controllers
         [LoggingFilter]
         public ActionResult Contact()
         {
-            PageModel.Title = "Contact About Boostrap Project";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
         }
 
         [LoggingFilter]
+        public ActionResult Who()
+        {
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            return View();
+        }
+
+        [LoggingFilter]
+        public ActionResult Goals()
+        {
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            return View();
+        }
+
+        [LoggingFilter]
+        public ActionResult Donations()
+        {
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            return View();
+        }
+
+        [LoggingFilter]
+        public ActionResult GettingSponsored()
+        {
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            return View();
+        }
+
+        [LoggingFilter]
+        public ActionResult Participate()
+        {
+            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            return View();
+        }
+
+
+        [LoggingFilter]
         public ActionResult Search(string term)
         {
 
-            PageModel.Title = "Search Boostrap Project";
-            PageModel.Description = "Bootstrap Template Project";
-            PageModel.Author = "Bootstrap";
-            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ArticleContent.Title = "Search Boostrap Project";
+            PageModel.ArticleContent.Description = "Bootstrap Template Project";
+            PageModel.ArticleContent.Author = "Bootstrap";
+            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavSearch";
 
             if (term != null)

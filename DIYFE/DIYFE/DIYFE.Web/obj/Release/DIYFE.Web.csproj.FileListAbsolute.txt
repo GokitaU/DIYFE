@@ -7,3 +7,14 @@ C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.xml
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.csprojResolveAssemblyReference.cache
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.dll
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFE.Web.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFE.Web.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\Sports.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\Sports.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.xml
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.csprojResolveAssemblyReference.cache
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Release\DIYFE.Web.pdb

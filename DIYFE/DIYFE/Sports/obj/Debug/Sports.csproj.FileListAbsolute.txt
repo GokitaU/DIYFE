@@ -2,3 +2,7 @@ C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\bin\Debug\Sports.dll
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\bin\Debug\Sports.pdb
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\obj\Debug\Sports.dll
 C:\Users\jtipps\Desktop\personal\DIYFE\DIYFE\Sports\obj\Debug\Sports.pdb
+C:\JT-Personal\DIYFE\DIYFE\Sports\bin\Debug\Sports.dll
+C:\JT-Personal\DIYFE\DIYFE\Sports\bin\Debug\Sports.pdb
+C:\JT-Personal\DIYFE\DIYFE\Sports\obj\Debug\Sports.dll
+C:\JT-Personal\DIYFE\DIYFE\Sports\obj\Debug\Sports.pdb

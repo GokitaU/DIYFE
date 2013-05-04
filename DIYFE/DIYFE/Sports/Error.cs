@@ -5,12 +5,15 @@ using System.Text;
 
 namespace Sports
 {
+    
     public class SportsError
     {
-        public  SportsError(Exception err){
+        public SportsError(Exception err)
+        {
             InsertError(err, 0);
         }
-        public  SportsError(Exception err, int refId){
+        public SportsError(Exception err, int refId)
+        {
             InsertError(err, refId);
         }
 
@@ -31,7 +34,7 @@ namespace Sports
                 System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand(queryString, connection);
                 command.Parameters.AddWithValue("@RefId", refId);
                 command.Parameters.AddWithValue("@ErrorMethod", err.Source);
-                command.Parameters.AddWithValue("@ErrorText", err.InnerException);
+                command.Parameters.AddWithValue("@ErrorText", err.Message + " -- " + err.InnerException);
                 command.Parameters.AddWithValue("@ErrorDate", DateTime.Now);
 
                 try

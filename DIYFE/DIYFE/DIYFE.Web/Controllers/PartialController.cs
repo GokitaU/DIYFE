@@ -10,12 +10,12 @@ namespace DIYFE.Web.Controllers
 {
     public class PartialController : Controller
     {
-        public ActionResult LogonForm()
-        {
-            LogOnModel model = new LogOnModel();
+        //public ActionResult LogonForm()
+        //{
+        //    LogOnModel model = new LogOnModel();
 
-            return PartialView("_LogonForm", model);
-        }
+        //    return PartialView("_LogonForm", model);
+        //}
 
     }
 }

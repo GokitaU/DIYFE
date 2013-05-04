@@ -1,0 +1,35 @@
+﻿@model DIYFE.Web.Models.ArticleModel
+@{
+    ViewBag.Title = "CategoryList";
+}
+
+ @Html.Partial("_ErrorPageHandler")
+
+
+    <div class="container-fluid">
+        @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
+    <div class="row-fluid">
+    
+        <div class="span8">
+    <!--Body content-->
+
+           @Html.Partial("_DataListItem", Model.ArticleList)
+    
+        </div>
+        <div class="span4">
+    <!--Sidebar content-->
+            <div class="row-fluid">
+                <div class="span12 box-content">Related Info
+                    @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+                </div>
+            </div>
+            <br />
+             @Html.Partial("_MostViewed", Model.MostViewed)
+        </div>
+    </div>
+
+
+
+    </div>
+
+

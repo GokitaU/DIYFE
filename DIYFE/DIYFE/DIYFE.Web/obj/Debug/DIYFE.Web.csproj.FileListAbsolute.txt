@@ -16,3 +16,5 @@ C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\EntityFramework.xml
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.csprojResolveAssemblyReference.cache
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.dll
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.pdb

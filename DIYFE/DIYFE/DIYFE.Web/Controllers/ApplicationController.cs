@@ -40,9 +40,19 @@ namespace DIYFE.Web.Controllers
         protected override void OnResultExecuting(ResultExecutingContext ctx)
         {
             base.OnResultExecuting(ctx);
+
             //string sDbg = ctx.Controller.TempData["DebugTrc"] as string;
             //System.Diagnostics.Debug.WriteLine("OnResultExecuted " +
             //sDbg);
+
+            string _ipAddress;
+            _ipAddress = ctx.HttpContext.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(_ipAddress))
+            { _ipAddress = ctx.HttpContext.Request.ServerVariables["REMOTE_ADDR"]; }
+            DIYFELib.Tracking.InsertTracking(ctx.HttpContext.Session.SessionID,
+                                            _ipAddress,
+                                            ctx.HttpContext.Request.Url.ToString());
+
             ViewBag.PageModel = PageModel;
         }
 
