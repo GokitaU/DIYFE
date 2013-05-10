@@ -431,5 +431,23 @@
     <script src="@Url.Content("~/Content/min/DIYFE_min.js")" type="text/javascript"></script>
     @Html.Partial("_LogOnForm")   
 
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#FirstLevCat').change(function () {
+                $('#SecondLevCat option').hide();
+                $('#SecondLevCat [FirstLevCatId="' + $(this).val() + '"]').show();
+            });
+
+            $('#SecondLevCat').change(function () {
+                $('#ThirdLevCat option').hide();
+                $('#ThirdLevCat [SecondLevCatId="' + $(this).val() + '"]').show();
+            });
+
+        });
+
+</script>
+
 </body>
 </html>

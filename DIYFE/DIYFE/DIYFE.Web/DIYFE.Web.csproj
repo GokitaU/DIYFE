@@ -85,6 +85,7 @@
     <Compile Include="Code\Lucene\LuceneIndex.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActionFilters\LoggingFilterAttribute.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -103,6 +104,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\HtmlHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\PageBaseModel.cs" />
@@ -279,6 +281,7 @@
     <Content Include="Views\Home\Donations.cshtml" />
     <Content Include="Views\Home\GettingSponsored.cshtml" />
     <Content Include="Views\Home\Participate.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DIYFELib\DIYFELib.csproj">

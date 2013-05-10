@@ -1,0 +1,109 @@
+﻿@model DIYFE.Web.Models.AdminModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<h1>New Article</h1>
+<table>
+    <tr>
+        <td>cat id</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>sec lev cat id</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>third lev cat id</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>description</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>author</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>Keywords</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>Main Contnet</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>side content</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>ListItemContent</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>ViewRequest</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>URLLink</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td>NameId</td>
+        <td><input type="text" id="" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+<h1>Category</h1>
+<table class="table">
+    <tr style="height:30px;">
+        <td>Category <select style="height:40px;" id="FirstLevCat">
+            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId == 0 && c.ThirdLevCategoryId == 0))
+            {
+                <option value="@cat.CategoryId">@cat.CategoryName</option>
+            }
+                     </select>
+
+        </td>
+        </tr>
+        <tr>
+        <td>Second Lev Category
+            <select style="height:40px;" id="SecondLevCat">
+                <option value="0">Please Select</option>
+            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
+            {
+                <option FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName</option>
+            }
+                     </select>
+        </td>
+        </tr>
+    <tr>
+        <td>Third Lev Category
+            <select style="height:40px;" id="ThirdLevCat">
+                <option value="0">Please Select</option>
+            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.ThirdLevCategoryId > 0))
+            {
+                <option SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName</option>
+            }
+                     </select>
+        </td>
+    </tr>
+
+</table>
