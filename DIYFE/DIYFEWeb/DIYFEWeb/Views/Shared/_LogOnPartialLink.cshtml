@@ -1,0 +1,11 @@
+﻿@if(Request.IsAuthenticated) {
+    @:<p class="navbar-text pull-right">
+    @:Welcome <strong>@User.Identity.Name</strong>! |
+     @Html.ActionLink("Log Off", "LogOff", "Account") 
+     @:</p>
+}
+else {
+    @:<p class="navbar-text pull-right"><a data-toggle="modal" href="#LoginModal">login</a> | <a href="#">register</a></p> 
+ }
+
+

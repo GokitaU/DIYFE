@@ -1,0 +1,200 @@
+﻿@model  List<DIYFE.Web.Models.Sports.ByDate>
+@{
+    ViewBag.Title = "BetList";
+    int betIndex = 1;
+    int bankIndex = 0;
+}
+<script src="@Url.Content("~/Scripts/Sports/Models.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Sports/NBA.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$('#').click(function () {
+        //    $.ajax({
+        //        url: GetRootURL() + 'sports-betting/nba/CreateNBABetting?seasonId=11',
+        //        type: 'POST',
+        //        contentType: 'application/json; charset=utf-8',
+        //        success: function (data) {
+        //            if (data.success) {
+        //                alert('done');
+        //            } else {
+        //                mediator.publish('pageError', { error: data.message, method: 'Run Scraping Loading All Teams' });
+        //            }
+        //        },
+        //        error: function () {
+        //            mediator.publish('logError', { error: 'Error with service for team', method: 'Run Scraping Loading All Teams' });
+        //        }
+        //    });
+        //});
+    });
+
+</script>
+
+
+@Html.Partial("_ErrorPageHandler")
+ <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a id="clearScrap" href="#">Clear Scraping</a></li>
+              <li><a id="createBets" href="#">CreateBets</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Today's Bets</li>
+@*              @foreach (Sports.Game game in Model.TodaysBets)
+              {
+                  <li><a target="_blank" href="GameDetail?gameId=@game.GameId">@game.AwayTeamName vs @game.HomeTeamName</a></li>
+              }
+              <li class="nav-header">Tomorrow's Bets</li>
+              @foreach (Sports.Game game in Model.TomorrowBets)
+              {
+                  <li><a target="_blank" href="GameDetail?gameId=@game.GameId">@game.AwayTeamName vs @game.HomeTeamName</a></li>
+              }*@
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        <h1>By Date</h1>
+            <table class="table">
+                <tr>
+                    <th>Dame Date</th>
+                    <th>Group Loss</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                </tr>
+                @foreach (DIYFE.Web.Models.Sports.ByDate bd in Model)
+                {
+                <tr>
+                    <td>@bd.Date.ToShortDateString()</td>
+                    <td>@bd.Loss</td>
+                    <td>@bd.ACount</td>
+                    <td>@bd.BCount</td>
+                    <td>@bd.CCount</td>
+                    <td>@bd.DCount</td>                    
+                </tr>
+                }
+            </table>
+            @*      
+            <table class="table">
+                <tr>
+                    <th>BetId</th>
+                    <th>BetDate</th>
+                    <th>AwayTeam</th>
+                    <th>HomeTeam</th>
+                    <th>Current</th>
+                    <th>Winning</th>
+                    <th>BetAmount</th>
+                    <th>WinAmount</th>
+                    <th>RunningTotal</th>
+                </tr>
+                @foreach (DIYFE.Web.Models.Sports.ExcelExport ee in Model.BetList)
+                {
+                    <tr>
+                        <td>@ee.BetId</td>
+                        <td>@ee.BetDate</td>
+                        <td>@ee.AwayTeam</td>
+                        <td>@ee.HomeTeam</td>
+                        <td>@ee.Current</td>
+                        <td>@ee.Winning</td>
+                        <td>@ee.BetAmount</td>
+                        <td>@ee.WinAmount</td>
+                        <td>@ee.RunningTotal</td>
+                    </tr>
+                }
+
+
+            </table>
+
+@*            <table class="table">
+                <tr>
+                    <th>Group Bets</th>
+                    <th>Group Win</th>
+                    <th>Group Loss</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                </tr>
+                <tr>
+                    <td>@Model.Bets.Count()</td>
+                    <td>@Model.TotalGroupWin</td>
+                    <td>@Model.TotalGroupLoss</td>
+                    <td>@Model.TotalA</td>
+                    <td>@Model.TotalB</td>
+                    <td>@Model.TotalC</td>
+                    <td>@Model.TotalD</td>                    
+                </tr>
+            </table>*@
+            
+   @*         <table class="table table-condensed">
+                <tr>
+                    <th>BetId</th>
+                    <th>Date</th>
+                    <th>Teams</th>
+                    <th>Score</th>
+                    <th>Spread</th>
+                    <th>MoneLine</th>
+                    <th>Win</th>
+                    <th>Bet Amount</th>
+                    <th>Change</th>
+                    <th>Running Total</th>
+                </tr>
+
+        @foreach (Sports.Bet bet in Model.Bets)
+        {
+
+                foreach (Sports.Game game in bet.BetGames)
+                {
+                  
+                  <tr>
+                    <td>@bet.BetId</td>
+                    <td><a target="_blank" href="GameDetail?gameId=@game.GameId"> @game.GameDate.ToShortDateString()</a></td>
+                    <td>@game.AwayTeamName</td>
+                    <td>@game.AwayTeamScore</td>
+                    <td>@game.AwayTeamSpread</td>
+                    <td>@game.AwayTeamMoneyLine</td>
+                    <td>@game.WinningTeamName</td>
+                    <td>@game.BetAmount</td>
+                    <td>@game.MoneyChange</td>
+                    <td>@game.RunningTotal</td>
+                </tr>
+                <tr>
+                    <td>@if (bet.WinA)
+                        { @:<span class="label label-success">Win A </span>
+                        }
+                        @if (bet.WinB)
+                        { @:<span class="label label-success">Win B </span>
+                        }
+                        @if (bet.WinC)
+                        { @:<span class="label label-success">Win C </span>
+                        }
+                        @if (bet.WinD)
+                        { @:<span class="label label-success">Win D </span>
+                        }
+                        @if (!bet.WinA && !bet.WinB && !bet.WinC && !bet.WinD)
+                        { @:<span class="label label-important">Loss </span>
+                        }
+
+                    </td>
+                    <td>@game.HomeTeamName</td>
+                    <td>@game.HomeTeamScore</td>
+                    <td>@game.HomeTeamSpread</td>
+                    <td>@game.HomeTeamMoneyLine</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+          }
+
+        }
+
+  </table>*@
+
+        </div>
+</div>

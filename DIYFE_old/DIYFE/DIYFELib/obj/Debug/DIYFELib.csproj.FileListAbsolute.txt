@@ -1,0 +1,5 @@
+C:\JT-Personal\DIYFE\DIYFE\DIYFELib\bin\Debug\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFELib\bin\Debug\DIYFELib.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFELib\obj\Debug\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFE\DIYFELib\obj\Debug\DIYFELib.pdb
+C:\JT-Personal\DIYFE\DIYFE\DIYFELib\obj\Debug\DIYFELib.csprojResolveAssemblyReference.cache

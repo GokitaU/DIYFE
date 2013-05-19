@@ -1,0 +1,88 @@
+﻿@model DIYFEWeb.Models.ArticleModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_ErrorPageHandler")
+
+    @Html.Partial("_BreadCrumb", new List<DIYFELib.CustomHtmlLink>())
+    <div class="row-fluid">
+    
+        <div class="span8">
+            <div class="row-fluid">
+                <div class="span12 box-content" style="height:200px;">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+             @Html.Partial("_MostViewed", Model.MostViewed)
+        </div>
+    </div>
+
+
+
+<div class="row show-grid">
+    
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+</div>
+<div class="row show-grid">
+    
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+    <div class="span3 show-grid">
+            <div class="box-content">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+       </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@model DIYFE.Web.Models.Sports.SeasonBets
+@{
+    ViewBag.Title = "BetGameList";
+}
+<script src="@Url.Content("~/Scripts/Sports/Models.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Sports/NBA.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+    });
+
+</script>
+
+
+@Html.Partial("_ErrorPageHandler")
+ <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        <h1>Bet Details</h1>
+            <table class="table  table-condensed">
+                <tr>
+                    <th>Games</th>
+                    <th>Loss</th>
+                    <th>Wins</th>
+                    <td>Spread Wins</td>
+                    <td>Line Wins</td>
+                </tr>
+                <tr>
+                    <td>@Model.TotalGames</td>
+                    <td>@Model.TotalLoss</td>
+                    <td>@Model.TotalWin</td>
+                    <td>@Model.TotalSpreadWin</td>
+                    <td>@Model.TotalMoneyLineWin</td>                
+                </tr>
+            </table>
+        @foreach (Sports.Bet bet in Model.Bets)
+        {
+          foreach (Sports.Game game in bet.BetGames)
+          {
+              <table class="table table-condensed">
+                <tr>
+                    <th>Date</th>
+                    <th>Teams</th>
+                    <th>Score</th>
+                    <th>Spread</th>
+                    <th>MoneLine</th>
+                    <th>Won Spread</th>
+                    <th>Won MoneyLine</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@game.HomeTeamName</td>
+                    <td>@game.HomeTeamScore</td>
+                    <td>@game.HomeTeamSpread</td>
+                    <td>@game.HomeTeamMoneyLine</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@game.GameDate.ToShortDateString()</td>
+                    <td>@game.AwayTeamName</td>
+                    <td>@game.AwayTeamScore</td>
+                    <td>@game.AwayTeamSpread</td>
+                    <td>@game.AwayTeamMoneyLine</td>
+                    <td>@game.WonSpread</td>
+                    <td>@game.WonMoneyLine</td>
+                </tr>
+            </table>
+          }
+
+        }
+
+
+
+        </div>
+</div>

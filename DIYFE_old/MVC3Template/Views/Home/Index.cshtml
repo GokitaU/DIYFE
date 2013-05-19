@@ -1,0 +1,44 @@
+﻿
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#RunPageError').click(function () {
+
+                pageError.publish('masterPageError', { error: 'INDEX VIEW PAGE CLICK ERROR', method: 'Error is rased in Index View, on link click. -- TEXT CHANGED -- This message is displayed by the masterPageError object in located in _Layout' });
+                pageError.publish('pageError', { error: 'INDEX VIEW PAGE CLICK ERROR', method: ' Error is rased in Index view and is handeled in the Index view' });
+                pageError.publish('logError', { error: 'INDEX VIEW PAGE CLICK ERRORr', method: 'only log error, no responce to page elements.' });
+                
+                return false;
+            });
+
+        });
+    </script>
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Bootstrap Project Tempalte</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a id="RunPageError" href="#">CLICK HERE to run page error and publish both master page error and log error events. - DELETE THIS AFTER TEMPLATE IMPLEMENTATION</a></p>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+      @Html.Partial("_ErrorPageHandler")
+        <div class="span4">
+          <h2>Heading</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Heading</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+

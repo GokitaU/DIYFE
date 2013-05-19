@@ -1,0 +1,28 @@
+﻿
+@* <script type="text/javascript">
+       $(document).ready(function () {
+           var $dropDown = $('#SeasonSelect');
+           var dlSeason = { SeasonId: 0 };
+           mediator.installTo(dlSeason);
+
+           dlSeason.subscribe('SeasonSelectionChange', function (arg) {
+               $dropDown.val(arg.SeasonId);
+           });
+
+           $('#SeasonSelect').change(function () {
+               if ($(this).val() != 0) {
+                   dlSeason.publish('SeasonDropDownChange', { SeasonId: $(this).val(), SeasonValue: $(this).find('option:selected').text() });
+               }
+           });
+
+       });
+   </script>*@
+     
+<select id="BettingTypeSelect">
+    <option value="0">Select Betting Type</option>
+    @foreach (DIYFE.Web.AppStatic.BettingSetup val in Enum.GetValues(typeof(DIYFE.Web.AppStatic.BettingSetup)))
+    {
+        <option value="@val">@val</option>
+    
+    }
+</select>
