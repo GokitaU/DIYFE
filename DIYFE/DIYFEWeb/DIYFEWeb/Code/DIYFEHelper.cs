@@ -418,7 +418,7 @@ namespace DIYFEWeb.Code
         public static int GetCatigoryRowId(string url) 
         {
             int categoryId = 0;
-            if (url.StartsWith("/post"))
+            if (url.StartsWith("/post") && url != "/post")
             {
                 url = url.Substring(5, (url.Length - 1));
             }

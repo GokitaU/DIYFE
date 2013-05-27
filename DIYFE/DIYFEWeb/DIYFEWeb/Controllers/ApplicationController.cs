@@ -51,7 +51,7 @@ namespace DIYFEWeb.Controllers
             { _ipAddress = ctx.HttpContext.Request.ServerVariables["REMOTE_ADDR"]; }
             DIYFELib.Tracking.InsertTracking(ctx.HttpContext.Session.SessionID,
                                             _ipAddress,
-                                            ctx.HttpContext.Request.Url.ToString());
+                                            ctx.HttpContext.Request.Url.PathAndQuery);
 
             ViewBag.PageModel = PageModel;
         }

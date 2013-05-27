@@ -1,0 +1,432 @@
+﻿@model DIYFEWeb.Models.ArticleModel
+@{
+    ViewBag.Title = "ProjectDetails";
+}
+
+ @Html.Partial("_ErrorPageHandler")
+
+<link href="@Url.Content("~/Content/comments.css")" rel="stylesheet" type="text/css" />
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span8">
+    <!--Body content-->
+            <div class="row-fluid">
+                <div class="span12 box-content">
+                    <img style="float:left; margin-right:25px; margin-bottom:5px;" src="../../Content/img/support/project/testImg.gif" />
+                        <div class="page-header">
+                        <h3>Example page header <small>Subtext for header</small></h3>
+                        </div>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                    <div style="background-color:#232323; width:100%; height:40px;color:wheat;" >
+                        Views: 100       Skill:Easy        Required Funding
+                        Tags: 
+                    </div>
+                    <div style="background-color:#232323; width:100%; height:40px;color:wheat;" >
+                        SHARE LINKS, CHECK OUT http://blog.makezine.com/2013/04/03/hacdc-turns-five-years-old/
+                        <br />Sutumbal Apon - Google+ - Tweet - facebook - pintrest -  reddit - dig - tumblr
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="span4">
+    <!--Sidebar content-->
+            <div class="row-fluid">
+                <div class="span12 box-content">Related Projects
+                    <ul class="nav nav-list">
+                        <li class="nav-header">List header</li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Applications</a></li>
+                        <li class="nav-header">Another list header</li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Help</a></li>
+                      </ul>
+                </div>
+            </div>
+            <br />
+            @if (Model.MostViewed != null){
+             @Html.Partial("_MostViewed", Model.MostViewed)
+            }
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span8">
+        <div class="sfcommentsListWrp  box-content">
+            <h2 class="sfcommentsTitle" id="comments">
+                15 Comments
+            </h2>
+            <ol class="sfcommentsList">
+                
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl0_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl0_itemIndex">1</span>
+            <strong class="sfcommentAuthor">
+                
+                Lars
+            </strong>
+            <em class="sfcommentDate">
+
+            22 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Hi Burke,<br>
+Thanks for this very informative post.&nbsp;Thought I'm wondering if we really need another plugin/library/framework to build a great website/webapplication with Kendo UI....is Frankenstein back? (means: why can't we make such things, for example responsive design, with KendoUI?)
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl1_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl1_itemIndex">2</span>
+            <strong class="sfcommentAuthor">
+                
+                Paul
+            </strong>
+            <em class="sfcommentDate">
+
+            23 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Very nice :) &nbsp;I wouldn't mind seeing something similar using Zurb Foundation...
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl2_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl2_itemIndex">3</span>
+            <strong class="sfcommentAuthor">
+                
+                Silvio Clécio
+            </strong>
+            <em class="sfcommentDate">
+
+            23 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Very nice article,&nbsp;Burke.<br> <br>
+Thank you! :)
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl3_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl3_itemIndex">4</span>
+            <strong class="sfcommentAuthor">
+                
+                Vesselin Obreshkov
+            </strong>
+            <em class="sfcommentDate">
+
+            23 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Really cool. I already adopted the Bootstrap theme. Next up is to do exactly this when we get to (re)doing our UI from mobile up.<br> <br>
+Lars What do you mean by using the term Frankenstein? If you're afraid of using several different libraries to get the job done, maybe you should re-consider your career choice as a web developer. If you think one single framework can include everything and the kitchen sink and still work well, you must live in a different world than the rest of us. I personally would use Bootstrap all day long without the slightest worry. It's a very well written library, doesn't over-step any Kendo functionality and works great together. Absolutely no need for them to re-invent the wheel just so it's all in one huge library.
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl4_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl4_itemIndex">5</span>
+            <strong class="sfcommentAuthor">
+                
+                Lars
+            </strong>
+            <em class="sfcommentDate">
+
+            23 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Vesselin the term "Frankenstein" was introduced by KendoUI itself:<br> <br>
+"Kendo UI is everything professional developers need to build HTML5 sites and mobile apps. Today, productivity of an average HTML/jQuery developer is hampered by assembling a Frankenstein framework of disparate JavaScript libraries and plug-ins."
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl5_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl5_itemIndex">6</span>
+            <strong class="sfcommentAuthor">
+                
+                Burke
+            </strong>
+            <em class="sfcommentDate">
+
+            23 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Lars<br> <br>
+I think that you bring up a good point that there is a certain amount of overlap between Kendo UI and Bootstrap. &nbsp;However one of our goals with Kendo UI was that we should never ever stop you from doing what you want to do. &nbsp;Bootstrap is a very popular framework and we want to make sure that Kendo UI works with Bootstrap since using Bootstrap can provide some&nbsp;definite&nbsp;advantages specifically in terms of CSS layout.<br> <br>
+I can say that providing layouts&nbsp;and responsive Kendo UI widgets is "high" on our list for future implementation... :)
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl6_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl6_itemIndex">7</span>
+            <strong class="sfcommentAuthor">
+                
+                Ben
+            </strong>
+            <em class="sfcommentDate">
+
+            30 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Since you're using Bootstrap, why not save yourself some typing and use its responsive utility classes (ie: <span style="color: #dd1144; font-family: Monaco,Menlo,Consolas,'Courier New',monospace; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; background-color: #f7f7f9; display: inline ! important; float: none;">.hidden-phone</span>, <span style="color: #dd1144; font-family: Monaco,Menlo,Consolas,'Courier New',monospace; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; background-color: #f7f7f9; display: inline ! important; float: none;">.hidden-tablet</span>) to hide the page numbers and synopsis?
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl7_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl7_itemIndex">8</span>
+            <strong class="sfcommentAuthor">
+                
+                Burke
+            </strong>
+            <em class="sfcommentDate">
+
+            31 Jan 2013
+            </em>
+            <div class="sfcommentText">
+                Ben<br> <br>
+That is a very good option as well and a nice way to&nbsp;automatically&nbsp;apply styles for devices.<span style="white-space: pre;" class="Apple-tab-span"> </span>
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl8_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl8_itemIndex">9</span>
+            <strong class="sfcommentAuthor">
+                
+                Rob Levin
+            </strong>
+            <em class="sfcommentDate">
+
+            04 Feb 2013
+            </em>
+            <div class="sfcommentText">
+                Thanks for sharing how you did responsive design with the bootstrap!
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl9_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl9_itemIndex">10</span>
+            <strong class="sfcommentAuthor">
+                
+                Nathan Prather
+            </strong>
+            <em class="sfcommentDate">
+
+            13 Feb 2013
+            </em>
+            <div class="sfcommentText">
+                thanks for sharing! &nbsp;I was wondering how well Bootstrap would play with Kendo UI so this clears it up... &nbsp;<br> <br>
+I'd kinda of like to use it with Kendo Mobile as well but it probably doesn't make sense to... &nbsp;I think I agree that if you can bake in Bootstraps concepts into Kendo Mobile/Web rather than requiring another library it would be nice...<br> <br>
+Thanks!<span style="white-space: pre;" class="Apple-tab-span"> </span>
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl10_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl10_itemIndex">11</span>
+            <strong class="sfcommentAuthor">
+                
+                Shaun Peet
+            </strong>
+            <em class="sfcommentDate">
+
+            14 Feb 2013
+            </em>
+            <div class="sfcommentText">
+                +1 for a similar concept using Foundation instead. &nbsp;And since there is a "bootstrap theme" for KendoUI, a "foundation theme" would also be nice.<br> <br>
+IMO the navbar in Foundation is both easier to construct/maintain and when it collapses the use of the screen by having animations is much better.<br> <br>
+Also having a look at the latest blog posts from the Bootstrap folks (laced with profanity) compared to the polished professionalism from the Zurb guys, I'm sure I'm not the only one getting turned off by (formerly Twitter) Bootstrap.<br>
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl11_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl11_itemIndex">12</span>
+            <strong class="sfcommentAuthor">
+                
+                Julie Setbon
+            </strong>
+            <em class="sfcommentDate">
+
+            18 Feb 2013
+            </em>
+            <div class="sfcommentText">
+                + 1 for Zurb Foundation 4.0 (mobile first framework about to come out this month)
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl12_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl12_itemIndex">13</span>
+            <strong class="sfcommentAuthor">
+                <a target="_blank" href="http://www.facebook.com/jazlai" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl12_website">Jaz Lai</a>
+                
+            </strong>
+            <em class="sfcommentDate">
+
+            20 Feb 2013
+            </em>
+            <div class="sfcommentText">
+                Hmm it looks like your blog ate my first comment 
+(it was extremely long) so I guess I'll just sum it up what I wrote and say, I'm thoroughly enjoying your blog.
+I too am an aspiring blog blogger but I'm still new to the whole thing. Do you have any tips for inexperienced blog writers? I'd definitely 
+appreciate it.
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl13_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl13_itemIndex">14</span>
+            <strong class="sfcommentAuthor">
+                
+                Dale
+            </strong>
+            <em class="sfcommentDate">
+
+            18 Mar 2013
+            </em>
+            <div class="sfcommentText">
+                IE9 on W7, I get three vertical scrollbars running the sample at http://jsfiddle.net/burkeholland/rmUgV/embedded/result/.<br>
+Is the sample not well thougth out or is this just not ready for prime time?
+            </div>
+        </li>
+    
+        <li class="sfcommentDetails" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl14_commentContainer">
+            <span class="sfcommentNumber" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl14_itemIndex">15</span>
+            <strong class="sfcommentAuthor">
+                <a target="_blank" href="http://www.kendoui.com" id="ctl00_ctl00_GeneralBox_Content_ctl00_detailBlogPostsFrontend_ctl00_ctl00_SingleItemContainer_ctrl0_commentsListView_commentsMasterView_ctl00_ctl00_commentsList_ctrl14_website">Burke</a>
+                
+            </strong>
+            <em class="sfcommentDate">
+
+            03 Apr 2013
+            </em>
+            <div class="sfcommentText">
+                Shaun<br> <br>
+I haven't checked out Zurb, but I've heard some really good things about it. &nbsp;I suppose that it's high time I took a look at how Kendo UI plays with their grid system.
+            </div>
+        </li>
+    
+            </ol>
+            <br />
+            <div class="row-fluid">
+                <div class="pagination" style="float:right;">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        <div class="span4"></div>
+    </div>
+    <br />
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="sfcommentsFormWrp  box-content">
+            <h2 class="sfcommentsTitle">Comment</h2>
+            <fieldset class="sfcommentsForm">
+                <ol class="sfcommentsFieldsList">
+                    <li class="sfcommentsField" >
+                        <div>
+			
+                    <label class="sfTxtLbl">Your name</label>
+                    <div class="sfFieldWrp" >
+                        <input type="text" class="sfTxt">
+			        </div>
+        
+                <div style="display:none;">
+			        <div id="ClientTemplatePanel_authorName">
+                        <div class="sfTxtLbl" id="titleLabel_read_authorName"></div>
+                        <div class="sfTxtContent" id="textLabel_read_authorName"></div>
+                        <p class="sfDescription" id="descriptionLabel_read_authorName"></p>
+                    </div>
+	            </div>
+		        </div>
+                    </li>
+                    <li class="sfcommentsField">
+                        <div >
+			
+                    <label class="sfTxtLbl" >Email <em class="sfNote">(optional)</em></label>
+                    <div class="sfFieldWrp" >
+                        <input type="text" class="sfTxt" >
+			        </div>
+        
+        <div style="display:none;" >
+				        <div id="ClientTemplatePanel_email">
+	        
+                    <div class="sfTxtLbl" id="titleLabel_read_email">
+		
+	        </div>
+                    <div class="sfTxtContent" id="textLabel_read_email">
+		
+	        </div>
+                    <p class="sfDescription" id="descriptionLabel_read_email"></p>
+        
+        </div>
+			        </div>
+		        </div>
+                    </li>           
+                    <li class="sfcommentsField" >
+                        <div>
+			
+                    <label class="sfTxtLbl">Website <em class="sfNote">(optional)</em></label>
+                    <div class="sfFieldWrp">
+                        <input type="text" class="sfTxt">
+			        </div>
+		        </div>
+                    </li>
+                    <li class="sfcommentEditor sfcommentsField">
+                        <div>
+			
+            
+                    <label class="sfTxtLbl">Comment</label>
+
+                    <div class="sfEditorWrp sfClearfix">
+				
+                        <div style="height: 200px; width: 100%; min-height: 200px; min-width: 480px;" class="RadEditor Sitefinity reWrapper sfMoreTools" >
+					        <div class="reRibbonBarWrapper"></div>
+                            <table cellspacing="0" cellpadding="0" style="table-layout:auto;width:100%;height:200px;" >
+						        <tbody>
+							        <tr>
+								        <td class="reWrapper_corner reCorner_top_left">&nbsp;</td>
+                                        <td colspan="3" class="reWrapper_center reCenter_top">&nbsp;</td>
+                                        <td class="reWrapper_corner reCorner_top_right">&nbsp;</td>
+							        </tr>
+                                    <tr>
+								        <td valign="top" style="height:100%;" class="reContentCell">
+                                            <textarea cols="20" rows="8" style="width:80%" ></textarea>
+                                         </td>
+							        </tr>
+                                    <tr>
+								        <td class="reWrapper_corner reCorner_bottom_left">&nbsp;</td>
+                                        <td colspan="3" class="reWrapper_center reCenter_bottom">&nbsp;</td>
+                                        <td class="reWrapper_corner reCorner_bottom_right">&nbsp;</td>
+							        </tr>
+						        </tbody>
+					        </table>
+				        </div>
+           
+			        </div>
+        
+		        </div>
+                
+                    </li>
+            
+                </ol>
+                <div class="sfcommentsSubmitBtnWrp">
+                    <input type="submit" class="sfcommentsSubmitBtn" value="Submit" >
+                </div>
+            </fieldset>
+
+	        </div>
+        </div>
+        <div class="span4"></div>
+    </div>
+
+ </div>

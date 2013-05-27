@@ -1,0 +1,5 @@
+C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\bin\Release\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\bin\Release\DIYFELib.pdb
+C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.csprojResolveAssemblyReference.cache
+C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.dll
+C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.pdb

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace DIYFEWeb.Controllers
 {
+ 
     public class NewsController : ApplicationController
     {
         //

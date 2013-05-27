@@ -1,0 +1,120 @@
+﻿@model List<DIYFEWeb.SearchIndex.LuceneData>
+  
+@{
+    ViewBag.Title = "Search";
+    System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer() { MaxJsonLength = 2147483647, RecursionLimit = 100 };
+}
+<style>
+.pager 
+{
+    width:889px;
+}
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var searchTerm = GetQueryString('term');
+        if (searchTerm != '') {
+            $('#query').val(searchTerm).focus();
+        }
+
+        $('.SearchSubmit').click(function () {
+            var query = $('#query').val();
+            var url = location.protocol + '//' + location.host + "/Home/Search?term=" + escape(query);
+            window.location.href = url;
+            return false;
+        });
+
+    });
+
+</script>
+
+<div class="row-fluid">
+
+<div class="span12">
+          <p>
+            <label>Member Search</label>
+          </p>
+
+          <div class="search_field">
+            <input type="hidden" value="✓" name="utf8">
+            <input type="hidden" value="LoNItI00RKQm1HXnOB4DLmGA/TKdLY0cjRCrwubO+v8=" name="authenticity_token">
+         </div>
+         <div>
+              <input type="text" name="query" id="query">
+              <input type="submit" value="Search" name="commit" class="SearchSubmit">
+              <input type="submit" value="Report" name="commit" id="DoReport" class="Report">
+          </div>
+
+</div>
+
+
+<div class="span12">
+    
+   @if (Model != null)
+   {
+       if (Model.Count() > 0)
+       {
+
+       <h1 style="font-size:1.5em">Total Matched: @Model.Count()</h1>
+        <table id="resultSet">
+        <tr>
+            <th column="FirstName">First Name</th>
+            <th column="LastName">Last Name</th>            
+            <th column="CompanyName">Company</th>
+            <th column="City">City</th>
+            <th column="State">State</th>
+            <th column="PostalCode">Zip</th>
+        </tr>
+@*            @foreach (var member in Model)
+            {
+            <tr class="row">
+                <td><a href="../Member/Details?memberId=@member.MemberID">@member.FirstName</a><input type="hidden" class="sortValue" value="@member.FirstName" /></td>
+                <td><a href="../Member/Details?memberId=@member.MemberID">@member.LastName </a><input type="hidden" class="sortValue" value="@member.LastName" /></td>
+                <td>@member.CompanyName</td>
+                <td>@member.City</td>
+                <td>@member.State</td>
+                <td>@member.PostalCode</td>
+            </tr>
+            }*@
+        </table>
+        <div id="pager"></div>
+       }
+       else
+       {
+       <div class="warning" style="display:block;">
+        <p>No search results found.</p>
+       </div> 
+       }
+   }
+   
+</div>  
+
+
+</div>
+ @if (Model != null)
+ {
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+    
+//    alert('test');
+   var totalRec = @Model.Count();
+
+          
+          $('#pager').pagerSort({
+               totalrecords: totalRec,
+                recordsperpage: 50,
+                datacontainer: 'resultSet',
+                dataelement: 'tr',
+                theme: 'custom',
+                model: @Html.Raw(serializer.Serialize(Model))
+//                onchange: function (UserInfo) {
+//                    scrollApi.scrollTo(0, 0);
+//                 }
+            });
+//          var scrollPanel = $('#reportDetails').jScrollPane();
+//   var scrollApi = scrollPanel.data('jsp');
+    });
+</script>
+    }

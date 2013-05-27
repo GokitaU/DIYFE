@@ -243,6 +243,26 @@
     <Content Include="Content\jquery.treeview.css" />
     <Content Include="Content\min\DIYFE_min.css" />
     <Content Include="Content\min\DIYFE_min.js" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\Bootstrap\mediator.js" />
+    <Content Include="Content\scripts\Bootstrap\model.js" />
+    <Content Include="Content\scripts\Bootstrap\pager.js" />
+    <Content Include="Content\scripts\Bootstrap\Twitter\css\bootstrap-responsive.css" />
+    <Content Include="Content\scripts\Bootstrap\Twitter\css\bootstrap.css" />
+    <Content Include="Content\scripts\Bootstrap\Twitter\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\scripts\Bootstrap\Twitter\img\glyphicons-halflings.png" />
+    <Content Include="Content\scripts\Bootstrap\Twitter\js\bootstrap.js" />
+    <Content Include="Content\scripts\Bootstrap\usefull.js" />
+    <Content Include="Content\scripts\core.js" />
+    <Content Include="Content\scripts\jquery-1.9.1.js" />
+    <Content Include="Content\scripts\jquery.treeview.js" />
+    <Content Include="Content\scripts\Sports\MLB.js" />
+    <Content Include="Content\scripts\Sports\MLB\Scraping.js" />
+    <Content Include="Content\scripts\Sports\Models.js" />
+    <Content Include="Content\scripts\Sports\NBA.js" />
+    <Content Include="Content\scripts\Sports\NBA\Scraping.js" />
+    <Content Include="Content\scripts\Sports\NHL.js" />
     <Content Include="Content\site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -349,6 +369,9 @@
     <Content Include="Views\Home\Participate.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Who.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Personal.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,7 +15,7 @@ namespace DIYFEWeb.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : ApplicationController
     {
         //
         // GET: /Account/Login
@@ -23,6 +23,11 @@ namespace DIYFEWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            PageModel.ArticleContent.Title = "DiyFe";
+            PageModel.ArticleContent.Description = "";
+            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
+            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -48,8 +53,8 @@ namespace DIYFEWeb.Controllers
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();

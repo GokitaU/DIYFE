@@ -11,6 +11,7 @@ using DIYFELib;
 
 namespace DIYFEWeb.Controllers
 {
+    
     public class PostController : ApplicationController
     {
         string linkPrefix = "post";
@@ -34,7 +35,8 @@ namespace DIYFEWeb.Controllers
             string url = HttpContext.Request.RawUrl;
             int catigoryRowId = DIYFEHelper.GetCatigoryRowId(url);
 
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
+            if (catigoryRowId > 0)
+            { model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix); }
             //model.ArticleList = la.ArticleList(catigoryId, 1);
 
             return View(model);
