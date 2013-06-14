@@ -20,8 +20,8 @@ namespace DIYFELib
         //private string _thirdLevCategoryName { get; set; }
         //private string _thirdLevCategoryUrl { get; set; }
 
-
         public int CategoryRowId { get; set; }
+        public int TopNavIndex { get; set; }
         public int CategoryId { get; set; }
         public int SecondLevCategoryId { get; set; }
         public int ThirdLevCategoryId { get; set; }
@@ -159,7 +159,5 @@ namespace DIYFELib
             return true;
         }
         
-
-
     }
 }

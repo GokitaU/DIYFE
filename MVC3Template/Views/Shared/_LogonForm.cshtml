@@ -1,0 +1,100 @@
+﻿@model MVC3Template.Models.LogOnModel
+
+
+    <div class="modal" style="display:none; width:400px;" id="LoginModal">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>User Login</h3>@Html.ActionLink("still need to register?", "Register", "Account")
+      </div>
+      <div class="modal-body">
+        <p>Please enter your user name and password.</p>
+        <form class="well form-search" id="loginForm" style="margin-bottom:2px;">
+            <div id="errorDiv" class="control-group error" style="margin-bottom:0px; display:none;">
+                <label id="errorLabel" for="inputError" class="control-label">Input with error</label>
+            </div>
+            <input id="UserName" class="input-small required email" style="width:120px;" type="text" placeholder="Email">
+            <input id="Password" class="input-small required" style="width:120px;" type="password" placeholder="Password">
+            <a href="#" id="btnLogin" class="btn">Login</a><br />
+            <div style="width:365px; height:35px;">
+                <label class="checkbox"><input id="RememberMe" type="checkbox">remimber me</label><br />
+                <a href="#">forgot password?</a>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+     
+        <a href="#" id="btnLoginModalClose" class="btn">Close</a>
+      </div>
+    </div>
+        
+     <script type="text/javascript">
+         $('#btnLoginModalClose').click(function () {
+             $('#LoginModal').modal('hide');
+             return false;
+         });
+
+         $('#btnLogin').click(function () {
+
+             var formData = $('#loginForm');
+             var errorBox = $("#errorDiv");
+             var errorLabel = $("#errorLabel");
+
+             formData.validate({
+                 invalidHandler: function (form, validator) {
+                     var errors = validator.numberOfInvalids();
+                     if (errors) {
+                         var message = errors == 1
+                            ? 'You missed 1 field. It has been highlighted'
+                            : 'You missed ' + errors + ' fields. They have been highlighted';
+                         errorLabel.html(message);
+                         errorBox.show();
+
+                         return false;
+                     } else {
+                         errorBox.hide();
+                     }
+                 }
+             })
+
+             //Update User Validation
+             if (!formData.valid()) {
+                 return;
+             }
+
+             //var formData = $('#loginForm');
+
+             var model = new LogOnModel();
+
+             model.EasyLoad(formData);
+             model.ReturnURL = '';
+             $.ajax({
+                 url: '/Account/LogOn/retutothisurl',
+                 type: 'POST',
+                 data: model.SendFormat(),
+                 contentType: 'application/json; charset=utf-8',
+                 success: function (data) {
+                     if (data.success) {
+
+                     } else {
+                         //show error
+                         errorLabel.html(data.message)
+                         errorBox.show();
+                         return false;
+                     }
+                 },
+                 error: function () {
+                     errorLabel.html('There was an error logging in.  Support has been contact.  Please try back in 15 minutes')
+                     errorBox.show();
+                     return false;
+                 }
+                 ////You have to format and prepair data like is when not using a model
+                 // //,
+                 // data: JSON.stringify('{ MemberID: 500, Prefix: "mr", FirstName: "j", MiddleName: "m", LastName: "t", Suffix: "s", NickName: "a", CompanyName: "as", Title: "asdf", CreatedDate: "11/12/2011", UpdatedDate: "11/12/2011", OptOut: true, Status: "stat", sysattendeeid: 34, contactid: 5 }')
+             });
+
+
+
+             return false;
+         });
+     
+     </script>

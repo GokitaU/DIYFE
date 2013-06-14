@@ -15,6 +15,9 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
+
+            AppStatic.LoadStaticCache();
+
             PageModel.ArticleContent.Title = "DiyFe";
             PageModel.ArticleContent.Description = "";
             PageModel.ArticleContent.Author = "Do it yourself for everyone.";

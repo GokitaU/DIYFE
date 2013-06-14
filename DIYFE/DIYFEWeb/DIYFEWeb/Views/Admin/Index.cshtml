@@ -63,7 +63,7 @@
             <option value="0">Please Select</option>
             @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId == 0 && c.ThirdLevCategoryId == 0))
             {
-                <option catName="@cat.CategoryName" catUrl ="@cat.CategoryUrl" value="@cat.CategoryId">@cat.CategoryName</option>
+                <option class="dropDownOption" catName="@cat.CategoryName" catUrl ="@cat.CategoryUrl" value="@cat.CategoryId">@cat.CategoryName</option>
             }
                      </select>
 
@@ -77,7 +77,7 @@
                 <option value="0">Please Select</option>
             @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
             {
-                <option catName="@cat.SecondLevCategoryName" catUrl ="@cat.SecondLevCategoryUrl"  FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName</option>
+                <option class="dropDownOption" catName="@cat.SecondLevCategoryName" catUrl ="@cat.SecondLevCategoryUrl"  FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName</option>
             }
                      </select>
         name: <input type="text" id="NewSecondLevCatName" /> 
@@ -90,10 +90,10 @@
                 <option value="0">Please Select</option>
             @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.ThirdLevCategoryId > 0))
             {
-                <option SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName</option>
+                <option class="dropDownOption" SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName</option>
             }
                      </select>
-        name: <input type="text" id="NewThirdLevCatName" /> 
+            name:<input type="text" id="NewThirdLevCatName" /> 
             url:<input type="text" id="NewThirdLevCatUrl" /> 
         </td>
     </tr>

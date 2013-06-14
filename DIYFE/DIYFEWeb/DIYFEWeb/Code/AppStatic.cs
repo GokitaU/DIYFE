@@ -19,9 +19,49 @@ namespace DIYFEWeb
             HttpContext.Current.Application["someVarName"] = "This is a test.  Normally a  list of objects but since no DB connection is made it's only a string...le sigh, poor string.";
 
             DIYFELib.ListAccess la = new DIYFELib.ListAccess();
-            HttpContext.Current.Application["Categories"] = la.AllCategory();
+            List<Category> allCats = la.AllCategory();
+            HttpContext.Current.Application["Categories"] = allCats;
 
+            //BUILD TOP NAVIGATION ITEMS HTML
+            #region
+
+            string topNavString = "<ul role=\"navigation\" class=\"nav pull-right\">";
+            foreach (Category firstCat in allCats.Where(c => c.SecondLevCategoryId == 0 && c.TopNavIndex > 0).OrderBy(c => c.TopNavIndex))
+            {
+              topNavString +=  "<li class=\"dropdown\" id=\"MainNav-Mfg\">";
+              topNavString += "<a data-toggle=\"dropdown\" class=\"dropdown-toggle\" href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "\")>" + firstCat.CategoryName + "<b class=\"caret\"></b></a>";
+              topNavString += "<ul class=\"dropdown-menu\">";
+              foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
+              {
+                  if (allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).Count() > 0)
+                  {
+                      topNavString += "<li class=\"dropdown-submenu\">";
+                      topNavString += "<a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a>";
+                      topNavString += "<ul class=\"dropdown-menu\">";
+                      //LOOP OVER THIRD LEVEL
+                      foreach (Category thirdCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0))
+                      {
+                          topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "/" + thirdCat.ThirdLevCategoryUrl + "\">" + thirdCat.ThirdLevCategoryName + "</a></li>";
+                      }
+                      
+                      topNavString += "</ul></li>";
+                  }
+                  else
+                  {
+                      topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a></li>";
+                  }
+              }
+              topNavString += "</ul></li>";
+            }
+            topNavString += "</ul>";
+            
+            #endregion
+
+            HtmlString hString = new HtmlString(topNavString);
+
+            HttpContext.Current.Application["TopNavHtml"] = hString;
         }
+
         //EXAMPLE OF HOW TO USE WITH A ORM TOOL
         //public static List<CommunicationType> AllCommunicationTypes
         //{
@@ -60,11 +100,21 @@ namespace DIYFEWeb
         {
             get
             {
-                HttpContext context = HttpContext.Current;
-                string baseUrl = context.Request.Url.Scheme + "://" + context.Request.Url.Authority + context.Request.ApplicationPath.TrimEnd('/') + '/';
-                return baseUrl;
+                //HttpContext context = HttpContext.Current;
+                //string baseUrl = context.Request.Url.Scheme + "://" + context.Request.Url.Authority + context.Request.ApplicationPath.TrimEnd('/') + '/';
+                //return baseUrl;
+                return System.Configuration.ConfigurationManager.AppSettings["URL"] as string;
             }
         }
+
+        public static HtmlString TopNavHtml
+        {
+            get
+            {
+                return HttpContext.Current.Application["TopNavHtml"] as HtmlString;
+            }
+        }
+
 
         #region Static Mail Settings
 

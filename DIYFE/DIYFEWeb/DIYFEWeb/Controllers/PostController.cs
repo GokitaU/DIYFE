@@ -54,7 +54,6 @@ namespace DIYFEWeb.Controllers
             PageModel.ArticleContent.Author = model.ArticleContent.Author;
             PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
 
-
             model.MostViewed = la.MostViewed(11, 20);
             //model.CrumbLinkList = new List<CustomHtmlLink>();
             //AppStatic.Categories.Where(c => c.CategoryUrl == categoryUrl);
@@ -63,6 +62,7 @@ namespace DIYFEWeb.Controllers
             int catigoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "","");
 
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
+            //model.ArticleList = la.PostList(catigoryRowId
             model.ArticleList = la.ArticleList(catigoryRowId, 1);
             model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(catigoryRowId, linkPrefix);
 

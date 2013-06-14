@@ -30,15 +30,16 @@ namespace DIYFELib
                     {
                         Category category = new Category();
                         category.CategoryRowId = reader.GetInt32Safe(0);
-                        category.CategoryId = reader.GetInt32Safe(1);
-                        category.SecondLevCategoryId = reader.GetInt32Safe(2);
-                        category.ThirdLevCategoryId = reader.GetInt32Safe(3);
-                        category.CategoryName = reader.GetStringSafe(4);
-                        category.CategoryUrl = reader.GetStringSafe(5);
-                        category.SecondLevCategoryName = reader.GetStringSafe(6);
-                        category.SecondLevCategoryUrl = reader.GetStringSafe(7);
-                        category.ThirdLevCategoryName = reader.GetStringSafe(8);
-                        category.ThirdLevCategoryUrl = reader.GetStringSafe(9);
+                        category.TopNavIndex = reader.GetInt32Safe(1);
+                        category.CategoryId = reader.GetInt32Safe(2);
+                        category.SecondLevCategoryId = reader.GetInt32Safe(3);
+                        category.ThirdLevCategoryId = reader.GetInt32Safe(4);
+                        category.CategoryName = reader.GetStringSafe(5);
+                        category.CategoryUrl = reader.GetStringSafe(6);
+                        category.SecondLevCategoryName = reader.GetStringSafe(7);
+                        category.SecondLevCategoryUrl = reader.GetStringSafe(8);
+                        category.ThirdLevCategoryName = reader.GetStringSafe(9);
+                        category.ThirdLevCategoryUrl = reader.GetStringSafe(10);
 
                         categoryList.Add(category);
                     }
@@ -95,21 +96,21 @@ namespace DIYFELib
             return viewList;
         }
 
-        public DataList ArticleList(int categoryRowId, int currentPage)
+        public ArticleList PostList(int categoryRowId, int currentPage, int numberPerPage, int categoryLev)
         {
-            DataList dataList = new DataList();
-            dataList.CurrentPage = currentPage;
+            ArticleList al = new ArticleList();
+            al.CurrentPage = currentPage;
 
-            dataList.ListItems = new List<DataListItem>();
-            dataList.ListItems.Add(new DataListItem { });
-            dataList.ListItems.Add(new DataListItem { });
-            dataList.ListItems.Add(new DataListItem { });
-            dataList.ListItems.Add(new DataListItem { });
-            dataList.ListItems.Add(new DataListItem { });
+            //dataList.ListItems = new List<DataListItem>();
+            //dataList.ListItems.Add(new DataListItem { });
+            //dataList.ListItems.Add(new DataListItem { });
+            //dataList.ListItems.Add(new DataListItem { });
+            //dataList.ListItems.Add(new DataListItem { });
+            //dataList.ListItems.Add(new DataListItem { });
 
-            dataList.TotalItems = dataList.ListItems.Count;
+            al.TotalItems = 25;
 
-            return dataList;
+            return al;
         }
 
         public List<CustomHtmlLink> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)

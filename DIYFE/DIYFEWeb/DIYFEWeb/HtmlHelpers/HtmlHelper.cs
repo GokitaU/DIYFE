@@ -11,9 +11,9 @@ namespace DIYFEWeb
     {
         private const string Nbsp = "&nbsp;";
 
-        public static MvcHtmlString NbspIfEmpty(this HtmlHelper helper, string value)
+        public static HtmlString NbspIfEmpty(this HtmlHelper helper, string value)
         {
-            return new MvcHtmlString(string.IsNullOrEmpty(value) ? Nbsp : value);
+            return new HtmlString(string.IsNullOrEmpty(value) ? Nbsp : value);
         }
     }
 }

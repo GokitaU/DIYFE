@@ -53,11 +53,11 @@
     //});
 
     //****************************** START CORE APPLIACTION SCRIPTS *********************************//
-    $('#MainNavProjects, #MainNavProducts, ' +
-      '#MainNav-Water, #MainNav-Shelter, #MainNav-Food, #MainNav-Med, #MainNav-Comm, #MainNav-Mfg').on('mouseleave', function () {
-        $(this).toggleClass('open');
-        }
-    );
+    //$('#MainNavProjects, #MainNavProducts, ' +
+    //  '#MainNav-Water, #MainNav-Shelter, #MainNav-Food, #MainNav-Med, #MainNav-Comm, #MainNav-Mfg').on('mouseleave', function () {
+    //    $(this).toggleClass('open');
+    //    }
+    //);
 
     //**************************** SETS ACTIVE COLOR FOR TOP NAVIGATION
     try {

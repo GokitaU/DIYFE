@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="ArticleComment.cs" />
+    <Compile Include="ArticleList.cs" />
+    <Compile Include="ArticleListItem.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CustomHtmlLink.cs" />

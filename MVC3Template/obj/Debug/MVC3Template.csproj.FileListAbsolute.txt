@@ -1,0 +1,9 @@
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\MVC3Template.dll
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\MVC3Template.pdb
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EntityFramework.dll
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EntityFramework.xml
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\obj\Debug\ResolveAssemblyReference.cache
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\obj\Debug\MVC3Template.dll
+c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\obj\Debug\MVC3Template.pdb
+C:\Users\jtipps\Documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EmailValidation.dll
+C:\Users\jtipps\Documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EmailValidation.pdb

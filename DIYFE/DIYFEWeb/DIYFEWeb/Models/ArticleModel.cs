@@ -20,6 +20,6 @@ namespace DIYFEWeb.Models
         //COMMENTS
         public List<ArticleComment> Comments { get; set; }
         //DATA LIST
-        public DataList ArticleList { get; set; }
+        public DIYFELib.ArticleList ArticleList { get; set; }
     }
 }

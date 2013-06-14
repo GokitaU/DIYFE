@@ -1,0 +1,14 @@
+﻿body {
+}
+
+#masterErrorDiv, #pageErrorDiv
+{
+    display:none;
+    border:solid 1px #B94A48;
+    padding: 10px;
+    color:#B94A48;
+}
+
+#masterErrorText, #pageErrorText
+{color:#B94A48;
+}
