@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using System.Web.UI.HtmlControls;
 using System.Web.Mvc;
+using System.Data;
 
 namespace DIYFELib
 {
@@ -99,14 +100,55 @@ namespace DIYFELib
         public ArticleList PostList(int categoryRowId, int currentPage, int numberPerPage, int categoryLev)
         {
             ArticleList al = new ArticleList();
+            al.ListItems = new List<Article>();
             al.CurrentPage = currentPage;
 
-            //dataList.ListItems = new List<DataListItem>();
-            //dataList.ListItems.Add(new DataListItem { });
-            //dataList.ListItems.Add(new DataListItem { });
-            //dataList.ListItems.Add(new DataListItem { });
-            //dataList.ListItems.Add(new DataListItem { });
-            //dataList.ListItems.Add(new DataListItem { });
+            string queryString = "sp_LoadPostList";
+
+            using (SqlConnection connection = new SqlConnection(Base.conn))
+            {
+                // Create the Command and Parameter objects.
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@CategoryRowId", categoryRowId));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Article a = new Article();
+                        a.ArticleId = reader.GetInt32(0);
+
+                        a.Name = reader.GetString(1);
+                        a.Title = reader.GetStringSafe(2);
+                        a.Description = reader.GetStringSafe(3);
+                        a.ListItemContent = reader.GetStringSafe(4);
+                        a.ViewRequests = reader.GetInt32(5);
+                        a.URLLink = reader.GetString(6);
+                        a.NameId = reader.GetString(7);
+                        a.CategoryRowId = reader.GetInt32(8);
+                        a.CategoryId = reader.GetInt32Safe(9);
+                        a.SecondLevCategoryId = reader.GetInt32Safe(10);
+                        a.ThirdLevCategoryId = reader.GetInt32Safe(11);
+                        a.CategoryName = reader.GetString(12);
+                        a.CategoryUrl = reader.GetString(13);
+                        a.SecondLevCategoryName = reader.GetStringSafe(14);
+                        a.SecondLevCategoryUrl = reader.GetStringSafe(15);
+                        a.ThirdLevCategoryName = reader.GetStringSafe(16);
+                        a.ThirdLevCategoryUrl = reader.GetStringSafe(17);
+                        a.CreatedDate = reader.GetDateTime(18);
+
+                        al.ListItems.Add(a);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    DIYError sError = new DIYError(ex);
+                }
+            }
 
             al.TotalItems = 25;
 

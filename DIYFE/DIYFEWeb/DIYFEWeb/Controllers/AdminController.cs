@@ -17,10 +17,10 @@ namespace DIYFEWeb.Controllers
             DIYFEWeb.Models.AdminModel model = new DIYFEWeb.Models.AdminModel();
             model.Categories = AppStatic.Categories;
 
-            PageModel.ArticleContent.Title = "";
-            PageModel.ArticleContent.Description = "";
-            PageModel.ArticleContent.Author = "";
-            PageModel.ArticleContent.Keywords = "";
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             return View(model);
         }

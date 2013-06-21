@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace DIYFELib
 {
-    class ArticleListItem
-    {
-        string Name { get; set; }
-        string Title { get; set; }
-        string ListItemContent { get; set; }
-        string URLLink { get; set; }
+    //public class ArticleListItem : Category
+    //{
 
-        int ViewRequests { get; set; }
+    //    string Name { get; set; }
+    //    string Title { get; set; }
+    //    string ListItemContent { get; set; }
+    //    string URLLink { get; set; }
+    //    string NameId { get; set; }
+    //    int ViewRequests { get; set; }
         
-    }
+    //}
 }

@@ -17,10 +17,10 @@ namespace DIYFEWeb.Controllers
 
         public ActionResult Index()
         {
-            PageModel.ArticleContent.Title = "DiyFe Products";
-            PageModel.ArticleContent.Description = "List of products dealing with ";
-            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
-            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.Title = "DiyFe Products";
+            PageModel.Description = "List of products dealing with ";
+            PageModel.Author = "Do it yourself for everyone.";
+            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
 
             ListAccess la = new ListAccess();
             ArticleModel model = new ArticleModel();

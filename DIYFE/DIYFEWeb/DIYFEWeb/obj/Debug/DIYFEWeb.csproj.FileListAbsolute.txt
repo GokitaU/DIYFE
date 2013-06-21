@@ -85,3 +85,6 @@ C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\bin\zh-Hans\System.Spatial.resources.dll
 C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\bin\zh-Hant\System.Spatial.resources.dll
 C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\obj\Debug\DIYFEWeb.dll
 C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\obj\Debug\DIYFEWeb.pdb
+C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\bin\RazorEngine.dll
+C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\bin\DIYFE.EF.dll
+C:\JT-Personal\DIYFE\DIYFEWeb\DIYFEWeb\bin\DIYFE.EF.pdb

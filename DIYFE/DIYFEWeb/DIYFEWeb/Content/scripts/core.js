@@ -17,7 +17,7 @@
     masterPageError.subscribe('masterPageError', function (arg) {
            this.errorDiv.show();
            this.errorLabel.html(arg.error + ' ' + arg.method + '<br/> - This text is added to error and is responce to the published event masterPageError - Responding object is located in _Layout');
-       // alert('In responce to the masterPageError event.  This message is genrated by the errorLogging object in core.js.  This object is used to make ajax calls to record javascript and other page errors. Here are the extra parms passed -- -- ' + arg.error + ' ' + arg.method);
+        alert('In responce to the masterPageError event.  This message is genrated by the errorLogging object in core.js.  This object is used to make ajax calls to record javascript and other page errors. Here are the extra parms passed -- -- ' + arg.error + ' ' + arg.method);
         //console.log('json post to record error ' + arg.error + ' ' + arg.method);
         //this.name = arg;
         //console.log(this.name + ' obj bttom');
@@ -29,7 +29,7 @@
     pageError.subscribe('pageError', function (arg) {
         this.errorDiv.show();
         this.errorLabel.html(arg.error + ' ' + arg.method);
-        //   alert('In responce to the pageError event.  This message is genrated by the errorLogging object in core.js.  This object is used to make ajax calls to record javascript and other page errors. Here are the extra parms passed -- -- ' + arg.error + ' ' + arg.method);
+         // alert('In responce to the pageError event.  This message is genrated by the errorLogging object in core.js.  This object is used to make ajax calls to record javascript and other page errors. Here are the extra parms passed -- -- ' + arg.error + ' ' + arg.method);
         //this.name = arg;
         //console.log(this.name + ' obj bttom');
         //alert('obj eveent sub change ' + this.name);
@@ -38,10 +38,16 @@
     var errorLogging = {};
     mediator.installTo(errorLogging);
     errorLogging.subscribe('logError', function (arg) {
-      //  alert('In responce to the logError event.  Use this to only log error but not display it to user. -- -- ' + arg.error + ' ' + arg.method);
-        //this.name = arg;
-        alert(this.name + ' obj bttom');
-        //alert('obj eveent sub change ' + this.name);
+      //alert('In responce to the logError event.  Use this to only log error but not display it to user. -- -- ' + arg.error + ' ' + arg.method);
+        $.ajax({
+            url: GetRootURL() + 'Service/JavascriptError?errorMethod=' + arg.method + '&errorMessage=' + arg.error,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+            },
+            error: function () {
+            }
+        });
     });
     //HOW TO SUBSCRIBE AN OBJECT TO AN EVENT
     //pageError = { errorDiv: $('#pageErrorDiv'), errorLabel: $('#pageErrorText') };
@@ -108,22 +114,6 @@
             }
         }
     }
-
-    //USAGE:
-    //var savedSearchId = GetQueryString('queryStringId');
-    //RETURNS:String - Get query string from URL
-    function GetQueryString(key, default_) {
-        if (default_ == null) default_ = "";
-        key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regex = new RegExp("[\\?&]" + key + "=([^&#]*)");
-        var qs = regex.exec(window.location.href);
-        if (qs == null)
-            return default_;
-        else
-
-            return decodeURIComponent(qs[1].replace(/\+/g, " "));
-
-    };
 
     //masterPageError.publish('masterPageError', { error: 'INDEX VIEW PAGE CLICK ERROR', method: 'Error is rased in Index View, on link click. -- TEXT CHANGED -- This message is displayed by the masterPageError object in located in _Layout' });
     //pageError.publish('pageError', { error: 'INDEX VIEW PAGE CLICK ERROR', method: ' Error is rased in Index view and is handeled in the Index view' });

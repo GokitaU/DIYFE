@@ -20,23 +20,26 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
+            ProjectListModel model = new ProjectListModel();
 
-            ArticleModel model = new ArticleModel();
-            model.ArticleContent.LoadArticle(5);
-
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             ListAccess la = new ListAccess();
             model.MostViewed = la.MostViewed(11, 20);
-            
+
             string url = HttpContext.Request.RawUrl;
             int catigoryRowId = DIYFEHelper.GetCatigoryRowId(url);
 
-            if (catigoryRowId > 0)
-            { model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix); }
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).ToList();
+            }
+
             //model.ArticleList = la.ArticleList(catigoryId, 1);
 
             return View(model);
@@ -48,23 +51,26 @@ namespace DIYFEWeb.Controllers
         {
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
-
+            ProjectListModel model = new ProjectListModel();
             model.MostViewed = la.MostViewed(11, 20);
             //model.CrumbLinkList = new List<CustomHtmlLink>();
             //AppStatic.Categories.Where(c => c.CategoryUrl == categoryUrl);
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             string url = HttpContext.Request.RawUrl;
-            int catigoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "","");
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
 
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
-            //model.ArticleList = la.PostList(catigoryRowId
-            model.ArticleList = la.ArticleList(catigoryRowId, 1);
-            model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(catigoryRowId, linkPrefix);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(categoryRowId, linkPrefix);
+
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
 
             return View(model);
         }
@@ -73,24 +79,28 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult SecondLevCategoryList(string categoryUrl, string subCategoryUrl)
         {
+
             string url = HttpContext.Request.RawUrl;
-            Category cat = DIYFEHelper.GetCategory(categoryUrl, subCategoryUrl, "");
-            //int catigoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, "");
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, "");
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
+            ProjectListModel model = new ProjectListModel();
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             model.MostViewed = la.MostViewed(11, 20);
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat.CategoryRowId, linkPrefix);
-            model.ArticleList = la.ArticleList(cat.CategoryRowId, 1);
-           
-            //model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(catigoryId, linkPrefix);
-            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(cat.CategoryId, linkPrefix);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(categoryRowId, linkPrefix);
+
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
+
             return View(model);
         }
 
@@ -98,24 +108,28 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult ThirdLevCategoryList(string categoryUrl, string subCategoryUrl, string subSubCategoryUrl)
         {
-
             string url = HttpContext.Request.RawUrl;
-            //int catigoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, subSubCategoryUrl);
-            Category cat = DIYFEHelper.GetCategory(categoryUrl, subCategoryUrl, subSubCategoryUrl);
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, subSubCategoryUrl);
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
-            
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            ProjectListModel model = new ProjectListModel();
+
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             model.MostViewed = la.MostViewed(11, 20);
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat.CategoryRowId, linkPrefix);
-            model.ArticleList = la.ArticleList(cat.CategoryRowId, 1);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
 
-            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(cat.SecondLevCategoryId, linkPrefix);
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
+
+            // model.ArticleList = la.ar PostList(catigoryRowId, 1, 200, 3);
 
             return View(model);
         }
@@ -123,33 +137,26 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult PostDetails(string html)
         {
-            int _categoryId = 0;
+            int categoryRowId = 0;
 
             ListAccess la = new ListAccess();
 
             ArticleModel model = new ArticleModel();
-            model.ArticleContent.LoadArticle(html);
-            model.Comments = la.ArticleComments(model.ArticleContent.ArticleId);
-
-            if (model.ArticleContent.CategoryId > 0)
-            { _categoryId = model.ArticleContent.CategoryId;
-            }
-            else if (model.ArticleContent.SecondLevCategoryId > 0)
-            {_categoryId = model.ArticleContent.SecondLevCategoryId;
-            }
-            else
+            using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                _categoryId = model.ArticleContent.ThirdLevCategoryId;
+                model.Article = db.Articles.Where(a => a.NameId == html).FirstOrDefault();
             }
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            model.Comments = la.ArticleComments(model.Article.ArticleId);
 
-            model.MostViewed = la.MostViewed(_categoryId, 20);
+            model.MostViewed = la.MostViewed(11, 20);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
 
-            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(_categoryId, linkPrefix);
+            PageModel.Title = model.Article.Title;
+            PageModel.Description = model.Article.Description;
+            PageModel.Author = model.Article.Author;
+            PageModel.Keywords = model.Article.Keywords;
 
             return View(model);
         }

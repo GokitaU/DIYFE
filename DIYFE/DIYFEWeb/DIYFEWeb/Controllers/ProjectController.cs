@@ -19,21 +19,26 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
-            ArticleModel model = new ArticleModel();
-            model.ArticleContent.LoadArticle(5);
+            ProjectListModel model = new ProjectListModel();
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             ListAccess la = new ListAccess();
             model.MostViewed = la.MostViewed(11, 20);
 
             string url = HttpContext.Request.RawUrl;
-            int catigoryId = DIYFEHelper.GetCatigoryRowId(url);
+            int catigoryRowId = DIYFEHelper.GetCatigoryRowId(url);
 
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryId, linkPrefix);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).ToList();
+            }
+ 
             //model.ArticleList = la.ArticleList(catigoryId, 1);
 
             return View(model);
@@ -45,21 +50,26 @@ namespace DIYFEWeb.Controllers
         {
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
+            ProjectListModel model = new ProjectListModel();
             model.MostViewed = la.MostViewed(11, 20);
             //model.CrumbLinkList = new List<CustomHtmlLink>();
             //AppStatic.Categories.Where(c => c.CategoryUrl == categoryUrl);
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             string url = HttpContext.Request.RawUrl;
-            int catigoryId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
 
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryId, linkPrefix);
-            model.ArticleList = la.ArticleList(catigoryId, 1);
-            // model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(catigoryId, linkPrefix);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(categoryRowId, linkPrefix);
+            
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
 
             return View(model);
         }
@@ -70,21 +80,26 @@ namespace DIYFEWeb.Controllers
         {
 
             string url = HttpContext.Request.RawUrl;
-            int catigoryId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, "");
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, "");
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
+            ProjectListModel model = new ProjectListModel();
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             model.MostViewed = la.MostViewed(11, 20);
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryId, linkPrefix);
-            model.ArticleList = la.ArticleList(catigoryId, 1);
-            //model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(catigoryId, linkPrefix);
-            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(catigoryId, linkPrefix);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(categoryRowId, linkPrefix);
+            
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
+            
             return View(model);
         }
 
@@ -93,19 +108,27 @@ namespace DIYFEWeb.Controllers
         public ActionResult ThirdLevCategoryList(string categoryUrl, string subCategoryUrl, string subSubCategoryUrl)
         {
             string url = HttpContext.Request.RawUrl;
-            int catigoryId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, subSubCategoryUrl);
+            int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, subCategoryUrl, subSubCategoryUrl);
 
             ListAccess la = new ListAccess();
-            ArticleModel model = new ArticleModel();
+            ProjectListModel model = new ProjectListModel();
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
 
             model.MostViewed = la.MostViewed(11, 20);
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryId, linkPrefix);
-            model.ArticleList = la.ArticleList(catigoryId, 1);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
+
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.CategoryRowId == categoryRowId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == categoryRowId).OrderBy(a => a.CreatedDate).ToList();
+            }
+
+           // model.ArticleList = la.ar PostList(catigoryRowId, 1, 200, 3);
 
             return View(model);
         }
@@ -113,19 +136,26 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult ProjectDetails(string html)
         {
-            int articleId = 2;
+            int categoryRowId = 0;
 
             ListAccess la = new ListAccess();
 
             ArticleModel model = new ArticleModel();
-            model.ArticleContent.LoadArticle(html);
-            model.Comments = la.ArticleComments(articleId);
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                model.Article = db.Articles.Where(a => a.NameId == html).FirstOrDefault();
+            }
 
-            PageModel.ArticleContent.Title = model.ArticleContent.Title;
-            PageModel.ArticleContent.Description = model.ArticleContent.Description;
-            PageModel.ArticleContent.Author = model.ArticleContent.Author;
-            PageModel.ArticleContent.Keywords = model.ArticleContent.Keywords;
+            model.Comments = la.ArticleComments(model.Article.ArticleId);
 
+            model.MostViewed = la.MostViewed(11, 20);
+            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
+
+            PageModel.Title = model.Article.Title;
+            PageModel.Description = model.Article.Description;
+            PageModel.Author = model.Article.Author;
+            PageModel.Keywords = model.Article.Keywords;
 
             return View(model);
         }

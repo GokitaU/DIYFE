@@ -16,7 +16,7 @@
     }
 </style>
 
-<input type="hidden" id="articleId" value="@Model.ArticleContent.ArticleId" />
+<input type="hidden" id="articleId" value="@Model.Article.ArticleId" />
 
  @Html.Partial("_ErrorPageHandler")
 
@@ -30,7 +30,7 @@
             <div class="row-fluid">
                 <div class="span12 box-content">
                     <img style="float:left; margin-right:25px; margin-bottom:5px;" src="../../Content/img/support/project/testImg.gif" />
-                    @Model.ArticleContent.MainContent
+                    @Model.Article.MainContent
                     @*    <div class="page-header">
                         <h3>Example page header <small>Subtext for header</small></h3>
                         </div>

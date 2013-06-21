@@ -32,5 +32,52 @@ namespace DIYFEWeb.Controllers
             return Json(data);
         }
 
+        [LoggingFilter]
+        public ActionResult SendContactEmail(string firstName, string lastName, string email, string message)
+        {
+            var data = new object();
+
+            var emailBody = EmailMessageFactory.GetWebContact(
+                firstName + " " + lastName, email, message);
+
+            // Send the message
+            var result = EmailClient.SendEmail(emailBody);
+
+            // Check the result
+            if (result.Failed)
+            {
+                data = new { success = false, message = "Failed to send email contact.  Please give us a call." };
+                return Json(data);
+            }
+            else
+            {
+                data = new { success = true };
+            }
+
+            return Json(data);
+        }
+
+        [LoggingFilter]
+        public ActionResult JavascriptError(string errorMethod, string errorMessage)
+        {
+            var data = new object();
+
+            try
+            {
+                DIYFEWeb.Models.ErrorModel err = new DIYFEWeb.Models.ErrorModel();
+                var ex = new Exception(errorMethod + " " + errorMessage);
+                err.InsertError(ex, 0);
+            }
+            catch (Exception ex)
+            {
+                data = new { success = false, message = "Failed to insert javascript error." };
+                return Json(data);
+            }
+
+                data = new { success = true };
+
+            return Json(data);
+        }
+
     }
 }

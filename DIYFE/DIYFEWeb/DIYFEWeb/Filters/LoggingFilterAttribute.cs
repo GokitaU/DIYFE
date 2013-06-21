@@ -24,7 +24,7 @@ namespace DIYFEWeb.Controllers
             {
                 DIYFEWeb.Models.ErrorModel err = new Models.ErrorModel();
                 err.InsertError(filterContext.Exception);
-                
+
                 filterContext.HttpContext.Trace.Write("(Logging Filter)Exception thrown");
             }
 

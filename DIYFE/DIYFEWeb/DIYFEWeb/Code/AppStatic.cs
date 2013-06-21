@@ -71,6 +71,24 @@ namespace DIYFEWeb
         //    }
         //}
 
+        public static bool isDebug
+        {
+            get
+            {
+                if (System.Configuration.ConfigurationManager.AppSettings["Debug"] as string == "true")
+                { return true; }
+                else
+                { return false; }
+            }
+        }
+
+        public static string SiteName
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["SiteName"] as string;
+            }
+        }
 
         public static string ApplicationVar
         {
@@ -106,6 +124,27 @@ namespace DIYFEWeb
                 return System.Configuration.ConfigurationManager.AppSettings["URL"] as string;
             }
         }
+
+        #region Static Mail Settings
+
+        public static string MailSenderAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["SenderAddress"].ToString();
+            }
+        }
+
+        public static string MailErrorAddress
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["ErrorAddress"].ToString();
+            }
+        }
+
+        #endregion
+
 
         public static HtmlString TopNavHtml
         {

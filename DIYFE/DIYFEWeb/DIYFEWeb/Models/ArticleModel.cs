@@ -9,8 +9,6 @@ namespace DIYFEWeb.Models
 {
     public class ArticleModel
     {
-        public Article ArticleContent = new Article();
-
         //BREAD CRUMB DATA
         public List<CustomHtmlLink> CrumbLinkList { get; set; }
         //RELATED TREEVIEW DATA
@@ -19,7 +17,7 @@ namespace DIYFEWeb.Models
         public List<CustomHtmlLink> MostViewed { get; set; }
         //COMMENTS
         public List<ArticleComment> Comments { get; set; }
-        //DATA LIST
-        public DIYFELib.ArticleList ArticleList { get; set; }
+        //Article Main Content
+        public DIYFE.EF.Article Article { get; set; }
     }
 }

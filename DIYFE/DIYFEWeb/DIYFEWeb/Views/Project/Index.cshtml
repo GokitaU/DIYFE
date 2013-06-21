@@ -1,26 +1,88 @@
-﻿@model DIYFEWeb.Models.ArticleModel
+﻿@model DIYFEWeb.Models.ProjectListModel
 @{
     ViewBag.Title = "Index";
 }
 
 @Html.Partial("_ErrorPageHandler")
 
+<style>
+
+    #MainProjectsHeader
+    {
+        height:250px;
+        padding-top:0px;
+    }
+    #MainProjectsHeader .span4
+    {
+        height:80px;
+        border-color:#E4E4E4 #E4E4E4 #C9C9C9;
+    }
+    .stories {
+    clear: both;
+    margin: 0 0 40px 0px;
+}
+    .votebox {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        float: left;
+        margin: 4px 15px 0px 0px;
+        width: 75px;
+        height: 75px;
+    }
+    .vote {
+    padding: 4px 3px;
+}
+    
+.headline {
+    font-size: 1em;
+    margin: 0 0 10px;
+}
+
+.storyfooter {
+    font-size: 10px;
+    margin: 6px 0 25px;
+}
+</style>
+
     @Html.Partial("_BreadCrumb", new List<DIYFELib.CustomHtmlLink>())
     <div class="row-fluid">
     
         <div class="span8">
             <div class="row-fluid">
-                <div class="span12 box-content" style="height:200px;">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                <div class="span12 box-content" id="MainProjectsHeader">
+                    <h2>Project Categories</h2>
+                        <div class="row-fluid">
+                            <div class="span4">Water</div>                    
+                            <div class="span4">Shelter</div>                    
+                            <div class="span4">Health &amp; Hyginene</div>                    
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span4">Comm &amp; Edu</div>                    
+                            <div class="span4">Manufacturing Goods</div>  
+                            <div class="span4">Based On Project Status
+                                <a href="Needs Sponcership">Needs Sponcership</a>
+                                <a href="Has Sponcership">Has Sponcership</a>
+                                <a href="Inprogress">Inprogress</a>
+                                <a href="Completed">Completed</a>
+                            </div>                                      
+                        </div>
                 </div>
             </div>
         </div>
         <div class="span4">
-             @Html.Partial("_MostViewed", Model.MostViewed)
+             <h2>Questions?</h2>
+                <p><a href="#">What is a Project and can I add my own?</a></p>
+                <p><a href="#">What is sponcership, How to get sponcered?</a></p>
+                <p><a href="#">What's going on where?</a></p>
         </div>
     </div>
+<div class="row show-grid">
+    <div class="span12 show-grid">
+        Sorted by project's recently added -change icon- or - click to change to dropdown view
+    </div>
+</div>
+
 
 @*    <div class="span3">
         <div class="well">
@@ -70,6 +132,346 @@
     <p><a class="btn btn-large" href="#"><i class="icon-ok"></i> Select plan</a></p>
     </div>
     </div>*@
+
+<div class="span12 box-content" 
+<div class="span9">
+			  					
+<!-- link_summary.tpl -->
+<div id="xnews-34166" class="stories">
+			<div class="headline">
+				  			<div class="votebox votebox-published">
+		  			
+				<div class="vote">
+										<div class="votenumber">
+						211
+					</div>
+					<div class="votebutton" id="xvote-34166">
+																					<!-- Vote For It -->
+								<a title="User Hide Domain Setting" href="javascript:vote(0,34166,34166,'5ad6b99fbe359ab635dbde05c0d11be0',10)" class="btn btn-mini linkVote_34166"><i class="icon-thumbs-up"></i></a>
+																						<!-- Bury It -->
+								<a title="User Hide Domain Setting" href="javascript:vote(0,34166,34166,'5ad6b99fbe359ab635dbde05c0d11be0',-10)" class="btn btn-mini linkVote_34166"><i class="icon-thumbs-down"></i></a>
+																			<!-- Votes: 0 Buries: 0 -->
+					</div><!-- /.votebutton -->
+								</div><!-- /.vote -->
+			</div><!-- /.votebox -->
+				<div id="title-34166" class="title">
+			<h2>
+													 
+					  <a href="/demo/suggested-features/user-hide-domain-setting/">User Hide Domain Setting</a>
+																</h2>
+			<span class="subtext">
+				<span id="ls_avatar-34166"><img width="16px" height="16px" title="Avatar" alt="" src="http://www.pligg.com/demo/avatars/user_uploaded/1_32.jpg?cache_timestamp=1364405483"></span>				<a href="/demo/user/yankidank/">yankidank (#1)</a> 
+				<i class="icon-time"></i>
+				 46 days ago
+				
+				<i class="icon-folder-open"></i> 
+				<a href="/demo/suggested-features">Suggested Features</a>
+								
+															<i class="icon-tag"></i>
+																					<a href="/demo/tag/user">user</a>
+																												<a href="/demo/tag/domain">domain</a>
+																												<a href="/demo/tag/user%2C+domain">All</a>
+																										
+							</span>
+		</div><!-- /.title -->
+	</div> <!-- /.headline -->
+	<div class="storycontent">
+									<span id="ls_contents-34166" class="news-body-text">
+															
+						Individual user accounts should have the ability to hide stories from specific domains. For example, if you find CNN.com to be an unreliable news source you could add them to the "Hidden Domains" list causing articles from that domain to be filtered out of the home, new, group, user, search results, and category pages. In some ways it acts like the user category feature, which filters out stories from categories that a user doesn't want to follow.<br>
+<br>
+<strong>Suggested Implementation:</strong><br>
+When logged into your account, there should appear a new link to "Hide Domain" that appears either n
+													
+				
+				<div class="clearboth"></div> 
+			</span>
+						</div><!-- /.storycontent -->
+	<div class="storyfooter">
+		<div class="story-tools-left">
+						<span id="ls_comments_url-34166">
+																	<i class="icon-comment"></i> <span id="linksummaryHasComment"><a class="comments2" href="/demo/suggested-features/user-hide-domain-setting/#comments">6 Comments</a>&nbsp;</span>
+							</span> 
+												
+
+
+
+
+		</div>
+		<div style="clear:both;"></div>
+	</div><!-- /.storyfooter -->
+	</div><!-- /.stories -->
+<!--/link_summary.tpl -->
+
+<!-- link_summary.tpl -->
+<div id="xnews-34097" class="stories">
+			<div class="headline">
+				  			<div class="votebox votebox-published">
+		  			
+				<div class="vote">
+										<div class="votenumber">
+						96
+					</div>
+					<div class="votebutton" id="xvote-34097">
+																					<!-- Vote For It -->
+								<a title="ip lookup from within admin panel" href="javascript:vote(0,34097,34097,'4eb0cc0992ba81b81bd785ce983dd8ef',10)" class="btn btn-mini linkVote_34097"><i class="icon-thumbs-up"></i></a>
+																						<!-- Bury It -->
+								<a title="ip lookup from within admin panel" href="javascript:vote(0,34097,34097,'4eb0cc0992ba81b81bd785ce983dd8ef',-10)" class="btn btn-mini linkVote_34097"><i class="icon-thumbs-down"></i></a>
+																			<!-- Votes: 0 Buries: 0 -->
+					</div><!-- /.votebutton -->
+								</div><!-- /.vote -->
+			</div><!-- /.votebox -->
+				<div id="title-34097" class="title">
+			<h2>
+													 
+					  <a href="/demo/pro-modules/ip-lookup-from-within-admin-panel/">ip lookup from within admin panel</a>
+																</h2>
+			<span class="subtext">
+				<span id="ls_avatar-34097"><img width="16px" height="16px" title="Avatar" alt="" src="http://www.pligg.com/demo/avatars/Avatar_32.png"></span>				<a href="/demo/user/rjwusa/">rjwusa</a> 
+				<i class="icon-time"></i>
+				 57 days ago
+				
+				<i class="icon-folder-open"></i> 
+				<a href="/demo/pro-modules">Pro Modules</a>
+								
+															<i class="icon-tag"></i>
+																					<a href="/demo/tag/completed">completed</a>
+																												<a href="/demo/tag/completed">All</a>
+																										
+							</span>
+		</div><!-- /.title -->
+	</div> <!-- /.headline -->
+	<div class="storycontent">
+									<span id="ls_contents-34097" class="news-body-text">
+															
+						Often times I take a new member ip number and I perform an ip trace on it. It it originates from certain countries, I automatically delete that new member. This helps me to preemptively prevent spam submissions.<br>
+<br>
+Why not allow a click on the registration and/or login ip number to perform a quick trace, simplifying the process for the admin?<br>
+<br>
+Thanks in advance
+													
+				
+				<div class="clearboth"></div> 
+			</span>
+						</div><!-- /.storycontent -->
+	<div class="storyfooter">
+		<div class="story-tools-left">
+						<span id="ls_comments_url-34097">
+																	<i class="icon-comment"></i> <span id="linksummaryHasComment"><a class="comments2" href="/demo/pro-modules/ip-lookup-from-within-admin-panel/#comments">3 Comments</a>&nbsp;</span>
+							</span> 
+												
+
+
+
+			| <a class="btn btn-mini btn-success ticket_completed" href="http://www.pligg.com/demo/search.php?search=completed&amp;tag=true">Task Completed</a>
+		
+		</div>
+		<div style="clear:both;"></div>
+	</div><!-- /.storyfooter -->
+	</div><!-- /.stories -->
+<!--/link_summary.tpl -->
+
+<!-- link_summary.tpl -->
+<div id="xnews-34094" class="stories">
+			<div class="headline">
+				  			<div class="votebox votebox-published">
+		  			
+				<div class="vote">
+										<div class="votenumber">
+						96
+					</div>
+					<div class="votebutton" id="xvote-34094">
+																					<!-- Vote For It -->
+								<a title="&quot;Upcoming&quot; is now &quot;New&quot;" href="javascript:vote(0,34094,34094,'a8df55ebbc81b3c0925737021f71cdef',10)" class="btn btn-mini linkVote_34094"><i class="icon-thumbs-up"></i></a>
+																						<!-- Bury It -->
+								<a title="&quot;Upcoming&quot; is now &quot;New&quot;" href="javascript:vote(0,34094,34094,'a8df55ebbc81b3c0925737021f71cdef',-10)" class="btn btn-mini linkVote_34094"><i class="icon-thumbs-down"></i></a>
+																			<!-- Votes: 0 Buries: 0 -->
+					</div><!-- /.votebutton -->
+								</div><!-- /.vote -->
+			</div><!-- /.votebox -->
+				<div id="title-34094" class="title">
+			<h2>
+													 
+					  <a href="/demo/news/upcoming-is-now-new/">"Upcoming" is now "New"</a>
+																</h2>
+			<span class="subtext">
+				<span id="ls_avatar-34094"><img width="16px" height="16px" title="Avatar" alt="" src="http://www.pligg.com/demo/avatars/user_uploaded/1_32.jpg?cache_timestamp=1364405483"></span>				<a href="/demo/user/yankidank/">yankidank (#1)</a> 
+				<i class="icon-time"></i>
+				 57 days ago
+				
+				<i class="icon-folder-open"></i> 
+				<a href="/demo/news">News</a>
+								
+															<i class="icon-tag"></i>
+																					<a href="/demo/tag/completed">completed</a>
+																												<a href="/demo/tag/completed">All</a>
+																										
+									<i class="icon-globe"></i>
+					<a href="http://www.pligg.com/demo/new/">http://www.pligg.com</a>
+							</span>
+		</div><!-- /.title -->
+	</div> <!-- /.headline -->
+	<div class="storycontent">
+									<span id="ls_contents-34094" class="news-body-text">
+															
+						This required a huge number of file updates to accomplish, but "Upcoming" and "Queued" references have been replaced with the word "New". We feel that it is a better descriptor for the page and story status.
+													
+				
+				<div class="clearboth"></div> 
+			</span>
+						</div><!-- /.storycontent -->
+	<div class="storyfooter">
+		<div class="story-tools-left">
+						<span id="ls_comments_url-34094">
+																	<i class="icon-comment"></i> <span id="linksummaryHasComment"><a class="comments2" href="/demo/news/upcoming-is-now-new/#comments">3 Comments</a>&nbsp;</span>
+							</span> 
+												
+
+
+
+			| <a class="btn btn-mini btn-success ticket_completed" href="http://www.pligg.com/demo/search.php?search=completed&amp;tag=true">Task Completed</a>
+		
+		</div>
+		<div style="clear:both;"></div>
+	</div><!-- /.storyfooter -->
+	</div><!-- /.stories -->
+<!--/link_summary.tpl -->
+
+<!-- link_summary.tpl -->
+<div id="xnews-33931" class="stories">
+			<div class="headline">
+				  			<div class="votebox votebox-published">
+		  			
+				<div class="vote">
+										<div class="votenumber">
+						115
+					</div>
+					<div class="votebutton" id="xvote-33931">
+																					<!-- Vote For It -->
+								<a title="Report SPAM button" href="javascript:vote(0,33931,33931,'860c813627221a9c52760f277ef51aa0',10)" class="btn btn-mini linkVote_33931"><i class="icon-thumbs-up"></i></a>
+																						<!-- Bury It -->
+								<a title="Report SPAM button" href="javascript:vote(0,33931,33931,'860c813627221a9c52760f277ef51aa0',-10)" class="btn btn-mini linkVote_33931"><i class="icon-thumbs-down"></i></a>
+																			<!-- Votes: 0 Buries: 0 -->
+					</div><!-- /.votebutton -->
+								</div><!-- /.vote -->
+			</div><!-- /.votebox -->
+				<div id="title-33931" class="title">
+			<h2>
+													 
+					  <a href="/demo/suggested-features/report-spam-button/">Report SPAM button</a>
+																</h2>
+			<span class="subtext">
+				<span id="ls_avatar-33931"><img width="16px" height="16px" title="Avatar" alt="" src="http://www.pligg.com/demo/avatars/Avatar_32.png"></span>				<a href="/demo/user/kosvam/">kosvam (#376)</a> 
+				<i class="icon-time"></i>
+				 82 days ago
+				
+				<i class="icon-folder-open"></i> 
+				<a href="/demo/suggested-features">Suggested Features</a>
+								
+															<i class="icon-tag"></i>
+																					<a href="/demo/tag/spam">spam</a>
+																												<a href="/demo/tag/report">report</a>
+																												<a href="/demo/tag/spam%2C+report">All</a>
+																										
+									<i class="icon-globe"></i>
+					<a href="http://kosvam.com/">http://kosvam.com</a>
+							</span>
+		</div><!-- /.title -->
+	</div> <!-- /.headline -->
+	<div class="storycontent">
+									<span id="ls_contents-33931" class="news-body-text">
+															
+						Since there are so many SPAM issues, a report button should be added next to each headline.<br>
+Admin will get infromed and delete or hide the aticle if needed.
+													
+				
+				<div class="clearboth"></div> 
+			</span>
+						</div><!-- /.storycontent -->
+	<div class="storyfooter">
+		<div class="story-tools-left">
+						<span id="ls_comments_url-33931">
+																	<i class="icon-comment"></i> <span id="linksummaryHasComment"><a class="comments2" href="/demo/suggested-features/report-spam-button/#comments">2 Comments</a>&nbsp;</span>
+							</span> 
+												
+
+
+
+
+		</div>
+		<div style="clear:both;"></div>
+	</div><!-- /.storyfooter -->
+	</div><!-- /.stories -->
+<!--/link_summary.tpl -->
+
+<!-- link_summary.tpl -->
+<div id="xnews-33177" class="stories">
+			<div class="headline">
+				  			<div class="votebox votebox-published">
+		  			
+				<div class="vote">
+										<div class="votenumber">
+						639
+					</div>
+					<div class="votebutton" id="xvote-33177">
+																					<!-- Vote For It -->
+								<a title="Help the Pligg developer ChuckRoast" href="javascript:vote(0,33177,33177,'808a945f0a2adeef13ca2ec5b4b4a23a',10)" class="btn btn-mini linkVote_33177"><i class="icon-thumbs-up"></i></a>
+																						<!-- Bury It -->
+								<a title="Help the Pligg developer ChuckRoast" href="javascript:vote(0,33177,33177,'808a945f0a2adeef13ca2ec5b4b4a23a',-10)" class="btn btn-mini linkVote_33177"><i class="icon-thumbs-down"></i></a>
+																			<!-- Votes: 0 Buries: 0 -->
+					</div><!-- /.votebutton -->
+								</div><!-- /.vote -->
+			</div><!-- /.votebox -->
+				<div id="title-33177" class="title">
+			<h2>
+													 
+					  <a href="/demo/news/help-the-pligg-developer-chuckroast/">Help the Pligg developer ChuckRoast</a>
+																</h2>
+			<span class="subtext">
+				<span id="ls_avatar-33177"><img width="16px" height="16px" title="Avatar" alt="" src="http://www.pligg.com/demo/avatars/Avatar_32.png"></span>				<a href="/demo/user/maison/">maison</a> 
+				<i class="icon-time"></i>
+				 103 days ago
+				
+				<i class="icon-folder-open"></i> 
+				<a href="/demo/news">News</a>
+								
+															<i class="icon-tag"></i>
+																					<a href="/demo/tag/help">help</a>
+																												<a href="/demo/tag/chuckroast">chuckroast</a>
+																												<a href="/demo/tag/help%2C+chuckroast">All</a>
+																										
+									<i class="icon-globe"></i>
+					<a href="http://pligg.com/chuckroast/index.php">http://pligg.com</a>
+							</span>
+		</div><!-- /.title -->
+	</div> <!-- /.headline -->
+	<div class="storycontent">
+									<span id="ls_contents-33177" class="news-body-text">
+															
+						Please help the Pligg developer ChuckRoast. Ongoing medical expenses have forced him into a homeless shelter. He is still actively developing daily despite his situation. Follow this link to go to his blog and please contribute anything you can.
+													
+				
+				<div class="clearboth"></div> 
+			</span>
+						</div><!-- /.storycontent -->
+	<div class="storyfooter">
+		<div class="story-tools-left">
+						<span id="ls_comments_url-33177">
+																	<i class="icon-comment"></i> <span id="linksummaryHasComment"><a class="comments2" href="/demo/news/help-the-pligg-developer-chuckroast/#comments">6 Comments</a>&nbsp;</span>
+							</span> 
+												
+
+
+
+
+		</div>
+		<div style="clear:both;"></div>
+	</div><!-- /.storyfooter -->
+	</div><!-- /.stories -->
+<!--/link_summary.tpl -->
+
+</div>
+</div>
 
 <div class="row show-grid">
     

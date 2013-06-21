@@ -8,6 +8,7 @@ namespace DIYFELib
 {
     public class ArticleList : PagedList
     {
-        List<ArticleListItem> ListItems { get; set; }
+
+       public List<Article> ListItems { get; set; }
     }
 }

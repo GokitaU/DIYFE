@@ -23,10 +23,10 @@ namespace DIYFEWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            PageModel.ArticleContent.Title = "DiyFe";
-            PageModel.ArticleContent.Description = "";
-            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
-            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.Title = "DiyFe";
+            PageModel.Description = "";
+            PageModel.Author = "Do it yourself for everyone.";
+            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
 
             ViewBag.ReturnUrl = returnUrl;
             return View();

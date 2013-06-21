@@ -22,6 +22,40 @@ namespace DIYFEWeb.Models
                 // Create the Command and Parameter objects.
                 System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand(queryString, connection);
                 command.Parameters.AddWithValue("@RefId", refId);
+                if (err.Source == null)
+                { err.Source = "none"; }
+                command.Parameters.AddWithValue("@ErrorMethod", err.Source);
+
+                command.Parameters.AddWithValue("@ErrorText", "Excpetion: " + err.Message + "</br>Inner Excpetion: " + err.InnerException);
+                command.Parameters.AddWithValue("@ErrorDate", DateTime.Now);
+
+                try
+                {
+                    var email = EmailMessageFactory.GetErrorEmail(err);
+                    var result = EmailClient.SendEmail(email);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    var email = EmailMessageFactory.GetErrorEmail(ex);
+                    var result = EmailClient.SendEmail(email);
+                }
+            }
+        }
+
+        public void InsertErrorNoMail(Exception err, int refId)
+        {
+            string conn = "Data Source=diyfe.org;Initial Catalog=MLB;Persist Security Info=True;User ID=jbt411;Password=ZigZag15";
+            string queryString = "INSERT INTO [MLB].[dbo].[Error] ([RefId],[ErrorMethod],[ErrorText],[ErrorDate]) VALUES (@RefId,@ErrorMethod,@ErrorText,@ErrorDate)";
+
+            using (System.Data.SqlClient.SqlConnection connection = new System.Data.SqlClient.SqlConnection(conn))
+            {
+                // Create the Command and Parameter objects.
+                System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@RefId", refId);
                 command.Parameters.AddWithValue("@ErrorMethod", err.Source);
                 command.Parameters.AddWithValue("@ErrorText", err.InnerException);
                 command.Parameters.AddWithValue("@ErrorDate", DateTime.Now);
@@ -35,5 +69,6 @@ namespace DIYFEWeb.Models
                 { }
             }
         }
+
     }
 }

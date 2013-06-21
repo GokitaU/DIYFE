@@ -44,6 +44,9 @@
       <HintPath>bin\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RazorEngine">
+      <HintPath>..\..\..\MVC3Template\bin\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="RouteDebug, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\RouteDebug.dll</HintPath>
@@ -191,6 +194,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AppStatic.cs" />
     <Compile Include="Code\DIYFEHelper.cs" />
+    <Compile Include="App_Start\Email.cs" />
     <Compile Include="Code\ExtMethods.cs" />
     <Compile Include="Code\LargeJsonResult.cs" />
     <Compile Include="Code\Lucene\LuceneDataModel.cs" />
@@ -198,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\PageBaseModel.cs" />
+    <Compile Include="Models\ProjectListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +252,7 @@
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\scripts\App\admin.js" />
+    <Content Include="Content\scripts\App\contact.js" />
     <Content Include="Content\scripts\Bootstrap\mediator.js" />
     <Content Include="Content\scripts\Bootstrap\model.js" />
     <Content Include="Content\scripts\Bootstrap\pager.js" />
@@ -325,6 +332,10 @@
       <Project>{52af67d8-1a57-4b2e-9eee-6c54aab7f3e2}</Project>
       <Name>DIYFELib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DIYFE\DIYFE.EF\DIYFE.EF.csproj">
+      <Project>{2b57b373-591c-4938-82be-cbb69e596514}</Project>
+      <Name>DIYFE.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
@@ -367,6 +378,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Personal.pubxml" />
+    <Content Include="Views\EmailTemplates\Error.cshtml" />
+    <Content Include="Views\EmailTemplates\WebContact.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

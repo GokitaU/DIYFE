@@ -16,12 +16,17 @@ namespace DIYFEWeb.Controllers
         public ActionResult Index()
         {
 
+
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                var articles = db.Articles.Where(a => a.ArticleTypeId == 2 && a.ArticleStatus.Any(ar => ar.StatusId==3));
+            }
             AppStatic.LoadStaticCache();
 
-            PageModel.ArticleContent.Title = "DiyFe";
-            PageModel.ArticleContent.Description = "";
-            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
-            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.Title = "DiyFe";
+            PageModel.Description = "";
+            PageModel.Author = "Do it yourself for everyone.";
+            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             //PageModel.ActiveTopNavLink = "MainNavHome";
 
             //Test error handeling
@@ -62,7 +67,7 @@ namespace DIYFEWeb.Controllers
             // Get the settings from the App.Config file
             //var loginUrl = "WebSiteURL";
 
-            // Create the mail object
+           //  Create the mail object
             //var email = EmailMessageFactory.GetWelcomeEmail(
             //    "jdoe@example.com",
             //    "jdoe123",
@@ -94,10 +99,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult About()
         {
-            PageModel.ArticleContent.Title = "About DiyFe";
-            PageModel.ArticleContent.Description = "";
-            PageModel.ArticleContent.Author = "Do it yourself for everyone.";
-            PageModel.ArticleContent.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
+            PageModel.Title = "About DiyFe";
+            PageModel.Description = "";
+            PageModel.Author = "Do it yourself for everyone.";
+            PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             PageModel.ActiveTopNavLink = "MainNavAbout";
 
             return View();
@@ -106,10 +111,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Contact()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -118,10 +123,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Who()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -130,10 +135,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Goals()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -142,10 +147,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Donations()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -154,10 +159,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult GettingSponsored()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -166,10 +171,10 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Participate()
         {
-            PageModel.ArticleContent.Title = "Contact About Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
             return View();
@@ -180,10 +185,10 @@ namespace DIYFEWeb.Controllers
         public ActionResult Search(string term)
         {
 
-            PageModel.ArticleContent.Title = "Search Boostrap Project";
-            PageModel.ArticleContent.Description = "Bootstrap Template Project";
-            PageModel.ArticleContent.Author = "Bootstrap";
-            PageModel.ArticleContent.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.Title = "Search Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavSearch";
 
             if (term != null)

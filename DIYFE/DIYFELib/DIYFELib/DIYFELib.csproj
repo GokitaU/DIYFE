@@ -45,6 +45,7 @@
     <Compile Include="ArticleComment.cs" />
     <Compile Include="ArticleList.cs" />
     <Compile Include="ArticleListItem.cs" />
+    <Compile Include="ArticleType.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CustomHtmlLink.cs" />
