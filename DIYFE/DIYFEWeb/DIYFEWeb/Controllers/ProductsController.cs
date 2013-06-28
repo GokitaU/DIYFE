@@ -24,8 +24,8 @@ namespace DIYFEWeb.Controllers
 
             ListAccess la = new ListAccess();
             ArticleModel model = new ArticleModel();
-            model.MostViewed = la.MostViewed(11, 20);
-            model.CrumbLinkList = new List<CustomHtmlLink>();
+            //model.MostViewed = la.MostViewed(11, 20);
+            //model.CrumbLinkList = new List<CustomHtmlLink>();
 
             return View(model);
         }

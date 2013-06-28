@@ -20,20 +20,20 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
-            ProjectListModel model = new ProjectListModel();
+            ArticleListModel model = new ArticleListModel();
 
             PageModel.Title = "";
             PageModel.Description = "";
             PageModel.Author = "";
             PageModel.Keywords = "";
 
-            ListAccess la = new ListAccess();
-            model.MostViewed = la.MostViewed(11, 20);
+            //ListAccess la = new ListAccess();
+            //model.MostViewed = la.MostViewed(11, 20);
 
             string url = HttpContext.Request.RawUrl;
-            int catigoryRowId = DIYFEHelper.GetCatigoryRowId(url);
+            //int catigoryRowId = DIYFEHelper.GetCatigoryRowId(url);
 
-            model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
+            //model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(catigoryRowId, linkPrefix);
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                 model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
@@ -52,7 +52,7 @@ namespace DIYFEWeb.Controllers
 
             ListAccess la = new ListAccess();
             ProjectListModel model = new ProjectListModel();
-            model.MostViewed = la.MostViewed(11, 20);
+            //model.MostViewed = la.MostViewed(11, 20);
             //model.CrumbLinkList = new List<CustomHtmlLink>();
             //AppStatic.Categories.Where(c => c.CategoryUrl == categoryUrl);
             PageModel.Title = "";
@@ -91,7 +91,7 @@ namespace DIYFEWeb.Controllers
             PageModel.Author = "";
             PageModel.Keywords = "";
 
-            model.MostViewed = la.MostViewed(11, 20);
+            //model.MostViewed = la.MostViewed(11, 20);
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
             model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(categoryRowId, linkPrefix);
 
@@ -119,7 +119,7 @@ namespace DIYFEWeb.Controllers
             PageModel.Author = "";
             PageModel.Keywords = "";
 
-            model.MostViewed = la.MostViewed(11, 20);
+           // model.MostViewed = la.MostViewed(11, 20);
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
             model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
 
@@ -144,12 +144,12 @@ namespace DIYFEWeb.Controllers
             ArticleModel model = new ArticleModel();
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.Article = db.Articles.Where(a => a.NameId == html).FirstOrDefault();
+                model.Article = db.Articles.Where(a => a.URLLink == html + ".html").FirstOrDefault();
             }
 
-            model.Comments = la.ArticleComments(model.Article.ArticleId);
+           // model.Comments = la.ArticleComments(model.Article.ArticleId);
 
-            model.MostViewed = la.MostViewed(11, 20);
+            //model.MostViewed = la.MostViewed(11, 20);
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
             model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
 

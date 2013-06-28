@@ -7,19 +7,19 @@ using DIYFELib;
 
 namespace DIYFEWeb.Models
 {
-    public class ProjectListModel
+    public class ProjectListModel : ArticleListModel
     {
-        //BREAD CRUMB DATA
-        public List<CustomHtmlLink> CrumbLinkList { get; set; }
-        //RELATED TREEVIEW DATA
-        public List<CustomHtmlLink> RelatedTreeView { get; set; }
-        //SIDE CONTENT
-        public List<CustomHtmlLink> MostViewed { get; set; }
-        //COMMENTS
-        public List<ArticleComment> Comments { get; set; }
-        //DATA LIST
-        public List<DIYFE.EF.Article> ProjectList { get; set; }
-        //DATA LIST
-        public List<DIYFE.EF.Article> ArticleList { get; set; }
+        ////BREAD CRUMB DATA
+        //public List<CustomHtmlLink> CrumbLinkList { get; set; }
+        ////RELATED TREEVIEW DATA
+        //public List<CustomHtmlLink> RelatedTreeView { get; set; }
+        ////SIDE CONTENT
+        //public List<CustomHtmlLink> MostViewed { get; set; }
+        ////COMMENTS
+        //public List<ArticleComment> Comments { get; set; }
+        ////DATA LIST
+        //public List<DIYFE.EF.Article> ProjectList { get; set; }
+        ////DATA LIST
+        //public List<DIYFE.EF.Article> ArticleList { get; set; }
     }
 }

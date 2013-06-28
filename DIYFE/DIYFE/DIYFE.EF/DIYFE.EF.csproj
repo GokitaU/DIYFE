@@ -48,90 +48,75 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ArticleComment.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ArticleResource.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ArticleResourceType.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="ArticleStatu.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+    <Compile Include="ArticleStatus.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ArticleType.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DIYFEModel.Context.cs">
+    <Compile Include="DIYFEEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DIYFEModel.Context.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DIYFEModel.cs">
+    <Compile Include="DIYFEEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DIYFEModel.Designer.cs">
+    <Compile Include="DIYFEEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DIYFEModel.edmx</DependentUpon>
+      <DependentUpon>DIYFEEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Email.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Error.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Notification.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_LoadArticle_Result.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_LoadPostList_Result.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="StatusType.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>DIYFEModel.tt</DependentUpon>
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DIYFEModel.edmx">
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DIYFEEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DIYFEModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DIYFEEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="DIYFEModel.Context.tt">
+    <None Include="DIYFEEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DIYFEModel.edmx</DependentUpon>
-      <LastGenOutput>DIYFEModel.Context.cs</LastGenOutput>
+      <DependentUpon>DIYFEEntity.edmx</DependentUpon>
+      <LastGenOutput>DIYFEEntity.Context.cs</LastGenOutput>
     </None>
-    <None Include="DIYFEModel.edmx.diagram">
-      <DependentUpon>DIYFEModel.edmx</DependentUpon>
+    <None Include="DIYFEEntity.edmx.diagram">
+      <DependentUpon>DIYFEEntity.edmx</DependentUpon>
     </None>
-    <None Include="DIYFEModel.tt">
+    <None Include="DIYFEEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DIYFEModel.edmx</DependentUpon>
-      <LastGenOutput>DIYFEModel.cs</LastGenOutput>
+      <DependentUpon>DIYFEEntity.edmx</DependentUpon>
+      <LastGenOutput>DIYFEEntity.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

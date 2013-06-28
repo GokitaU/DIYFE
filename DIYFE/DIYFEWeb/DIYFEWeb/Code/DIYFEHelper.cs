@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 using DIYFEWeb.Models;
-using DIYFELib;
+using DIYFE.EF;
 
 namespace DIYFEWeb.Code
 {
@@ -62,7 +62,7 @@ namespace DIYFEWeb.Code
         {
             
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-            ListAccess la = new ListAccess();
+            //ListAccess la = new ListAccess();
             Category cat = AppStatic.Categories
                                 .Where(c => c.CategoryRowId == categoryRowId)
                                 .FirstOrDefault();
@@ -141,7 +141,7 @@ namespace DIYFEWeb.Code
         {
 
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-            ListAccess la = new ListAccess();
+            //ListAccess la = new ListAccess();
             //Category cat = AppStatic.Categories
             //                    .Where(c => c.CategoryRowId == categoryRowId)
             //                    .FirstOrDefault();
@@ -163,9 +163,9 @@ namespace DIYFEWeb.Code
                             LinkText = _secondLevCat.SecondLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _secondLevCat.CategoryUrl + "/" + _secondLevCat.SecondLevCategoryUrl,
                             Title = _secondLevCat.SecondLevCategoryName,
-                            SubLinks = la.RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2)
+                            //SubLinks = la.RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2)
                         };
-                newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
+                //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
                 linkList.Add(newCat);
                 //if (String.IsNullOrEmpty(_cat.ThirdLevCategoryName))
                 //{
@@ -350,7 +350,7 @@ namespace DIYFEWeb.Code
         public static List<CustomHtmlLink> GenerateTreeViewThirdLev(int secondLevCatId, string linkPrefix)
         {
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-            ListAccess la = new ListAccess();
+            //ListAccess la = new ListAccess();
 
             List<Category> thirdLevCats = AppStatic.Categories
                                                 .Where(c => c.SecondLevCategoryId == secondLevCatId
@@ -368,7 +368,7 @@ namespace DIYFEWeb.Code
                             LinkText = _thirdLevCat.ThirdLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _thirdLevCat.CategoryUrl + "/" + _thirdLevCat.SecondLevCategoryUrl + "/" + _thirdLevCat.ThirdLevCategoryUrl,
                             Title = _thirdLevCat.ThirdLevCategoryName,
-                            SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
+                            //SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
                         };
                 linkList.Add(newCat);
                 //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));

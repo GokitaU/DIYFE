@@ -20,7 +20,7 @@ namespace DIYFE.EF
         public string Name { get; set; }
         public string URLLink { get; set; }
     
-        public virtual Article Article { get; set; }
         public virtual ArticleResourceType ArticleResourceType { get; set; }
+        public virtual Article Article { get; set; }
     }
 }

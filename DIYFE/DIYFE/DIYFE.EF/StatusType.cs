@@ -16,12 +16,12 @@ namespace DIYFE.EF
     {
         public StatusType()
         {
-            this.ArticleStatus = new HashSet<ArticleStatu>();
+            this.ArticleStatus = new HashSet<ArticleStatus>();
         }
     
         public int StatusId { get; set; }
         public string StatusName { get; set; }
     
-        public virtual ICollection<ArticleStatu> ArticleStatus { get; set; }
+        public virtual ICollection<ArticleStatus> ArticleStatus { get; set; }
     }
 }

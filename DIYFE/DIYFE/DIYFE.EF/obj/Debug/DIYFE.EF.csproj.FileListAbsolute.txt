@@ -6,3 +6,11 @@ C:\JT-Personal\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.xml
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.dll
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.dll.config
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.xml
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache

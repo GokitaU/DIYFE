@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DIYFEModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="DIYFEEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="Articles" EntityType="DIYFEModel.Article" />
     <EntitySet Name="ArticleComments" EntityType="DIYFEModel.ArticleComment" />
     <EntitySet Name="ArticleResources" EntityType="DIYFEModel.ArticleResource" />
     <EntitySet Name="ArticleResourceTypes" EntityType="DIYFEModel.ArticleResourceType" />
@@ -12,31 +11,6 @@
     <EntitySet Name="Errors" EntityType="DIYFEModel.Error" />
     <EntitySet Name="Notifications" EntityType="DIYFEModel.Notification" />
     <EntitySet Name="StatusTypes" EntityType="DIYFEModel.StatusType" />
-    <EntitySet Name="sysdiagrams" EntityType="DIYFEModel.sysdiagram" />
-    <AssociationSet Name="FK_Article_ArticleType" Association="DIYFEModel.FK_Article_ArticleType">
-      <End Role="ArticleType" EntitySet="ArticleTypes" />
-      <End Role="Article" EntitySet="Articles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.FK_Article_Category">
-      <End Role="Category" EntitySet="Categories" />
-      <End Role="Article" EntitySet="Articles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ArticleComment_Article" Association="DIYFEModel.FK_ArticleComment_Article">
-      <End Role="Article" EntitySet="Articles" />
-      <End Role="ArticleComment" EntitySet="ArticleComments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ArticleResource_Article" Association="DIYFEModel.FK_ArticleResource_Article">
-      <End Role="Article" EntitySet="Articles" />
-      <End Role="ArticleResource" EntitySet="ArticleResources" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ArticleStatus_Article" Association="DIYFEModel.FK_ArticleStatus_Article">
-      <End Role="Article" EntitySet="Articles" />
-      <End Role="ArticleStatus" EntitySet="ArticleStatus" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Notifications_Article" Association="DIYFEModel.FK_Notifications_Article">
-      <End Role="Article" EntitySet="Articles" />
-      <End Role="Notifications" EntitySet="Notifications" />
-    </AssociationSet>
     <AssociationSet Name="FK_ArticleResource_ArticleResourceType" Association="DIYFEModel.FK_ArticleResource_ArticleResourceType">
       <End Role="ArticleResourceType" EntitySet="ArticleResourceTypes" />
       <End Role="ArticleResource" EntitySet="ArticleResources" />
@@ -89,33 +63,32 @@
       <Parameter Name="seasonId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Articles" EntityType="DIYFEModel.Article" />
+    <AssociationSet Name="FK_Article_ArticleType" Association="DIYFEModel.FK_Article_ArticleType">
+      <End Role="ArticleType" EntitySet="ArticleTypes" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.FK_Article_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleComment_Article" Association="DIYFEModel.FK_ArticleComment_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="ArticleComment" EntitySet="ArticleComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleResource_Article" Association="DIYFEModel.FK_ArticleResource_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="ArticleResource" EntitySet="ArticleResources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleStatus_Article" Association="DIYFEModel.FK_ArticleStatus_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="ArticleStatu" EntitySet="ArticleStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Article" Association="DIYFEModel.FK_Notifications_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Article">
-    <Key>
-      <PropertyRef Name="ArticleId" />
-    </Key>
-    <Property Name="ArticleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="ArticleTypeId" Type="Int32" />
-    <Property Name="CategoryRowId" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
-    <Property Name="Author" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
-    <Property Name="Keywords" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
-    <Property Name="MainContent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="SideContent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="ListItemContent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="ViewRequests" Type="Int32" Nullable="false" />
-    <Property Name="URLLink" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="NameId" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="ArticleType" Relationship="DIYFEModel.FK_Article_ArticleType" FromRole="Article" ToRole="ArticleType" />
-    <NavigationProperty Name="Category" Relationship="DIYFEModel.FK_Article_Category" FromRole="Article" ToRole="Category" />
-    <NavigationProperty Name="ArticleComments" Relationship="DIYFEModel.FK_ArticleComment_Article" FromRole="Article" ToRole="ArticleComment" />
-    <NavigationProperty Name="ArticleResources" Relationship="DIYFEModel.FK_ArticleResource_Article" FromRole="Article" ToRole="ArticleResource" />
-    <NavigationProperty Name="ArticleStatus" Relationship="DIYFEModel.FK_ArticleStatus_Article" FromRole="Article" ToRole="ArticleStatus" />
-    <NavigationProperty Name="Notifications" Relationship="DIYFEModel.FK_Notifications_Article" FromRole="Article" ToRole="Notifications" />
-  </EntityType>
   <EntityType Name="ArticleComment">
     <Key>
       <PropertyRef Name="CommentId" />
@@ -139,8 +112,8 @@
     <Property Name="ResourceTypeId" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="URLLink" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_ArticleResource_Article" FromRole="ArticleResource" ToRole="Article" />
     <NavigationProperty Name="ArticleResourceType" Relationship="DIYFEModel.FK_ArticleResource_ArticleResourceType" FromRole="ArticleResource" ToRole="ArticleResourceType" />
+    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_ArticleResource_Article" FromRole="ArticleResource" ToRole="Article" />
   </EntityType>
   <EntityType Name="ArticleResourceType">
     <Key>
@@ -159,8 +132,8 @@
     <Property Name="ArticleStatusRowId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ArticleId" Type="Int32" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_ArticleStatus_Article" FromRole="ArticleStatus" ToRole="Article" />
     <NavigationProperty Name="StatusType" Relationship="DIYFEModel.FK_ArticleStatus_StatusType" FromRole="ArticleStatus" ToRole="StatusType" />
+    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_ArticleStatus_Article" FromRole="ArticleStatu" ToRole="Article" />
   </EntityType>
   <EntityType Name="ArticleType">
     <Key>
@@ -212,8 +185,8 @@
     <Property Name="EmailNotificationId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ArticleId" Type="Int32" Nullable="false" />
     <Property Name="EmailRowId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_Notifications_Article" FromRole="Notifications" ToRole="Article" />
     <NavigationProperty Name="Email" Relationship="DIYFEModel.FK_Notifications_Email" FromRole="Notifications" ToRole="Email" />
+    <NavigationProperty Name="Article" Relationship="DIYFEModel.FK_Notifications_Article" FromRole="Notification" ToRole="Article" />
   </EntityType>
   <EntityType Name="StatusType">
     <Key>
@@ -223,88 +196,6 @@
     <Property Name="StatusName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="ArticleStatus" Relationship="DIYFEModel.FK_ArticleStatus_StatusType" FromRole="StatusType" ToRole="ArticleStatus" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_Article_ArticleType">
-    <End Role="ArticleType" Type="DIYFEModel.ArticleType" Multiplicity="0..1" />
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ArticleType">
-        <PropertyRef Name="ArticleTypeId" />
-      </Principal>
-      <Dependent Role="Article">
-        <PropertyRef Name="ArticleTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Article_Category">
-    <End Role="Category" Type="DIYFEModel.Category" Multiplicity="1" />
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Category">
-        <PropertyRef Name="CategoryRowId" />
-      </Principal>
-      <Dependent Role="Article">
-        <PropertyRef Name="CategoryRowId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ArticleComment_Article">
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="1" />
-    <End Role="ArticleComment" Type="DIYFEModel.ArticleComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Article">
-        <PropertyRef Name="ArticleId" />
-      </Principal>
-      <Dependent Role="ArticleComment">
-        <PropertyRef Name="ArticleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ArticleResource_Article">
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="1" />
-    <End Role="ArticleResource" Type="DIYFEModel.ArticleResource" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Article">
-        <PropertyRef Name="ArticleId" />
-      </Principal>
-      <Dependent Role="ArticleResource">
-        <PropertyRef Name="ArticleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ArticleStatus_Article">
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="1" />
-    <End Role="ArticleStatus" Type="DIYFEModel.ArticleStatu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Article">
-        <PropertyRef Name="ArticleId" />
-      </Principal>
-      <Dependent Role="ArticleStatus">
-        <PropertyRef Name="ArticleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Notifications_Article">
-    <End Role="Article" Type="DIYFEModel.Article" Multiplicity="1" />
-    <End Role="Notifications" Type="DIYFEModel.Notification" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Article">
-        <PropertyRef Name="ArticleId" />
-      </Principal>
-      <Dependent Role="Notifications">
-        <PropertyRef Name="EmailRowId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ArticleResource_ArticleResourceType">
     <End Role="ArticleResourceType" Type="DIYFEModel.ArticleResourceType" Multiplicity="1" />
     <End Role="ArticleResource" Type="DIYFEModel.ArticleResource" Multiplicity="*" />
@@ -396,4 +287,101 @@
     <Property Type="String" Name="ThirdLevCategoryUrl" Nullable="true" MaxLength="50" />
     <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
   </ComplexType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Type="Int32" Name="ArticleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="ArticleTypeId" Nullable="false" />
+    <Property Type="Int32" Name="CategoryRowId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Author" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Keywords" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MainContent" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SideContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ListItemContent" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ViewRequests" Nullable="false" />
+    <Property Type="String" Name="URLLink" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ArticleType" Relationship="DIYFEModel.FK_Article_ArticleType" FromRole="Article" ToRole="ArticleType" />
+    <NavigationProperty Name="Category" Relationship="DIYFEModel.FK_Article_Category" FromRole="Article" ToRole="Category" />
+    <NavigationProperty Name="ArticleComments" Relationship="DIYFEModel.FK_ArticleComment_Article" FromRole="Article" ToRole="ArticleComment" />
+    <NavigationProperty Name="ArticleResources" Relationship="DIYFEModel.FK_ArticleResource_Article" FromRole="Article" ToRole="ArticleResource" />
+    <NavigationProperty Name="ArticleStatus" Relationship="DIYFEModel.FK_ArticleStatus_Article" FromRole="Article" ToRole="ArticleStatu" />
+    <NavigationProperty Name="Notifications" Relationship="DIYFEModel.FK_Notifications_Article" FromRole="Article" ToRole="Notification" />
+  </EntityType>
+  <Association Name="FK_Article_ArticleType">
+    <End Type="DIYFEModel.ArticleType" Role="ArticleType" Multiplicity="1" />
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleType">
+        <PropertyRef Name="ArticleTypeId" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="ArticleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Category">
+    <End Type="DIYFEModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryRowId" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="CategoryRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleComment_Article">
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="DIYFEModel.ArticleComment" Role="ArticleComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleComment">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleResource_Article">
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="DIYFEModel.ArticleResource" Role="ArticleResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleResource">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleStatus_Article">
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="DIYFEModel.ArticleStatu" Role="ArticleStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleStatu">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Article">
+    <End Type="DIYFEModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="DIYFEModel.Notification" Role="Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="EmailRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

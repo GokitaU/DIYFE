@@ -15,14 +15,18 @@ namespace DIYFEWeb.Controllers
         [LoggingFilter]
         public ActionResult Index()
         {
-
+            ArticleListModel model = new ArticleListModel();
 
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                var articles = db.Articles.Where(a => a.ArticleTypeId == 2 && a.ArticleStatus.Any(ar => ar.StatusId==3));
+                model.ProjectList = db.Articles.Include("ArticleStatus.StatusType").OrderBy(a => a.UpdateDate).Take(5).ToList();
+                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleStatus.All(arts => arts.StatusId == 4)).Take(5).ToList());
+                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).Take(5).ToList());
+                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).Take(5).ToList());
+                //model.ProjectList = db.Articles.Include()
+                //var articles = db.Articles.Where(a => a.ArticleTypeId == 2 && a.ArticleStatus.Any(ar => ar.StatusId==3));
             }
-            AppStatic.LoadStaticCache();
-
+            model.ProjectList = model.ProjectList.Distinct().ToList();
             PageModel.Title = "DiyFe";
             PageModel.Description = "";
             PageModel.Author = "Do it yourself for everyone.";
@@ -93,7 +97,7 @@ namespace DIYFEWeb.Controllers
 
             string testStaticAppVar = AppStatic.ApplicationVar;
 
-            return View();
+            return View(model);
         }
 
         [LoggingFilter]
