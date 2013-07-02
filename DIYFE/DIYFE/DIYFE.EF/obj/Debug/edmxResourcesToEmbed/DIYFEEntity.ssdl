@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DIYFEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DIYFEModelStoreContainer">
+    <EntitySet Name="Article" EntityType="DIYFEModel.Store.Article" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleComment" EntityType="DIYFEModel.Store.ArticleComment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleResource" EntityType="DIYFEModel.Store.ArticleResource" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleResourceType" EntityType="DIYFEModel.Store.ArticleResourceType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleStatus" EntityType="DIYFEModel.Store.ArticleStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleType" EntityType="DIYFEModel.Store.ArticleType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="DIYFEModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Article_ArticleType" Association="DIYFEModel.Store.FK_Article_ArticleType">
+      <End Role="ArticleType" EntitySet="ArticleType" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.Store.FK_Article_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleComment_Article" Association="DIYFEModel.Store.FK_ArticleComment_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleComment" EntitySet="ArticleComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleResource_Article" Association="DIYFEModel.Store.FK_ArticleResource_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleResource" EntitySet="ArticleResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleResource_ArticleResourceType" Association="DIYFEModel.Store.FK_ArticleResource_ArticleResourceType">
+      <End Role="ArticleResourceType" EntitySet="ArticleResourceType" />
+      <End Role="ArticleResource" EntitySet="ArticleResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleStatus_Article" Association="DIYFEModel.Store.FK_ArticleStatus_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleStatus" EntitySet="ArticleStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleStatus_StatusType" Association="DIYFEModel.Store.FK_ArticleStatus_StatusType">
+      <End Role="StatusType" EntitySet="StatusType" />
+      <End Role="ArticleStatus" EntitySet="ArticleStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Article" Association="DIYFEModel.Store.FK_Notifications_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Email" Association="DIYFEModel.Store.FK_Notifications_Email">
+      <End Role="Email" EntitySet="Email" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Name="ArticleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="ArticleTypeId" Type="int" Nullable="false" />
+    <Property Name="CategoryRowId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Author" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Keywords" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="MainContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SideContent" Type="nvarchar(max)" />
+    <Property Name="ListItemContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ViewRequests" Type="int" Nullable="false" />
+    <Property Name="URLLink" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="PreviewImg" Type="nvarchar" MaxLength="600" />
+  </EntityType>
+  <EntityType Name="ArticleComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="PosterName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PosterEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="PosterWebSite" Type="nvarchar" MaxLength="250" />
+    <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="RepyToCommentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArticleResource">
+    <Key>
+      <PropertyRef Name="ArticleResourceId" />
+    </Key>
+    <Property Name="ArticleResourceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="URLLink" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ArticleResourceType">
+    <Key>
+      <PropertyRef Name="ArticleResourceTypeId" />
+    </Key>
+    <Property Name="ArticleResourceTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="ArticleStatus">
+    <Key>
+      <PropertyRef Name="ArticleStatusRowId" />
+    </Key>
+    <Property Name="ArticleStatusRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArticleType">
+    <Key>
+      <PropertyRef Name="ArticleTypeId" />
+    </Key>
+    <Property Name="ArticleTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleTypeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryRowId" />
+    </Key>
+    <Property Name="CategoryRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TopNavIndex" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="SecondLevCategoryId" Type="int" />
+    <Property Name="ThirdLevCategoryId" Type="int" />
+    <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CategoryUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondLevCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="ThirdLevCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ThirdLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="EmailRowId" />
+    </Key>
+    <Property Name="EmailRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RefId" Type="int" Nullable="false" />
+    <Property Name="ErrorMethod" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="ErrorText" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="EmailNotificationId" />
+    </Key>
+    <Property Name="EmailNotificationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="EmailRowId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatusType">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Article_ArticleType">
+    <End Role="ArticleType" Type="DIYFEModel.Store.ArticleType" Multiplicity="1" />
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleType">
+        <PropertyRef Name="ArticleTypeId" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="ArticleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Category">
+    <End Role="Category" Type="DIYFEModel.Store.Category" Multiplicity="1" />
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryRowId" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="CategoryRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleComment_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleComment" Type="DIYFEModel.Store.ArticleComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleComment">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleResource_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleResource" Type="DIYFEModel.Store.ArticleResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleResource">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleResource_ArticleResourceType">
+    <End Role="ArticleResourceType" Type="DIYFEModel.Store.ArticleResourceType" Multiplicity="1" />
+    <End Role="ArticleResource" Type="DIYFEModel.Store.ArticleResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleResourceType">
+        <PropertyRef Name="ArticleResourceTypeId" />
+      </Principal>
+      <Dependent Role="ArticleResource">
+        <PropertyRef Name="ResourceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleStatus_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleStatus" Type="DIYFEModel.Store.ArticleStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleStatus">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleStatus_StatusType">
+    <End Role="StatusType" Type="DIYFEModel.Store.StatusType" Multiplicity="1" />
+    <End Role="ArticleStatus" Type="DIYFEModel.Store.ArticleStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="ArticleStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="Notifications" Type="DIYFEModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmailRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Email">
+    <End Role="Email" Type="DIYFEModel.Store.Email" Multiplicity="1" />
+    <End Role="Notifications" Type="DIYFEModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Email">
+        <PropertyRef Name="EmailRowId" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmailRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_LoadArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="articleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="articleId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_LoadPostList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryRowId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SeasonGames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="seasonId" Type="int" Mode="In" />
+  </Function>
+</Schema>

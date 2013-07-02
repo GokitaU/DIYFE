@@ -118,6 +118,74 @@ namespace DIYFEWeb
 
             #endregion
 
+            #region BlogMaps
+
+            routes.MapRoute(
+                "BlogRoot", // Route name
+                "Blog", // URL with parameters
+                new { controller = "Blog", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "BlogContent", // Route name
+                "Blog/{html}.html", // URL with parameters,
+                new { controller = "Blog", action = "BlogDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "BlogContent1", // Route name
+                "Blog/{categoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Blog", action = "BlogDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "BlogContent2", // Route name
+                "Blog/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Blog", action = "BlogDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "BlogContent3", // Route name
+                "Blog/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Blog", action = "BlogDetails" }//, // Parameter defaults
+            );
+
+            #endregion
+
+            #region NewsMaps
+
+            routes.MapRoute(
+                "NewsRoot", // Route name
+                "News", // URL with parameters
+                new { controller = "News", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "NewsContent", // Route name
+                "News/{html}.html", // URL with parameters,
+                new { controller = "News", action = "NewsDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "NewsContent1", // Route name
+                "News/{categoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "News", action = "NewsDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "NewsContent2", // Route name
+                "News/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "News", action = "NewsDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "NewsContent3", // Route name
+                "News/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "News", action = "NewsDetails" }//, // Parameter defaults
+            );
+
+            #endregion
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -18,12 +18,13 @@ namespace DIYFE.EF
         {
             this.ArticleComments = new HashSet<ArticleComment>();
             this.ArticleResources = new HashSet<ArticleResource>();
-            this.ArticleStatus = new HashSet<ArticleStatu>();
+            this.ArticleStatus = new HashSet<ArticleStatus>();
             this.Notifications = new HashSet<Notification>();
         }
     
         public int ArticleId { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public System.DateTime UpdateDate { get; set; }
         public int ArticleTypeId { get; set; }
         public int CategoryRowId { get; set; }
         public string Name { get; set; }
@@ -36,13 +37,13 @@ namespace DIYFE.EF
         public string ListItemContent { get; set; }
         public int ViewRequests { get; set; }
         public string URLLink { get; set; }
-        public string NameId { get; set; }
+        public string PreviewImg { get; set; }
     
         public virtual ArticleType ArticleType { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<ArticleComment> ArticleComments { get; set; }
         public virtual ICollection<ArticleResource> ArticleResources { get; set; }
-        public virtual ICollection<ArticleStatu> ArticleStatus { get; set; }
+        public virtual ICollection<ArticleStatus> ArticleStatus { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

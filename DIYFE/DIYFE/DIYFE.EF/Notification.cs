@@ -18,7 +18,7 @@ namespace DIYFE.EF
         public int ArticleId { get; set; }
         public int EmailRowId { get; set; }
     
-        public virtual Article Article { get; set; }
         public virtual Email Email { get; set; }
+        public virtual Article Article { get; set; }
     }
 }

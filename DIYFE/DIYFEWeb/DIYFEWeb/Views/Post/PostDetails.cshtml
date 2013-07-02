@@ -55,7 +55,7 @@
     <!--Sidebar content-->
             <div class="row-fluid">
                 <div class="span12 box-content">Related Info
-                    @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+                    @*@Html.Partial("_RelatedTreeView", Model.RelatedTreeView)*@
                 </div>
             </div>
             <br />
@@ -67,14 +67,14 @@
         <div class="span8">
 
 
-
+            
         <div class="sfcommentsListWrp  box-content">
             <h2 class="sfcommentsTitle" id="comments">
                @Model.Comments.Count() Comments
             </h2>
             <ol class="sfcommentsList">
 
-                @foreach(DIYFELib.ArticleComment comment in Model.Comments.Where(c => c.RepyToCommentId == 0 )) {
+                @foreach(DIYFE.EF.ArticleComment comment in Model.Comments.Where(c => c.RepyToCommentId == 0 )) {
                     <li class="sfcommentDetails">
                         <div class="media">
                             <div class="pull-left">
@@ -87,9 +87,9 @@
                           @*</a>*@
                                 </div>
                                   <div class="media-body">
-                                    @comment.Text
+                                    @comment.CommentText
                                      @* <div  class="replyLink"><a href="#">reply</a></div>*@
-                                      @foreach(DIYFELib.ArticleComment subComment in Model.Comments.Where(c => c.RepyToCommentId == comment.CommentId )) {
+                                      @foreach(DIYFE.EF.ArticleComment subComment in Model.Comments.Where(c => c.RepyToCommentId == comment.CommentId )) {
                                         <div class="media" style="margin-top:15px;">
                                             <div class="pull-left">
                                       @*    <a href="#" class="pull-left">*@
@@ -101,7 +101,7 @@
                                         @*  </a>*@
                                            </div>
                                           <div class="media-body">
-                                            @subComment.Text
+                                            @subComment.CommentText
                                           </div>
                                         </div>
                                       }

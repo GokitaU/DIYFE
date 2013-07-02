@@ -1,4 +1,4 @@
-﻿
+﻿@model DIYFEWeb.Models.ArticleListModel
 
 @section SecondHeader {
 @*      <div class="top-anchor">
@@ -16,28 +16,41 @@
       <div class="row show-grid">
       @Html.Partial("_ErrorPageHandler")
         <div class="span9 show-grid">
-            <div class="box-content-hero">
+            <div class="box-content">
                 <h2>What is this organization all about?</h2>
-                <p>Our organization offers resources that contribute to self-sufficiency in a DIY fashion.  We sponsor individual's projects and post research and instructions for all to learn from or review.  <a href="/project">View current projects.</a></p>
+                <p>Our organization offers resources that contribute to self-sufficiency in a DIY fashion.  We <a href="#">sponsor individual's projects</a> and post research and instructions for all to learn from or review.  We try to give emidate finical insintive to alow indiviuals to start exploring options that will help them lead a less waste full, free, healthy and happy life.  In return we all benifit from both thier success and failers.  We feel, as well as many others, that our current system is broke and the change doesn't mean giving up 20th centery adminity or technology.  We must learn something more then our jobs or schools have tought us. We must explore with action, except and report our failers and screem out our success for all to hear. <br /><a href="/project">View current projects.</a></p>
+
+            </div>
+        </div>
+                  <div class="span3 show-grid">
+            <div class="box-content" style="height:219px;">
+                <h4>How to Participate?</h4>
+                <p>We can sponsor your project OR project replication!  Find out what it means to be sponsored, how to qualify and your responsibilites. <a href="Home/GettingSponsored">How to get sponcered</a></p>
+                <p><a class="btn" href="Home/Participate">View details &raquo;</a></p>
+            </div>
+       </div>
+          <div class="span9 show-grid">
+            <div class="box-content">
 
                 <h2>What can you do on this site?</h2>
-                <p>This site not only serves as an information source on our organization but also as an informational repository.  We have two main sections, a projects section that holds information on our work in progress.   Then an information repository that holds information on both completed projects and informative posts.</p>
+                <p>This site not only serves as an information source on @Html.Link("home/about", "our organization", "link to more information about us") but also as an informational repository.  We have four main sections, a <strong>@Html.Link("project","project section","Link to our projects")</strong> that holds information on our work in progress.   Also an<strong>@Html.Link("post","information repository","Link to our posts")</strong> that holds information on both completed projects and informative posts.  Last but not lest a @Html.Link("blog", "blog", "link to our blog posts") that holds personal oppions, information and project by our board of directors.  Then on a side note a section that hold posts about current @Html.Link("news", "news", "link to news about our ogrinisation") about our orginization and any laws that may affect our opperation.</p>
+                <h4>Projects Categories</h4>
+                <ul class="inline" style="text-align:center;">
+                    <li><a href="/project/water">Water</a></li>
+                    <li><a href="/project/shelter">Shelter</a></li>
+                    <li><a href="/project/food">Food</a></li>
+                    <li><a href="/project/hygiene-health">Hygiene and Health</a></li>
+                    <li><a href="/project/communication-education">Communication and Education</a></li>
+                    <li><a href="/project/manufacturing">Manufacturing Goods</a></li>
+                </ul>
 @*                <p><a class="btn" href="#">View details &raquo;</a></p>*@
             </div>
         </div>
 
         <div class="span3 show-grid">
-            <div class="box-content">
-                <h2>How to Participate?</h2>
-                <p>We can sponsor your project!  Find out what it means to be sponsored.  How to qualify for sponsorship and why you would want to be sponsored. <a href="Home/GettingSponsored">How to get sponcered</a></p>
-                <p><a class="btn" href="Home/Participate">View details &raquo;</a></p>
-            </div>
-       </div>
-
-        <div class="span3 show-grid">
-          <div class="box-content">
-            <h2>How to Donate?</h2>
-            <p>Learn about our growing pains and how you can help all of us grow.</p>
+          <div class="box-content" style="height:238px;">
+            <h4>How to Donate?</h4>
+            <p>Learn about our growing pains and how you can help all of us grow without direct partisipation.</p>
             <p><a class="btn" href="Home/Donations">View details &raquo;</a></p>
            </div>
         </div>
@@ -49,8 +62,12 @@
               <h2>Recently Update Projects</h2>
                  <p>Check up on how work is going.  This is a list of recently updated or completed projects.  You can also <a href="#">sign</a> up be notified of project updates.</p>
                  <dl class="dl-horizontal">
-                        <dt><a href="#">Man-Chem</a></dt>
-                        <dd>A serious chemistry and biology kit in DIY fashion.</dd>
+                     @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId==2).OrderBy(p => p.CreatedDate))
+                     {
+                        <dt>@Html.ArticleLink(article)</dt>
+                        <dd>@article.Title</dd>
+                     }
+                        
                         <dt><a href="#">East Texas 1</a></dt>
                         <dd>Permaculture project update.</dd>
                         <dt><a href="#">Geodome Greenhouse</a></dt>
@@ -61,11 +78,14 @@
           </div>
           <div class="span6">
               <div class="box-content">
-              <h2>Projects Needing Funding</h2>
+              <h2>Projects Needing Funding - must fix this, it's not running the correct query</h2>
                  <p>List of projects that can be fiscal sponsor by us, meaning you can write off any materials needed for project completion.  These are project that either need funding or need an individual to take responsibility for its success.  </p>
                      <dl class="dl-horizontal">
-                        <dt><a href="#">Tower of Power</a></dt>
-                        <dd>Combine DIY-VWART with water storage and pressure</dd>
+                        @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleStatus.All(arts => arts.StatusId == 4)))
+                        {
+                        <dt>@Html.ArticleLink(article)</dt>
+                        <dd>@article.Title</dd>
+                        }
                         <dt><a href="#">Dark Net</a></dt>
                         <dd>Not so dark future of communication</dd>
                         <dt><a href="#">Yard Work</a></dt>
@@ -80,7 +100,11 @@
               <div class="box-content">
               <h2>Recent Post</h2>
                   <dl>
-                    <dt><a href="#">Nirogrent Fixing Planes</a></dt>
+                      @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 1))
+                        {
+                        <dt>@Html.ArticleLink(article)</dt>
+                        }
+                    
                     <dt><a href="#">Off Grid Power Managment</a></dt>
                     <dt><a href="#">List of free education</a></dt>
                     <dt><a href="#">3 ways to use grey water</a></dt>
@@ -94,6 +118,11 @@
               <div class="box-content">
               <h2>News</h2>
                 <dl>
+                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 4))
+                        {
+                        <dt>@Html.ArticleLink(article)</dt>
+                        }
+                    
                     <dt><a href="#">100th Project</a></dt>
                     <dd>We have just sponcered our 100th project!</dd>
                     <dt><a href="#">New Location</a></dt>

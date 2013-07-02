@@ -219,7 +219,9 @@
     <Compile Include="HtmlHelpers\HtmlHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\ArticleListModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\CustomHtmlLink.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\PageBaseModel.cs" />
     <Compile Include="Models\ProjectListModel.cs" />
@@ -295,7 +297,9 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -381,6 +385,10 @@
     <Content Include="Views\EmailTemplates\Error.cshtml" />
     <Content Include="Views\EmailTemplates\WebContact.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Shared\_DataListItemProject.cshtml" />
+    <Content Include="Views\Blog\BlogDetails.cshtml" />
+    <Content Include="Views\News\NewsDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

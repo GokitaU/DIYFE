@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using DIYFELib;
+using DIYFE.EF;
 
 namespace DIYFEWeb.Models
 {

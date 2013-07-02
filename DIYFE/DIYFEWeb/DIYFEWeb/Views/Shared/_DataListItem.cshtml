@@ -1,7 +1,7 @@
-﻿@model DIYFELib.ArticleList
+﻿@model List<DIYFE.EF.Article>
 
 
-@if (Model.ListItems.Count() > 0){
+@if (Model.Count() > 0){
     
     <style>
         .leftPaddingFix
@@ -11,7 +11,7 @@
 
     </style>
       
-    foreach (DIYFELib.Article listItem in Model.ListItems)
+    foreach (DIYFE.EF.Article listItem in Model)
     {
 
     <div class="span12 box-content" style="margin-bottom:10px;">
@@ -164,7 +164,5 @@ foreach(DIYFELib.DataListItem listItem in Model.ListItems){
         </div>
     </div>
     
-    if(Model.TotalItems > 10){
-    
-    }
+
 }

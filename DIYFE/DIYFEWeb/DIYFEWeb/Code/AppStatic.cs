@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DIYFELib;
+//using DIYFELib;
+using DIYFE.EF;
 
 
 namespace DIYFEWeb
@@ -19,7 +20,12 @@ namespace DIYFEWeb
             HttpContext.Current.Application["someVarName"] = "This is a test.  Normally a  list of objects but since no DB connection is made it's only a string...le sigh, poor string.";
 
             DIYFELib.ListAccess la = new DIYFELib.ListAccess();
-            List<Category> allCats = la.AllCategory();
+            //List<Category> allCats = la.AllCategory();
+            List<DIYFE.EF.Category> allCats = new List<DIYFE.EF.Category>();
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                allCats = db.Categories.ToList();
+            }
             HttpContext.Current.Application["Categories"] = allCats;
 
             //BUILD TOP NAVIGATION ITEMS HTML
