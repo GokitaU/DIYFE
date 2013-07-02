@@ -86,7 +86,7 @@ namespace DIYFEWeb.Code
                     LinkText = cat.CategoryName,
                     Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + cat.CategoryUrl,
                     Title = cat.CategoryName,
-                    SubLinks = GenerateTreeViewSecondLev(cat, linkPrefix)//la.RelatedArticleLinks(cat, linkPrefix, 3)
+                    SubLinks = RelatedArticleLinks(cat, linkPrefix, 1)
                 });
 
             //if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
@@ -178,7 +178,7 @@ namespace DIYFEWeb.Code
                             LinkText = _secondLevCat.SecondLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _secondLevCat.CategoryUrl + "/" + _secondLevCat.SecondLevCategoryUrl,
                             Title = _secondLevCat.SecondLevCategoryName,
-                            //SubLinks = la.RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2)
+                            SubLinks = RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2)
                         };
                 //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
                 linkList.Add(newCat);
@@ -383,7 +383,7 @@ namespace DIYFEWeb.Code
                             LinkText = _thirdLevCat.ThirdLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _thirdLevCat.CategoryUrl + "/" + _thirdLevCat.SecondLevCategoryUrl + "/" + _thirdLevCat.ThirdLevCategoryUrl,
                             Title = _thirdLevCat.ThirdLevCategoryName,
-                           // SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
+                            SubLinks = RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
                         };
                 linkList.Add(newCat);
                 //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
@@ -392,38 +392,82 @@ namespace DIYFEWeb.Code
             return linkList;
         }
 
-        //public List<Article> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)
-        //{
-        //    List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-        //    List<Article> articles = new List<Article>();
-        //    using (var db = new DIYFE.EF.DIYFEEntities())
-        //    {
-        //        switch (categoryLevel)
-        //        {
-        //            case 1:
-        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
-        //               // whereSql = "WHERE CategoryId = " + cat.CategoryId;
-        //                break;
-        //            case 2:
-        //                articles = db.Articles.Where(a => a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).ToList();
-        //                //whereSql = "WHERE SecondLevCategoryId = " + cat.SecondLevCategoryId + " AND CategoryId= " + cat.CategoryId + " AND ThirdLevCategoryId = 0";
-        //                break;
-        //            case 3:
-        //                articles = db.Articles.Where(a => a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).ToList();
-        //               // whereSql = "WHERE ThirdLevCategoryId = " + cat.ThirdLevCategoryId;
-        //                break;
-        //            case 4:
-        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
-        //                //whereSql = "WHERE CategoryId = " + cat.CategoryId;
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    }
+        public static List<CustomHtmlLink> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)
+        {
+            List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
+            List<Article> articles = new List<Article>();
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                switch (categoryLevel)
+                {
+                    case 1:
+                        articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
+                        // whereSql = "WHERE CategoryId = " + cat.CategoryId;
+                        break;
+                    case 2:
+                        articles = db.Articles.Where(a => a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).ToList();
+                        //whereSql = "WHERE SecondLevCategoryId = " + cat.SecondLevCategoryId + " AND CategoryId= " + cat.CategoryId + " AND ThirdLevCategoryId = 0";
+                        break;
+                    case 3:
+                        articles = db.Articles.Where(a => a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).ToList();
+                        // whereSql = "WHERE ThirdLevCategoryId = " + cat.ThirdLevCategoryId;
+                        break;
+                    case 4:
+                        articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
+                        //whereSql = "WHERE CategoryId = " + cat.CategoryId;
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-        //   return articles;
+            foreach (Article a in articles)
+            {
 
-        //}
+                string articleType = "";
+                switch (a.ArticleTypeId)
+                {
+                    case 1:
+                        articleType = "post/";
+                        break;
+                    case 2:
+                        articleType = "project/";
+                        break;
+                    case 3:
+                        articleType = "blog/";
+                        break;
+                    case 4:
+                        articleType = "news/";
+                        break;
+                    default:
+                        articleType = "home/";
+                        break;
+                }
+
+                string ahref = "<a href=\"" + AppStatic.BaseSiteUrl + articleType + cat.CategoryUrl + "/";
+                //MvcHtmlString ahref = new MvcHtmlString("<a href=\"" + AppStatic.BaseSiteUrl + article.Category.CategoryUrl + "/");
+                if (!String.IsNullOrEmpty(cat.SecondLevCategoryUrl))
+                {
+                    ahref += cat.SecondLevCategoryUrl + "/";
+                }
+                if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
+                {
+                    ahref += cat.ThirdLevCategoryUrl + "/";
+                }
+                ahref += a.URLLink + "\">" + a.Name + "</a>";
+
+                CustomHtmlLink htmlLink = new CustomHtmlLink
+                {
+                    LinkText = a.Name,
+                    Href = ahref,
+                    Title = a.Title
+                };
+                linkList.Add(htmlLink);
+            }
+
+            return linkList;
+
+        }
 
         //public static Category GetCategory(string catOne, string catTwo, string catThree)
         //{
