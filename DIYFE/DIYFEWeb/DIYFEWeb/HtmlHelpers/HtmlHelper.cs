@@ -82,7 +82,28 @@ namespace DIYFEWebHelpers
                 }
             }
 
-            string ahref = "<a href=\"" + AppStatic.BaseSiteUrl + article.Category.CategoryUrl + "/";
+            //TODO:the article type is required to build the URL, not bothered by loading it or checking for it...could probably use a enum            
+            string articleType = "";
+            switch (article.ArticleTypeId)
+            {
+                case 1:
+                    articleType = "post/";
+                    break;
+                case 2:
+                    articleType = "project/";
+                    break;
+                case 3:
+                    articleType = "blog/";
+                    break;
+                case 4:
+                    articleType = "news/";
+                    break;
+                default:
+                    articleType = "home/";
+                    break;
+            }
+
+            string ahref = "<a href=\"" + AppStatic.BaseSiteUrl + articleType + article.Category.CategoryUrl + "/";
             //MvcHtmlString ahref = new MvcHtmlString("<a href=\"" + AppStatic.BaseSiteUrl + article.Category.CategoryUrl + "/");
             if (!String.IsNullOrEmpty(article.Category.SecondLevCategoryUrl))
             {

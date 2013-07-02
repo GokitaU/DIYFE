@@ -97,7 +97,9 @@
 <div class="row-fluid">
 <div class="span12 box-content">
 <div class="span9">
-			  	
+		
+    @Html.Partial("_DataListItemProject", Model.ProjectList)
+    	  	
     @foreach (DIYFE.EF.Article article in Model.ProjectList)
     {
         <div id="xnews-34166" class="stories">

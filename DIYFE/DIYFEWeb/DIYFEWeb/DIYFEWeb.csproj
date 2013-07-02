@@ -386,6 +386,9 @@
     <Content Include="Views\EmailTemplates\WebContact.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Shared\_DataListItemProject.cshtml" />
+    <Content Include="Views\Blog\BlogDetails.cshtml" />
+    <Content Include="Views\News\NewsDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

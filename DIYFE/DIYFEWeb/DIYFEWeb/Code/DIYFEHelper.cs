@@ -5,6 +5,8 @@ using System.Web;
 
 using DIYFEWeb.Models;
 using DIYFE.EF;
+using System.Data.SqlClient;
+
 
 namespace DIYFEWeb.Code
 {
@@ -17,19 +19,25 @@ namespace DIYFEWeb.Code
         //    return linkList;
         //}
 
-        public static List<CustomHtmlLink> GenerateCrumbLinks(int categoryRowId, string linkPrefix)
+        public static List<CustomHtmlLink> GenerateCrumbLinks(DIYFE.EF.Category cat, string linkPrefix)
         {
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-            Category cat = AppStatic.Categories
-                                .Where(c => c.CategoryRowId == categoryRowId)
-                                .FirstOrDefault();
+            //Category cat = AppStatic.Categories
+            //                    .Where(c => c.CategoryRowId == categoryRowId)
+            //                    .FirstOrDefault();
+            CustomHtmlLink rootLink = new CustomHtmlLink();
+            rootLink.LinkText = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.ToTitleCase(linkPrefix) + "s";
+            rootLink.Href = AppStatic.BaseSiteUrl + linkPrefix + "/";
+            rootLink.Title = "Base diyfe categor";
+            linkList.Add(rootLink);
+
             if (cat != null)
             {
                 if (!String.IsNullOrEmpty(cat.CategoryUrl))
                 {
                     CustomHtmlLink link = new CustomHtmlLink();
                     link.LinkText = cat.CategoryName;
-                    link.Href = "/" + linkPrefix + "/" + cat.CategoryUrl;
+                    link.Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + cat.CategoryUrl;
                     link.Title = cat.CategoryName;
                     linkList.Add(link);
                 }
@@ -58,20 +66,27 @@ namespace DIYFEWeb.Code
             return linkList;
         }
 
-        public static List<CustomHtmlLink> GenerateRelatedTreeView(int categoryRowId, string linkPrefix)
+
+        /// <summary>
+        /// TODO: REVIEW THIS CRAP, COULD TOTALY DO BETTER
+        /// </summary>
+        /// <param name="cat"></param>
+        /// <param name="linkPrefix"></param>
+        /// <returns></returns>
+        public static List<CustomHtmlLink> GenerateRelatedTreeView(Category cat, string linkPrefix)
         {
             
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
             //ListAccess la = new ListAccess();
-            Category cat = AppStatic.Categories
-                                .Where(c => c.CategoryRowId == categoryRowId)
-                                .FirstOrDefault();
+            //Category cat = AppStatic.Categories
+            //                    .Where(c => c.CategoryRowId == categoryRowId)
+            //                    .FirstOrDefault();
             linkList.Add(new CustomHtmlLink
                {
                     LinkText = cat.CategoryName,
                     Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + cat.CategoryUrl,
                     Title = cat.CategoryName,
-                    SubLinks = GenerateTreeViewSecondLev(categoryRowId, linkPrefix)//la.RelatedArticleLinks(cat, linkPrefix, 3)
+                    SubLinks = GenerateTreeViewSecondLev(cat, linkPrefix)//la.RelatedArticleLinks(cat, linkPrefix, 3)
                 });
 
             //if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
@@ -137,7 +152,7 @@ namespace DIYFEWeb.Code
             return linkList;
         }
 
-        public static List<CustomHtmlLink> GenerateTreeViewSecondLev(int firstLevCategoryId, string linkPrefix)
+        public static List<CustomHtmlLink> GenerateTreeViewSecondLev(Category cat, string linkPrefix)
         {
 
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
@@ -147,7 +162,7 @@ namespace DIYFEWeb.Code
             //                    .FirstOrDefault();
 
             List<Category> secondLevCats = AppStatic.Categories
-                                                .Where(c => c.CategoryId == firstLevCategoryId
+                                                .Where(c => c.CategoryId == cat.CategoryId
                                                 && c.SecondLevCategoryId > 0
                                                 && c.ThirdLevCategoryId == 0)
                                                 .ToList();
@@ -347,13 +362,13 @@ namespace DIYFEWeb.Code
         //    return linkList;
         //}
 
-        public static List<CustomHtmlLink> GenerateTreeViewThirdLev(int secondLevCatId, string linkPrefix)
+        public static List<CustomHtmlLink> GenerateTreeViewThirdLev(Category cat, string linkPrefix)
         {
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
             //ListAccess la = new ListAccess();
 
             List<Category> thirdLevCats = AppStatic.Categories
-                                                .Where(c => c.SecondLevCategoryId == secondLevCatId
+                                                .Where(c => c.SecondLevCategoryId == cat.SecondLevCategoryId
                                                 && c.ThirdLevCategoryId > 0)
                                                 .ToList();
             //List<Category> thirdLevelCats = AppStatic.Categories
@@ -368,7 +383,7 @@ namespace DIYFEWeb.Code
                             LinkText = _thirdLevCat.ThirdLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _thirdLevCat.CategoryUrl + "/" + _thirdLevCat.SecondLevCategoryUrl + "/" + _thirdLevCat.ThirdLevCategoryUrl,
                             Title = _thirdLevCat.ThirdLevCategoryName,
-                            //SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
+                           // SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
                         };
                 linkList.Add(newCat);
                 //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
@@ -377,130 +392,204 @@ namespace DIYFEWeb.Code
             return linkList;
         }
 
-        public static Category GetCategory(string catOne, string catTwo, string catThree)
-        {
-            Category category;
-            int categoryRowId = GetCatigoryRowId(catOne, catTwo, catThree);
-            category = AppStatic.Categories.Where(c => c.CategoryRowId == categoryRowId).FirstOrDefault();
+        //public List<Article> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)
+        //{
+        //    List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
+        //    List<Article> articles = new List<Article>();
+        //    using (var db = new DIYFE.EF.DIYFEEntities())
+        //    {
+        //        switch (categoryLevel)
+        //        {
+        //            case 1:
+        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
+        //               // whereSql = "WHERE CategoryId = " + cat.CategoryId;
+        //                break;
+        //            case 2:
+        //                articles = db.Articles.Where(a => a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).ToList();
+        //                //whereSql = "WHERE SecondLevCategoryId = " + cat.SecondLevCategoryId + " AND CategoryId= " + cat.CategoryId + " AND ThirdLevCategoryId = 0";
+        //                break;
+        //            case 3:
+        //                articles = db.Articles.Where(a => a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).ToList();
+        //               // whereSql = "WHERE ThirdLevCategoryId = " + cat.ThirdLevCategoryId;
+        //                break;
+        //            case 4:
+        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
+        //                //whereSql = "WHERE CategoryId = " + cat.CategoryId;
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
 
-            return category;
+        //   return articles;
 
-            #region Old Code
+        //}
 
-            //if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
-            //{
-            //    category = AppStatic.Categories
-            //                    .Where(c => c.CategoryUrl == catOne
-            //                            && c.SecondLevCategoryUrl == catTwo
-            //                            && c.ThirdLevCategoryUrl == catThree)
-            //                    .FirstOrDefault();
-            //}
-            //else if (catOne.Length > 0 && catTwo.Length > 0)
-            //{
-            //    category = AppStatic.Categories
-            //                    .Where(c => c.CategoryUrl == catOne
-            //                            && c.SecondLevCategoryUrl == catTwo
-            //                            && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
-            //                    .FirstOrDefault();
-            //}
-            //else
-            //{
-            //    category = AppStatic.Categories
-            //                    .Where(c => c.CategoryUrl == catOne
-            //                            && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
-            //                    .FirstOrDefault();
-            //}
+        //public static Category GetCategory(string catOne, string catTwo, string catThree)
+        //{
+        //    Category category;
+        //    int categoryRowId = GetCatigoryRowId(catOne, catTwo, catThree);
+        //    category = AppStatic.Categories.Where(c => c.CategoryRowId == categoryRowId).FirstOrDefault();
 
-            #endregion
+        //    return category;
 
-        }
+        //    #region Old Code
 
-        public static int GetCatigoryRowId(string url) 
-        {
-            int categoryId = 0;
-            if (url.StartsWith("/post") && url != "/post")
-            {
-                url = url.Substring(5, (url.Length - 1));
-            }
-            if (url.StartsWith("/"))
-            {
-                url = url.Substring(1, (url.Length-1));
-            }
+        //    //if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
+        //    //{
+        //    //    category = AppStatic.Categories
+        //    //                    .Where(c => c.CategoryUrl == catOne
+        //    //                            && c.SecondLevCategoryUrl == catTwo
+        //    //                            && c.ThirdLevCategoryUrl == catThree)
+        //    //                    .FirstOrDefault();
+        //    //}
+        //    //else if (catOne.Length > 0 && catTwo.Length > 0)
+        //    //{
+        //    //    category = AppStatic.Categories
+        //    //                    .Where(c => c.CategoryUrl == catOne
+        //    //                            && c.SecondLevCategoryUrl == catTwo
+        //    //                            && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
+        //    //                    .FirstOrDefault();
+        //    //}
+        //    //else
+        //    //{
+        //    //    category = AppStatic.Categories
+        //    //                    .Where(c => c.CategoryUrl == catOne
+        //    //                            && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
+        //    //                    .FirstOrDefault();
+        //    //}
+
+        //    #endregion
+
+        //}
+
+        //public static int GetCatigoryRowId(string url) 
+        //{
+        //    int categoryId = 0;
+        //    if (url.StartsWith("/post") && url != "/post")
+        //    {
+        //        url = url.Substring(5, (url.Length - 1));
+        //    }
+        //    if (url.StartsWith("/"))
+        //    {
+        //        url = url.Substring(1, (url.Length-1));
+        //    }
             
-            string[] catigoryNames = url.Split('/');
-            switch (catigoryNames.Count())
-            {
-                case 1:
-                    categoryId = AppStatic.Categories
-                                .Where(c => c.CategoryUrl == catigoryNames[0]
-                                        && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
-                                .Select(c => c.CategoryId)
-                                .FirstOrDefault();
-                    break;
-                case 2:
-                    categoryId = AppStatic.Categories
-                                .Where(c => c.CategoryUrl == catigoryNames[0]
-                                        && c.SecondLevCategoryUrl == catigoryNames[1]
-                                        && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
-                                .Select(c => c.CategoryId)
-                                .FirstOrDefault();
-                    break;
-                case 3:
-                    categoryId = AppStatic.Categories
-                                .Where(c => c.CategoryUrl == catigoryNames[0]
-                                        && c.SecondLevCategoryUrl == catigoryNames[1]
-                                        && c.ThirdLevCategoryUrl == catigoryNames[2])
-                                .Select(c => c.CategoryId)
-                                .FirstOrDefault();
-                    break;
-                case 4:
-                    //categoryId = AppStatic.Categories
-                    //            .Where(c => c.CategoryName == catigoryNames[0] 
-                    //                && c.SecondLevCategoryName == catigoryNames[1]
-                    //                && c.ThirdLevCategoryName == catigoryNames[2]
-                    //            .Select(c => c.CategoryId)
-                    //            .FirstOrDefault();
-                    break;
-                default:
-                    break;
-            }
+        //    string[] catigoryNames = url.Split('/');
+        //    switch (catigoryNames.Count())
+        //    {
+        //        case 1:
+        //            categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catigoryNames[0]
+        //                                && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
+        //                        .Select(c => c.CategoryId)
+        //                        .FirstOrDefault();
+        //            break;
+        //        case 2:
+        //            categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catigoryNames[0]
+        //                                && c.SecondLevCategoryUrl == catigoryNames[1]
+        //                                && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
+        //                        .Select(c => c.CategoryId)
+        //                        .FirstOrDefault();
+        //            break;
+        //        case 3:
+        //            categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catigoryNames[0]
+        //                                && c.SecondLevCategoryUrl == catigoryNames[1]
+        //                                && c.ThirdLevCategoryUrl == catigoryNames[2])
+        //                        .Select(c => c.CategoryId)
+        //                        .FirstOrDefault();
+        //            break;
+        //        case 4:
+        //            //categoryId = AppStatic.Categories
+        //            //            .Where(c => c.CategoryName == catigoryNames[0] 
+        //            //                && c.SecondLevCategoryName == catigoryNames[1]
+        //            //                && c.ThirdLevCategoryName == catigoryNames[2]
+        //            //            .Select(c => c.CategoryId)
+        //            //            .FirstOrDefault();
+        //            break;
+        //        default:
+        //            break;
+        //    }
 
-            return categoryId;
-        }
+        //    return categoryId;
+        //}
 
-        public static int GetCatigoryRowId(string catOne, string catTwo, string catThree)
+        //public static int GetCatigoryRowId(string catOne, string catTwo, string catThree)
+        //{
+        //    int categoryId = 0;
+
+        //    if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
+        //    {
+        //        categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catOne
+        //                                && c.SecondLevCategoryUrl == catTwo
+        //                                && c.ThirdLevCategoryUrl == catThree)
+        //                        .Select(c => c.CategoryRowId)
+        //                        .FirstOrDefault();
+        //    }
+        //    else if (catOne.Length > 0 && catTwo.Length >0 )
+        //    {
+        //        categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catOne
+        //                                && c.SecondLevCategoryUrl == catTwo
+        //                                && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
+        //                        .Select(c => c.CategoryRowId)
+        //                        .FirstOrDefault();
+        //    }
+        //    else
+        //    {
+        //        categoryId = AppStatic.Categories
+        //                        .Where(c => c.CategoryUrl == catOne
+        //                                && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
+        //                        .Select(c => c.CategoryRowId)
+        //                        .FirstOrDefault();
+        //    }
+
+
+        //    return categoryId;
+        //}
+
+        public static Category GetCatigory(string catOne, string catTwo, string catThree)
         {
-            int categoryId = 0;
+            Category cat = new Category();
 
             if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
             {
-                categoryId = AppStatic.Categories
+                cat = AppStatic.Categories
                                 .Where(c => c.CategoryUrl == catOne
                                         && c.SecondLevCategoryUrl == catTwo
                                         && c.ThirdLevCategoryUrl == catThree)
-                                .Select(c => c.CategoryRowId)
                                 .FirstOrDefault();
             }
-            else if (catOne.Length > 0 && catTwo.Length >0 )
+            else if (catOne.Length > 0 && catTwo.Length > 0)
             {
-                categoryId = AppStatic.Categories
+                cat = AppStatic.Categories
                                 .Where(c => c.CategoryUrl == catOne
                                         && c.SecondLevCategoryUrl == catTwo
                                         && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
-                                .Select(c => c.CategoryRowId)
                                 .FirstOrDefault();
             }
             else
             {
-                categoryId = AppStatic.Categories
+                cat = AppStatic.Categories
                                 .Where(c => c.CategoryUrl == catOne
                                         && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
-                                .Select(c => c.CategoryRowId)
                                 .FirstOrDefault();
             }
 
-
-            return categoryId;
+            return cat;
         }
+
+        public static Category GetCatigroy(int categoryRowId)
+        {
+            Category cat = new Category();
+                cat = AppStatic.Categories
+                                .Where(c => c.CategoryRowId == categoryRowId)
+                                .FirstOrDefault();
+                return cat;
+        }
+
     }
 }

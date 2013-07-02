@@ -13,4 +13,3 @@ D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.xml
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
-D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache
