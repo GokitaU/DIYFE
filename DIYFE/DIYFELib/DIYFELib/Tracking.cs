@@ -32,7 +32,7 @@ namespace DIYFELib
 
         public static void InsertTracking(string session, string ip, string url)
         {
-            string queryCheckGame = "INSERT INTO [MLB].[dbo].[Tracking] " +
+            string queryCheckGame = "INSERT INTO [dbo].[Tracking] " +
                                            "([Session] ,[IP] ,[URL]) " +
                                      "VALUES (@Session ,@IP ,@URL)";
 
@@ -42,6 +42,31 @@ namespace DIYFELib
                 command.Parameters.AddWithValue("@Session", session);
                 command.Parameters.AddWithValue("@IP", ip);
                 command.Parameters.AddWithValue("@URL", url);
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    DIYError sError = new DIYError(ex);
+                }
+
+            }
+        }
+        
+        //TODO: THIS NEEDS TO BE UPDATED WHEN sp IS CALLED TO PULL ARTICLE
+        //THIS ENITY FRAME WORK STUFF IS SLOW AND LAME, NEEDS BE REMOVE ONCE SITE IS RUNNING
+        //DON'T FORGET TO REMOVE ALL INSTANCES CALLING
+        public static void InsertArticleViewRequest(int articleId)
+        {
+            string queryCheckGame = "UPDATE [dbo].[Article] SET [ViewRequests] = [ViewRequests]+1 WHERE ArticleId = @ArticleId";
+
+            using (SqlConnection connection = new SqlConnection(Base.conn))
+            {
+                SqlCommand command = new SqlCommand(queryCheckGame, connection);
+                command.Parameters.AddWithValue("@ArticleId", articleId);
+                
                 try
                 {
                     connection.Open();

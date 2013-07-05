@@ -20,7 +20,7 @@ namespace DIYFELib
 
         public bool InsertComment(ArticleComment comment){
 
-            string queryString = "INSERT INTO [MLB].[dbo].[ArticleComment] " +
+            string queryString = "INSERT INTO [dbo].[ArticleComment] " +
                                   " ([ArticleId],[PosterName],[PosterEmail],[PosterWebSite],[CommentText],[RepyToCommentId]) " +
                                    " VALUES (@ArticleId,@PosterName,@PosterEmail,@PosterWebSite,@CommentText,@RepyToCommentId)";
 

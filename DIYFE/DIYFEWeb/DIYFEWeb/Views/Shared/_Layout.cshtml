@@ -15,8 +15,8 @@
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="@Url.Content("~/Content/img/favicon.ico")">
     
-    <link href="@Url.Content("~/Content/min/DIYFE_min.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Content/min/DIYFE_min.js")" type="text/javascript"></script>
+@*    <link href="@Url.Content("~/Content/min/DIYFE_min.css")" rel="stylesheet" type="text/css" />*@
+   @* <script src="@Url.Content("~/Content/min/DIYFE_min.js")" type="text/javascript"></script>*@
        
 
 @*    <script src="@Url.Content("~/Content/scripts/jquery-1.10.1.js")" type="text/javascript"></script>
@@ -30,6 +30,12 @@
     <script src="@Url.Content("~/Content/scripts/App/admin.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/scripts/App/contact.js")" type="text/javascript"></script>*@
 
+@*    @Styles.Render("~/Content/min")
+    @Scripts.Render("~/Content/min")*@
+        @Styles.Render("~/bundles/css/min")
+    @Scripts.Render("~/bundles/script/min")
+
+@*    <script type="text/javascript" scr='@Scripts.Url("~/bundles/")' async></script>*@
 
     <script type="text/javascript">
         var topNavSelectedId = '#@ViewBag.PageModel.ActiveTopNavLink';
@@ -129,11 +135,11 @@
     </div>
     <div class="span2" style="width: 15%;">
     <ul class="unstyled">
-    <li>Applications<li>
-    <li><a href="#">Product for Mac</a></li>
-    <li><a href="#">Product for Windows</a></li>
-    <li><a href="#">Product for Eclipse</a></li>
-    <li><a href="#">Product mobile apps</a></li>	
+    <li>Main Sections<li>
+    <li>@Html.Link("project", "Projects", "Link to a list of our DIY FE projects")</li>
+    <li>@Html.Link("post", "Posts", "Link to a list of our DIY FE posts")</li>
+    <li>@Html.Link("blog", "Blog", "Link to a list of all of our blog posts")</li>
+    <li>@Html.Link("news", "News", "Link to a news about our orginization")</li>	
     </ul>
     </div>
     <div class="span2" style="width: 15%;">

@@ -389,6 +389,8 @@
     <Content Include="Views\Shared\_DataListItemProject.cshtml" />
     <Content Include="Views\Blog\BlogDetails.cshtml" />
     <Content Include="Views\News\NewsDetails.cshtml" />
+    <Content Include="Views\Shared\_ArticleComments.cshtml" />
+    <Content Include="Views\Shared\_ArticleDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

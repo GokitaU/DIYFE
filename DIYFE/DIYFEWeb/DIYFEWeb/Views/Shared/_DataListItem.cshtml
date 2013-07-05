@@ -18,7 +18,7 @@
         <div class="span12">
             <div class="row-fluid">
                 <div class="span12">
-                    <h4><strong><a href="@listItem.URLLink">@listItem.Name</a></strong></h4>
+                    <h4><strong>@Html.ArticleLink(listItem)</strong></h4>
                 </div>
             </div>
             <div class="row-fluid">
@@ -31,16 +31,16 @@
                     <p>
                     @listItem.ListItemContent
                     </p>
-                    <p><a class="btn" href="@listItem.URLLink">Read more</a></p>
+                    <p>@Html.ArticleLink(listItem, "btn", "Read More")</p>
                 </div>
             </div>
             <div class="row-fluid">
                 <div class="span12">
                     <p></p>
                     <p>
-                    <i class="icon-user"></i> by <a href="#">@listItem.Author</a>
-                    | <i class="icon-calendar"></i> @listItem.CreatedDate.ToShortDateString();
-                    | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+                    @*<i class="icon-user"></i> by <a href="#">@listItem.Author</a>
+                    |*@ <i class="icon-calendar"></i> @listItem.CreatedDate.ToShortDateString()
+                    | <i class="icon-comment"></i> <a href="#">@listItem.ArticleComments.Count() Comments</a>
                     | <i class="icon-share"></i> <a href="#">@listItem.ViewRequests Views</a>
                     | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
                     <a href="#"><span class="label label-info">Bootstrap</span></a>

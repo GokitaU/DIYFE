@@ -36,6 +36,7 @@ namespace DIYFEWeb
             //RegisterRoutes(RouteTable.Routes);
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
             //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes);
 
         }

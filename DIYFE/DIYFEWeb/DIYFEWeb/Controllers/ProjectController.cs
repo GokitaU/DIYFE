@@ -43,7 +43,7 @@ namespace DIYFEWeb.Controllers
             if (projectStatus != null)
             {
                 List<DIYFE.EF.Article> tempList = model.ProjectList;
-                model.ProjectList = tempList.Where(a => a.ArticleStatus.All(arts => arts.StatusId == projectStatus)).ToList();
+                model.ProjectList = tempList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == projectStatus)).ToList();
                 model.ProjectList.AddRange(tempList.Where(a => !model.ProjectList.Contains(a)));
             }
             //model.ArticleList = la.ArticleList(catigoryId, 1);
@@ -70,7 +70,7 @@ namespace DIYFEWeb.Controllers
             //int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
 
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat, linkPrefix);
-            //model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateRelatedTreeView(cat, linkPrefix);
             
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
@@ -98,7 +98,7 @@ namespace DIYFEWeb.Controllers
 
             //model.MostViewed = la.MostViewed(11, 20);
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat, linkPrefix);
-            //model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(cat.CategoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(cat, linkPrefix);
             
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
@@ -145,17 +145,17 @@ namespace DIYFEWeb.Controllers
             ArticleModel model = new ArticleModel();
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.Article = db.Articles.Where(a => a.URLLink == html + ".html").FirstOrDefault();
+                model.Article = db.Articles.Include("ArticleComments").Where(a => a.URLLink == html + ".html").FirstOrDefault();
             }
             if (model.Article != null)
             {
                 Category cat = DIYFEHelper.GetCatigroy(model.Article.CategoryRowId);
-
+                DIYFELib.Tracking.InsertArticleViewRequest(model.Article.ArticleId);
                 // model.Comments = la.ArticleComments(model.Article.ArticleId);
 
                 // model.MostViewed = la.MostViewed(11, 20);
                 model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat, linkPrefix);
-                //model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(model.Article.CategoryRowId, linkPrefix);
+                model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(cat, linkPrefix);
 
                 PageModel.Title = model.Article.Title;
                 PageModel.Description = model.Article.Description;

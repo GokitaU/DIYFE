@@ -86,68 +86,10 @@ namespace DIYFEWeb.Code
                     LinkText = cat.CategoryName,
                     Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + cat.CategoryUrl,
                     Title = cat.CategoryName,
-                    SubLinks = GenerateTreeViewSecondLev(cat, linkPrefix)//la.RelatedArticleLinks(cat, linkPrefix, 3)
+                    SubLinks = GenerateTreeViewSecondLev(cat, linkPrefix)
                 });
 
-            //if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
-            //{
-            //    CustomHtmlLink htmlLink = new CustomHtmlLink
-            //    {
-            //        LinkText = cat.ThirdLevCategoryName,
-            //        Href = "/" + linkPrefix + "/" + cat.CategoryUrl + "/" + cat.SecondLevCategoryUrl + "/" + cat.ThirdLevCategoryUrl,
-            //        Title = cat.ThirdLevCategoryName,
-            //        SubLinks = la.RelatedArticleLinks(cat, linkPrefix, 3)
-            //    };
-            //    //linkList[0].SubLinks=la.RelatedArticleLinks(cat, linkPrefix, 3);
-                
-            //    List<Category> secondLevelCats = AppStatic.Categories
-            //                                    .Where(c => c.SecondLevCategoryId == cat.SecondLevCategoryId
-            //                                    && c.CategoryRowId != categoryRowId).ToList();
-            //    foreach (Category _cat in secondLevelCats)
-            //    {
-            //        //linkList.Add(new CustomHtmlLink
-            //        //{
-            //        //    LinkText = _cat.SecondLevCategoryName,
-            //        //    Href = "/" + linkPrefix + "/" + _cat.CategoryUrl + "/" + _cat.SecondLevCategoryUrl,
-            //        //    Title = _cat.SecondLevCategoryName + "-category",
-            //        //});
-                    
-            //        //(!String.IsNullOrEmpty(_cat.ThirdLevCategoryUrl))
-            //        //{
-
-            //        //}
-
-            //        //linkList.Last().SubLinks = la.RelatedArticleLinks(_cat, linkPrefix);
-            //    }
-            //    return linkList;
-            //}
-
-            //if (!String.IsNullOrEmpty(cat.SecondLevCategoryUrl))
-            //{
-            //    List<Category> secondLevelCats = AppStatic.Categories
-            //                                    .Where(c => c.CategoryId == cat.CategoryId).ToList();
-            //    foreach (Category _cat in secondLevelCats)
-            //    {
-            //        linkList.Add(new CustomHtmlLink
-            //        {
-            //            LinkText = _cat.CategoryName,
-            //            Href = "/" + linkPrefix + "/" + _cat.CategoryUrl,
-            //            Title = _cat.CategoryName
-            //        });
-            //        if (!String.IsNullOrEmpty(_cat.ThirdLevCategoryUrl))
-            //        {
-            //            linkList.Last().SubLinks = GenerateRelatedTreeView(_cat.CategoryRowId, linkPrefix);
-            //        }
-            //        else
-            //        {
-            //            linkList.Last().SubLinks = la.RelatedArticleLinks(_cat, linkPrefix, 3);
-            //        }
-            //    }
-            //    return linkList;
-            //}
-
-            //ListAccess la = new ListAccess();
-            //linkList = la.RelatedLinks(cat, linkPrefix);
+            linkList[0].SubLinks.AddRange(RelatedArticleLinks(cat,linkPrefix,1));
 
             return linkList;
         }
@@ -156,20 +98,12 @@ namespace DIYFEWeb.Code
         {
 
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-            //ListAccess la = new ListAccess();
-            //Category cat = AppStatic.Categories
-            //                    .Where(c => c.CategoryRowId == categoryRowId)
-            //                    .FirstOrDefault();
 
             List<Category> secondLevCats = AppStatic.Categories
                                                 .Where(c => c.CategoryId == cat.CategoryId
                                                 && c.SecondLevCategoryId > 0
                                                 && c.ThirdLevCategoryId == 0)
                                                 .ToList();
-            //List<Category> thirdLevelCats = AppStatic.Categories
-            //                                    .Where(c => c.SecondLevCategoryId == cat.SecondLevCategoryId
-            //                                     && !String.IsNullOrEmpty(c.ThirdLevCategoryName))
-            //                                    .ToList();
 
             foreach (Category _secondLevCat in secondLevCats)
             {
@@ -178,114 +112,13 @@ namespace DIYFEWeb.Code
                             LinkText = _secondLevCat.SecondLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _secondLevCat.CategoryUrl + "/" + _secondLevCat.SecondLevCategoryUrl,
                             Title = _secondLevCat.SecondLevCategoryName,
-                            //SubLinks = la.RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2)
+                            SubLinks = GenerateTreeViewThirdLev(_secondLevCat, linkPrefix)
                         };
-                //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
+                newCat.SubLinks.AddRange(RelatedArticleLinks(_secondLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2));
+                
                 linkList.Add(newCat);
-                //if (String.IsNullOrEmpty(_cat.ThirdLevCategoryName))
-                //{
-                //    linkList.Add(new CustomHtmlLink
-                //        {
-                //            LinkText = _cat.SecondLevCategoryName,
-                //            Href = "/" + linkPrefix + "/" + _cat.CategoryUrl + "/" + _cat.SecondLevCategoryUrl,
-                //            Title = _cat.SecondLevCategoryName,
-                //            SubLinks = la.RelatedArticleLinks(_cat, linkPrefix, 2)
-                //        });
-                //}
 
-                //foreach(Category __cat in thirdLevelCats){
-                //    linkList.Last().SubLinks.Add(new CustomHtmlLink
-                //        {
-                //            LinkText = __cat.ThirdLevCategoryName,
-                //            Href = "/" + linkPrefix + "/" + _cat.CategoryUrl + "/" + __cat.SecondLevCategoryUrl + "/" + __cat.ThirdLevCategoryUrl,
-                //            Title = __cat.ThirdLevCategoryName,
-                //            SubLinks = la.RelatedArticleLinks(_cat, linkPrefix, 3)
-                //        });
-                //}
-                //else
-                //{
-                //    linkList.Add(new CustomHtmlLink
-                //    {
-                //        LinkText = _cat.ThirdLevCategoryName,
-                //        Href = "/" + linkPrefix + "/" + _cat.CategoryUrl + "/" + _cat.SecondLevCategoryUrl + "/" + _cat.ThirdLevCategoryUrl,
-                //        Title = _cat.ThirdLevCategoryName,
-                //        SubLinks = la.RelatedArticleLinks(_cat, linkPrefix, 3)
-                //    });
-                //}
-
-                //foreach (Category thirdLevCat in AppStatic.Categories
-                //                                            .Where(c => c.SecondLevCategoryId == _cat.SecondLevCategoryId 
-                //                                                && !String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
-                //                                                .ToList())
-                //{
-                //    linkList.Last().SubLinks.Add(new CustomHtmlLink
-                //    {
-                //        LinkText = thirdLevCat.ThirdLevCategoryName,
-                //        Href = "/" + linkPrefix + "/" + thirdLevCat.CategoryUrl + "/" + thirdLevCat.SecondLevCategoryUrl + "/" + thirdLevCat.ThirdLevCategoryUrl,
-                //        Title = thirdLevCat.SecondLevCategoryName,
-                //        SubLinks = la.RelatedArticleLinks(thirdLevCat, linkPrefix, 3)
-                //    });
-                //}
             }
-            //if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
-            //{
-            //    CustomHtmlLink htmlLink = new CustomHtmlLink
-            //    {
-            //        LinkText = cat.ThirdLevCategoryName,
-            //        Href = "/" + linkPrefix + "/" + cat.CategoryUrl + "/" + cat.SecondLevCategoryUrl + "/" + cat.ThirdLevCategoryUrl,
-            //        Title = cat.ThirdLevCategoryName,
-            //        SubLinks = la.RelatedArticleLinks(cat, linkPrefix, 3)
-            //    };
-            //    //linkList[0].SubLinks=la.RelatedArticleLinks(cat, linkPrefix, 3);
-
-            //    List<Category> secondLevelCats = AppStatic.Categories
-            //                                    .Where(c => c.SecondLevCategoryId == cat.SecondLevCategoryId
-            //                                    && c.CategoryRowId != categoryRowId).ToList();
-            //    foreach (Category _cat in secondLevelCats)
-            //    {
-            //        //linkList.Add(new CustomHtmlLink
-            //        //{
-            //        //    LinkText = _cat.SecondLevCategoryName,
-            //        //    Href = "/" + linkPrefix + "/" + _cat.CategoryUrl + "/" + _cat.SecondLevCategoryUrl,
-            //        //    Title = _cat.SecondLevCategoryName + "-category",
-            //        //});
-
-            //        //(!String.IsNullOrEmpty(_cat.ThirdLevCategoryUrl))
-            //        //{
-
-            //        //}
-
-            //        //linkList.Last().SubLinks = la.RelatedArticleLinks(_cat, linkPrefix);
-            //    }
-            //    return linkList;
-            //}
-
-            //if (!String.IsNullOrEmpty(cat.SecondLevCategoryUrl))
-            //{
-            //    List<Category> secondLevelCats = AppStatic.Categories
-            //                                    .Where(c => c.CategoryId == cat.CategoryId).ToList();
-            //    foreach (Category _cat in secondLevelCats)
-            //    {
-            //        linkList.Add(new CustomHtmlLink
-            //        {
-            //            LinkText = _cat.CategoryName,
-            //            Href = "/" + linkPrefix + "/" + _cat.CategoryUrl,
-            //            Title = _cat.CategoryName
-            //        });
-            //        if (!String.IsNullOrEmpty(_cat.ThirdLevCategoryUrl))
-            //        {
-            //            linkList.Last().SubLinks = GenerateRelatedTreeView(_cat.CategoryRowId, linkPrefix);
-            //        }
-            //        else
-            //        {
-            //            linkList.Last().SubLinks = la.RelatedArticleLinks(_cat, linkPrefix, 3);
-            //        }
-            //    }
-            //    return linkList;
-            //}
-
-            //ListAccess la = new ListAccess();
-            //linkList = la.RelatedLinks(cat, linkPrefix);
 
             return linkList;
         }
@@ -383,8 +216,10 @@ namespace DIYFEWeb.Code
                             LinkText = _thirdLevCat.ThirdLevCategoryName,
                             Href = AppStatic.BaseSiteUrl + linkPrefix + "/" + _thirdLevCat.CategoryUrl + "/" + _thirdLevCat.SecondLevCategoryUrl + "/" + _thirdLevCat.ThirdLevCategoryUrl,
                             Title = _thirdLevCat.ThirdLevCategoryName,
-                           // SubLinks = la.RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
+                            SubLinks = RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 3)
                         };
+                newCat.SubLinks.AddRange(RelatedArticleLinks(_thirdLevCat, AppStatic.BaseSiteUrl + linkPrefix, 2));
+
                 linkList.Add(newCat);
                 //newCat.SubLinks.AddRange(GenerateTreeViewThirdLev(_secondLevCat.SecondLevCategoryId, linkPrefix));
             }
@@ -392,38 +227,87 @@ namespace DIYFEWeb.Code
             return linkList;
         }
 
-        //public List<Article> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)
-        //{
-        //    List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
-        //    List<Article> articles = new List<Article>();
-        //    using (var db = new DIYFE.EF.DIYFEEntities())
-        //    {
-        //        switch (categoryLevel)
-        //        {
-        //            case 1:
-        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
-        //               // whereSql = "WHERE CategoryId = " + cat.CategoryId;
-        //                break;
-        //            case 2:
-        //                articles = db.Articles.Where(a => a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).ToList();
-        //                //whereSql = "WHERE SecondLevCategoryId = " + cat.SecondLevCategoryId + " AND CategoryId= " + cat.CategoryId + " AND ThirdLevCategoryId = 0";
-        //                break;
-        //            case 3:
-        //                articles = db.Articles.Where(a => a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).ToList();
-        //               // whereSql = "WHERE ThirdLevCategoryId = " + cat.ThirdLevCategoryId;
-        //                break;
-        //            case 4:
-        //                articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
-        //                //whereSql = "WHERE CategoryId = " + cat.CategoryId;
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    }
+        public static List<CustomHtmlLink> RelatedArticleLinks(Category cat, string linkPrefix, int categoryLevel)
+        {
+            List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
+            List<Article> articles = new List<Article>();
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                switch (categoryLevel)
+                {
+                    case 1:
+                        articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId
+                            && a.Category.SecondLevCategoryId == 0
+                            && a.Category.ThirdLevCategoryId == 0
+                            ).ToList();
+                        // whereSql = "WHERE CategoryId = " + cat.CategoryId;
+                        break;
+                    case 2:
+                        articles = db.Articles.Where(a => a.Category.SecondLevCategoryId == cat.SecondLevCategoryId
+                            && a.Category.ThirdLevCategoryId == 0
+                            ).ToList();
+                        //whereSql = "WHERE SecondLevCategoryId = " + cat.SecondLevCategoryId + " AND CategoryId= " + cat.CategoryId + " AND ThirdLevCategoryId = 0";
+                        break;
+                    case 3:
+                        articles = db.Articles.Where(a => a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).ToList();
+                        // whereSql = "WHERE ThirdLevCategoryId = " + cat.ThirdLevCategoryId;
+                        break;
+                    case 4:
+                        articles = db.Articles.Where(a => a.Category.CategoryId == cat.CategoryId).ToList();
+                        //whereSql = "WHERE CategoryId = " + cat.CategoryId;
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-        //   return articles;
+            foreach (Article a in articles)
+            {
 
-        //}
+                string articleType = "";
+                switch (a.ArticleTypeId)
+                {
+                    case 1:
+                        articleType = "post/";
+                        break;
+                    case 2:
+                        articleType = "project/";
+                        break;
+                    case 3:
+                        articleType = "blog/";
+                        break;
+                    case 4:
+                        articleType = "news/";
+                        break;
+                    default:
+                        articleType = "home/";
+                        break;
+                }
+
+                string ahref = AppStatic.BaseSiteUrl + articleType + cat.CategoryUrl + "/";
+                //MvcHtmlString ahref = new MvcHtmlString("<a href=\"" + AppStatic.BaseSiteUrl + article.Category.CategoryUrl + "/");
+                if (!String.IsNullOrEmpty(cat.SecondLevCategoryUrl))
+                {
+                    ahref += cat.SecondLevCategoryUrl + "/";
+                }
+                if (!String.IsNullOrEmpty(cat.ThirdLevCategoryUrl))
+                {
+                    ahref += cat.ThirdLevCategoryUrl + "/";
+                }
+                ahref += a.URLLink;
+
+                CustomHtmlLink htmlLink = new CustomHtmlLink
+                {
+                    LinkText = a.Name,
+                    Href = ahref,
+                    Title = a.Title
+                };
+                linkList.Add(htmlLink);
+            }
+
+            return linkList;
+
+        }
 
         //public static Category GetCategory(string catOne, string catTwo, string catThree)
         //{

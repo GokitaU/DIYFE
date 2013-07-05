@@ -49,7 +49,14 @@
                 </div>
             </div>
             <br />
+
              @*@Html.Partial("_MostViewed", Model.MostViewed)*@
+            <div class="row-fluid">
+                <div class="span12 box-content">Related Info
+                   @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+                </div>
+            </div>
+            <br />
         </div>
     </div>
 

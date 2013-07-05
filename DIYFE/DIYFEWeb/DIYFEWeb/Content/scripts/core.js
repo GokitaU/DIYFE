@@ -149,6 +149,7 @@
                 if (data.success) {
                     //loadingDiv.hide();
                     //mediator.publish('BetLoadDone', {});
+                    alert('remimber to add comment to page');
                 } else {
                     //show error
                     mediator.publish('pageError', { error: data.message, method: 'Insert Comment' });
@@ -159,6 +160,10 @@
             }
         });
 
+    });
+
+    $('#projectSortBy').change(function () {
+        window.location = GetRootURL() + "project?projectStatus=" + $(this).val();
     });
 
 });
