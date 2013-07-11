@@ -39,6 +39,7 @@ namespace DIYFE.EF
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<StatusType> StatusTypes { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<ContentSection> ContentSections { get; set; }
     
         public virtual int sp_LoadArticle(string articleName, Nullable<int> articleId)
         {

@@ -51,7 +51,17 @@
                 <span id="linksummaryHasComment">
                     <a class="comments2" href="/demo/suggested-features/user-hide-domain-setting/#comments">@article.ArticleComments.Count() Comments</a>&nbsp;
                 </span>
+                
 		    </span> 
+             @if (!String.IsNullOrEmpty(article.Category.CategoryName)){
+                @:| @Html.Link("project/" + article.Category.CategoryName + "/", article.Category.CategoryName, article.Category.CategoryName)
+            }
+            @if (!String.IsNullOrEmpty(article.Category.SecondLevCategoryName)){
+                @: > @Html.Link("project/" + article.Category.CategoryName + "/" + article.Category.SecondLevCategoryName, article.Category.SecondLevCategoryName, article.Category.SecondLevCategoryName)
+            }
+            @if (!String.IsNullOrEmpty(article.Category.ThirdLevCategoryName)){
+                @: > @Html.Link("project/" + article.Category.CategoryName + "/" + article.Category.SecondLevCategoryName + "/" + article.Category.ThirdLevCategoryName, article.Category.ThirdLevCategoryName, article.Category.ThirdLevCategoryName)
+            }
 		</div>
 		<div style="clear:both;"></div>
 	</div><!-- /.storyfooter -->

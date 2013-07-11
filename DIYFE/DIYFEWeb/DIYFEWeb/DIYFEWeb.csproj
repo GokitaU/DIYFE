@@ -327,6 +327,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Code\Lucene\IndexFiles\" />
+    <Folder Include="Content\downloads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -391,6 +392,8 @@
     <Content Include="Views\News\NewsDetails.cshtml" />
     <Content Include="Views\Shared\_ArticleComments.cshtml" />
     <Content Include="Views\Shared\_ArticleDetails.cshtml" />
+    <Content Include="Views\Home\Projects.cshtml" />
+    <Content Include="Views\Home\ContentText.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -58,6 +58,7 @@
       <End Role="Article" EntitySet="Articles" />
       <End Role="Notification" EntitySet="Notifications" />
     </AssociationSet>
+    <EntitySet Name="ContentSections" EntityType="DIYFEModel.ContentSection" />
   </EntityContainer>
   <EntityType Name="ArticleComment">
     <Key>
@@ -301,4 +302,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="ContentSection">
+    <Key>
+      <PropertyRef Name="ContentId" />
+    </Key>
+    <Property Type="Int32" Name="ContentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ContentTitle" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ContentText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

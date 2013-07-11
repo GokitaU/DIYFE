@@ -189,6 +189,22 @@ namespace DIYFEWeb.Controllers
             return View();
         }
 
+        [LoggingFilter]
+        public ActionResult Projects()
+        {
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            int[] contentItemIds = { 1, 2, 3, 8, 10, 11 };
+            
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
+        }
 
         [LoggingFilter]
         public ActionResult Search(string term)
@@ -210,6 +226,22 @@ namespace DIYFEWeb.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult ContentText()
+        {
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            //int[] contentItemIds = { 1, 2, 3, 8, 10, 11 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems;
+
+            return View(Model);
         }
 
     }

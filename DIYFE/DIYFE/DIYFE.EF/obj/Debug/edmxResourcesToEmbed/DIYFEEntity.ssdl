@@ -8,6 +8,7 @@
     <EntitySet Name="ArticleStatus" EntityType="DIYFEModel.Store.ArticleStatus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ArticleType" EntityType="DIYFEModel.Store.ArticleType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Category" EntityType="DIYFEModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentSection" EntityType="DIYFEModel.Store.ContentSection" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
@@ -132,6 +133,14 @@
     <Property Name="SecondLevCategoryUrl" Type="nvarchar" MaxLength="50" />
     <Property Name="ThirdLevCategoryName" Type="nvarchar" MaxLength="50" />
     <Property Name="ThirdLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ContentSection">
+    <Key>
+      <PropertyRef Name="ContentId" />
+    </Key>
+    <Property Name="ContentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ContentTitle" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContentText" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Email">
     <Key>

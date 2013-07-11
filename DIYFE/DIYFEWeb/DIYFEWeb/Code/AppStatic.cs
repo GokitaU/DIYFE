@@ -28,6 +28,13 @@ namespace DIYFEWeb
             }
             HttpContext.Current.Application["Categories"] = allCats;
 
+            List<DIYFE.EF.ContentSection> contentSections = new List<ContentSection>();
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                contentSections = db.ContentSections.ToList();
+            }
+            HttpContext.Current.Application["ContentSections"] = contentSections;
+
             //BUILD TOP NAVIGATION ITEMS HTML
             #region
 
@@ -109,6 +116,14 @@ namespace DIYFEWeb
             get
             {
                 return (List<Category>)(HttpContext.Current.Application["Categories"]);
+            }
+        }
+
+        public static List<DIYFE.EF.ContentSection> ContentItems
+        {
+            get
+            {
+                return (List<DIYFE.EF.ContentSection>)(HttpContext.Current.Application["ContentSections"]);
             }
         }
 

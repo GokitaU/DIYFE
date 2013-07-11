@@ -1,13 +1,14 @@
-﻿@{
-    ViewBag.Title = "Who";
+﻿@model List<DIYFE.EF.ContentSection>
+@{
+    ViewBag.Title = "All About Projects";
 }
 
   <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
+              <li class="nav-header">Quick Nav</li>
+              <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
@@ -27,9 +28,15 @@
         </div><!--/span-->
         <div class="span9 box-content">
           <div class="row-fluid">
-            <h1>Our Goals</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+
+              @foreach (DIYFE.EF.ContentSection content in Model)
+              {
+                  <h1>@content.ContentTitle</h1>
+                  @Html.Raw(content.ContentText)
+              }
+
+
           </div>
          
       </div><!--/row-->
+      </div>

@@ -13,6 +13,7 @@
           <EntitySet Name="ArticleStatus" EntityType="DIYFEModel.Store.ArticleStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ArticleType" EntityType="DIYFEModel.Store.ArticleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="DIYFEModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContentSection" EntityType="DIYFEModel.Store.ContentSection" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
@@ -137,6 +138,14 @@
           <Property Name="SecondLevCategoryUrl" Type="nvarchar" MaxLength="50" />
           <Property Name="ThirdLevCategoryName" Type="nvarchar" MaxLength="50" />
           <Property Name="ThirdLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContentSection">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Name="ContentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContentTitle" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ContentText" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
@@ -350,6 +359,7 @@
             <End Role="Article" EntitySet="Articles" />
             <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
+          <EntitySet Name="ContentSections" EntityType="DIYFEModel.ContentSection" />
         </EntityContainer>
         <EntityType Name="ArticleComment">
           <Key>
@@ -593,6 +603,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ContentSection">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Type="Int32" Name="ContentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ContentTitle" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -726,6 +744,15 @@
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentSections">
+            <EntityTypeMapping TypeName="DIYFEModel.ContentSection">
+              <MappingFragment StoreEntitySet="ContentSection">
+                <ScalarProperty Name="ContentText" ColumnName="ContentText" />
+                <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
