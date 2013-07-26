@@ -40,10 +40,10 @@ namespace DIYFE.EF
         public string PreviewImg { get; set; }
     
         public virtual ArticleType ArticleType { get; set; }
-        public virtual Category Category { get; set; }
         public virtual ICollection<ArticleComment> ArticleComments { get; set; }
         public virtual ICollection<ArticleResource> ArticleResources { get; set; }
         public virtual ICollection<ArticleStatus> ArticleStatus { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

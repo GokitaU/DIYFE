@@ -5,7 +5,7 @@
             <h2 class="sfcommentsTitle" id="comments">
               @Model.Count() Comments
             </h2>
-            <ol class="sfcommentsList">
+            <ol class="sfcommentsList" id="commentsList">
               
               @foreach (DIYFE.EF.ArticleComment comment in Model)
               {
@@ -40,6 +40,7 @@
             </div>
 
            <div class="sfcommentsFormWrp  box-content">
+
             <h2 class="sfcommentsTitle">Add Comment</h2>
             <fieldset class="sfcommentsForm">
                 <ol class="sfcommentsFieldsList">

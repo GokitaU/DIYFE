@@ -6,6 +6,16 @@
 <h1>New Article</h1>
 <table>
     <tr>
+        <td>art type</td>
+        <td><select id="artType">
+            <option value="1">Post</option>
+            <option value="2">Project</option>
+            <option value="3">Bog</option>
+            <option value="4">New</option>
+            </select> 
+        </td>
+    </tr>
+    <tr>
         <td>name</td>
         <td><input type="text" id="txtName" /></td>
     </tr>
@@ -60,24 +70,25 @@
 <table class="table">
     <tr style="height:30px;">
         <td>Category <select style="height:40px;" id="FirstLevCat">
-            <option value="0">Please Select</option>
-            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId == 0 && c.ThirdLevCategoryId == 0))
+            <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId == 0 && c.ThirdLevCategoryId == 0))
             {
-                <option class="dropDownOption" catName="@cat.CategoryName" catUrl ="@cat.CategoryUrl" value="@cat.CategoryId">@cat.CategoryName</option>
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" catName="@cat.CategoryName" catUrl ="@cat.CategoryUrl" value="@cat.CategoryId">@cat.CategoryName (@cat.TopNavIndex)</option>
             }
                      </select>
 
         name: <input type="text" id="NewFirstLevCatName" /> 
         url: <input type="text" id="NewFirstLevCatUrl" /> 
+        
         </td>
         </tr>
         <tr>
         <td>Second Lev Category
             <select style="height:40px;" id="SecondLevCat">
-                <option value="0">Please Select</option>
-            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
+                <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
             {
-                <option class="dropDownOption" catName="@cat.SecondLevCategoryName" catUrl ="@cat.SecondLevCategoryUrl"  FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName</option>
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" catName="@cat.SecondLevCategoryName" catUrl ="@cat.SecondLevCategoryUrl"  FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName (@cat.SubNavIndex)</option>
             }
                      </select>
         name: <input type="text" id="NewSecondLevCatName" /> 
@@ -87,10 +98,10 @@
     <tr>
         <td>Third Lev Category
             <select style="height:40px;" id="ThirdLevCat">
-                <option value="0">Please Select</option>
-            @foreach (DIYFELib.Category cat in Model.Categories.Where(c => c.ThirdLevCategoryId > 0))
+                <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.ThirdLevCategoryId > 0))
             {
-                <option class="dropDownOption" SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName</option>
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName  (@cat.SubNavIndex)</option>
             }
                      </select>
             name:<input type="text" id="NewThirdLevCatName" /> 

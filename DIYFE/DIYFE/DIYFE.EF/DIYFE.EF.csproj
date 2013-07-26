@@ -99,6 +99,9 @@
     <Compile Include="StatusType.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tracking.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

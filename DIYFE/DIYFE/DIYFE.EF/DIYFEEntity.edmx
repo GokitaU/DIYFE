@@ -18,6 +18,7 @@
           <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tracking" EntityType="DIYFEModel.Store.Tracking" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Article_ArticleType" Association="DIYFEModel.Store.FK_Article_ArticleType">
             <End Role="ArticleType" EntitySet="ArticleType" />
             <End Role="Article" EntitySet="Article" />
@@ -129,6 +130,7 @@
           </Key>
           <Property Name="CategoryRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TopNavIndex" Type="int" Nullable="false" />
+          <Property Name="SubNavIndex" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="SecondLevCategoryId" Type="int" />
           <Property Name="ThirdLevCategoryId" Type="int" />
@@ -178,6 +180,16 @@
           </Key>
           <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="StatusName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="TrackingRowId" />
+          </Key>
+          <Property Name="TrackingRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Session" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="400" />
         </EntityType>
         <Association Name="FK_Article_ArticleType">
           <End Role="ArticleType" Type="DIYFEModel.Store.ArticleType" Multiplicity="1" />
@@ -307,7 +319,6 @@
           <EntitySet Name="ArticleResourceTypes" EntityType="DIYFEModel.ArticleResourceType" />
           <EntitySet Name="ArticleStatus" EntityType="DIYFEModel.ArticleStatus" />
           <EntitySet Name="ArticleTypes" EntityType="DIYFEModel.ArticleType" />
-          <EntitySet Name="Categories" EntityType="DIYFEModel.Category" />
           <EntitySet Name="Emails" EntityType="DIYFEModel.Email" />
           <EntitySet Name="Errors" EntityType="DIYFEModel.Error" />
           <EntitySet Name="Notifications" EntityType="DIYFEModel.Notification" />
@@ -339,10 +350,6 @@
             <End Role="ArticleType" EntitySet="ArticleTypes" />
             <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.FK_Article_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Article" EntitySet="Articles" />
-          </AssociationSet>
           <AssociationSet Name="FK_ArticleComment_Article" Association="DIYFEModel.FK_ArticleComment_Article">
             <End Role="Article" EntitySet="Articles" />
             <End Role="ArticleComment" EntitySet="ArticleComments" />
@@ -360,6 +367,12 @@
             <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
           <EntitySet Name="ContentSections" EntityType="DIYFEModel.ContentSection" />
+          <EntitySet Name="Categories" EntityType="DIYFEModel.Category" />
+          <EntitySet Name="Trackings" EntityType="DIYFEModel.Tracking" />
+          <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.FK_Article_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ArticleComment">
           <Key>
@@ -414,23 +427,6 @@
           <Property Name="ArticleTypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ArticleTypeName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Articles" Relationship="DIYFEModel.FK_Article_ArticleType" FromRole="ArticleType" ToRole="Article" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryRowId" />
-          </Key>
-          <Property Name="CategoryRowId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="TopNavIndex" Type="Int32" Nullable="false" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="SecondLevCategoryId" Type="Int32" />
-          <Property Name="ThirdLevCategoryId" Type="Int32" />
-          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="CategoryUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SecondLevCategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SecondLevCategoryUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ThirdLevCategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ThirdLevCategoryUrl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Articles" Relationship="DIYFEModel.FK_Article_Category" FromRole="Category" ToRole="Article" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
@@ -525,11 +521,11 @@
           <Property Type="String" Name="URLLink" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PreviewImg" MaxLength="600" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ArticleType" Relationship="DIYFEModel.FK_Article_ArticleType" FromRole="Article" ToRole="ArticleType" />
-          <NavigationProperty Name="Category" Relationship="DIYFEModel.FK_Article_Category" FromRole="Article" ToRole="Category" />
           <NavigationProperty Name="ArticleComments" Relationship="DIYFEModel.FK_ArticleComment_Article" FromRole="Article" ToRole="ArticleComment" />
           <NavigationProperty Name="ArticleResources" Relationship="DIYFEModel.FK_ArticleResource_Article" FromRole="Article" ToRole="ArticleResource" />
           <NavigationProperty Name="ArticleStatus" Relationship="DIYFEModel.FK_ArticleStatus_Article" FromRole="Article" ToRole="ArticleStatus" />
           <NavigationProperty Name="Notifications" Relationship="DIYFEModel.FK_Notifications_Article" FromRole="Article" ToRole="Notification" />
+          <NavigationProperty Name="Category" Relationship="DIYFEModel.FK_Article_Category" FromRole="Article" ToRole="Category" />
         </EntityType>
         <Association Name="FK_Article_ArticleType">
           <End Type="DIYFEModel.ArticleType" Role="ArticleType" Multiplicity="1" />
@@ -540,18 +536,6 @@
             </Principal>
             <Dependent Role="Article">
               <PropertyRef Name="ArticleTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Article_Category">
-          <End Type="DIYFEModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="DIYFEModel.Article" Role="Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryRowId" />
-            </Principal>
-            <Dependent Role="Article">
-              <PropertyRef Name="CategoryRowId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -611,6 +595,46 @@
           <Property Type="String" Name="ContentTitle" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContentText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryRowId" />
+          </Key>
+          <Property Type="Int32" Name="CategoryRowId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TopNavIndex" Nullable="false" />
+          <Property Type="Int32" Name="SubNavIndex" Nullable="false" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="Int32" Name="SecondLevCategoryId" />
+          <Property Type="Int32" Name="ThirdLevCategoryId" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CategoryUrl" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecondLevCategoryName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SecondLevCategoryUrl" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ThirdLevCategoryName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ThirdLevCategoryUrl" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="DIYFEModel.FK_Article_Category" FromRole="Category" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="TrackingRowId" />
+          </Key>
+          <Property Type="Int32" Name="TrackingRowId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Session" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Article_Category">
+          <End Type="DIYFEModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="DIYFEModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryRowId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="CategoryRowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -666,23 +690,6 @@
               <MappingFragment StoreEntitySet="ArticleType">
                 <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
                 <ScalarProperty Name="ArticleTypeName" ColumnName="ArticleTypeName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="DIYFEModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
-                <ScalarProperty Name="TopNavIndex" ColumnName="TopNavIndex" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="SecondLevCategoryId" ColumnName="SecondLevCategoryId" />
-                <ScalarProperty Name="ThirdLevCategoryId" ColumnName="ThirdLevCategoryId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
-                <ScalarProperty Name="SecondLevCategoryName" ColumnName="SecondLevCategoryName" />
-                <ScalarProperty Name="SecondLevCategoryUrl" ColumnName="SecondLevCategoryUrl" />
-                <ScalarProperty Name="ThirdLevCategoryName" ColumnName="ThirdLevCategoryName" />
-                <ScalarProperty Name="ThirdLevCategoryUrl" ColumnName="ThirdLevCategoryUrl" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -753,6 +760,35 @@
                 <ScalarProperty Name="ContentText" ColumnName="ContentText" />
                 <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DIYFEModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ThirdLevCategoryUrl" ColumnName="ThirdLevCategoryUrl" />
+                <ScalarProperty Name="ThirdLevCategoryName" ColumnName="ThirdLevCategoryName" />
+                <ScalarProperty Name="SecondLevCategoryUrl" ColumnName="SecondLevCategoryUrl" />
+                <ScalarProperty Name="SecondLevCategoryName" ColumnName="SecondLevCategoryName" />
+                <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ThirdLevCategoryId" ColumnName="ThirdLevCategoryId" />
+                <ScalarProperty Name="SecondLevCategoryId" ColumnName="SecondLevCategoryId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubNavIndex" ColumnName="SubNavIndex" />
+                <ScalarProperty Name="TopNavIndex" ColumnName="TopNavIndex" />
+                <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trackings">
+            <EntityTypeMapping TypeName="DIYFEModel.Tracking">
+              <MappingFragment StoreEntitySet="Tracking">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="TrackingRowId" ColumnName="TrackingRowId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

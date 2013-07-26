@@ -114,7 +114,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             PageModel.ActiveTopNavLink = "MainNavAbout";
 
-            return View();
+            int[] contentItemIds = { 7 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -138,7 +143,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 7 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -150,7 +160,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 7 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -174,9 +189,19 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 4,5,6,9 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
+
+        //DON'T FORGET ABOUT THIS ONE!!!
+        //THIS HOLDS INFORMATION ABOUT DONATINOS BUT MORE IMPORATNLY
+        //IT HOLDS THE CONTACT INFORMATION ABOUT THE PROJECTS AND CAN CONTACT THE BUILDER TO HELP
+        //THIS WOULD WORK REALLY WELL FOR LARGER PROJECT, AGRACULTER AND HOME BUILDING PROJECTS
         [LoggingFilter]
         public ActionResult Participate()
         {
@@ -198,7 +223,7 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            int[] contentItemIds = { 1, 2, 3, 8, 10, 11 };
+            int[] contentItemIds = { 1,3,8,10,11,13,14 };
             
             List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
             Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();

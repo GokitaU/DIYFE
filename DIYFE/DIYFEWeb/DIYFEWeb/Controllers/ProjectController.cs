@@ -74,8 +74,8 @@ namespace DIYFEWeb.Controllers
             
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.ProjectList = db.Articles.Include("ArticleComments").Include("ArticleStatus").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2 && a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
-                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
+                model.ProjectList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2 && a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
             }
 
             return View(model);
@@ -102,8 +102,8 @@ namespace DIYFEWeb.Controllers
             
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
-                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
+                model.ProjectList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2 && a.Category.SecondLevCategoryId == cat.SecondLevCategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
             }
             
             return View("FirstLevCategoryList", model);
@@ -125,12 +125,12 @@ namespace DIYFEWeb.Controllers
 
            // model.MostViewed = la.MostViewed(11, 20);
             model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(cat, linkPrefix);
-            //model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
+            model.RelatedTreeView = DIYFEHelper.GenerateTreeViewSecondLev(cat, linkPrefix);
 
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2 && a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
-                model.ArticleList = db.Articles.Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
+                model.ProjectList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2 && a.Category.ThirdLevCategoryId == cat.ThirdLevCategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
+                model.ArticleList = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 1 && a.CategoryRowId == cat.CategoryRowId).OrderBy(a => a.CreatedDate).ToList();
             }
 
            // model.ArticleList = la.ar PostList(catigoryRowId, 1, 200, 3);

@@ -20,12 +20,17 @@ namespace DIYFEWeb
                         "~/Content/scripts/Bootstrap/usefull.js",
                         //"~/Content/scripts/Bootstrap/pager.js",
                         "~/Content/scripts/core.js",
-                        "~/Content/scripts/App/contact.js"
+                        "~/Content/scripts/App/admin.js",
+                        "~/Content/scripts/App/contact.js",
+                        "~/Content/scripts/App/comment.js"
                         ));
 
 
             bundles.Add(new StyleBundle("~/bundles/css/min").Include(
-                "~/Content/min/DIYFE_min.css"
+                //"~/Content/min/DIYFE_min.css"
+                "~/Content/scripts/Bootstrap/Twitter/css/bootstrap.css",
+                "~/Content/site.css",
+                "~/Content/comments.css"
                 //        "~/Content/scripts/Bootstrap/Twitter/css/bootstrap-responsive.css",
                 ////"~/Content/scripts/themes.css",));
                 //        "~/Content/site.css",

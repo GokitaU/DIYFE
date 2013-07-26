@@ -21,6 +21,7 @@ namespace DIYFE.EF
     
         public int CategoryRowId { get; set; }
         public int TopNavIndex { get; set; }
+        public int SubNavIndex { get; set; }
         public int CategoryId { get; set; }
         public Nullable<int> SecondLevCategoryId { get; set; }
         public Nullable<int> ThirdLevCategoryId { get; set; }

@@ -254,6 +254,7 @@
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Content\scripts\App\admin.js" />
+    <Content Include="Content\scripts\App\comment.js" />
     <Content Include="Content\scripts\App\contact.js" />
     <Content Include="Content\scripts\Bootstrap\mediator.js" />
     <Content Include="Content\scripts\Bootstrap\model.js" />

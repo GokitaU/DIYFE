@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<DIYFE.EF.ContentSection>
+@{
     ViewBag.Title = "Getting-Sponsored";
 }
 
@@ -6,29 +7,12 @@
       @Html.Partial("_ErrorPageHandler")
         <div class="span12">
             <div class="box-content">
-                <h2>Getting-Sponsored</h2>
-                <h4>Requirements for project replication: </h4>
-                <p>Must closely follow BOM from from other project or create a new BOM explaining cost reduction or increase. 
-                Must give monthly status update on project that includes success, difficulties and failures. 
-                Once project is completed or failed you must prepare an overview of build or step by step directions for replications.  Any obsticals or things that could have been done differently included. </p>
-                <h4>Requirements for new project</h4>
-                <p>Priear to sponcership: project jusification or reason for personal desire must be made.  A mile stone project plan and schedule must be summited. A BOM must be submited. A project category must be selected based on current site's cat 
-                Requirements for excepting a unworked project posted on the site. </p>
-                <h2>Apply for a new project</h2>
-
-                <h4>Shared content items: </h4>
-                <h4>Requirements for project replication: </h4>
-                <p>Must closely follow BOM from from other project or create a new BOM explaining cost reduction or increase. 
-                Must give monthly status update on project that includes success, difficulties and failures. 
-                Once project is completed or failed you must prepare an overview of build or step by step directions for replications.  Any obsticals or things that could have been done differently included. </p>
-
-                <h4>Requirements for new project: </h4><p>
-                Priear to sponcership: project jusification or reason for personal desire must be made.  A mile stone project plan and schedule must be summited. A BOM must be submited. A project category must be selected based on current site's cat 
-                Requirements for excepting a unworked project posted on the site. 
-                Content on how to replicate project 
-                Content on new project and project replication rules: 
-                Getting a project sponcered, required documents for funding, required personal obligation and reporting for funding, types of projects that qualify for sponcership, what does sponcership mean, what parts of the BOM we can't sponcer and what we can. </p>
-             </div>
+            @foreach (DIYFE.EF.ContentSection content in Model)
+              {
+                  <h1>@content.ContentTitle</h1>
+                  @Html.Raw(content.ContentText)
+              } 
+            </div>
         </div>
 </div>
 

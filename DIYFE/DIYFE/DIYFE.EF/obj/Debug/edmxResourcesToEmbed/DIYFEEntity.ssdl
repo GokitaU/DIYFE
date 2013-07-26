@@ -13,6 +13,7 @@
     <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tracking" EntityType="DIYFEModel.Store.Tracking" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Article_ArticleType" Association="DIYFEModel.Store.FK_Article_ArticleType">
       <End Role="ArticleType" EntitySet="ArticleType" />
       <End Role="Article" EntitySet="Article" />
@@ -124,6 +125,7 @@
     </Key>
     <Property Name="CategoryRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TopNavIndex" Type="int" Nullable="false" />
+    <Property Name="SubNavIndex" Type="int" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
     <Property Name="SecondLevCategoryId" Type="int" />
     <Property Name="ThirdLevCategoryId" Type="int" />
@@ -173,6 +175,16 @@
     </Key>
     <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="StatusName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tracking">
+    <Key>
+      <PropertyRef Name="TrackingRowId" />
+    </Key>
+    <Property Name="TrackingRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Session" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="400" />
   </EntityType>
   <Association Name="FK_Article_ArticleType">
     <End Role="ArticleType" Type="DIYFEModel.Store.ArticleType" Multiplicity="1" />

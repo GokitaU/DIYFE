@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="DIYFEModel.ArticleResourceType" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DIYFEModel.ArticleStatus" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DIYFEModel.ArticleType" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DIYFEModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DIYFEModel.Email" Width="1.5" PointX="6" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DIYFEModel.Error" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DIYFEModel.Notification" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
@@ -20,12 +19,14 @@
         <AssociationConnector Association="DIYFEModel.FK_Notifications_Email" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DIYFEModel.Article" Width="1.5" PointX="7.2983285520683641" PointY="29.309623106061306" />
         <AssociationConnector Association="DIYFEModel.FK_Article_ArticleType" />
-        <AssociationConnector Association="DIYFEModel.FK_Article_Category" />
         <AssociationConnector Association="DIYFEModel.FK_ArticleComment_Article" />
         <AssociationConnector Association="DIYFEModel.FK_ArticleResource_Article" />
         <AssociationConnector Association="DIYFEModel.FK_ArticleStatus_Article" />
         <AssociationConnector Association="DIYFEModel.FK_Notifications_Article" />
         <EntityTypeShape EntityType="DIYFEModel.ContentSection" Width="1.5" PointX="3.6324624790029887" PointY="9.5977611288417872" />
+        <EntityTypeShape EntityType="DIYFEModel.Category" Width="1.5" PointX="1.0919619636107059" PointY="9.21876992714534" />
+        <EntityTypeShape EntityType="DIYFEModel.Tracking" Width="1.5" PointX="5.9775296570628553" PointY="15.790223576030797" />
+        <AssociationConnector Association="DIYFEModel.FK_Article_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

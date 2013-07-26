@@ -202,3 +202,46 @@ h1, h2, h3, h4, h5, h6
 }
 
 
+/* Project and Project list views
+    -----------------------------------------------------------*/
+    #MainProjectsHeader
+    {
+        height:250px;
+        padding-top:0px;
+    }
+    #MainProjectsHeader .span4
+    {
+        height:80px;
+        border-color:#E4E4E4 #E4E4E4 #C9C9C9;
+    }
+    .stories {
+    clear: both;
+    margin: 0 0 40px 0px;
+    border-bottom:dotted 3px #e4e4e4;
+}
+    .votebox {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        float: left;
+        margin: 4px 15px 0px 0px;
+        width: 75px;
+        height: 75px;
+    }
+    .vote {
+    padding: 4px 3px;
+}
+    
+.headline {
+    font-size: 1em;
+    margin: 0 0 10px;
+}
+
+.storyfooter {
+    font-size: 10px;
+    margin: 6px 0 25px;
+}
+    #MainProjectsHeader {
+        height:auto;
+
+    }

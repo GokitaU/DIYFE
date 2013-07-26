@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DIYFELib;
+
+using DIYFE.EF;
 
 namespace DIYFEWeb.Controllers
 {
@@ -30,36 +31,74 @@ namespace DIYFEWeb.Controllers
 
             var data = new object();
 
-            Article ac = new Article();
-            if (ac.InsertArticle(article))
+            article.CreatedDate = DateTime.Now;
+            article.UpdateDate = DateTime.Now;
+            
+            try
             {
+                using (var db = new DIYFE.EF.DIYFEEntities())
+                {
+                    db.Articles.Add(article);
+                    db.SaveChanges();                    
+                }
+                AppStatic.LoadStaticCache();
                 data = new { success = true };
             }
-            else
+            catch (Exception ex)
             {
-                data = new { success = false, message = "Failed to insert new article." };
+                if (ex.InnerException.Message != null)
+                {
+                    data = new { success = false, message = ex.InnerException.Message };
+                }
+                else
+                {
+                    data = new { success = false, message = ex.Message + " Another reason why EF sucks" };
+                }
                 return Json(data);
+            
             }
 
             return Json(data);
         }
 
-        public ActionResult AddCategory(Category category)
+        public ActionResult AddCategory(DIYFE.EF.Category category)
         {
 
             var data = new object();
 
-            Category cat = new Category();
-            if (cat.InsertCategory(category))
+            using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                AppStatic.LoadStaticCache();
+                if (category.ThirdLevCategoryId == 0 && category.SecondLevCategoryId != 0)
+                {
+                    category.ThirdLevCategoryId = db.Categories.Max(c => c.ThirdLevCategoryId).Value;
+                }
+                if (category.SecondLevCategoryId == 0)
+                {
+                    category.SecondLevCategoryId = db.Categories.Max(c => c.SecondLevCategoryId).Value;
+                }
+                if (category.CategoryId == 0)
+                {
+                    category.CategoryId = db.Categories.Max(c => c.CategoryId);
+                }
+                db.Categories.Add(category);
+                db.SaveChanges();
                 data = new { success = true };
+                //allCats = db.Categories.ToList();
             }
-            else
-            {
-                data = new { success = false, message = "Failed to insert new category." };
-                return Json(data);
-            }
+
+            AppStatic.LoadStaticCache();
+
+            //Category cat = new Category();
+            //if (cat.InsertCategory(category))
+            //{
+            //    AppStatic.LoadStaticCache();
+            //    data = new { success = true };
+            //}
+            //else
+            //{
+            //    data = new { success = false, message = "Failed to insert new category." };
+            //    return Json(data);
+            //}
 
             return Json(data);
         }
