@@ -124,7 +124,11 @@
 
 
     $('#projectSortBy').change(function () {
-        window.location = GetRootURL() + "project?projectStatus=" + $(this).val();
+        if ($(this).val() > 0) {
+            window.location = GetRootURL() + "project";
+        } else {
+            window.location = GetRootURL() + "project?projectStatus=" + $(this).val();
+        }
     });
 
 });

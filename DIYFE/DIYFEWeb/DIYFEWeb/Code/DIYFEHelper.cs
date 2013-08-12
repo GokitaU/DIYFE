@@ -60,12 +60,11 @@ namespace DIYFEWeb.Code
             }
             else
             {
-                throw (new Exception("Unable to find correct category."));
+                throw (new Exception("Generate Crumb Links - - -  Unable to find correct category."));
             }
 
             return linkList;
         }
-
 
         /// <summary>
         /// TODO: REVIEW THIS CRAP, COULD TOTALY DO BETTER
@@ -438,7 +437,9 @@ namespace DIYFEWeb.Code
         public static Category GetCatigory(string catOne, string catTwo, string catThree)
         {
             Category cat = new Category();
-
+            catOne = catOne.ToLower();
+            catTwo = catTwo.ToLower();
+            catThree = catThree.ToLower();
             if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
             {
                 cat = AppStatic.Categories

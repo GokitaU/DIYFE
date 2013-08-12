@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using DIYFEWeb.Models;
-using DIYFELib;
+using PagedList;
 
+using DIYFEWeb.Models;
+using DIYFEWeb.Code;
+using DIYFE.EF;
 
 namespace DIYFEWeb.Controllers
 {
@@ -15,9 +17,11 @@ namespace DIYFEWeb.Controllers
     {
         //
         // GET: /News/
+        string linkPrefix = "news";
+        private int pageSize = 10;
 
         [LoggingFilter]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ArticleListModel model = new ArticleListModel();
 
@@ -36,7 +40,8 @@ namespace DIYFEWeb.Controllers
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                // model.ProjectList = db.Articles.Where(a => a.ArticleTypeId == 2).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
-                model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).ToList();
+                //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).ToList();
+                model.PagedArticle = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
             }
 
             //model.ArticleList = la.ArticleList(catigoryId, 1);
@@ -48,9 +53,7 @@ namespace DIYFEWeb.Controllers
         public ActionResult NewsDetails(string html)
         {
             int categoryRowId = 0;
-
-            ListAccess la = new ListAccess();
-
+            Category cat = new Category();
             ArticleModel model = new ArticleModel();
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
@@ -59,7 +62,7 @@ namespace DIYFEWeb.Controllers
 
             if (model.Article == null)
             {
-
+                cat = DIYFEHelper.GetCatigroy(model.Article.CategoryRowId);
                 model.Article = new DIYFE.EF.Article();
                 model.Comments = new List<DIYFE.EF.ArticleComment>();
                 //model.Article.ArticleComments = new List<ArticleComment>();
@@ -74,7 +77,7 @@ namespace DIYFEWeb.Controllers
 
             //model.MostViewed = la.MostViewed(11, 20);
             // model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
-            // model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(categoryRowId, linkPrefix);
+             model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(cat, linkPrefix);
 
             ////PageModel.Title = model.Article.Title;
             ////PageModel.Description = model.Article.Description;

@@ -7,7 +7,7 @@
             </h2>
             <ol class="sfcommentsList" id="commentsList">
               
-              @foreach (DIYFE.EF.ArticleComment comment in Model)
+              @foreach (DIYFE.EF.ArticleComment comment in Model.OrderByDescending(c => c.CreatedDate))
               {
                           <li class="sfcommentDetails" id="@comment.CommentId">
                             <span class="sfcommentNumber">@(Model.IndexOf(comment) + 1)</span>
@@ -20,12 +20,13 @@
                             <div class="sfcommentText">
                                 @comment.CommentText
                             </div>
+                              <div><a href="#">reply to comment</a></div>
                         </li>
               }  
 
             </ol>
             <br />
-            <div class="row-fluid">
+@*            <div class="row-fluid">
                 <div class="pagination" style="float:right;">
                     <ul>
                         <li><a href="#">Prev</a></li>
@@ -37,7 +38,7 @@
                         <li><a href="#">Next</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>*@
 
            <div class="sfcommentsFormWrp  box-content">
 
@@ -112,7 +113,7 @@
 							        </tr>
                                     <tr>
 								        <td valign="top" style="height:100%;" class="reContentCell">
-                                            <textarea cols="20" rows="8" id="txtCommentText" style="width:80%" ></textarea>
+                                            <textarea cols="20" rows="8" id="txtCommentText" style="width:57%" ></textarea>
                                          </td>
 							        </tr>
                                     <tr>

@@ -34,7 +34,7 @@ h2, .h2 {
 .sfcommentText {
     clear: right;
     padding: 0 0 0 170px;
-    width: 538px;
+    width: 300px;
 }
 
 .sfcommentDetails {
@@ -52,7 +52,7 @@ h2, .h2 {
 }
 .sfcommentsFormWrp {
     padding: 30px 40px;
-    width: 630px !important;
+    width: 450px !important;
 }
 .sfpostDetails {
     font-size: 13px;

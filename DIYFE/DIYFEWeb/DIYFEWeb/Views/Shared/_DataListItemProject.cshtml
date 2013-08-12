@@ -1,7 +1,5 @@
-﻿@model List<DIYFE.EF.Article> 
-
-  @foreach (DIYFE.EF.Article article in Model)
-    {
+﻿@model DIYFE.EF.Article
+<div class="span12 box-content" style="margin-bottom:10px;margin-left:0px;">
         <div id="xnews-34166" class="stories">
 			<div class="headline">
 				<div class="votebox votebox-published">		  			
@@ -14,10 +12,11 @@
 				</div>
 			    </div>
 				<div id="title-34166" class="title">
-			<h2> @Html.ArticleLink(article, article.Title )</h2>
+			<h2> @Html.ArticleLink(Model, Model.Title )</h2>
 			<span class="subtext">
 				<span id="ls_avatar-34166">
-                    @foreach(DIYFE.EF.ArticleStatus status in article.ArticleStatus){
+                    @foreach (DIYFE.EF.ArticleStatus status in Model.ArticleStatus)
+                    {
                      <i class="icon-folder-open"></i> 
 				        <a href="/demo/suggested-features">@status.StatusType.StatusName</a>
                     }
@@ -35,8 +34,8 @@
 	</div>
 	<div class="storycontent">
 		<span id="ls_contents-34166" class="news-body-text">
-            @Html.ArticleLink(article)
-            @article.ListItemContent
+            @Html.ArticleLink(Model)
+            @Model.ListItemContent
 @*			Individual user accounts should have the ability to hide stories from specific domains. For example, if you find CNN.com to be an unreliable news source you could add them to the "Hidden Domains" list causing articles from that domain to be filtered out of the home, new, group, user, search results, and category pages. In some ways it acts like the user category feature, which filters out stories from categories that a user doesn't want to follow.
             <br><br>
             <strong>Suggested Implementation:</strong><br>
@@ -49,21 +48,25 @@
 			<span id="ls_comments_url-34166">
 				<i class="icon-comment"></i> 
                 <span id="linksummaryHasComment">
-                    <a class="comments2" href="/demo/suggested-features/user-hide-domain-setting/#comments">@article.ArticleComments.Count() Comments</a>&nbsp;
+                    <a class="comments2" href="/demo/suggested-features/user-hide-domain-setting/#comments">@Model.ArticleComments.Count() Comments</a>&nbsp;
                 </span>
                 
 		    </span> 
-             @if (!String.IsNullOrEmpty(article.Category.CategoryName)){
-                @:| @Html.Link("project/" + article.Category.CategoryName + "/", article.Category.CategoryName, article.Category.CategoryName)
+             @if (!String.IsNullOrEmpty(Model.Category.CategoryName))
+             {
+                @:| @Html.Link("project/" + Model.Category.CategoryUrl + "/", Model.Category.CategoryName, Model.Category.CategoryName)
             }
-            @if (!String.IsNullOrEmpty(article.Category.SecondLevCategoryName)){
-                @: > @Html.Link("project/" + article.Category.CategoryName + "/" + article.Category.SecondLevCategoryName, article.Category.SecondLevCategoryName, article.Category.SecondLevCategoryName)
+            @if (!String.IsNullOrEmpty(Model.Category.SecondLevCategoryName))
+            {
+                @: > @Html.Link("project/" + Model.Category.CategoryUrl + "/" + Model.Category.SecondLevCategoryUrl, Model.Category.SecondLevCategoryName, Model.Category.SecondLevCategoryName)
             }
-            @if (!String.IsNullOrEmpty(article.Category.ThirdLevCategoryName)){
-                @: > @Html.Link("project/" + article.Category.CategoryName + "/" + article.Category.SecondLevCategoryName + "/" + article.Category.ThirdLevCategoryName, article.Category.ThirdLevCategoryName, article.Category.ThirdLevCategoryName)
+            @if (!String.IsNullOrEmpty(Model.Category.ThirdLevCategoryName))
+            {
+                @: > @Html.Link("project/" + Model.Category.CategoryUrl + "/" + Model.Category.SecondLevCategoryUrl + "/" + Model.Category.ThirdLevCategoryUrl, Model.Category.ThirdLevCategoryName, Model.Category.ThirdLevCategoryName)
             }
 		</div>
 		<div style="clear:both;"></div>
 	</div><!-- /.storyfooter -->
 	</div>
-    }	
+    </div>
+  

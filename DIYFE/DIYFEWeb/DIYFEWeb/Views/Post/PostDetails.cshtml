@@ -23,7 +23,7 @@
 <link href="@Url.Content("~/Content/comments.css")" rel="stylesheet" type="text/css" />
 
 <div class="container-fluid">
-
+     @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
     <div class="row-fluid">
         @Html.Partial("_ArticleDetails", Model)
         <div class="span4">

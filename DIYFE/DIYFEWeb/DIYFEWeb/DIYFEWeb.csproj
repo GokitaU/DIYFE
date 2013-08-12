@@ -44,6 +44,12 @@
       <HintPath>bin\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\..\DIYFE\packages\PagedList.1.16.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\..\DIYFE\packages\PagedList.Mvc.4.3.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine">
       <HintPath>..\..\..\MVC3Template\bin\RazorEngine.dll</HintPath>
     </Reference>
@@ -229,6 +235,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\comments.css" />
+    <Content Include="Content\html\BioRock.html" />
+    <Content Include="Content\html\wormcasting.html" />
+    <Content Include="Content\html\TowerOfPower.html" />
+    <Content Include="Content\html\windgenerator.html" />
+    <Content Include="Content\html\plastic-recycling-oil.html" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\support\project\testImg.gif" />
@@ -253,6 +264,7 @@
     <Content Include="Content\min\DIYFE_min.js" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\scripts\App\admin.js" />
     <Content Include="Content\scripts\App\comment.js" />
     <Content Include="Content\scripts\App\contact.js" />
@@ -380,7 +392,7 @@
     <Content Include="Views\Home\Goals.cshtml" />
     <Content Include="Views\Home\Participate.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\Who.cshtml" />
+    <Content Include="Views\Home\Sponsorship.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Personal.pubxml" />
