@@ -12,18 +12,32 @@ namespace DIYFEWeb
             bundles.Clear();
 
             bundles.Add(new ScriptBundle("~/bundles/script/min").Include(
-                        "~/Content/scripts/jquery-1.10.1.js",        
-                        "~/Content/scripts/Bootstrap/Twitter/js/bootstrap.js",       
+                        "~/Content/scripts/jquery-1.10.1.js",
+                        "~/Content/scripts/Bootstrap/Twitter/js/bootstrap.js",
                         "~/Content/scripts/jquery.treeview.js",
                         "~/Content/scripts/Bootstrap/mediator.js",
                         "~/Content/scripts/Bootstrap/model.js",
                         "~/Content/scripts/Bootstrap/usefull.js",
-                        //"~/Content/scripts/Bootstrap/pager.js",
+                //"~/Content/scripts/Bootstrap/pager.js",
                         "~/Content/scripts/core.js",
                         "~/Content/scripts/App/admin.js",
                         "~/Content/scripts/App/contact.js",
                         "~/Content/scripts/App/comment.js"
                         ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/script/min").Include(
+            //            "~/Content/scripts/jquery-1.10.1.js",        
+            //            "~/Content/scripts/Bootstrap/Twitter/js/bootstrap.js",       
+            //            "~/Content/scripts/jquery.treeview.js",
+            //            "~/Content/scripts/Bootstrap/mediator.js",
+            //            "~/Content/scripts/Bootstrap/model.js",
+            //            "~/Content/scripts/Bootstrap/usefull.js",
+            //            //"~/Content/scripts/Bootstrap/pager.js",
+            //            "~/Content/scripts/core.js",
+            //            "~/Content/scripts/App/admin.js",
+            //            "~/Content/scripts/App/contact.js",
+            //            "~/Content/scripts/App/comment.js"
+            //            ));
 
 
             bundles.Add(new StyleBundle("~/bundles/css/min").Include(
