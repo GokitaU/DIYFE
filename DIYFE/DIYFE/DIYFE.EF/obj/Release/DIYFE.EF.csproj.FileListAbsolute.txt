@@ -1,0 +1,8 @@
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Release\DIYFE.EF.dll.config
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Release\DIYFE.EF.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Release\DIYFE.EF.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Release\EntityFramework.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Release\EntityFramework.xml
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Release\DIYFE.EF.csprojResolveAssemblyReference.cache
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Release\DIYFE.EF.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Release\DIYFE.EF.pdb

@@ -109,7 +109,7 @@ input[type="text"], input[type="password"], textarea, select {
     font: 400 12px/1.2 Arial,Helvetica,sans-serif;
     padding: 7px 5px;
     transition: border-color 200ms ease 0s, outline 200ms ease-in 0s;
-    width: 250px;
+    width: 550px;
 }
 .sfcommentsFormWrp .sfTxtLbl {
     line-height: 1.2;

@@ -118,6 +118,7 @@
     </Key>
     <Property Name="ArticleTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ArticleTypeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ArticleTypeDescription" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

@@ -1,10 +1,38 @@
-﻿@model List<DIYFELib.CustomHtmlLink>
+﻿@*@model DIYFE.EF.Category
+
+<div class="row-fluid">
+        <ul class="breadcrumb">
+
+            @if (String.IsNullOrEmpty(Model.SecondLevCategoryUrl))
+            {
+                <li class="active">@Html.Link(</li>
+                <li>@Html.Raw(link.GenerateHtml) <span class="divider">/</span></li>                
+            }else{
+            
+                
+            }
+
+            
+
+            @foreach(DIYFELib.CustomHtmlLink link in Model){
+    
+                if (link == Model.Last())
+                {
+                     
+                }else{
+                    <li>@Html.Raw(link.GenerateHtml) <span class="divider">/</span></li>
+                }
+            }
+         </ul>
+    </div>*@
+
+@model List<DIYFEWeb.Models.CustomHtmlLink>
 
 @if (Model.Count > 0){
     <div class="row-fluid">
         <ul class="breadcrumb">
-            @foreach(DIYFELib.CustomHtmlLink link in Model){
-    
+            @foreach (DIYFEWeb.Models.CustomHtmlLink link in Model)
+            {
                 if (link == Model.Last())
                 {
                      <li class="active">@link.LinkText</li>

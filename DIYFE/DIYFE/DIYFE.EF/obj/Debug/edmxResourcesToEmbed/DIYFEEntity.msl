@@ -48,6 +48,7 @@
     <EntitySetMapping Name="ArticleTypes">
       <EntityTypeMapping TypeName="DIYFEModel.ArticleType">
         <MappingFragment StoreEntitySet="ArticleType">
+          <ScalarProperty Name="ArticleTypeDescription" ColumnName="ArticleTypeDescription" />
           <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
           <ScalarProperty Name="ArticleTypeName" ColumnName="ArticleTypeName" />
         </MappingFragment>
@@ -92,28 +93,6 @@
     <FunctionImportMapping FunctionImportName="sp_LoadArticle" FunctionName="DIYFEModel.Store.sp_LoadArticle" />
     <FunctionImportMapping FunctionImportName="sp_LoadPostList" FunctionName="DIYFEModel.Store.sp_LoadPostList" />
     <FunctionImportMapping FunctionImportName="sp_SeasonGames" FunctionName="DIYFEModel.Store.sp_SeasonGames" />
-    <EntitySetMapping Name="Articles">
-      <EntityTypeMapping TypeName="DIYFEModel.Article">
-        <MappingFragment StoreEntitySet="Article">
-          <ScalarProperty Name="PreviewImg" ColumnName="PreviewImg" />
-          <ScalarProperty Name="URLLink" ColumnName="URLLink" />
-          <ScalarProperty Name="ViewRequests" ColumnName="ViewRequests" />
-          <ScalarProperty Name="ListItemContent" ColumnName="ListItemContent" />
-          <ScalarProperty Name="SideContent" ColumnName="SideContent" />
-          <ScalarProperty Name="MainContent" ColumnName="MainContent" />
-          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-          <ScalarProperty Name="Author" ColumnName="Author" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
-          <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
-          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ContentSections">
       <EntityTypeMapping TypeName="DIYFEModel.ContentSection">
         <MappingFragment StoreEntitySet="ContentSection">
@@ -149,6 +128,28 @@
           <ScalarProperty Name="Session" ColumnName="Session" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="TrackingRowId" ColumnName="TrackingRowId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="DIYFEModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="PreviewImg" ColumnName="PreviewImg" />
+          <ScalarProperty Name="URLLink" ColumnName="URLLink" />
+          <ScalarProperty Name="ViewRequests" ColumnName="ViewRequests" />
+          <ScalarProperty Name="ListItemContent" ColumnName="ListItemContent" />
+          <ScalarProperty Name="SideContent" ColumnName="SideContent" />
+          <ScalarProperty Name="MainContent" ColumnName="MainContent" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
+          <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

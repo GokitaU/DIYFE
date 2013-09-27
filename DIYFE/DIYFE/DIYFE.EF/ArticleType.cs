@@ -21,6 +21,7 @@ namespace DIYFE.EF
     
         public int ArticleTypeId { get; set; }
         public string ArticleTypeName { get; set; }
+        public string ArticleTypeDescription { get; set; }
     
         public virtual ICollection<Article> Articles { get; set; }
     }

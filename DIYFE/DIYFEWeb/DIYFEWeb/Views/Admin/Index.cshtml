@@ -3,6 +3,143 @@
     ViewBag.Title = "Index";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#FirstLevCat').change(function () {
+
+            $('#SecondLevCat .dropDownOption').hide();
+            $('#SecondLevCat [FirstLevCatId="' + $(this).val() + '"]').show();
+
+            //alert($('#FirstLevCat option:selected').attr('catname'));
+            $('#NewFirstLevCatName').val($('#FirstLevCat option:selected').attr('catname'));
+            $('#NewFirstLevCatUrl').val($('#FirstLevCat option:selected').attr('caturl'));
+        });
+
+        $('#SecondLevCat').change(function () {
+
+            $('#ThirdLevCat .dropDownOption').hide();
+            $('#ThirdLevCat [SecondLevCatId="' + $(this).val() + '"]').show();
+
+            $('#NewSecondLevCatName').val($('#SecondLevCat option:selected').attr('catname'));
+            $('#NewSecondLevCatUrl').val($('#SecondLevCat option:selected').attr('caturl'));
+        });
+
+        $('#btnAddNewArtical').click(function () {
+            var catRowId = 0;
+            var valid = true;
+            if ($('#ThirdLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#ThirdLevCat option:selected').attr('catRowId')
+            } else if ($('#SecondLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#SecondLevCat option:selected').attr('catRowId')
+            } else if ($('#FirstLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#FirstLevCat option:selected').attr('catRowId')
+            }
+            
+            artTypeVal = $('#artType').val();
+            if (artTypeVal != 4 && artTypeVal != 3) {
+                if (catRowId == 0) {
+                    valid = false;
+                }
+            }
+
+            if (valid){
+                var artical = {
+                    ArticleTypeId: artTypeVal,
+                    CategoryRowId: catRowId,
+                    //CategoryId: $('#FirstLevCat').val(),
+                    //SecondLevCategoryId: $('#SecondLevCat').val(),
+                    //ThirdLevCategoryId: $('#ThirdLevCat').val(),
+                    ViewRequests: 0,
+                    URLLink: $('#txtUrlLink').val(),
+                    NameId: $('#txtNameId').val(),
+                    Title: $('#txtTitle').val(),
+                    Description: $('#txtDescription').val(),
+                    Author: $('#txtAuthor').val(),
+                    Keywords: $('#txtKeywords').val(),
+                    MainContent: $('#txtMainContent').val(),
+                    //SideContent: $('#txtSideContent').val(),
+                    SideContent: '',
+                    ListItemContent: $('#txtListItemContent').val(),
+                    Name: $('#txtName').val(),
+                }
+
+
+                $.ajax({
+                    url: GetRootURL() + 'Admin/AddArticle',
+                    data: JSON.stringify(artical),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            alert('done');
+                            //loadingDiv.hide();
+                            //mediator.publish('BetLoadDone', {});
+                        } else {
+                            //show error
+                            alert(data.message);
+                            mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                        }
+                    },
+                    error: function () {
+                        mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                    }
+                });
+            } else {
+                alert('DOOOD...pick a cat - or there is some other error');
+            }
+
+        });
+
+        $('#btnAddNewCategory').click(function () {
+
+            var category = {
+                CategoryId: $('#FirstLevCat').val(),
+                SecondLevCategoryId: $('#SecondLevCat').val(),
+                ThirdLevCategoryId: $('#ThirdLevCat').val(),
+                CategoryName: $('#NewFirstLevCatName').val(),
+                CategoryUrl: $('#NewFirstLevCatUrl').val().toLowerCase(),
+                SecondLevCategoryName: $('#NewSecondLevCatName').val(),
+                SecondLevCategoryUrl: $('#NewSecondLevCatUrl').val().toLowerCase(),
+                ThirdLevCategoryName: $('#NewThirdLevCatName').val(),
+                ThirdLevCategoryUrl: $('#NewThirdLevCatUrl').val().toLowerCase()
+            }
+
+            //if (comment.PosterName == '') {
+            //    alert('Post Name is required.');
+            //    return;
+            //}
+            //if (comment.Text == '') {
+            //    alert('Comment Text is required.');
+            //    return;
+            //}
+
+            $.ajax({
+                url: GetRootURL() + 'Admin/AddCategory',
+                data: JSON.stringify(category),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.success) {
+                        alert('done');
+                        //loadingDiv.hide();
+                        //mediator.publish('BetLoadDone', {});
+                    } else {
+                        //show error
+                        mediator.publish('pageError', { error: data.message, method: 'Insert Category' });
+                    }
+                },
+                error: function () {
+                    mediator.publish('logError', { error: 'Error with service for adding category', method: 'insert category' });
+                }
+            });
+
+        });
+
+    });
+
+</script>
+
 <h1>New Article</h1>
 <table>
     <tr>
@@ -11,7 +148,7 @@
             <option value="1">Post</option>
             <option value="2">Project</option>
             <option value="3">Bog</option>
-            <option value="4">New</option>
+            <option value="4">News</option>
             </select> 
         </td>
     </tr>
@@ -37,7 +174,7 @@
     </tr>
     <tr>
         <td>Main Content</td>
-        <td><input type="text" id="txtMainContent" /></td>
+        <td><textarea id="txtMainContent" style="width: 699px; height: 331px;"></textarea> </td>
     </tr>
     <tr>
         <td>side content</td>
@@ -45,20 +182,20 @@
     </tr>
     <tr>
         <td>ListItemContent</td>
-        <td><input type="text" id="txtListItemContent" /></td>
+        <td><textarea id="txtListItemContent" style="width: 632px; height: 129px;"></textarea></td>
     </tr>
-    <tr>
+@*    <tr>
         <td>ViewRequest</td>
         <td><input type="text" id="txtViewRequest" /></td>
-    </tr>
+    </tr>*@
     <tr>
         <td>URLLink</td>
         <td><input type="text" id="txtUrlLink" /></td>
     </tr>
-    <tr>
+@*    <tr>
         <td>NameId</td>
         <td><input type="text" id="txtNameId" /></td>
-    </tr>
+    </tr>*@
     <tr>
         <td><input type="button" value="add art" id="btnAddNewArtical" /></td>
         <td></td>

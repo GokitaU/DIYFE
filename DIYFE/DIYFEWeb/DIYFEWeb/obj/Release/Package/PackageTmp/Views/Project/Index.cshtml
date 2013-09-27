@@ -1,77 +1,81 @@
-﻿@model DIYFEWeb.Models.ArticleModel
+﻿@model DIYFEWeb.Models.ArticleListModel
+@using PagedList
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
 }
 
 @Html.Partial("_ErrorPageHandler")
 
-    @Html.Partial("_BreadCrumb", new List<DIYFELib.CustomHtmlLink>())
+
     <div class="row-fluid">
     
         <div class="span8">
             <div class="row-fluid">
-                <div class="span12 box-content" style="height:200px;">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. <a href="3">Fusce</a></p>
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                <div class="span12 box-content" id="MainProjectsHeader">
+                    <h2>Project Categories</h2>
+                        <div class="row-fluid">
+                            <div class="span4">Water</div>                    
+                            <div class="span4">Shelter</div>  
+                            <div class="span4">Food</div>                  
+                                             
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span4">Comm &amp; Edu</div>                    
+                            <div class="span4">Manufacturing Goods</div>  
+                            <div class="span4">Health &amp; Hyginene</div>                                      
+                        </div>
+                        <div class="row-fluid" style="text-align:center;">
+                                <div class="span12">Based On Project Status
+                                    <ul class="inline">
+                                        <li><a href="Completed">Completed</a></li>
+                                        <li><a href="Needs Sponcership">Needs Sponcership</a></li>
+                                        <li><a href="Has Sponcership">Has Sponcership</a></li>
+                                        <li><a href="Inprogress">Inprogress</a></li>
+                                    </ul>
+                            </div>   
+                        </div>
                 </div>
             </div>
         </div>
         <div class="span4">
-             @Html.Partial("_MostViewed", Model.MostViewed)
+             <h2>Questions?</h2>
+                <p><a href="#">What is a Project and can I add my own?</a></p>
+                <p><a href="#">What is sponcership, How to get sponcered?</a></p>
+                <p><a href="#"></a></p>
+                <p><a href="#">What's going on where?</a></p>
         </div>
     </div>
-
-@*    <div class="span3">
-        <div class="well">
-            <h2 class="muted">Silver</h2>
-            <p><span class="label">POPULAR</span></p>
-            <ul>
-                <li>10 users</li>
-                <li>Unlimited access</li>
-                <li>3TB of space</li>
-                <li>E-mail support</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-            <hr>
-            <h3>$15.99 / month</h3>
-            <hr>
-            <p><a class="btn btn-large" href="#"><i class="icon-ok"></i> Select plan</a></p>
-        </div>
+<div class="row-fluid">
+    <div class="span12 show-grid">
+        Sorted by status: <select id="projectSortBy">
+                                <option value="0">View All</option>
+                                <option value="3">Funded</option>
+                                <option value="4">Not Yet Funded</option>
+                                <option value="5">Planed</option>
+                                <option value="6">Not Yet Planed</option>
+                                <option value="7">Has Participants</option>
+                                <option value="8">No Participants</option>
+                                <option value="9">Completed</option>          
+                          </select>
     </div>
-    <div class="span3">
-    <div class="well">
-    <h2 class="text-warning">Bronze</h2>
-    <p><span class="label label-success">POPULAR</span></p>
-    <ul>
-    <li>20 users</li>
-    <li>Unlimited access with no limits</li>
-    <li>5TB of space</li>
-    </ul>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-    <hr>
-    <h3>$10.99 / month</h3>
-    <hr>
-    <p><a class="btn btn-success btn-large" href="#"><i class="icon-ok"></i> Select plan</a></p>
-    </div>
-    </div>
-    <div class="span3">
-    <div class="well">
-    <h2 class="text-info">Economy</h2>
-    <p><span class="label label-info">BUDGET</span></p>
-    <ul>
-    <li>10 users</li>
-    <li>5TB of space</li>
-    </ul>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-    <hr>
-    <h3>$8.99 / month</h3>
-    <hr>
-    <p><a class="btn btn-large" href="#"><i class="icon-ok"></i> Select plan</a></p>
-    </div>
-    </div>*@
-
-<div class="row show-grid">
+</div>
+<div class="row-fluid">
+<div class="span12 box-content">
+<div class="span9">
+	
+    @for (int i = 0; i < @Model.PagedArticle.PageSize; i++)
+            {
+                if (i < Model.PagedArticle.Count())
+                {
+                    @Html.Partial("_DataListItemProject", Model.PagedArticle[i])
+                }
+            }
+            @Html.PagedListPager(Model.PagedArticle, page => Url.Action("Index", new { page }))
+</div>
+</div>
+</div>
+@*<div class="row show-grid">
     
     <div class="span3 show-grid">
             <div class="box-content">
@@ -209,7 +213,7 @@
             </div>
        </div> 
 
-</div>
+</div>*@
 
 @*    <div class="span3 show-grid">
             <div class="box-content">

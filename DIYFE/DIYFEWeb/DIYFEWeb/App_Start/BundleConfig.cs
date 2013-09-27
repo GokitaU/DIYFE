@@ -20,7 +20,7 @@ namespace DIYFEWeb
                         "~/Content/scripts/Bootstrap/usefull.js",
                         //"~/Content/scripts/Bootstrap/pager.js",
                         "~/Content/scripts/core.js",
-                        "~/Content/scripts/App/admin.js",
+                        //"~/Content/scripts/App/admin.js",
                         "~/Content/scripts/App/contact.js",
                         "~/Content/scripts/App/comment.js"
                         ));

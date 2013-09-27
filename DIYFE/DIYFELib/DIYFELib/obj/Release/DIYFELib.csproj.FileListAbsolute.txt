@@ -3,3 +3,10 @@ C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\bin\Release\DIYFELib.pdb
 C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.csprojResolveAssemblyReference.cache
 C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.dll
 C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Release\DIYFELib.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Release\DIYFELib.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Release\PagedList.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Release\PagedList.xml
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.csprojResolveAssemblyReference.cache
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\obj\Release\DIYFELib.pdb

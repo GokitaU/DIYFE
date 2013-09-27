@@ -1,5 +1,26 @@
-﻿@{
+﻿@model List<DIYFE.EF.ContentSection>
+@{
     ViewBag.Title = "Getting-Sponsored";
 }
 
-<h2>Getting-Sponsored</h2>
+<div class="row show-grid">
+      @Html.Partial("_ErrorPageHandler")
+        <div class="span12">
+            <div class="box-content">
+           @* @foreach (DIYFE.EF.ContentSection content in Model)
+              {
+                  <h1>@content.ContentTitle</h1>
+                  @Html.Raw(content.ContentText)
+              } *@
+                <h1>How to get sponsored</h1>
+                <p>First you must pick a project or submit a new project.  The step required for project replication vs. new project are a little different.  It’s important that if the project isn’t already funded that the sponcor has all or a majority of funds available to meet the project’s BOM.  This is due to fact the money is filtered through our organization, dedicating the funds to the project.  Then you can use the assigned debit card to make all purchases described in projects BOM, closing the loop. </p>
+                <p>Finely, to be sponsored you must adhere to all of our requirements for new projects or replication depending on your situation.</p>
+                <p>After picking a project and reviewing project rules you may use our <a href="">online application</a> or email us directly at sponsorship@diyfe.org.</p>
+
+            </div>
+        </div>
+</div>
+
+
+
+

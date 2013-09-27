@@ -26,6 +26,40 @@ namespace DIYFEWeb.Controllers
             return View(model);
         }
 
+        public ActionResult AddArticelTest(dynamic article)
+        {
+            var data = new object();
+            //Article article = (Article)articleDynamic;
+            //article.CreatedDate = DateTime.Now;
+            //article.UpdateDate = DateTime.Now;
+
+            try
+            {
+                using (var db = new DIYFE.EF.DIYFEEntities())
+                {
+                    db.Articles.Add(article);
+                    db.SaveChanges();
+                }
+                AppStatic.LoadStaticCache();
+                data = new { success = true };
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.Message != null)
+                {
+                    data = new { success = false, message = ex.InnerException.Message };
+                }
+                else
+                {
+                    data = new { success = false, message = ex.Message + " Another reason why EF sucks" };
+                }
+                return Json(data);
+
+            }
+
+            return Json(data);
+        }
+
         public ActionResult AddArticle(Article article)
         {
 

@@ -1,26 +1,42 @@
 ﻿
-<h2>Contact</h2>
-    <form class="well span8">
-    <div class="row">
-    <div class="span3">
-    <label>First Name</label>
-    <input type="text" class="span3" placeholder="Your First Name">
-    <label>Last Name</label>
-    <input type="text" class="span3" placeholder="Your Last Name">
-    <label>Email Address</label>
-    <input type="text" class="span3" placeholder="Your email address">
-    <label>Subject</label>
-    <select id="subject" name="subject" class="span3">
-    <option value="na" selected="">Choose One:</option>
-    <option value="service">General Customer Service</option>
-    <option value="suggestions">Suggestions</option>
-    <option value="product">Product Support</option>
-    </select>
-    </div>
-    <div class="span5">
-    <label>Message</label>
-    <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary pull-right">Send</button>
-    </div>
-    </form>
+<div class="row show-grid">
+      @Html.Partial("_ErrorPageHandler")
+        <div class="span9">
+            <div class="box-content" style="height:400px;">
+            <form class="span8">
+            <div class="row">
+                <h2>Contact</h2>
+                <div class="span3">
+                    <label>First Name</label>
+                    <input id="FirstName" type="text" class="span3" placeholder="Your First Name">
+                    <label>Last Name</label>
+                    <input id="LastName" type="text" class="span3" placeholder="Your Last Name">
+                    <label>Email Address</label>
+                    <input id="Email" type="text" class="span3" placeholder="Your email address">
+@*                    <label>Subject</label>
+                    <select id="Subject" style="height:39px;" id="subject" name="subject" class="span3">
+                    <option value="na" selected="">Choose One:</option>
+                    <option value="service">General Customer Service</option>
+                    <option value="suggestions">Suggestions</option>
+                    <option value="product">Product Support</option>
+                    </select>*@
+                </div>
+                <div class="span5">
+                    <label>Message</label>
+                    <textarea name="message" id="Message" class="input-xlarge span5" rows="10"></textarea>
+                </div>
+                <button id="btnSendMail" type="submit" class="btn btn-primary pull-right">Send</button>
+            </div>
+            </form>
+                </div>
+        </div>
+
+        <div class="span3">
+            <div class="box-content"  style="height:400px;">
+                <h2>Right Side</h2>
+                <p>We can sponsor your project!  Find out what it means to be sponsored.  How to qualify for sponsorship and why you would want to be sponsored. <a href="Home/GettingSponsored">How to get sponcered</a></p>
+                <p><a class="btn" href="Home/Participate">View details &raquo;</a></p>
+            </div>
+       </div>
+ </div>
+

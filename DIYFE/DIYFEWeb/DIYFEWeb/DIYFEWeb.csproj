@@ -235,13 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\comments.css" />
-    <Content Include="Content\html\BioRock.html" />
-    <Content Include="Content\html\wormcasting.html" />
-    <Content Include="Content\html\TowerOfPower.html" />
-    <Content Include="Content\html\windgenerator.html" />
-    <Content Include="Content\html\plastic-recycling-oil.html" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\sprite-vertical-editfromspring.png" />
     <Content Include="Content\img\support\project\testImg.gif" />
     <Content Include="Content\img\treeview\ajax-loader.gif" />
     <Content Include="Content\img\treeview\file.gif" />
@@ -395,6 +391,7 @@
     <Content Include="Views\Home\Sponsorship.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\Debug.pubxml" />
     <None Include="Properties\PublishProfiles\Personal.pubxml" />
     <Content Include="Views\EmailTemplates\Error.cshtml" />
     <Content Include="Views\EmailTemplates\WebContact.cshtml" />
@@ -407,6 +404,7 @@
     <Content Include="Views\Shared\_ArticleDetails.cshtml" />
     <Content Include="Views\Home\Projects.cshtml" />
     <Content Include="Views\Home\ContentText.cshtml" />
+    <None Include="Properties\PublishProfiles\Production.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
