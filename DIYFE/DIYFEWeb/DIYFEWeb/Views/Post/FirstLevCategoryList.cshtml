@@ -7,6 +7,43 @@
 
  @Html.Partial("_ErrorPageHandler")
 
+<div class="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-lg-8">
+              @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
+           @* <div id="breadcrumb"><ul class="breadcrumb">
+        <li><a title="Base diyfe categor" href="http://diyfe.org/post/">Posts</a> <span class="divider"></span></li>
+        <li><a title="Water" href="http://diyfe.org/post/water">Water</a> <span class="divider"></span></li>
+        <li><a title="Access" href="/post/water/access">Access</a> <span class="divider"></span></li>
+            <li class="active">Wells</li>
+</ul></div> *@
+            @for (int i = 0; i < @Model.PagedArticle.PageSize; i++)
+            {
+                if (i < Model.PagedArticle.Count()){
+                 @Html.Partial("_DataListItem", Model.PagedArticle[i])
+                 }
+            }
+            
+            <div class="paging">
+                @Html.PagedListPager(Model.PagedArticle, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+            <div id="treeMenu">
+                @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+            </div>
+            <div class="productPromo">
+                product or project promotion area
+            </div>
+            <div id="topLevelLinkList">
+                top level link list that isn't covered in the tree menu
+            </div>
+        </div>
+        </div>
+
+</div>
+
+  @*   
     <div class="container-fluid">
         @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
     <div class="row-fluid">
@@ -40,7 +77,7 @@
                 </div>
             </div>
             <br />
-       @*      @Html.Partial("_MostViewed", Model.MostViewed)*@
+        @Html.Partial("_MostViewed", Model.MostViewed)
         </div>
     </div>
 
@@ -49,3 +86,4 @@
     </div>
 
 
+  *@

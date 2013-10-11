@@ -40,7 +40,7 @@ namespace DIYFEWeb.Controllers
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                 //model.ProjectList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 2).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).ToList();
-                model.PagedArticle = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                model.PagedArticle = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1 || a.ArticleTypeId == 2 || a.ArticleTypeId == 3 || a.ArticleTypeId == 5).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
             }
 
             //model.ArticleList = la.ArticleList(catigoryId, 1);
@@ -71,8 +71,17 @@ namespace DIYFEWeb.Controllers
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                 //BASED ON CAT
-                model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1 && a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.CreatedDate);
-                model.PagedArticle = model.ArticleList.Concat(db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2 && a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1))).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType")
+                                    .Where(a => a.ArticleTypeId == 1 && a.Category.CategoryId == cat.CategoryId
+                                    || a.ArticleTypeId == 2 && a.Category.CategoryId == cat.CategoryId
+                                    || a.ArticleTypeId == 3 && a.Category.CategoryId == cat.CategoryId
+                                    || a.ArticleTypeId == 5 && a.Category.CategoryId == cat.CategoryId)
+                                    .OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+
+                //model.PagedArticle = model.ArticleList.Concat(db.Articles.Include("ArticleComments")
+                //    .Include("ArticleStatus.StatusType")
+                //    .Where(a => a.ArticleTypeId == 2 && a.Category.CategoryId == cat.CategoryId)
+                //    .OrderBy(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1))).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
 
                 //CHECK PAGING
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1);

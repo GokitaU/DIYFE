@@ -1,46 +1,12 @@
 ﻿@model DIYFE.EF.Article
 
 
-    <div class="span12 box-content" style="margin-bottom:10px;margin-left:0px;">
-        <div class="span12">
-            <div class="row-fluid">
-                <div class="span12">
-                    <h4><strong>@Html.ArticleLink(Model)</strong></h4>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="span2">
-                    <a href="#" class="thumbnail">
-                    <img src="http://placehold.it/260x180" alt="">
-                    </a>
-                </div>
-                <div class="span9">
-                    <p>
-                    @Model.ListItemContent
-                    </p>
-                    <p>@Html.ArticleLink(Model, "btn", "Read More")</p>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="span12">
-                    <p></p>
-                    <p>
-                    @*<i class="icon-user"></i> by <a href="#">@listItem.Author</a>
-                    |*@ <i class="icon-calendar"></i> @Model.CreatedDate.ToShortDateString()
-                    | <i class="icon-comment"></i> <a href="#">@Model.ArticleComments.Count() Comments</a>
-                    | <i class="icon-share"></i> <a href="#">@Model.ViewRequests Views</a>
-                    | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
-                    <a href="#"><span class="label label-info">Bootstrap</span></a>
-                    <a href="#"><span class="label label-info">UI</span></a>
-                    <a href="#"><span class="label label-info">growth</span></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <hr>
-   
+<div class="listItem">
+    <div class="listItemHeader"><h2>@Model.Title</h2></div>
+    <div class="listItemLinks">in line link list</div>
+    <div class="listItemDescription">@Model.ListItemContent</div>
+    <div class="listItemReadMore">@Html.ArticleLink(Model, "btn", "Read More")</div>
+</div>   
  
   @* 
     <div class="row">

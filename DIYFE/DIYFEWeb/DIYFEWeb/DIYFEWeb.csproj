@@ -208,7 +208,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -234,6 +233,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\carsouel.css" />
     <Content Include="Content\comments.css" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\loading.gif" />
@@ -260,10 +260,13 @@
     <Content Include="Content\min\DIYFE_min.js" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\mobile-responsive.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\scripts\App\admin.js" />
     <Content Include="Content\scripts\App\comment.js" />
     <Content Include="Content\scripts\App\contact.js" />
+    <Content Include="Content\scripts\App\jquery.main.js" />
+    <Content Include="Content\scripts\App\mobile-responsive.js" />
     <Content Include="Content\scripts\Bootstrap\mediator.js" />
     <Content Include="Content\scripts\Bootstrap\model.js" />
     <Content Include="Content\scripts\Bootstrap\pager.js" />
@@ -273,8 +276,10 @@
     <Content Include="Content\scripts\Bootstrap\Twitter\img\glyphicons-halflings.png" />
     <Content Include="Content\scripts\Bootstrap\Twitter\js\bootstrap.js" />
     <Content Include="Content\scripts\Bootstrap\usefull.js" />
+    <Content Include="Content\scripts\carsouel.js" />
     <Content Include="Content\scripts\core.js" />
     <Content Include="Content\scripts\jquery-1.10.1.js" />
+    <Content Include="Content\scripts\jquery-1.7.1.min.js" />
     <Content Include="Content\scripts\jquery.treeview.js" />
     <Content Include="Content\site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -395,10 +400,8 @@
     <None Include="Properties\PublishProfiles\Personal.pubxml" />
     <Content Include="Views\EmailTemplates\Error.cshtml" />
     <Content Include="Views\EmailTemplates\WebContact.cshtml" />
-    <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Shared\_DataListItemProject.cshtml" />
-    <Content Include="Views\Blog\BlogDetails.cshtml" />
     <Content Include="Views\News\NewsDetails.cshtml" />
     <Content Include="Views\Shared\_ArticleComments.cshtml" />
     <Content Include="Views\Shared\_ArticleDetails.cshtml" />

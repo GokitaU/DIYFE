@@ -1,5 +1,19 @@
 ﻿@model DIYFEWeb.Models.ArticleListModel
 
+@section JS{
+     <script src="@Url.Content("~/Content/scripts/carsouel.js")" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#barousel_prevnextnav').barousel({
+                navType: 2
+            });
+        });
+    </script>
+}
+@section CSS{
+    <link href="@Url.Content("~/Content/carsouel.css")" rel="stylesheet" type="text/css" />
+}
+
 @section SecondHeader {
 @*      <div class="top-anchor">
         <div class="act-now-bar dark-to-light-gradient box-shadow"></div>
@@ -12,130 +26,86 @@
         <p>Do It Yourself, For Everyone</p>
       </div>*@
 
-      <!-- Example row of columns -->
-      <div class="row show-grid">
-      @Html.Partial("_ErrorPageHandler")
-        <div class="span9 show-grid">
-            <div class="box-content">
-                <h2>What is this organization all about?</h2>
-                <p>Our organization offers resources that contribute to self-sufficiency in a DIY fashion. We sponsor individual's projects and post research and instructions for all to learn from or review. We try to give immediate finical incentives to allow individuals to start exploring options that will help them lead a less waste full, free, healthy and happy life. In return we all benefit from both their success and failures.</p>
-
-            </div>
-        </div>
-        <div class="span3 show-grid">
-            <div class="box-content" style="height:219px;">
-                <p><small>DIYFE: Do It Yourself For Everyone. You do it, build, learn about it, and create it, all because you want too. Then during and after project completing you share your experiences, knowledge and resources with the rest of the world. Thus you do it for yourself for everyone else to build from.</small></p>
+@Html.Partial("_ErrorPageHandler")
+    <div class="content">
+            <div class="hero" style="height:300px;">
+                @*<h3>Ok, get jquery 1.10 working with naviation</h3>
+                <h1>hero unit</h1>
+                <p>I don't really care what image you put here, i'll be doing some custom content here anyway.</p>*@
+                <div id="barousel_prevnextnav" class="barousel">
+                <div class="barousel_image">
+                    <!-- image 1 -->
+                    <img style="display:inline;" src="@Url.Content("~/Content/barousel_carousel_1.jpg")" alt="" class="">
+                    <!-- image 2 -->
+                    <img style="display: none;" class="" src="@Url.Content("~/Content/barousel_carousel_2.jpg")" alt="">
+                    <!-- image 3 -->
+                    <img style="display: none;" class="" src="@Url.Content("~/Content/barousel_carousel_3.jpg")" alt="">
+                    <!-- image 4 -->
+                    <img style="display: none;" src="@Url.Content("~/Content/barousel_carousel_4.jpg")" alt="">
+                </div>
+                <div style="height: 153px; display: block;" class="barousel_content">
+                    <!-- content 1 -->
+                    <div style="" class="default">
+                        <p class="header">Carousel 1</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <p><a href="#">Link 1</a></p>
+                    </div>
+                    <!-- content 2 -->
+                    <div style="display: none;">
+                        <p class="header">Carousel 2</p>
+                        <p>Nam eros eros, tempor ac hendrerit a, placerat vitae augue. </p>
+                        <p><a href="#">Link 2</a></p>
+                    </div>
+                    <!-- content 3 -->
+                    <div style="display: none;">S
+                        <p class="header">Carousel 3</p>
+                        <p>Ut euismod suscipit elit, id pulvinar dui viverra ac. Fusce interdum leo sit amet turpis pretium fringilla.</p>
+                        <p><a href="#">Link 3</a></p>
+                    </div>
+                    <!-- content 4 -->
+                    <div style="display: none;">
+                        <p class="header">Carousel 4</p>
+                        <p>Vivamus pharetra tristique mi, vitae blandit 
+                        enim fringilla eget. Fusce consectetur lorem nec tortor varius elementum
+                         vel ac urna. Vitae blandit enim fringilla eget.</p>
+                        <p><a href="#">Link 4</a></p>
+                    </div>
+                </div>
+                <div class="barousel_nav">
+               <!-- <ul><li class="prev"><a href="#" title="previous">�</a></li><li class="next"><a href="#" title="next">�</a></li></ul><div class="counter"><span class="counter_current">4</span>/<span class="counter_total">4</span></div></div>-->
             </div>
        </div>
-        <div class="span3 show-grid">
-            <div class="box-content" style="height:219px;">
-                <h4>How to Participate?</h4>
-                <p>We can sponsor your project OR project replication! Find out what it means to be sponsored, how to qualify and your responsibilities. <a href="Home/GettingSponsored">How to get sponcered</a></p>
-                <p><a class="btn" href="Home/Participate">View details &raquo;</a></p>
             </div>
-       </div>
-          <div class="span9 show-grid">
-            <div class="box-content">
-
-                <h2>What can you do on this site?</h2>
-                <p>This site not only serves as an information source on our organization but also as an informational repository. We have four main sections, a project section that holds information on our sponsored builds and works in progress. Also an information repository that holds information on both completed projects and informative posts. Last but not least a blog that holds personal opinions, information and project by our board of directors. Then on a side note a section that hold posts about current news about our organization and any laws that may affect our operation.</p>
-                <h4>Projects Categories</h4>
-                <ul class="inline" style="text-align:center;">
-                    <li><a href="/project/water">Water</a></li>
-                    <li><a href="/project/shelter">Shelter</a></li>
-                    <li><a href="/project/food">Food</a></li>
-                    <li><a href="/project/hygiene-health">Hygiene and Health</a></li>
-                    <li><a href="/project/communication-education">Communication and Education</a></li>
-                    <li><a href="/project/manufacturing">Manufacturing Goods</a></li>
+    </div>
+    <br /><br />
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4"><h2>Popular</h2>
+                <ul>
+                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)))
+                        {
+                        <li>@Html.ArticleLink(article)</li>
+                        }
+                    <li>@Html.Link("project","View All","Link too all of our projects", "btn")</li>
                 </ul>
-@*                <p><a class="btn" href="#">View details &raquo;</a></p>*@
             </div>
-        </div>
-
-        <div class="span3 show-grid">
-          <div class="box-content" style="height:238px;">
-            <h4>How to Donate?</h4>
-            <p>Learn about our growing pains and how you can help all of us grow.</p>
-            <p><a class="btn" href="Home/Donations">View details &raquo;</a></p>
-           </div>
-        </div>
-      </div>
-
-      <div class="row show-grid">
-          <div class="span6">
-              <div class="box-content">
-              <h2>Recently Update Projects</h2>
-                 <p>Check up on how work is going. This is a list of recently updated or completed projects. You can also sign up be notified of project updates.  You can also <a href="#">sign</a> up be notified of project updates.</p>
-                 <dl class="dl-horizontal">
-                     @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId==2).OrderBy(p => p.UpdateDate).Take(5))
-                     {
-                        <dt>@Html.ArticleLink(article)</dt>
-                        <dd>@article.Title</dd>
-                     }
-                        
-@*                        <dt><a href="#">East Texas 1</a></dt>
-                        <dd>Permaculture project update.</dd>
-                        <dt><a href="#">Geodome Greenhouse</a></dt>
-                        <dd>Project almost done!</dd>*@
-                 </dl>
-                 <p>@Html.Link("project","View All","Link too all of our projects", "btn")</p>
-               </div>
-          </div>
-          <div class="span6">
-              <div class="box-content">
-              <h2>Projects Needing Funding</h2>
-                 <p>List of projects that can be fiscal sponsor by us, meaning you can write off any materials needed for project completion. These are project that either need funding or need an individual to take responsibility for its success.</p>
-                     <dl class="dl-horizontal">
-                        @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)))
+            <div class="col-md-4"><h2>New Posts</h2>
+                <ul>
+                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 1))
                         {
-                        <dt>@Html.ArticleLink(article)</dt>
-                        <dd>@article.Title</dd>
+                        <li>@Html.ArticleLink(article)</li>
                         }
-@*                        <dt><a href="#">Dark Net</a></dt>
-                        <dd>Not so dark future of communication</dd>
-                        <dt><a href="#">Yard Work</a></dt>
-                        <dd>Permaculture your yard and stop working with a system that provides you nothing.</dd>*@
-                    </dl>
-                  <p>@Html.Link("project","View All","Link too all of our projects", "btn")</p>
-               </div>
-          </div>
-      </div>
-    <div class="row show-grid">
-          <div class="span6">
-              <div class="box-content">
-              <h2>Recent Post</h2>
-                  <dl>
-                      @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 1))
-                        {
-                        <dt>@Html.ArticleLink(article)</dt>
-                        }
-                    
-@*                    <dt><a href="#">Off Grid Power Managment</a></dt>
-                    <dt><a href="#">List of free education</a></dt>
-                    <dt><a href="#">3 ways to use grey water</a></dt>
-                    <dt><a href="#">3 ways to manage human waste</a></dt>
-                    <dt><a href="#">WORMS!</a></dt>*@
-                </dl>
-                <p>@Html.Link("post","View All","Link too all of our posts", "btn")</p>
-               </div>
-          </div>
-          <div class="span6">
-              <div class="box-content">
-              <h2>News</h2>
-                <dl>
+                    <li>@Html.Link("post","View All","Link too all of our posts", "btn")</li>
+                </ul>
+            </div>
+            <div class="col-md-4"><h2>News</h2>
+                <ul>
                     @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 4))
                         {
-                        <dt>@Html.ArticleLink(article)</dt>
+                        <li>@Html.ArticleLink(article)</li>
                         }
-                    
-@*                    <dt><a href="#">100th Project</a></dt>
-                    <dd>We have just sponcered our 100th project!</dd>
-                    <dt><a href="#">New Location</a></dt>
-                    <dd>new location has been purchased and will have alot of great uses.</dd>
-                    <dt><a href="#">Check it out and save $$$ while gaining your personal freedom!</a></dt>
-                    <dd>Complete project list and cost to get you up and running in a self sufficient life style.</dd>*@
-                </dl>
-                    <p>@Html.Link("news","View All","Link too all of our news", "btn")</p>
-               </div>
-          </div>
-      </div>
+                    <li>@Html.Link("news","View All","Link too all of our news", "btn")</li>
+                </ul>
+            </div>
+        </div>
+    </div>

@@ -37,40 +37,58 @@ namespace DIYFEWeb
 
             //BUILD TOP NAVIGATION ITEMS HTML
             #region
-
-            string topNavString = "<ul role=\"navigation\" class=\"nav pull-right\">";
+            string topNav = "<div id=\"header\"><nav id=\"nav\"><div class=\"nav-holder\"><div class=\"nav-frame\"><ul class=\"nav\" style=\"display: block;\">";
+            string subNav = "<div class=\"subnav\">";
+            int topNavIndex = 0;
             foreach (Category firstCat in allCats.Where(c => c.SecondLevCategoryId == 0 && c.TopNavIndex > 0).OrderBy(c => c.TopNavIndex))
             {
-              topNavString +=  "<li class=\"dropdown\" id=\"MainNav-Mfg\">";
-              topNavString += "<a data-toggle=\"dropdown\" class=\"dropdown-toggle\" href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "\")>" + firstCat.CategoryName + "<b class=\"caret\"></b></a>";
-              topNavString += "<ul class=\"dropdown-menu\">";
-              foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0).OrderBy(c => c.SubNavIndex))
-              {
-                  if (allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).Count() > 0)
-                  {
-                      topNavString += "<li class=\"dropdown-submenu\">";
-                      topNavString += "<a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a>";
-                      topNavString += "<ul class=\"dropdown-menu\">";
-                      //LOOP OVER THIRD LEVEL
-                      foreach (Category thirdCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).OrderBy(c => c.SubNavIndex))
-                      {
-                          topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "/" + thirdCat.ThirdLevCategoryUrl + "\">" + thirdCat.ThirdLevCategoryName + "</a></li>";
-                      }
-                      
-                      topNavString += "</ul></li>";
-                  }
-                  else
-                  {
-                      topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a></li>";
-                  }
-              }
-              topNavString += "</ul></li>";
+                topNav += "<li><a rel=\"sub" + topNavIndex.ToString() + "\" href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "\"><div><span>" + firstCat.CategoryName + "</span></div></a></li>";
+                subNav += "<ul id=\"sub" + topNavIndex.ToString() + "\" class=\"submenu\" style=\"display: none;\">";
+                foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0).OrderBy(c => c.SubNavIndex))
+                {
+                    subNav += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a></li>";
+                }
+                subNav += "</ul>";
+                topNavIndex++;
             }
-            topNavString += "</ul>";
+            topNav += "</ul></div></nav></div>";
+            subNav += "</div>";
+
+            HtmlString hString = new HtmlString(topNav + subNav);
+
+            //string topNavString = "<ul role=\"navigation\" class=\"nav pull-right\">";
+            //foreach (Category firstCat in allCats.Where(c => c.SecondLevCategoryId == 0 && c.TopNavIndex > 0).OrderBy(c => c.TopNavIndex))
+            //{
+            //  topNavString +=  "<li class=\"dropdown\" id=\"MainNav-Mfg\">";
+            //  topNavString += "<a data-toggle=\"dropdown\" class=\"dropdown-toggle\" href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "\")>" + firstCat.CategoryName + "<b class=\"caret\"></b></a>";
+            //  topNavString += "<ul class=\"dropdown-menu\">";
+            //  foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0).OrderBy(c => c.SubNavIndex))
+            //  {
+            //      if (allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).Count() > 0)
+            //      {
+            //          topNavString += "<li class=\"dropdown-submenu\">";
+            //          topNavString += "<a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a>";
+            //          topNavString += "<ul class=\"dropdown-menu\">";
+            //          //LOOP OVER THIRD LEVEL
+            //          foreach (Category thirdCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).OrderBy(c => c.SubNavIndex))
+            //          {
+            //              topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "/" + thirdCat.ThirdLevCategoryUrl + "\">" + thirdCat.ThirdLevCategoryName + "</a></li>";
+            //          }
+                      
+            //          topNavString += "</ul></li>";
+            //      }
+            //      else
+            //      {
+            //          topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a></li>";
+            //      }
+            //  }
+            //  topNavString += "</ul></li>";
+            //}
+            //topNavString += "</ul>";
             
             #endregion
 
-            HtmlString hString = new HtmlString(topNavString);
+            
 
             HttpContext.Current.Application["TopNavHtml"] = hString;
         }
