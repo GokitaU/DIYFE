@@ -53,23 +53,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="DIYFEModel.Category">
-        <MappingFragment StoreEntitySet="Category">
-          <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
-          <ScalarProperty Name="TopNavIndex" ColumnName="TopNavIndex" />
-          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="SecondLevCategoryId" ColumnName="SecondLevCategoryId" />
-          <ScalarProperty Name="ThirdLevCategoryId" ColumnName="ThirdLevCategoryId" />
-          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-          <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
-          <ScalarProperty Name="SecondLevCategoryName" ColumnName="SecondLevCategoryName" />
-          <ScalarProperty Name="SecondLevCategoryUrl" ColumnName="SecondLevCategoryUrl" />
-          <ScalarProperty Name="ThirdLevCategoryName" ColumnName="ThirdLevCategoryName" />
-          <ScalarProperty Name="ThirdLevCategoryUrl" ColumnName="ThirdLevCategoryUrl" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Emails">
       <EntityTypeMapping TypeName="DIYFEModel.Email">
         <MappingFragment StoreEntitySet="Email">
@@ -128,6 +111,44 @@
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentSections">
+      <EntityTypeMapping TypeName="DIYFEModel.ContentSection">
+        <MappingFragment StoreEntitySet="ContentSection">
+          <ScalarProperty Name="ContentText" ColumnName="ContentText" />
+          <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
+          <ScalarProperty Name="ContentId" ColumnName="ContentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DIYFEModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ThirdLevCategoryUrl" ColumnName="ThirdLevCategoryUrl" />
+          <ScalarProperty Name="ThirdLevCategoryName" ColumnName="ThirdLevCategoryName" />
+          <ScalarProperty Name="SecondLevCategoryUrl" ColumnName="SecondLevCategoryUrl" />
+          <ScalarProperty Name="SecondLevCategoryName" ColumnName="SecondLevCategoryName" />
+          <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ThirdLevCategoryId" ColumnName="ThirdLevCategoryId" />
+          <ScalarProperty Name="SecondLevCategoryId" ColumnName="SecondLevCategoryId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="SubNavIndex" ColumnName="SubNavIndex" />
+          <ScalarProperty Name="TopNavIndex" ColumnName="TopNavIndex" />
+          <ScalarProperty Name="CategoryRowId" ColumnName="CategoryRowId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trackings">
+      <EntityTypeMapping TypeName="DIYFEModel.Tracking">
+        <MappingFragment StoreEntitySet="Tracking">
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Session" ColumnName="Session" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TrackingRowId" ColumnName="TrackingRowId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

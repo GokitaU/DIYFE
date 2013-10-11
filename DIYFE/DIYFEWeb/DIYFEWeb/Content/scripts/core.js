@@ -121,44 +121,14 @@
                     
     //mediator.publish('masterPageError', { error: err.message, method: 'core.js, on document ready' });
 
-    $('#btnSubmitComment').click(function () {
 
-        var comment = {
-            ArticleId : $('#articleId').val(),
-            PosterName : $('#txtPosterName').val(),
-            PosterEmail : $('#txtPosterEmail').val(),
-            PosterWebSite: $('#txtPosterWebSite').val(),
-            Text: $('#txtCommentText').val()
+
+    $('#projectSortBy').change(function () {
+        if ($(this).val() > 0) {
+            window.location = GetRootURL() + "project";
+        } else {
+            window.location = GetRootURL() + "project?projectStatus=" + $(this).val();
         }
-
-        if (comment.PosterName == '') {
-            alert('Post Name is required.');
-            return;
-        }
-        if (comment.Text == '') {
-            alert('Comment Text is required.');
-            return;
-        }
-
-        $.ajax({
-            url: GetRootURL() + 'Service/PostComment',
-            data: JSON.stringify(comment),
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                if (data.success) {
-                    //loadingDiv.hide();
-                    //mediator.publish('BetLoadDone', {});
-                } else {
-                    //show error
-                    mediator.publish('pageError', { error: data.message, method: 'Insert Comment' });
-                }
-            },
-            error: function () {
-                mediator.publish('logError', { error: 'Error with service for InsertNBABetting', method: 'NBA Load Bets' });
-            }
-        });
-
     });
 
 });

@@ -1,4 +1,6 @@
 ﻿@model DIYFEWeb.Models.ArticleListModel
+@using PagedList
+@using PagedList.Mvc
 @{
     ViewBag.Title = "CategoryList";
 }
@@ -12,10 +14,17 @@
     
         <div class="span8">
     <!--Body content-->
-            
-        @Html.Partial("_DataListItemProject", Model.ProjectList)
+            @for (int i = 0; i < @Model.PagedArticle.PageSize; i++)
+            {
+                if (i < Model.PagedArticle.Count())
+                {
+                    @Html.Partial("_DataListItemProject", Model.PagedArticle[i])
+                }
+            }
+            @Html.PagedListPager(Model.PagedArticle, page => Url.Action("Index", new { page }))
+        @*@Html.Partial("_DataListItemProject", Model.ProjectList)*@
 
-            <div class="row-fluid">
+@*            <div class="row-fluid">
                 <div class="pagination" style="float:right;">
                 <ul>
                     <li><a href="#">Prev</a></li>
@@ -27,11 +36,17 @@
                     <li><a href="#">Next</a></li>
                 </ul>
                 </div>
-            </div>
+            </div>*@
 
         </div>
         <div class="span4">
     <!--Sidebar content-->
+            <div class="row-fluid">
+                <div class="span12 box-content">Related Info
+                   @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+                </div>
+            </div>
+            <br />
             <div class="row-fluid">
                 <div class="span12 box-content">Related Projects
                     <ul class="nav nav-list">
@@ -49,7 +64,9 @@
                 </div>
             </div>
             <br />
+
              @*@Html.Partial("_MostViewed", Model.MostViewed)*@
+           
         </div>
     </div>
 

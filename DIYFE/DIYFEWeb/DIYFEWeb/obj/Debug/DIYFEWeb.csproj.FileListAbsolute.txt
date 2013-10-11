@@ -178,3 +178,7 @@ D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\bin\zh-Hant\System.Spatial.re
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\obj\Debug\DIYFEWeb.csprojResolveAssemblyReference.cache
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\obj\Debug\DIYFEWeb.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\obj\Debug\DIYFEWeb.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\bin\PagedList.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\bin\PagedList.Mvc.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\bin\PagedList.xml
+D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFEWeb\DIYFEWeb\bin\PagedList.Mvc.xml

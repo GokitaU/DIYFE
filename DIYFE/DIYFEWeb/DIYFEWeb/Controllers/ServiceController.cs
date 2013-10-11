@@ -21,7 +21,7 @@ namespace DIYFEWeb.Controllers
             ArticleComment ac = new ArticleComment();
             if (ac.InsertComment(comment))
             {
-                data = new { success = true };
+                data = new { success = true, obj = comment };
             }
             else
             {

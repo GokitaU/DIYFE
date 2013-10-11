@@ -1,0 +1,55 @@
+﻿@model List<DIYFE.EF.ContentSection>
+@{
+    ViewBag.Title = "Who";
+}
+
+  <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li><a href="~/Home/GettingSponsored">Start the process to become sponsored</a></li>
+              <li><a href="~/project">View list of project currently available projects for sponsorship </a></li>
+              <li><a href="#">Submit a new project for sponsorhsip</a></li>
+              <li><a href="#">Learn more about donations or donating towards a project's build</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9 box-content">
+          <div class="row-fluid">
+              @*@foreach (DIYFE.EF.ContentSection content in Model)
+              {
+                  <h1>@content.ContentTitle</h1>
+                  @Html.Raw(content.ContentText)
+              }*@
+
+              <h1>What is sponsorship?</h1>
+                <p>Sponsorship or finical sponsorship is a practice of non-profits where an individual or organization donates money towards a particular project that they want to complete or build.  The sponsored person or group then has access to donated funds earmarked for the project.</p>
+                <p>This benefits the sponsored person in that all money needed to complete the project now becomes a tax credit.  For example if an individual wants to build a project with a BOM totaling 3000 dollars and took advantage of the program they would receive a 3000 dollar tax credit. </p>
+                <p>Sponsorship and DIYFE projects are closely related.  One of the requirements of taking part of our sponsorship program is by submitted a new project following these <a href="/Home/Projects">guidelines</a> or replicating a project that has <a href="/project">already been posted.</a> </p>
+                <p>In a few cases a project maybe already funded by donations made by individuals or organizations that would like to see the project completed but don’t want take a direct part in building it.  In this case the funds are not required by the builder, only agreement to follow project guidelines. </p>
+                <p>Individuals that have already finished projects for DIYFE would most likely be the ones chosen for projects that have already been funded. </p>
+                <p>For individuals taking part of the sponsorship program for the first time a fee for services is 10% of the total cost of the project’s BOM.  So a project with a total cost of 3000 in materials there will be an additional 300 needed to take part of the program. </p>
+                <p>The second project an individual gets sponsored the fee is reduced to 7% of the BOM.  A project with a 3000 dollar cost will need an additional 210 dollars. </p>
+                <p>The third project will have the fees reduced to 5% of the BOM.  A project with a 3000 dollar cost will need an additional 150 dollars. </p>
+                <p>The fourth and any additional sponsored project will be reduced to 3% of the BOM.  Now a 3000 dollar project will only need an additional 90 dollars. </p>
+                <p>We have purposely structured the program this way not only to reward builders for progress but to also make sure builders understands the project process first hand before any major undertakings.  Also, the cost to our organization working with first time participants is higher due to the amount of communication needed.  It benefits the sponsored individual to start off with a smaller project then work their way up to major changes. </p>
+              <p><a href="~/Home/GettingSponsored" class="btn">Star the process of getting sponsored</a></p>  
+              <h1>How does money management work for sponsorship? </h1>
+                <p>Money management and making sure funds received for a project are only used for said project is our up most priority.  To make this easiest on all parties involved we use an assigned debit card that is loaded with all funds required to meet project’s BOM.  We still require a copy of receipts for all purchases but the use of debit cards makes sure all funds are available to the builder right when they need it.  The use of debit cards also enhances our ability to track expenses and make sure we have ample documentation of finical distributions.  This also acts as a stop check if project expenses exceeds BOM or if transactions are made that don’t deal directly with the project. </p>
+              
+
+          </div>
+         
+      </div><!--/row-->

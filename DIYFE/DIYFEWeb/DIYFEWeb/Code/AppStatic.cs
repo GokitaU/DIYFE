@@ -28,6 +28,13 @@ namespace DIYFEWeb
             }
             HttpContext.Current.Application["Categories"] = allCats;
 
+            List<DIYFE.EF.ContentSection> contentSections = new List<ContentSection>();
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                contentSections = db.ContentSections.ToList();
+            }
+            HttpContext.Current.Application["ContentSections"] = contentSections;
+
             //BUILD TOP NAVIGATION ITEMS HTML
             #region
 
@@ -37,7 +44,7 @@ namespace DIYFEWeb
               topNavString +=  "<li class=\"dropdown\" id=\"MainNav-Mfg\">";
               topNavString += "<a data-toggle=\"dropdown\" class=\"dropdown-toggle\" href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "\")>" + firstCat.CategoryName + "<b class=\"caret\"></b></a>";
               topNavString += "<ul class=\"dropdown-menu\">";
-              foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
+              foreach (Category secondCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0).OrderBy(c => c.SubNavIndex))
               {
                   if (allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).Count() > 0)
                   {
@@ -45,7 +52,7 @@ namespace DIYFEWeb
                       topNavString += "<a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "\">" + secondCat.SecondLevCategoryName + "</a>";
                       topNavString += "<ul class=\"dropdown-menu\">";
                       //LOOP OVER THIRD LEVEL
-                      foreach (Category thirdCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0))
+                      foreach (Category thirdCat in allCats.Where(c => c.CategoryId == firstCat.CategoryId && c.SecondLevCategoryId == secondCat.SecondLevCategoryId && c.ThirdLevCategoryId > 0).OrderBy(c => c.SubNavIndex))
                       {
                           topNavString += "<li><a href=\"" + BaseSiteUrl + "post/" + firstCat.CategoryUrl + "/" + secondCat.SecondLevCategoryUrl + "/" + thirdCat.ThirdLevCategoryUrl + "\">" + thirdCat.ThirdLevCategoryName + "</a></li>";
                       }
@@ -109,6 +116,14 @@ namespace DIYFEWeb
             get
             {
                 return (List<Category>)(HttpContext.Current.Application["Categories"]);
+            }
+        }
+
+        public static List<DIYFE.EF.ContentSection> ContentItems
+        {
+            get
+            {
+                return (List<DIYFE.EF.ContentSection>)(HttpContext.Current.Application["ContentSections"]);
             }
         }
 

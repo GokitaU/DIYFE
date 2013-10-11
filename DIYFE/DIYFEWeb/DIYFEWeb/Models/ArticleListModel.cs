@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using DIYFE.EF;
+using PagedList;
 
 namespace DIYFEWeb.Models
 {
@@ -20,6 +21,8 @@ namespace DIYFEWeb.Models
         //DATA LIST
         public List<Article> ProjectList { get; set; }
         //DATA LIST
-        public List<Article> ArticleList { get; set; }
+        public IEnumerable<Article> ArticleList { get; set; }
+        //PAGED LIST
+        public IPagedList<Article> PagedArticle { get; set; }
     }
 }

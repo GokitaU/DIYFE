@@ -8,55 +8,61 @@
 <link href="@Url.Content("~/Content/comments.css")" rel="stylesheet" type="text/css" />
 
 <div class="container-fluid">
-
-    <div class="row-fluid">
-        <div class="span8">
-    <!--Body content-->
+ 
+     <div class="row-fluid">
+        @Html.Partial("_ArticleDetails", Model)
+         
+       
+         <div class="span4">
+    <!--Sidebar content-->
             <div class="row-fluid">
                 <div class="span12 box-content">
-                    <img style="float:left; margin-right:25px; margin-bottom:5px;" src="../../Content/img/support/project/testImg.gif" />
-                        <div class="page-header">
-                        <h3>Example page header <small>Subtext for header</small></h3>
-                        </div>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                    <div style="background-color:#232323; width:100%; height:40px;color:wheat;" >
-                        Views: 100       Skill:Easy        Required Funding
-                        Tags: 
-                    </div>
-                    <div style="background-color:#232323; width:100%; height:40px;color:wheat;" >
-                        SHARE LINKS, CHECK OUT http://blog.makezine.com/2013/04/03/hacdc-turns-five-years-old/
-                        <br />Sutumbal Apon - Google+ - Tweet - facebook - pintrest -  reddit - dig - tumblr
-                    </div>
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Project Resource Files</li>
+                        <li><a href="#">Download All Files</a></li>
+                        <li><a href="#">BOM</a></li>
+                        <li><a href="#">Goals and Timeframe</a></li>
+                        <li><a href="#">Current Build Instructions</a></li>
+                        <li class="nav-header">DIYFE this project</li>
+                        <li><a href="#">Sign up to build this project</a> Want to get <a href="#">sponcered</a> to build this project, this is where to start</li>
+                        <li><a href="#">Sign up to replicate this project</a> If you want to get <a href="#">sponcered</a> to build BUT want/needed to change a few things, start here.</li>
+                        <li class="nav-header">Follow</li>
+                        <li><a href="#">Sign up for project notifications</a> Get emails when this project's status changes, project files changes or new posts are aviable.</li>
+                        <li><a href="#">Sign up to help with project</a> If the project needs help from the community or needs multiable people to attend a build event make sure you know when and were.</li>
+                        <li class="nav-header">Donate</li>
+                        <li><a href="#">Donate money directly to this project</a> Know where your money is going.  If you want ALL of your donations to be used on this project.</li>
+                        <li><a href="#">Donate resouces, knowledge or time to this project</a> If you have particler knowldege or resouces that you don't mind shareing.  Let the builder know.</li>
+                        
+                      </ul>
+
                 </div>
             </div>
-
+            <br />
+             @*@Html.Partial("_MostViewed", Model.MostViewed)*@
         </div>
         <div class="span4">
     <!--Sidebar content-->
             <div class="row-fluid">
-                <div class="span12 box-content">Related Projects
-                    <ul class="nav nav-list">
-                        <li class="nav-header">List header</li>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Library</a></li>
-                        <li><a href="#">Applications</a></li>
-                        <li class="nav-header">Another list header</li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Help</a></li>
-                      </ul>
+                <div class="span12 box-content">Related Info
+                    @*@Html.Partial("_RelatedTreeView", Model.RelatedTreeView)*@
                 </div>
             </div>
             <br />
-            @if (Model.MostViewed != null){
-             @Html.Partial("_MostViewed", Model.MostViewed)
-            }
+   @*          @Html.Partial("_MostViewed", Model.MostViewed)*@
         </div>
     </div>
-
     <div class="row-fluid">
+        <div class="span8">
+
+            <input type="hidden" id="articleId" value="@Model.Article.ArticleId" />
+    @if (Model.Article.ArticleComments != null){
+             @Html.Partial("_ArticleComments", Model.Article.ArticleComments.ToList())
+            }else{
+             @Html.Partial("_ArticleComments", new List<DIYFE.EF.ArticleComment>())
+    }
+                    </div>
+    </div>
+@*    <div class="row-fluid">
         <div class="span8">
         <div class="sfcommentsListWrp  box-content">
             <h2 class="sfcommentsTitle" id="comments">
@@ -427,6 +433,6 @@ I haven't checked out Zurb, but I've heard some really good things about it. &nb
 	        </div>
         </div>
         <div class="span4"></div>
-    </div>
+    </div>*@
 
  </div>

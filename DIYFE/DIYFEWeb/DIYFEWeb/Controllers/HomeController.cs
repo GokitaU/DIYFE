@@ -16,15 +16,21 @@ namespace DIYFEWeb.Controllers
         public ActionResult Index()
         {
             ArticleListModel model = new ArticleListModel();
-
+            model.ProjectList = new List<DIYFE.EF.Article>();
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.ProjectList = db.Articles.Include("ArticleStatus.StatusType").OrderBy(a => a.UpdateDate).Take(5).ToList();
-                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleStatus.All(arts => arts.StatusId == 4)).Take(5).ToList());
-                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).Take(5).ToList());
-                model.ProjectList.AddRange(db.Articles.Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).Take(5).ToList());
+               // model.ProjectList = db.Articles.Include("ArticleStatus").OrderBy(a => a.UpdateDate).Take(5).ToList();
+                //Projects needing funding
+                model.ProjectList = db.Articles.Include("ArticleStatus").Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)).Take(5).ToList();
+                //Projects recently updated
+                model.ProjectList.AddRange(db.Articles.Include("ArticleStatus").Where(a => a.ArticleTypeId == 2).OrderBy(a => a.UpdateDate).Take(5).ToList());
+                //Post recently added
+                model.ProjectList.AddRange(db.Articles.Include("ArticleStatus").Where(a => a.ArticleTypeId == 1).OrderBy(a => a.CreatedDate).Take(5).ToList());
+                //News recently added
+                model.ProjectList.AddRange(db.Articles.Include("ArticleStatus").Where(a => a.ArticleTypeId == 4).OrderBy(a => a.CreatedDate).Take(5).ToList());
                 //model.ProjectList = db.Articles.Include()
                 //var articles = db.Articles.Where(a => a.ArticleTypeId == 2 && a.ArticleStatus.Any(ar => ar.StatusId==3));
+                
             }
             model.ProjectList = model.ProjectList.Distinct().ToList();
             PageModel.Title = "DiyFe";
@@ -109,7 +115,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "DIY, DIYFE, do it yourself, homesteading, transition";
             PageModel.ActiveTopNavLink = "MainNavAbout";
 
-            return View();
+            int[] contentItemIds = { 7 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -125,7 +136,7 @@ namespace DIYFEWeb.Controllers
         }
 
         [LoggingFilter]
-        public ActionResult Who()
+        public ActionResult Sponsorship()
         {
             PageModel.Title = "Contact About Boostrap Project";
             PageModel.Description = "Bootstrap Template Project";
@@ -133,7 +144,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 4,5,6,9 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -145,7 +161,12 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 15 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
         [LoggingFilter]
@@ -169,9 +190,19 @@ namespace DIYFEWeb.Controllers
             PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
             PageModel.ActiveTopNavLink = "MainNavContact";
 
-            return View();
+            int[] contentItemIds = { 6 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
         }
 
+
+        //DON'T FORGET ABOUT THIS ONE!!!
+        //THIS HOLDS INFORMATION ABOUT DONATINOS BUT MORE IMPORATNLY
+        //IT HOLDS THE CONTACT INFORMATION ABOUT THE PROJECTS AND CAN CONTACT THE BUILDER TO HELP
+        //THIS WOULD WORK REALLY WELL FOR LARGER PROJECT, AGRACULTER AND HOME BUILDING PROJECTS
         [LoggingFilter]
         public ActionResult Participate()
         {
@@ -184,6 +215,22 @@ namespace DIYFEWeb.Controllers
             return View();
         }
 
+        [LoggingFilter]
+        public ActionResult Projects()
+        {
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            int[] contentItemIds = { 1,3,8,10,11,13,14 };
+            
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems.Where(ci => contentItemIds.Contains(ci.ContentId)).ToList();
+
+            return View(Model);
+        }
 
         [LoggingFilter]
         public ActionResult Search(string term)
@@ -205,6 +252,22 @@ namespace DIYFEWeb.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult ContentText()
+        {
+            PageModel.Title = "Contact About Boostrap Project";
+            PageModel.Description = "Bootstrap Template Project";
+            PageModel.Author = "Bootstrap";
+            PageModel.Keywords = "Boostrap project, starter project, soe keywords, keywords";
+            PageModel.ActiveTopNavLink = "MainNavContact";
+
+            //int[] contentItemIds = { 1, 2, 3, 8, 10, 11 };
+
+            List<DIYFE.EF.ContentSection> Model = new List<DIYFE.EF.ContentSection>();
+            Model = AppStatic.ContentItems;
+
+            return View(Model);
         }
 
     }

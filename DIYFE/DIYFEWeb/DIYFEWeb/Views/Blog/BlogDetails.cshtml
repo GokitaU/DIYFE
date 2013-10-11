@@ -1,5 +1,54 @@
-﻿@{
+﻿@model DIYFEWeb.Models.ArticleModel
+@{
     ViewBag.Title = "BlogDetails";
 }
 
-<h2>BlogDetails</h2>
+<style>
+
+    .replyLink
+    {
+        height:20px;
+        width:95%;
+    }
+    .replyLink a
+    {
+        float:right;
+    }
+</style>
+
+<input type="hidden" id="articleId" value="@Model.Article.ArticleId" />
+
+ @Html.Partial("_ErrorPageHandler")
+
+<link href="@Url.Content("~/Content/comments.css")" rel="stylesheet" type="text/css" />
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        @Html.Partial("_ArticleDetails", Model)
+        <div class="span4">
+    <!--Sidebar content-->
+            <div class="row-fluid">
+                <div class="span12 box-content">Related Info
+                    @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
+                </div>
+            </div>
+            <br />
+   @*          @Html.Partial("_MostViewed", Model.MostViewed)*@
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span8">
+      @if (Model.Article.ArticleComments != null){
+             @Html.Partial("_ArticleComments", Model.Article.ArticleComments.ToList())
+            }else{
+             @Html.Partial("_ArticleComments", new List<DIYFE.EF.ArticleComment>())
+    }
+
+        </div>
+    </div>
+
+
+
+ </div>

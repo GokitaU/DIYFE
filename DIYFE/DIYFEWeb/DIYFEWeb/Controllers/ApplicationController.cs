@@ -46,10 +46,22 @@ namespace DIYFEWeb.Controllers
             //sDbg);
 
             string _ipAddress;
+            string _sessionId;
             _ipAddress = ctx.HttpContext.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             if (string.IsNullOrEmpty(_ipAddress))
             { _ipAddress = ctx.HttpContext.Request.ServerVariables["REMOTE_ADDR"]; }
-            DIYFELib.Tracking.InsertTracking(ctx.HttpContext.Session.SessionID,
+            if (Request.Cookies["sessionKey"] != null)
+            {
+                _sessionId = Request.Cookies["sessionKey"].Value;
+            }
+            else
+            {
+                Response.Cookies.Add(new System.Web.HttpCookie("sessionKey", ctx.HttpContext.Session.SessionID));
+                Response.Cookies["sessionKey"].Expires = DateTime.Now.AddHours(12);
+                _sessionId = ctx.HttpContext.Session.SessionID;
+            }
+
+            DIYFELib.Tracking.InsertTracking(_sessionId,
                                             _ipAddress,
                                             ctx.HttpContext.Request.Url.PathAndQuery);
 
