@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC3Template", "MVC3Template.csproj", "{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

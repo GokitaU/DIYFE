@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC3Template", "MVC3Template.csproj", "{2EDFB053-6E42-4E68-8C0A-3373B46E0BEA}"
 EndProject
 Global

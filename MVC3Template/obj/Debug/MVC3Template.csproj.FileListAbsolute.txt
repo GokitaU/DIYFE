@@ -7,3 +7,10 @@ c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\
 c:\users\jtipps\documents\visual studio 2010\Projects\MVC3Template\MVC3Template\obj\Debug\MVC3Template.pdb
 C:\Users\jtipps\Documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EmailValidation.dll
 C:\Users\jtipps\Documents\visual studio 2010\Projects\MVC3Template\MVC3Template\bin\EmailValidation.pdb
+C:\JT-Personal\MVC3Template\bin\MVC3Template.dll
+C:\JT-Personal\MVC3Template\bin\MVC3Template.pdb
+C:\JT-Personal\MVC3Template\bin\EntityFramework.dll
+C:\JT-Personal\MVC3Template\bin\EntityFramework.xml
+C:\JT-Personal\MVC3Template\obj\Debug\MVC3Template.csprojResolveAssemblyReference.cache
+C:\JT-Personal\MVC3Template\obj\Debug\MVC3Template.dll
+C:\JT-Personal\MVC3Template\obj\Debug\MVC3Template.pdb
