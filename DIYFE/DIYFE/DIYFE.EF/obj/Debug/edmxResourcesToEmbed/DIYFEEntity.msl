@@ -48,6 +48,7 @@
     <EntitySetMapping Name="ArticleTypes">
       <EntityTypeMapping TypeName="DIYFEModel.ArticleType">
         <MappingFragment StoreEntitySet="ArticleType">
+          <ScalarProperty Name="ArticleTypeDescription" ColumnName="ArticleTypeDescription" />
           <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
           <ScalarProperty Name="ArticleTypeName" ColumnName="ArticleTypeName" />
         </MappingFragment>
@@ -149,6 +150,117 @@
           <ScalarProperty Name="Session" ColumnName="Session" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="TrackingRowId" ColumnName="TrackingRowId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Days">
+      <EntityTypeMapping TypeName="DIYFEModel.Day">
+        <MappingFragment StoreEntitySet="Day">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DayId" ColumnName="DayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredients">
+      <EntityTypeMapping TypeName="DIYFEModel.Ingredient">
+        <MappingFragment StoreEntitySet="Ingredient">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipes">
+      <EntityTypeMapping TypeName="DIYFEModel.Recipe">
+        <MappingFragment StoreEntitySet="Recipe">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UseAmount" ColumnName="UseAmount" />
+          <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecipeSeasons">
+      <EntityTypeMapping TypeName="DIYFEModel.RecipeSeason">
+        <MappingFragment StoreEntitySet="RecipeSeason">
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+          <ScalarProperty Name="RecipeSeasonId" ColumnName="RecipeSeasonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seasons">
+      <EntityTypeMapping TypeName="DIYFEModel.Season">
+        <MappingFragment StoreEntitySet="Season">
+          <ScalarProperty Name="SeasonName" ColumnName="SeasonName" />
+          <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecipeDays">
+      <EntityTypeMapping TypeName="DIYFEModel.RecipeDay">
+        <MappingFragment StoreEntitySet="RecipeDay">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="DayId" ColumnName="DayId" />
+          <ScalarProperty Name="RecipeDayId" ColumnName="RecipeDayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeasonalRecipes">
+      <EntityTypeMapping TypeName="DIYFEModel.SeasonalRecipe">
+        <MappingFragment StoreEntitySet="SeasonalRecipes">
+          <ScalarProperty Name="UseAmount" ColumnName="UseAmount" />
+          <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+          <ScalarProperty Name="SeasonName" ColumnName="SeasonName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecipeIngredients">
+      <EntityTypeMapping TypeName="DIYFEModel.RecipeIngredient">
+        <MappingFragment StoreEntitySet="RecipeIngredient">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="RecipeIngredientId" ColumnName="RecipeIngredientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ClearWeek" FunctionName="DIYFEModel.Store.ClearWeek" />
+    <EntitySetMapping Name="DailyRecipes">
+      <EntityTypeMapping TypeName="DIYFEModel.DailyRecipe">
+        <MappingFragment StoreEntitySet="DailyRecipes">
+          <ScalarProperty Name="DayId" ColumnName="DayId" />
+          <ScalarProperty Name="RecipeDayId" ColumnName="RecipeDayId" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UseAmount" ColumnName="UseAmount" />
+          <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IngredientShoppings">
+      <EntityTypeMapping TypeName="DIYFEModel.IngredientShopping">
+        <MappingFragment StoreEntitySet="IngredientShopping">
+          <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+          <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

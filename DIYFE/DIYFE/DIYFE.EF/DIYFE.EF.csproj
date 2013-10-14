@@ -71,6 +71,12 @@
     <Compile Include="ContentSection.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="DailyRecipe.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Day.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="DIYFEEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,10 +98,34 @@
     <Compile Include="Error.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Ingredient.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IngredientShopping.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Notification.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeDay.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeIngredient.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecipeSeason.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Season.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeasonalRecipe.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="StatusType.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>

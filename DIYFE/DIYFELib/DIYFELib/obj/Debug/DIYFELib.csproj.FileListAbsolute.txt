@@ -9,4 +9,3 @@ D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\obj\Debug\DIYFELib.pdb
 C:\JT-Personal\DIYFE\DIYFELib\DIYFELib\obj\Debug\DIYFELib.csprojResolveAssemblyReference.cache
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Debug\PagedList.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\bin\Debug\PagedList.xml
-D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFELib\DIYFELib\obj\Debug\DIYFELib.csprojResolveAssemblyReference.cache

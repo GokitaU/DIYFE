@@ -13,6 +13,12 @@ namespace DIYFEWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "WeeklyMenu",
+                url: "WeeklyMenu",
+                defaults: new { controller = "Home", action = "WeeklyMenu" }
+            );
+
             #region ProjectMaps
 
             routes.MapRoute(
@@ -190,6 +196,11 @@ namespace DIYFEWeb
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Defaul1t",
+                url: "{controller}/{action}/{id}/{id2}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, id2 = UrlParameter.Optional }
             );
         }
     }

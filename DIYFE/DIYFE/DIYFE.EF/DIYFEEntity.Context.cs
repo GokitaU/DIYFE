@@ -41,6 +41,16 @@ namespace DIYFE.EF
         public DbSet<ContentSection> ContentSections { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tracking> Trackings { get; set; }
+        public DbSet<Day> Days { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeSeason> RecipeSeasons { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<RecipeDay> RecipeDays { get; set; }
+        public DbSet<SeasonalRecipe> SeasonalRecipes { get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        public DbSet<DailyRecipe> DailyRecipes { get; set; }
+        public DbSet<IngredientShopping> IngredientShoppings { get; set; }
     
         public virtual int sp_LoadArticle(string articleName, Nullable<int> articleId)
         {
@@ -71,6 +81,11 @@ namespace DIYFE.EF
                 new ObjectParameter("seasonId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SeasonGames", seasonIdParameter);
+        }
+    
+        public virtual int ClearWeek()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ClearWeek");
         }
     }
 }

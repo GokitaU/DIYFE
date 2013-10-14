@@ -1,0 +1,571 @@
+﻿@model DIYFEWeb.Models.WeeklyMenu
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+    <title>WeeklyMenu</title>
+        @Styles.Render("~/Content/jquery-ui.min.css")
+        @Scripts.Render("~/Content/jquery-1.9.1.js")
+        @Scripts.Render("~/Content/jquery-ui.min.js")
+    <style>
+        body {
+            font-size:10px;
+        }
+        .dailyRecipeDetails {
+            display:none;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#dailyAccordion").accordion({ heightStyle: "content", collapsible: true, active: false });
+            $("#accordion1").accordion({ heightStyle: "content", collapsible: true, active: false });
+            $(".accordion").accordion({ heightStyle: "content", collapsible: true, active: false });
+            $("#tabs").tabs();
+
+            $('#shoppingList').click(function () {
+                $('.shopingList').toggle();
+            });
+
+            $(".dailyRecipeToggle").click(function () {
+               $(this).parent().next('.dailyRecipeDetails').toggle();
+            });
+
+            $('.shoppingComplete').click(function () {
+                var item = $(this).parent();
+                var addIngredient = {
+                    ingredientId: $(this).attr('ingredientId')
+                }
+                $.ajax({
+                    url: 'home/AddShoppingItem',
+                    data: JSON.stringify(addIngredient),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                           item.attr('style', 'color:green;');
+                        } else {
+                            //show error
+                            alert(data.message);
+                            mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                        }
+                    },
+                    error: function () {
+                        alert('err');
+                    }
+                });
+
+                return false;
+            });
+
+            $('.shoppingItemNeeded').click(function () {
+                
+                var item = $(this).parent();
+                var removeIngredient = {
+                    ingredientId: $(this).attr('ingredientId')
+                }
+                $.ajax({
+                    url: 'home/RemoveShoppingItem',
+                    data: JSON.stringify(removeIngredient),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            item.attr('style', '');
+                        } else {
+                            //show error
+                            alert(data.message);
+                            
+                        }
+                    },
+                    error: function () {
+                        alert('err');
+                    }
+                });
+
+
+                return false;
+            });
+
+            $(".dailyRecipeRemove").click(function () {
+                //alert($(this).attr('recipeDayId'));
+                //add ajax call that removes from the RecipeDaily and subtracts the Recipe.UseAmaount...this should be a SP
+                        var removedRecipe = {
+                            recipeDayId: $(this).attr('recipeDayId')
+                        }
+                        $.ajax({
+                            url: 'home/DailyRecipeRemove',
+                            data: JSON.stringify(removedRecipe),
+                            type: 'POST',
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                if (data.success) {
+                                    alert('done');
+                                    //loadingDiv.hide();
+                                    //mediator.publish('BetLoadDone', {});
+                                } else {
+                                    //show error
+                                    alert(data.message);
+                                    mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                                }
+                            },
+                            error: function () {
+                                mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                            }
+                        });
+
+            });
+
+            $(".addToDay").click(function () {
+
+                //add ajax call that add recipe to day
+                
+                //alert($(this).parent().find(':selected').attr("id") + ' recipie id' );
+
+                var addToDay = {
+                    dayId: $(this).parent().find(':selected').attr("id"),
+                    recipeId: $(this).attr('recipeId')
+                }
+                $.ajax({
+                    url: 'home/AddToDay',
+                    data: JSON.stringify(addToDay),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            alert('done');
+                            //loadingDiv.hide();
+                            //mediator.publish('BetLoadDone', {});
+                        } else {
+                            //show error
+                            alert(data.message);
+                            mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                        }
+                    },
+                    error: function () {
+                        mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                    }
+                });
+            });
+
+            $("#clearWeek").click(function () {
+              //  alert('no need for id, just clear the active status for anything in the RecipeDay table');
+                $.ajax({
+                    url: 'home/ClearWeek',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            alert('done');
+                            //loadingDiv.hide();
+                            //mediator.publish('BetLoadDone', {});
+                        } else {
+                            //show error
+                            alert(data.message);
+                            mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                        }
+                    },
+                    error: function () {
+                        mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Hey, Weekly Menu</h1>
+        <div style="width:100%; clear:both">
+            <a href="#" id="shoppingList">shopping list</a> 
+            <div class="shopingList" style="display:none;">
+                <ul>
+                    @foreach (var listItem in Model.DailyRecipes.GroupBy(x => new { x.Quantity, x.QuantityUnit, x.IngredientName, x.Discription, x.RecipeName, x.IngredientId })
+                        .OrderBy(li => li.Key.IngredientId))
+                    {
+                        if (Model.ShoppingList.Where(sl => listItem.Key.IngredientId == sl.IngredientId).FirstOrDefault() == null)
+                        {
+                        <li>@listItem.Key.Quantity @listItem.Key.QuantityUnit @listItem.Key.IngredientName - @listItem.Key.Discription (@listItem.Key.RecipeName)
+                            <br /><a href="" ingredientId="@listItem.Key.IngredientId" class="shoppingComplete">have item</a> | <a href="#" ingredientId="@listItem.Key.IngredientId" class="shoppingItemNeeded">need item</a>
+                        </li>
+                        }
+                        else
+                        {
+                            <li style="color:green;">@listItem.Key.Quantity @listItem.Key.QuantityUnit @listItem.Key.IngredientName - @listItem.Key.Discription (@listItem.Key.RecipeName)
+                                <br /><a href="" ingredientId="@listItem.Key.IngredientId" class="shoppingComplete">have item</a> | <a href="#" ingredientId="@listItem.Key.IngredientId" class="shoppingItemNeeded">need item</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div><br /><br />
+            <a href="#" id="clearWeek">clear week</a>
+        </div>
+        <div style="float:left; width:400px;">
+            <div id="dailyAccordion">
+	            <h3 class="dailySection" dayId="1">Monday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 1)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+	            </div>
+
+	             <h3 class="dailySection" dayId="2">Tuesday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 2)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+
+	             <h3 class="dailySection" dayId="3">Wensday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 3)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+
+	             <h3 class="dailySection" dayId="4">Thursday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 4)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+
+                <h3 class="dailySection" dayId="5">Friday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 5)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+
+                <h3 class="dailySection" dayId="6">Saturday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 6)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+
+                <h3 class="dailySection" dayId="7">Sunday</h3>
+	            <div>
+                    @foreach (var dr in Model.DailyRecipes.Where(idr => idr.DayId == 7)
+                                        .GroupBy(x => new { x.RecipeName, x.RecipeId, x.RecipeDayId, x.Instructions }))
+                    {
+                        <div class="dailyRecipe">
+                            <div class="dailyRecipeLinks">
+                                <a href="#" class="dailyRecipeToggle">@dr.Key.RecipeName</a>
+                                 - <a href="#" class="dailyRecipeRemove" recipeDayId="@dr.Key.RecipeDayId">remove</a>
+                            </div>
+                               
+		                    <div class="dailyRecipeDetails">
+                                 @foreach (DIYFE.EF.DailyRecipe ingredient in Model.DailyRecipes.Where(q => q.RecipeDayId == dr.Key.RecipeDayId).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(dr.Key.Instructions)
+		                    </div>
+                        </div>
+                    }
+
+	            </div>
+            </div>
+        </div>
+        <div style="float:right; width:400px;">
+            <div id="tabs">
+	            <ul>
+		            <li><a href="#tabs-1">Spring</a></li>
+		            <li><a href="#tabs-2">Summer</a></li>
+		            <li><a href="#tabs-3">Fall</a></li>
+                    <li><a href="#tabs-4">Winter</a></li>
+                    <li><a href="#tabs-5">All</a></li>
+	            </ul>
+	            <div id="tabs-1">
+		            <div class="accordion">
+                        @foreach (var ar in Model.SeasonalRecipes.Where(s => s.SeasonId == 1)
+                            .GroupBy(x => new { x.Name, x.RecipeId, x.Instructions }))
+                        {
+
+                            //DIYFE.EF.SeasonalRecipe ar
+                        <h3>@ar.Key.Name</h3>
+	                        <div>
+                                <div class="addToDaily">
+                                   <select class="daySelection">
+                                       <option id="1">Monday</option>
+                                       <option id="2">Tuesday</option>
+                                       <option id="3">Wensday</option>
+                                       <option id="4">Thursday</option>
+                                       <option id="5">Friday</option>
+                                       <option id="6">Saturday</option>
+                                       <option id="7">Sunday</option>
+                                   </select>  <a href="#" recipeId="@ar.Key.RecipeId" class="addToDay">Add To Day</a>
+                                </div>
+                                 @foreach (DIYFE.EF.SeasonalRecipe ingredient in Model.SeasonalRecipes.Where(q => q.RecipeId == ar.Key.RecipeId && q.SeasonId == 1).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(ar.Key.Instructions)
+
+	                        </div>                            
+                        }
+                  </div>
+	            </div>
+	            <div id="tabs-2">
+		            <div class="accordion">
+                        @foreach (var ar in Model.SeasonalRecipes.Where(s => s.SeasonId == 2)
+                            .GroupBy(x => new { x.Name, x.RecipeId, x.Instructions }))
+                        {
+
+                            //DIYFE.EF.SeasonalRecipe ar
+                        <h3>@ar.Key.Name</h3>
+	                        <div>
+                                <div class="addToDaily">
+                                   <select class="daySelection">
+                                       <option id="1">Monday</option>
+                                       <option id="2">Tuesday</option>
+                                       <option id="3">Wensday</option>
+                                       <option id="4">Thursday</option>
+                                       <option id="5">Friday</option>
+                                       <option id="6">Saturday</option>
+                                       <option id="7">Sunday</option>
+                                   </select>  <a href="#" recipeId="@ar.Key.RecipeId" class="addToDay">Add To Day</a>
+                                </div>
+                                 @foreach (DIYFE.EF.SeasonalRecipe ingredient in Model.SeasonalRecipes.Where(q => q.RecipeId == ar.Key.RecipeId && q.SeasonId == 2).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(ar.Key.Instructions)
+
+	                        </div>                            
+                        }
+                  </div>
+	            </div>
+	            <div id="tabs-3">
+		            <div class="accordion">
+                        @foreach (var ar in Model.SeasonalRecipes.Where(s => s.SeasonId == 3)
+                            .GroupBy(x => new { x.Name, x.RecipeId, x.Instructions }))
+                        {
+
+                            //DIYFE.EF.SeasonalRecipe ar
+                        <h3>@ar.Key.Name</h3>
+	                        <div>
+                                <div class="addToDaily">
+                                   <select class="daySelection">
+                                       <option id="1">Monday</option>
+                                       <option id="2">Tuesday</option>
+                                       <option id="3">Wensday</option>
+                                       <option id="4">Thursday</option>
+                                       <option id="5">Friday</option>
+                                       <option id="6">Saturday</option>
+                                       <option id="7">Sunday</option>
+                                   </select>  <a href="#" recipeId="@ar.Key.RecipeId" class="addToDay">Add To Day</a>
+                                </div>
+                                 @foreach (DIYFE.EF.SeasonalRecipe ingredient in Model.SeasonalRecipes.Where(q => q.RecipeId == ar.Key.RecipeId && q.SeasonId == 3).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(ar.Key.Instructions)
+
+	                        </div>                            
+                        }
+                  </div>
+	            </div>
+                <div id="tabs-4">
+		            <div class="accordion">
+                        @foreach (var ar in Model.SeasonalRecipes.Where(s => s.SeasonId == 4)
+                            .GroupBy(x => new { x.Name, x.RecipeId, x.Instructions }))
+                        {
+
+                            //DIYFE.EF.SeasonalRecipe ar
+                        <h3>@ar.Key.Name</h3>
+	                        <div>
+                                <div class="addToDaily">
+                                   <select class="daySelection">
+                                       <option id="1">Monday</option>
+                                       <option id="2">Tuesday</option>
+                                       <option id="3">Wensday</option>
+                                       <option id="4">Thursday</option>
+                                       <option id="5">Friday</option>
+                                       <option id="6">Saturday</option>
+                                       <option id="7">Sunday</option>
+                                   </select>  <a href="#" recipeId="@ar.Key.RecipeId" class="addToDay">Add To Day</a>
+                                </div>
+                                 @foreach (DIYFE.EF.SeasonalRecipe ingredient in Model.SeasonalRecipes.Where(q => q.RecipeId == ar.Key.RecipeId && q.SeasonId == 4).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(ar.Key.Instructions)
+
+	                        </div>                            
+                        }
+                  </div>
+	            </div>
+                <div id="tabs-5">
+		            <div class="accordion">
+                        @foreach (var ar in Model.SeasonalRecipes.Where(s => s.SeasonId == 5)
+                            .GroupBy(x => new { x.Name, x.RecipeId, x.Instructions }))
+                        {
+
+                            //DIYFE.EF.SeasonalRecipe ar
+                        <h3>@ar.Key.Name</h3>
+	                        <div>
+                                <div class="addToDaily">
+                                   <select class="daySelection">
+                                       <option id="1">Monday</option>
+                                       <option id="2">Tuesday</option>
+                                       <option id="3">Wensday</option>
+                                       <option id="4">Thursday</option>
+                                       <option id="5">Friday</option>
+                                       <option id="6">Saturday</option>
+                                       <option id="7">Sunday</option>
+                                   </select>  <a href="#" recipeId="@ar.Key.RecipeId" class="addToDay">Add To Day</a>
+                                </div>
+                                 @foreach (DIYFE.EF.SeasonalRecipe ingredient in Model.SeasonalRecipes.Where(q => q.RecipeId == ar.Key.RecipeId && q.SeasonId == 5).OrderBy(q1 => q1.IngredientId))
+                                 {
+                                    <ul>
+                                        <li>@ingredient.Quantity @ingredient.QuantityUnit @ingredient.IngredientName @ingredient.Discription </li>
+                                    </ul>
+                                 }
+
+                                @Html.Raw(ar.Key.Instructions)
+
+	                        </div>                            
+                        }
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

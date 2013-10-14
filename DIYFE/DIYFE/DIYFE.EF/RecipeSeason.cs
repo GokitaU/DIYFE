@@ -12,17 +12,13 @@ namespace DIYFE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class ArticleType
+    public partial class RecipeSeason
     {
-        public ArticleType()
-        {
-            this.Articles = new HashSet<Article>();
-        }
+        public int RecipeSeasonId { get; set; }
+        public int SeasonId { get; set; }
+        public int RecipeId { get; set; }
     
-        public int ArticleTypeId { get; set; }
-        public string ArticleTypeName { get; set; }
-        public string ArticleTypeDescription { get; set; }
-    
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual Recipe Recipe { get; set; }
+        public virtual Season Season { get; set; }
     }
 }

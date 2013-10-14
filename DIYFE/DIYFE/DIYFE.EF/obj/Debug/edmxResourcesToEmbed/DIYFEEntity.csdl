@@ -60,6 +60,41 @@
       <End Role="Category" EntitySet="Categories" />
       <End Role="Article" EntitySet="Articles" />
     </AssociationSet>
+    <EntitySet Name="Days" EntityType="DIYFEModel.Day" />
+    <EntitySet Name="Ingredients" EntityType="DIYFEModel.Ingredient" />
+    <EntitySet Name="Recipes" EntityType="DIYFEModel.Recipe" />
+    <EntitySet Name="RecipeSeasons" EntityType="DIYFEModel.RecipeSeason" />
+    <EntitySet Name="Seasons" EntityType="DIYFEModel.Season" />
+    <AssociationSet Name="FK_RecipeSeason_Recipe" Association="DIYFEModel.FK_RecipeSeason_Recipe">
+      <End Role="Recipe" EntitySet="Recipes" />
+      <End Role="RecipeSeason" EntitySet="RecipeSeasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeSeason_Season" Association="DIYFEModel.FK_RecipeSeason_Season">
+      <End Role="Season" EntitySet="Seasons" />
+      <End Role="RecipeSeason" EntitySet="RecipeSeasons" />
+    </AssociationSet>
+    <EntitySet Name="RecipeDays" EntityType="DIYFEModel.RecipeDay" />
+    <AssociationSet Name="FK_RecipeDay_Day" Association="DIYFEModel.FK_RecipeDay_Day">
+      <End Role="Day" EntitySet="Days" />
+      <End Role="RecipeDay" EntitySet="RecipeDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeDay_Recipe" Association="DIYFEModel.FK_RecipeDay_Recipe">
+      <End Role="Recipe" EntitySet="Recipes" />
+      <End Role="RecipeDay" EntitySet="RecipeDays" />
+    </AssociationSet>
+    <EntitySet Name="SeasonalRecipes" EntityType="DIYFEModel.SeasonalRecipe" />
+    <EntitySet Name="RecipeIngredients" EntityType="DIYFEModel.RecipeIngredient" />
+    <AssociationSet Name="FK_RecipeIngredient_Ingredient" Association="DIYFEModel.FK_RecipeIngredient_Ingredient">
+      <End Role="Ingredient" EntitySet="Ingredients" />
+      <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="DIYFEModel.FK_RecipeIngredient_Recipe">
+      <End Role="Recipe" EntitySet="Recipes" />
+      <End Role="RecipeIngredient" EntitySet="RecipeIngredients" />
+    </AssociationSet>
+    <FunctionImport Name="ClearWeek" />
+    <EntitySet Name="DailyRecipes" EntityType="DIYFEModel.DailyRecipe" />
+    <EntitySet Name="IngredientShoppings" EntityType="DIYFEModel.IngredientShopping" />
   </EntityContainer>
   <EntityType Name="ArticleComment">
     <Key>
@@ -114,6 +149,7 @@
     <Property Name="ArticleTypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ArticleTypeName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Articles" Relationship="DIYFEModel.FK_Article_ArticleType" FromRole="ArticleType" ToRole="Article" />
+    <Property Type="String" Name="ArticleTypeDescription" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Email">
     <Key>
@@ -322,4 +358,203 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Day">
+    <Key>
+      <PropertyRef Name="DayId" />
+    </Key>
+    <Property Type="Int32" Name="DayId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RecipeDays" Relationship="DIYFEModel.FK_RecipeDay_Day" FromRole="Day" ToRole="RecipeDay" />
+  </EntityType>
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="IngredientId" />
+    </Key>
+    <Property Type="Int32" Name="IngredientId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RecipeIngredients" Relationship="DIYFEModel.FK_RecipeIngredient_Ingredient" FromRole="Ingredient" ToRole="RecipeIngredient" />
+  </EntityType>
+  <EntityType Name="Recipe">
+    <Key>
+      <PropertyRef Name="RecipeId" />
+    </Key>
+    <Property Type="Int32" Name="RecipeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Instructions" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UseAmount" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+    <NavigationProperty Name="RecipeSeasons" Relationship="DIYFEModel.FK_RecipeSeason_Recipe" FromRole="Recipe" ToRole="RecipeSeason" />
+    <NavigationProperty Name="RecipeDays" Relationship="DIYFEModel.FK_RecipeDay_Recipe" FromRole="Recipe" ToRole="RecipeDay" />
+    <NavigationProperty Name="RecipeIngredients" Relationship="DIYFEModel.FK_RecipeIngredient_Recipe" FromRole="Recipe" ToRole="RecipeIngredient" />
+  </EntityType>
+  <EntityType Name="RecipeSeason">
+    <Key>
+      <PropertyRef Name="RecipeSeasonId" />
+    </Key>
+    <Property Type="Int32" Name="RecipeSeasonId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="SeasonId" Nullable="false" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <NavigationProperty Name="Recipe" Relationship="DIYFEModel.FK_RecipeSeason_Recipe" FromRole="RecipeSeason" ToRole="Recipe" />
+    <NavigationProperty Name="Season" Relationship="DIYFEModel.FK_RecipeSeason_Season" FromRole="RecipeSeason" ToRole="Season" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="SeasonId" />
+    </Key>
+    <Property Type="Int32" Name="SeasonId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="SeasonName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RecipeSeasons" Relationship="DIYFEModel.FK_RecipeSeason_Season" FromRole="Season" ToRole="RecipeSeason" />
+  </EntityType>
+  <Association Name="FK_RecipeSeason_Recipe">
+    <End Type="DIYFEModel.Recipe" Role="Recipe" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeSeason" Role="RecipeSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeSeason">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeSeason_Season">
+    <End Type="DIYFEModel.Season" Role="Season" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeSeason" Role="RecipeSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="SeasonId" />
+      </Principal>
+      <Dependent Role="RecipeSeason">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RecipeDay">
+    <Key>
+      <PropertyRef Name="RecipeDayId" />
+    </Key>
+    <Property Type="Int32" Name="RecipeDayId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="DayId" Nullable="false" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="Boolean" Name="Active" Nullable="false" />
+    <NavigationProperty Name="Day" Relationship="DIYFEModel.FK_RecipeDay_Day" FromRole="RecipeDay" ToRole="Day" />
+    <NavigationProperty Name="Recipe" Relationship="DIYFEModel.FK_RecipeDay_Recipe" FromRole="RecipeDay" ToRole="Recipe" />
+  </EntityType>
+  <Association Name="FK_RecipeDay_Day">
+    <End Type="DIYFEModel.Day" Role="Day" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeDay" Role="RecipeDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Day">
+        <PropertyRef Name="DayId" />
+      </Principal>
+      <Dependent Role="RecipeDay">
+        <PropertyRef Name="DayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeDay_Recipe">
+    <End Type="DIYFEModel.Recipe" Role="Recipe" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeDay" Role="RecipeDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeDay">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SeasonalRecipe">
+    <Key>
+      <PropertyRef Name="SeasonName" />
+      <PropertyRef Name="SeasonId" />
+      <PropertyRef Name="RecipeId" />
+      <PropertyRef Name="IngredientId" />
+      <PropertyRef Name="IngredientName" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="QuantityUnit" />
+      <PropertyRef Name="UseAmount" />
+    </Key>
+    <Property Type="String" Name="SeasonName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SeasonId" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Instructions" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="Int32" Name="IngredientId" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Discription" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="QuantityUnit" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UseAmount" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeIngredient">
+    <Key>
+      <PropertyRef Name="RecipeIngredientId" />
+    </Key>
+    <Property Type="Int32" Name="RecipeIngredientId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="Int32" Name="IngredientId" Nullable="false" />
+    <Property Type="String" Name="Discription" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="20" Scale="2" />
+    <Property Type="String" Name="QuantityUnit" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Ingredient" Relationship="DIYFEModel.FK_RecipeIngredient_Ingredient" FromRole="RecipeIngredient" ToRole="Ingredient" />
+    <NavigationProperty Name="Recipe" Relationship="DIYFEModel.FK_RecipeIngredient_Recipe" FromRole="RecipeIngredient" ToRole="Recipe" />
+  </EntityType>
+  <Association Name="FK_RecipeIngredient_Ingredient">
+    <End Type="DIYFEModel.Ingredient" Role="Ingredient" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeIngredient" Role="RecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredient">
+        <PropertyRef Name="IngredientId" />
+      </Principal>
+      <Dependent Role="RecipeIngredient">
+        <PropertyRef Name="IngredientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeIngredient_Recipe">
+    <End Type="DIYFEModel.Recipe" Role="Recipe" Multiplicity="1" />
+    <End Type="DIYFEModel.RecipeIngredient" Role="RecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeIngredient">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DailyRecipe">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="UseAmount" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="QuantityUnit" />
+      <PropertyRef Name="IngredientName" />
+      <PropertyRef Name="RecipeId" />
+      <PropertyRef Name="IngredientId" />
+      <PropertyRef Name="RecipeDayId" />
+      <PropertyRef Name="DayId" />
+    </Key>
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RecipeName" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Instructions" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UseAmount" Nullable="false" />
+    <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="QuantityUnit" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="Int32" Name="IngredientId" Nullable="false" />
+    <Property Type="String" Name="Discription" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RecipeDayId" Nullable="false" />
+    <Property Type="Int32" Name="DayId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IngredientShopping">
+    <Key>
+      <PropertyRef Name="ShoppingItemId" />
+    </Key>
+    <Property Type="Int32" Name="ShoppingItemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IngredientId" Nullable="false" />
+  </EntityType>
 </Schema>

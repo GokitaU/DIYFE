@@ -208,7 +208,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -231,6 +230,7 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\PageBaseModel.cs" />
     <Compile Include="Models\ProjectListModel.cs" />
+    <Compile Include="Models\WeeklyMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +259,9 @@
     <Content Include="Content\img\treeview\treeview-gray.gif" />
     <Content Include="Content\img\treeview\treeview-red-line.gif" />
     <Content Include="Content\img\treeview\treeview-red.gif" />
+    <Content Include="Content\jquery-1.9.1.js" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.min.js" />
     <Content Include="Content\jquery.treeview.css" />
     <Content Include="Content\min\DIYFE_min.css" />
     <Content Include="Content\min\DIYFE_min.js" />
@@ -310,6 +313,9 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Home\jquery-1.9.1.js" />
+    <Content Include="Views\Home\jquery-ui.min.css" />
+    <Content Include="Views\Home\jquery-ui.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -407,6 +413,7 @@
     <Content Include="Views\Shared\_ArticleDetails.cshtml" />
     <Content Include="Views\Home\Projects.cshtml" />
     <Content Include="Views\Home\ContentText.cshtml" />
+    <Content Include="Views\Home\WeeklyMenu.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

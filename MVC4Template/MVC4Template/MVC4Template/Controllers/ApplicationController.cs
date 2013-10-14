@@ -58,15 +58,23 @@ namespace MVC4Template.Controllers
         }
 
 
-        //protected override void OnResultExecuted(ResultExecutedContext ctx)
-        //{
-        //    base.OnResultExecuted(ctx);
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            //********************************?????????????************************///
+            //NOTE:PUT ERROR LOGGING CODE HERE
+            if (filterContext.Exception != null)
+            {
+                MVC4Template.Models.ErrorModel err = new MVC4Template.Models.ErrorModel();
+                err.InsertError(filterContext.Exception);
 
-        //    //string sDbg = ctx.Controller.TempData["DebugTrc"] as string;
-        //    //System.Diagnostics.Debug.WriteLine("OnResultExecuted " +
-        //    //sDbg);
-        //}
+                filterContext.HttpContext.Trace.Write("(Logging Filter)Exception thrown");
+            }
 
+            //****************************????********************///
+            //NOTE: PUT USER TRACKING CODE HERE
+
+            base.OnActionExecuted(filterContext);
+        }
         
 
     }
