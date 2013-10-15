@@ -1,4 +1,24 @@
-﻿
+﻿//USAGE:
+//var bv = navigator.uaMatch();
+//alert(bv.browser + " -- " + bv.version);
+navigator.uaMatch = function () {
+
+    var ua = navigator.userAgent.toLowerCase();
+
+    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
+              /(webkit)[ \/]([\w.]+)/.exec(ua) ||
+              /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
+              /(msie) ([\w.]+)/.exec(ua) ||
+              ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
+              [];
+
+    return {
+        browser: match[1] || "",
+        version: parseFloat(match[2]) || 0
+    };
+};
+
+
 //USAGE:
 //if (dataList[0][columnIndex].tryParseInt() > -1)
 //RETURNS:Int- Returns Int value of string, -1 if unable to parse 
