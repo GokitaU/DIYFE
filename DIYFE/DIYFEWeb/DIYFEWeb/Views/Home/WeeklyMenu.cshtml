@@ -191,13 +191,13 @@
                     {
                         if (Model.ShoppingList.Where(sl => listItem.Key.IngredientId == sl.IngredientId).FirstOrDefault() == null)
                         {
-                        <li>@listItem.Key.Quantity @listItem.Key.QuantityUnit @listItem.Key.IngredientName - @listItem.Key.Discription (@listItem.Key.RecipeName)
+                        <li>@listItem.Key.IngredientName @listItem.Key.Quantity @listItem.Key.QuantityUnit - @listItem.Key.Discription (@listItem.Key.RecipeName)
                             <br /><a href="" ingredientId="@listItem.Key.IngredientId" class="shoppingComplete">have item</a> | <a href="#" ingredientId="@listItem.Key.IngredientId" class="shoppingItemNeeded">need item</a>
                         </li>
                         }
                         else
                         {
-                            <li style="color:green;">@listItem.Key.Quantity @listItem.Key.QuantityUnit @listItem.Key.IngredientName - @listItem.Key.Discription (@listItem.Key.RecipeName)
+                            <li style="color:green;">@listItem.Key.IngredientName @listItem.Key.Quantity @listItem.Key.QuantityUnit - @listItem.Key.Discription (@listItem.Key.RecipeName)
                                 <br /><a href="" ingredientId="@listItem.Key.IngredientId" class="shoppingComplete">have item</a> | <a href="#" ingredientId="@listItem.Key.IngredientId" class="shoppingItemNeeded">need item</a>
                             </li>
                         }
