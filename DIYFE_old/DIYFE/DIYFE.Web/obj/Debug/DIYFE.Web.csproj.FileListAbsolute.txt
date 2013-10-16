@@ -18,3 +18,13 @@ C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.dll
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.pdb
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.dll
 C:\JT-Personal\DIYFE\DIYFE\DIYFE.Web\bin\DIYFELib.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\DIYFE.Web.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\DIYFE.Web.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\DIYFELib.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\Sports.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\DIYFELib.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\Sports.pdb
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\bin\EntityFramework.xml
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.csprojResolveAssemblyReference.cache
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.dll
+D:\VSProjects\GitHub\DIYFE\DIYFE_old\DIYFE\DIYFE.Web\obj\Debug\DIYFE.Web.pdb
