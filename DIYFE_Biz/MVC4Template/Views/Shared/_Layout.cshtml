@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.PageModel.Title</title>
+    <meta name="description" content="@ViewBag.PageModel.Description">
+    <meta name="author" content="@ViewBag.PageModel.Author">
+    <meta name="keywords" content="@ViewBag.PageModel.Keywords" />
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/img/favicon.ico")">
+    
+  <link href="@Url.Content("~/Content/Frameworks/Bootstrap/css/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/jquery.treeview.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/Content/mobile-responsive.css")" rel="stylesheet" type="text/css" />
+   @* <link href="@Url.Content("~/Content/min/DIYFE_min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Content/min/DIYFE_min.js")" type="text/javascript"></script>*@
+       
+
+   <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/AppSupport/jquery.treeview.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Bootstrap/Twitter/js/bootstrap.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/AppSupport/usefull.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Plugins/pager.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Plugins/mediator.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.main.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/AppSupport/mobile-responsive.js")" type="text/javascript"></script>
+
+     @RenderSection("JS", required:false)
+     @RenderSection("CSS", required:false)
+
+@*    @Styles.Render("~/Content/min")
+    @Scripts.Render("~/Content/min") 
+    @Styles.Render("~/bundles/css/min")
+    @Scripts.Render("~/bundles/script/min")
+    *@
+@*    <script type="text/javascript" scr='@Scripts.Url("~/bundles/")' async></script>*@
+
+    <script type="text/javascript">
+        var topNavSelectedId = '#@ViewBag.PageModel.ActiveTopNavLink';
+    </script>
+
+</head>
+<body>
+
+@*    <div style="height:300px">
+         @DIYFEWeb.AppStatic.TopNavHtml
+    </div>*@
+            <div id="masterErrorDiv">
+            <div class="alert alert-error">
+                 <p id="masterErrorText"></p>
+            </div>
+        </div>
+            
+      
+    <div id="container">
+        <header>
+            <div id="headerBar"></div>
+            <div class="content">
+                <div id="logoFlag">
+                    <div style="height:270px; background-color:#034769"><!--<p><small>DIYFE: Do It Yourself For Everyone. You do it, build, learn about it, and create it, all because you want too. Sshare your experiences, knowledge and resources with the rest of the world. Thus you do it for yourself for everyone else to build from.</small></p>--></div>
+                    <div style="padding-left:30px; background-color:#034769; font-weight:bold;">DIY<br />FE - text based logo-flag thing</div>
+                </div>
+                <div id="topContent" style="padding-top:3px;">
+                    <div class="row">
+                        <div class="col-md-3 socialShare">
+                            <ul>
+						    <li class="facebook"></li>
+						    <li class="twitter"></li>
+						    <li class="google-plus"></li>
+						    <li class="youtube"></li>
+						    <li class="foursquare"></li>
+					        </ul>
+                        </div>
+                         <div class="col-md-6">
+                            <div id="siteSearch"><input type="text" /> site search </div>
+                         </div>
+                    </div>
+                    
+                </div>
+                <div id="bottomContent" style="padding-top:10px;">
+                  @DIYFEWeb.StaticConfig.TopNavHtml
+                 <div id="responsive">
+                            <a href="#" class="toggleMenu">MENU</a>
+                            <div id="responsive-menu-holder">
+                                <div id='responsive-menu'>
+                                    <div class='mainMenu'>
+                                        <div class="menu"></div>
+                                        <div class="utility"></div>
+                                    </div>
+                                    <div class='subMenu'></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </header>
+        <main>
+              @RenderBody()
+        </main>
+        <br /><br />
+        <footer>
+            <div class="content">
+                <div>FOOTER CONTENT</div>
+                <div class="row">
+                    <div class="col-md-3"><h4>Categories</h4>
+                        <ul>
+                            <li><a href="#">Main Nav Items</a> </li>
+                            <li><a href="#">Water</a> </li>
+                            <li><a href="#">Shelter</a> </li>
+                            <li><a href="#">Food</a> </li>
+                            <li><a href="#">Communication & Education</a> </li>
+                            <li><a href="#">Manufacturing Goods</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"><h4>Help Fund Projects</h4>
+                        <ul>
+                             <li><a href="#">Projects</a></li>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Research</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"><h4>Contact</h4>
+                        <ul>
+                            <li><a href="#">Online Form</a></li>
+                            <li><a href="#">We'll promot your project or product</a></li>
+                            <li><a href="#">Add Space</a></li>
+                            <li><a href="#">email</a></li>
+                            <li><a href="#">phone</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"><h4>View More</h4>
+                        <ul>
+                             <li><a href="#">Youtube Channel</a></li>
+                            <li><a href="#">Kickstarter projects</a></li>
+                            <li><a href="#">RSS Feed</a></li>
+                            <li><a href="#">Social media share links</a></li>
+                        </ul>
+                    </div>
+                     
+                </div>
+                <div class="row" style="border-top:1px solid black;">
+                    <div class="col-lg-9">
+                        privacy policy - copy write - and blablalbal
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+       @Html.Partial("_LogOnForm")  
+
+    </body>
+</html>
+
+
+
+
+
+@*<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/Content/js")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>*@

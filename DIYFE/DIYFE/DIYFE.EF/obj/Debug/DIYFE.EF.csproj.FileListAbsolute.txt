@@ -14,3 +14,11 @@ D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.xml
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
 D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.dll.config
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.dll
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\DIYFE.EF.pdb
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.dll
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\bin\Debug\EntityFramework.xml
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.dll
+C:\JT-Workspace\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
