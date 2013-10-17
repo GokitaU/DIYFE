@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7374612a4c2b4f5d9b8ba38ed56cdc63" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="DIYFEModel.ArticleComment" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.ArticleResource" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.ArticleResourceType" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.ArticleStatus" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.ArticleType" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.Email" Width="1.5" PointX="9.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.Error" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.Notification" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DIYFEModel.StatusType" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="DIYFEModel.FK_ArticleResource_ArticleResourceType" ManuallyRouted="false" />
+        <AssociationConnector Association="DIYFEModel.FK_ArticleStatus_StatusType" ManuallyRouted="false" />
+        <AssociationConnector Association="DIYFEModel.FK_Notifications_Email" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DIYFEModel.Article" Width="1.5" PointX="7.2983285520683641" PointY="29.309623106061306" />
+        <AssociationConnector Association="DIYFEModel.FK_Article_ArticleType" />
+        <AssociationConnector Association="DIYFEModel.FK_ArticleComment_Article" />
+        <AssociationConnector Association="DIYFEModel.FK_ArticleResource_Article" />
+        <AssociationConnector Association="DIYFEModel.FK_ArticleStatus_Article" />
+        <AssociationConnector Association="DIYFEModel.FK_Notifications_Article" />
+        <EntityTypeShape EntityType="DIYFEModel.ContentSection" Width="1.5" PointX="3.6324624790029887" PointY="9.5977611288417872" />
+        <EntityTypeShape EntityType="DIYFEModel.Category" Width="1.5" PointX="1.0919619636107059" PointY="9.21876992714534" />
+        <EntityTypeShape EntityType="DIYFEModel.Tracking" Width="1.5" PointX="5.9775296570628553" PointY="15.790223576030797" />
+        <AssociationConnector Association="DIYFEModel.FK_Article_Category" />
+        <EntityTypeShape EntityType="DIYFEModel.Day" Width="1.5" PointX="5.3882501355317656" PointY="31.6235295085346" />
+        <EntityTypeShape EntityType="DIYFEModel.Ingredient" Width="1.5" PointX="1.0577477165766749" PointY="24.06826181340416" />
+        <EntityTypeShape EntityType="DIYFEModel.Recipe" Width="1.5" PointX="10.240293345525998" PointY="8.126702357142559" />
+        <EntityTypeShape EntityType="DIYFEModel.RecipeSeason" Width="1.5" PointX="9.9722525765990149" PointY="19.689021909464625" />
+        <EntityTypeShape EntityType="DIYFEModel.Season" Width="1.5" PointX="9.3526635902713355" PointY="17.272644378837498" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeSeason_Recipe" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeSeason_Season" />
+        <EntityTypeShape EntityType="DIYFEModel.RecipeDay" Width="1.5" PointX="12.875" PointY="11.5" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeDay_Day" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeDay_Recipe" />
+        <EntityTypeShape EntityType="DIYFEModel.SeasonalRecipe" Width="1.5" PointX="11.735585393260971" PointY="15.332587010847679" />
+        <EntityTypeShape EntityType="DIYFEModel.RecipeIngredient" Width="1.5" PointX="1.0228106756800837" PointY="6.4324976086767842" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeIngredient_Ingredient" />
+        <AssociationConnector Association="DIYFEModel.FK_RecipeIngredient_Recipe" />
+        <EntityTypeShape EntityType="DIYFEModel.DailyRecipe" Width="1.5" PointX="3.223759807284809" PointY="15.208713762093668" />
+        <EntityTypeShape EntityType="DIYFEModel.IngredientShopping" Width="1.5" PointX="2.4124656982777948" PointY="28.855740664925307" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

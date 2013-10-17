@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DIYFEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DIYFEModelStoreContainer">
+    <EntitySet Name="Article" EntityType="DIYFEModel.Store.Article" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleComment" EntityType="DIYFEModel.Store.ArticleComment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleResource" EntityType="DIYFEModel.Store.ArticleResource" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleResourceType" EntityType="DIYFEModel.Store.ArticleResourceType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleStatus" EntityType="DIYFEModel.Store.ArticleStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleType" EntityType="DIYFEModel.Store.ArticleType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="DIYFEModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentSection" EntityType="DIYFEModel.Store.ContentSection" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tracking" EntityType="DIYFEModel.Store.Tracking" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Day" EntityType="DIYFEModel.Store.Day" store:Type="Tables" Schema="food" />
+    <EntitySet Name="Ingredient" EntityType="DIYFEModel.Store.Ingredient" store:Type="Tables" Schema="food" />
+    <EntitySet Name="IngredientShopping" EntityType="DIYFEModel.Store.IngredientShopping" store:Type="Tables" Schema="food" />
+    <EntitySet Name="Recipe" EntityType="DIYFEModel.Store.Recipe" store:Type="Tables" Schema="food" />
+    <EntitySet Name="RecipeDay" EntityType="DIYFEModel.Store.RecipeDay" store:Type="Tables" Schema="food" />
+    <EntitySet Name="RecipeIngredient" EntityType="DIYFEModel.Store.RecipeIngredient" store:Type="Tables" Schema="food" />
+    <EntitySet Name="RecipeSeason" EntityType="DIYFEModel.Store.RecipeSeason" store:Type="Tables" Schema="food" />
+    <EntitySet Name="Season" EntityType="DIYFEModel.Store.Season" store:Type="Tables" Schema="food" />
+    <EntitySet Name="DailyRecipes" EntityType="DIYFEModel.Store.DailyRecipes" store:Type="Views" store:Schema="food" store:Name="DailyRecipes">
+      <DefiningQuery>SELECT 
+      [DailyRecipes].[Name] AS [Name], 
+      [DailyRecipes].[RecipeName] AS [RecipeName], 
+      [DailyRecipes].[Instructions] AS [Instructions], 
+      [DailyRecipes].[UseAmount] AS [UseAmount], 
+      [DailyRecipes].[Quantity] AS [Quantity], 
+      [DailyRecipes].[QuantityUnit] AS [QuantityUnit], 
+      [DailyRecipes].[IngredientName] AS [IngredientName], 
+      [DailyRecipes].[RecipeId] AS [RecipeId], 
+      [DailyRecipes].[IngredientId] AS [IngredientId], 
+      [DailyRecipes].[Discription] AS [Discription], 
+      [DailyRecipes].[RecipeDayId] AS [RecipeDayId], 
+      [DailyRecipes].[DayId] AS [DayId]
+      FROM [food].[DailyRecipes] AS [DailyRecipes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SeasonalRecipes" EntityType="DIYFEModel.Store.SeasonalRecipes" store:Type="Views" store:Schema="food" store:Name="SeasonalRecipes">
+      <DefiningQuery>SELECT 
+      [SeasonalRecipes].[SeasonName] AS [SeasonName], 
+      [SeasonalRecipes].[SeasonId] AS [SeasonId], 
+      [SeasonalRecipes].[Name] AS [Name], 
+      [SeasonalRecipes].[Instructions] AS [Instructions], 
+      [SeasonalRecipes].[RecipeId] AS [RecipeId], 
+      [SeasonalRecipes].[IngredientId] AS [IngredientId], 
+      [SeasonalRecipes].[IngredientName] AS [IngredientName], 
+      [SeasonalRecipes].[Discription] AS [Discription], 
+      [SeasonalRecipes].[Quantity] AS [Quantity], 
+      [SeasonalRecipes].[QuantityUnit] AS [QuantityUnit], 
+      [SeasonalRecipes].[UseAmount] AS [UseAmount]
+      FROM [food].[SeasonalRecipes] AS [SeasonalRecipes]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Article_Category" Association="DIYFEModel.Store.FK_Article_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleComment_Article" Association="DIYFEModel.Store.FK_ArticleComment_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleComment" EntitySet="ArticleComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleResource_Article" Association="DIYFEModel.Store.FK_ArticleResource_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleResource" EntitySet="ArticleResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleResource_ArticleResourceType" Association="DIYFEModel.Store.FK_ArticleResource_ArticleResourceType">
+      <End Role="ArticleResourceType" EntitySet="ArticleResourceType" />
+      <End Role="ArticleResource" EntitySet="ArticleResource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleStatus_Article" Association="DIYFEModel.Store.FK_ArticleStatus_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleStatus" EntitySet="ArticleStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleStatus_StatusType" Association="DIYFEModel.Store.FK_ArticleStatus_StatusType">
+      <End Role="StatusType" EntitySet="StatusType" />
+      <End Role="ArticleStatus" EntitySet="ArticleStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Article" Association="DIYFEModel.Store.FK_Notifications_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Email" Association="DIYFEModel.Store.FK_Notifications_Email">
+      <End Role="Email" EntitySet="Email" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeDay_Day" Association="DIYFEModel.Store.FK_RecipeDay_Day">
+      <End Role="Day" EntitySet="Day" />
+      <End Role="RecipeDay" EntitySet="RecipeDay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeDay_Recipe" Association="DIYFEModel.Store.FK_RecipeDay_Recipe">
+      <End Role="Recipe" EntitySet="Recipe" />
+      <End Role="RecipeDay" EntitySet="RecipeDay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeIngredient_Ingredient" Association="DIYFEModel.Store.FK_RecipeIngredient_Ingredient">
+      <End Role="Ingredient" EntitySet="Ingredient" />
+      <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeIngredient_Recipe" Association="DIYFEModel.Store.FK_RecipeIngredient_Recipe">
+      <End Role="Recipe" EntitySet="Recipe" />
+      <End Role="RecipeIngredient" EntitySet="RecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeSeason_Recipe" Association="DIYFEModel.Store.FK_RecipeSeason_Recipe">
+      <End Role="Recipe" EntitySet="Recipe" />
+      <End Role="RecipeSeason" EntitySet="RecipeSeason" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeSeason_Season" Association="DIYFEModel.Store.FK_RecipeSeason_Season">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="RecipeSeason" EntitySet="RecipeSeason" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Name="ArticleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="ArticleTypeId" Type="int" Nullable="false" />
+    <Property Name="CategoryRowId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Author" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Keywords" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="MainContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SideContent" Type="nvarchar(max)" />
+    <Property Name="ListItemContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ViewRequests" Type="int" Nullable="false" />
+    <Property Name="URLLink" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="PreviewImg" Type="nvarchar" MaxLength="600" />
+  </EntityType>
+  <EntityType Name="ArticleComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="PosterName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PosterEmail" Type="nvarchar" MaxLength="250" />
+    <Property Name="PosterWebSite" Type="nvarchar" MaxLength="250" />
+    <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="RepyToCommentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArticleResource">
+    <Key>
+      <PropertyRef Name="ArticleResourceId" />
+    </Key>
+    <Property Name="ArticleResourceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="URLLink" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ArticleResourceType">
+    <Key>
+      <PropertyRef Name="ArticleResourceTypeId" />
+    </Key>
+    <Property Name="ArticleResourceTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="ArticleStatus">
+    <Key>
+      <PropertyRef Name="ArticleStatusRowId" />
+    </Key>
+    <Property Name="ArticleStatusRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArticleType">
+    <Key>
+      <PropertyRef Name="ArticleTypeId" />
+    </Key>
+    <Property Name="ArticleTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleTypeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ArticleTypeDescription" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryRowId" />
+    </Key>
+    <Property Name="CategoryRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TopNavIndex" Type="int" Nullable="false" />
+    <Property Name="SubNavIndex" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="SecondLevCategoryId" Type="int" />
+    <Property Name="ThirdLevCategoryId" Type="int" />
+    <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CategoryUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondLevCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="ThirdLevCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ThirdLevCategoryUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ContentSection">
+    <Key>
+      <PropertyRef Name="ContentId" />
+    </Key>
+    <Property Name="ContentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ContentTitle" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContentText" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="EmailRowId" />
+    </Key>
+    <Property Name="EmailRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RefId" Type="int" Nullable="false" />
+    <Property Name="ErrorMethod" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="ErrorText" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="EmailNotificationId" />
+    </Key>
+    <Property Name="EmailNotificationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="EmailRowId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatusType">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tracking">
+    <Key>
+      <PropertyRef Name="TrackingRowId" />
+    </Key>
+    <Property Name="TrackingRowId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Session" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="Day">
+    <Key>
+      <PropertyRef Name="DayId" />
+    </Key>
+    <Property Name="DayId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="IngredientId" />
+    </Key>
+    <Property Name="IngredientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="IngredientShopping">
+    <Key>
+      <PropertyRef Name="ShoppingItemId" />
+    </Key>
+    <Property Name="ShoppingItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Recipe">
+    <Key>
+      <PropertyRef Name="RecipeId" />
+    </Key>
+    <Property Name="RecipeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Instructions" Type="nvarchar(max)" />
+    <Property Name="UseAmount" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeDay">
+    <Key>
+      <PropertyRef Name="RecipeDayId" />
+    </Key>
+    <Property Name="RecipeDayId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DayId" Type="int" Nullable="false" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeIngredient">
+    <Key>
+      <PropertyRef Name="RecipeIngredientId" />
+    </Key>
+    <Property Name="RecipeIngredientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+    <Property Name="Discription" Type="nvarchar" MaxLength="200" />
+    <Property Name="Quantity" Type="decimal" Nullable="false" Precision="20" Scale="2" />
+    <Property Name="QuantityUnit" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeSeason">
+    <Key>
+      <PropertyRef Name="RecipeSeasonId" />
+    </Key>
+    <Property Name="RecipeSeasonId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="SeasonId" />
+    </Key>
+    <Property Name="SeasonId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SeasonName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'DIYFE.food.DailyRecipes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="DailyRecipes">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="UseAmount" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="QuantityUnit" />
+      <PropertyRef Name="IngredientName" />
+      <PropertyRef Name="RecipeId" />
+      <PropertyRef Name="IngredientId" />
+      <PropertyRef Name="RecipeDayId" />
+      <PropertyRef Name="DayId" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="RecipeName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Instructions" Type="nvarchar(max)" />
+    <Property Name="UseAmount" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Nullable="false" />
+    <Property Name="QuantityUnit" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="IngredientName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+    <Property Name="Discription" Type="nvarchar" MaxLength="200" />
+    <Property Name="RecipeDayId" Type="int" Nullable="false" />
+    <Property Name="DayId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'DIYFE.food.SeasonalRecipes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="SeasonalRecipes">
+    <Key>
+      <PropertyRef Name="SeasonName" />
+      <PropertyRef Name="SeasonId" />
+      <PropertyRef Name="RecipeId" />
+      <PropertyRef Name="IngredientId" />
+      <PropertyRef Name="IngredientName" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="QuantityUnit" />
+      <PropertyRef Name="UseAmount" />
+    </Key>
+    <Property Name="SeasonName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SeasonId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Instructions" Type="nvarchar(max)" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+    <Property Name="IngredientId" Type="int" Nullable="false" />
+    <Property Name="IngredientName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Discription" Type="nvarchar" MaxLength="200" />
+    <Property Name="Quantity" Type="decimal" Nullable="false" />
+    <Property Name="QuantityUnit" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="UseAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Article_Category">
+    <End Role="Category" Type="DIYFEModel.Store.Category" Multiplicity="1" />
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryRowId" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="CategoryRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleComment_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleComment" Type="DIYFEModel.Store.ArticleComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleComment">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleResource_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleResource" Type="DIYFEModel.Store.ArticleResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleResource">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleResource_ArticleResourceType">
+    <End Role="ArticleResourceType" Type="DIYFEModel.Store.ArticleResourceType" Multiplicity="1" />
+    <End Role="ArticleResource" Type="DIYFEModel.Store.ArticleResource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleResourceType">
+        <PropertyRef Name="ArticleResourceTypeId" />
+      </Principal>
+      <Dependent Role="ArticleResource">
+        <PropertyRef Name="ResourceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleStatus_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="ArticleStatus" Type="DIYFEModel.Store.ArticleStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="ArticleStatus">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleStatus_StatusType">
+    <End Role="StatusType" Type="DIYFEModel.Store.StatusType" Multiplicity="1" />
+    <End Role="ArticleStatus" Type="DIYFEModel.Store.ArticleStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusType">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="ArticleStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Article">
+    <End Role="Article" Type="DIYFEModel.Store.Article" Multiplicity="1" />
+    <End Role="Notifications" Type="DIYFEModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleId" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmailRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Email">
+    <End Role="Email" Type="DIYFEModel.Store.Email" Multiplicity="1" />
+    <End Role="Notifications" Type="DIYFEModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Email">
+        <PropertyRef Name="EmailRowId" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmailRowId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeDay_Day">
+    <End Role="Day" Type="DIYFEModel.Store.Day" Multiplicity="1" />
+    <End Role="RecipeDay" Type="DIYFEModel.Store.RecipeDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Day">
+        <PropertyRef Name="DayId" />
+      </Principal>
+      <Dependent Role="RecipeDay">
+        <PropertyRef Name="DayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeDay_Recipe">
+    <End Role="Recipe" Type="DIYFEModel.Store.Recipe" Multiplicity="1" />
+    <End Role="RecipeDay" Type="DIYFEModel.Store.RecipeDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeDay">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeIngredient_Ingredient">
+    <End Role="Ingredient" Type="DIYFEModel.Store.Ingredient" Multiplicity="1" />
+    <End Role="RecipeIngredient" Type="DIYFEModel.Store.RecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredient">
+        <PropertyRef Name="IngredientId" />
+      </Principal>
+      <Dependent Role="RecipeIngredient">
+        <PropertyRef Name="IngredientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeIngredient_Recipe">
+    <End Role="Recipe" Type="DIYFEModel.Store.Recipe" Multiplicity="1" />
+    <End Role="RecipeIngredient" Type="DIYFEModel.Store.RecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeIngredient">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeSeason_Recipe">
+    <End Role="Recipe" Type="DIYFEModel.Store.Recipe" Multiplicity="1" />
+    <End Role="RecipeSeason" Type="DIYFEModel.Store.RecipeSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipe">
+        <PropertyRef Name="RecipeId" />
+      </Principal>
+      <Dependent Role="RecipeSeason">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeSeason_Season">
+    <End Role="Season" Type="DIYFEModel.Store.Season" Multiplicity="1" />
+    <End Role="RecipeSeason" Type="DIYFEModel.Store.RecipeSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="SeasonId" />
+      </Principal>
+      <Dependent Role="RecipeSeason">
+        <PropertyRef Name="SeasonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_LoadArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="articleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="articleId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_LoadPostList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryRowId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SeasonGames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="seasonId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ClearWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="food" />
+</Schema>
