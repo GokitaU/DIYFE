@@ -40,6 +40,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.16.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.3.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine, Version=2.1.4039.23635, Culture=neutral, PublicKeyToken=1f722ed313f51831, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\RazorEngine.dll</HintPath>
@@ -189,9 +197,11 @@
     <Compile Include="Code\Email.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +209,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\ArticleListModel.cs" />
+    <Compile Include="Models\CustomHtmlLink.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,7 +236,6 @@
     <Content Include="Scripts\AppSupport\contact.js" />
     <Content Include="Scripts\AppSupport\mobile-responsive.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery.main.js" />
     <Content Include="Scripts\Plugins\mediator.js" />
     <Content Include="Scripts\Plugins\carsouel.js" />
     <Content Include="Scripts\Plugins\pager.js" />
@@ -295,6 +306,12 @@
       <Project>{2b57b373-591c-4938-82be-cbb69e596514}</Project>
       <Name>DIYFE.EF</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error\DefaultError.cshtml" />
+    <Content Include="Views\Shared\Error\Error.cshtml" />
+    <Content Include="Views\Shared\Error\ServerError.cshtml" />
+    <Content Include="Views\Shared\Error\_ErrorPageHandler.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,7 +1,7 @@
 ﻿@model DIYFEWeb.Models.ArticleListModel
 
 @section JS{
-     <script src="@Url.Content("~/Content/scripts/carsouel.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/Scripts/Plugins/carsouel.js")" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
             $('#barousel_prevnextnav').barousel({
@@ -14,19 +14,8 @@
     <link href="@Url.Content("~/Content/carsouel.css")" rel="stylesheet" type="text/css" />
 }
 
-@section SecondHeader {
-@*      <div class="top-anchor">
-        <div class="act-now-bar dark-to-light-gradient box-shadow"></div>
-      </div>*@
-    }
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-@*      <div class="hero-unit dark-to-light-gradient">
-        <h1>DIYFE</h1>
-        <p>Do It Yourself, For Everyone</p>
-      </div>*@
-
-@Html.Partial("_ErrorPageHandler")
+@Html.Partial("Error/_ErrorPageHandler")
     <div class="content">
             <div class="hero" style="height:300px;">
                 @*<h3>Ok, get jquery 1.10 working with naviation</h3>
@@ -82,7 +71,7 @@
         <div class="row">
             <div class="col-md-4"><h2>Popular</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }
@@ -91,7 +80,7 @@
             </div>
             <div class="col-md-4"><h2>New Posts</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 1))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 1))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }
@@ -100,7 +89,7 @@
             </div>
             <div class="col-md-4"><h2>News</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ProjectList.Where(a => a.ArticleTypeId == 4))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 4))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }

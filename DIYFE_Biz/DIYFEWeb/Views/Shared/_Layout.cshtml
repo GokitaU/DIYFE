@@ -24,14 +24,13 @@
        
 
    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/AppSupport/jquery.treeview.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Bootstrap/Twitter/js/bootstrap.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Frameworks/JQueryUI/jquery.treeview.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Frameworks/Bootstrap/js/bootstrap.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/AppSupport/usefull.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Plugins/pager.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Plugins/mediator.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/app.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.main.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/AppSupport/mobile-responsive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app.js")" type="text/javascript"></script>    
 
      @RenderSection("JS", required:false)
      @RenderSection("CSS", required:false)
@@ -156,59 +155,8 @@
         </footer>
 
     </div>
-       @Html.Partial("_LogOnForm")  
+     @*  @Html.Partial("_LogOnForm")  *@
 
     </body>
 </html>
 
-
-
-
-
-@*<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/Content/js")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
-
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
-</html>*@

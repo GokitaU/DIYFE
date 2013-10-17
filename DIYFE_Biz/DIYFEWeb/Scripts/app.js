@@ -171,4 +171,55 @@
 
     });
 
+    function initSubnav() {
+
+        if ($('.subnav').length > 0) {
+            var subnavLinks = $(".nav-frame>ul>li>a");
+            var activeItem = $(".nav-frame ul .selected").index();
+            $('.submenu:eq(' + activeItem + ')').show();
+            subnavLinks.each(function () {
+                var a = $(this);
+                $(a).mouseover(function () {
+
+                    var bv = navigator.uaMatch(navigator.userAgent);
+
+                    $(".nav-frame ul li").removeClass('active');
+                    if (bv.browser = 'msie' && bv.browserVersion < 9) {
+                        $(".nav-frame ul li a").removeClass('pie_first-child');
+                    }
+                    $(this).parent().addClass('active');
+                    var b = $(a).attr("rel");
+                    $(".submenu").hide();
+                    $("#" + b + "").show();
+                    $('.btn-register').removeClass('active');
+                    $('body').bind("mousemove", watchPos);
+                })
+            });
+            function watchPos(a) {
+                var b = $(".subnav").offset(), d = b.left, c = b.top, b = d + $(".subnav").outerWidth(), c = c + $(".subnav").outerHeight();
+                if (a.pageX < d || a.pageX > b || a.pageY > c || a.pageY < $(".nav-frame").offset().top) {
+                    $(".submenu").hide();
+                    $('.submenu:eq(' + activeItem + ')').show();
+                    $(".nav-frame ul li").removeClass('active');
+                    $(".nav-frame ul .selected").addClass('active');
+
+                    var bv = navigator.uaMatch(navigator.userAgent);
+
+                    if (bv.browser == true && bv.browserVersion < 9) {
+                        $(".nav-frame ul li:not(.selected) a").removeClass('pie_first-child');
+                        $(".nav-frame ul .selected").addClass('active')
+                    }
+                    $('body').unbind('mousemove', watchPos);
+                }
+            }
+
+            $(".submenu").hide();
+        }
+    }
+
+    jQuery(function () {
+       initSubnav();
+    });
+   
+
 });

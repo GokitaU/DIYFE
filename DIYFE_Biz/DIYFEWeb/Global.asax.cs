@@ -23,6 +23,7 @@ namespace DIYFEWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            StaticConfig.LoadStaticCache();
         }
     }
 }
