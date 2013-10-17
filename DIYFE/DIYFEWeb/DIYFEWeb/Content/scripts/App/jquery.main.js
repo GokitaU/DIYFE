@@ -1,23 +1,7 @@
 ﻿//init page
 //jQuery.noConflict();
 
-navigator.uaMatch = function (ua) {
-    ua = ua.toLowerCase();
 
-    var match = /(chrome)[ \/]([\w.]+)/.exec(ua) ||
-		/(webkit)[ \/]([\w.]+)/.exec(ua) ||
-		/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) ||
-		/(msie) ([\w.]+)/.exec(ua) ||
-		ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) ||
-		[];
-
-    return {
-        browser: match[1] || "",
-        version: match[2] || "0"
-    };
-};
-var ver = navigator.uaMatch(navigator.userAgent);
-alert(ver.browser + '-mid- ' + ver.version);
 
 function setupAccordion() {
     $(".open-close").click(function () {
@@ -47,6 +31,7 @@ function setupAccordion() {
 // init sub-navigation bar
 function initSubnav() {
     var browserVersion = navigator.uaMatch(navigator.userAgent);
+
     if ($('.subnav').length > 0) {
         var subnavLinks = $(".nav-frame>ul>li>a");
         var activeItem = $(".nav-frame ul .selected").index();
@@ -55,6 +40,7 @@ function initSubnav() {
             var a = $(this);
             $(a).mouseover(function () {
                 $(".nav-frame ul li").removeClass('active');
+                var browserVersion = navigator.uaMatch(navigator.userAgent);
                 if (browserVersion.browser = 'msie' && parseFloat(browserVersion.version) < 9) {
                     $(".nav-frame ul li a").removeClass('pie_first-child');
                 }
@@ -73,7 +59,8 @@ function initSubnav() {
                 $('.submenu:eq(' + activeItem + ')').show();
                 $(".nav-frame ul li").removeClass('active');
                 $(".nav-frame ul .selected").addClass('active');
-                if ($.browser.msie == true && parseFloat($.browser.version) < 9) {
+                var browserVersion = navigator.uaMatch(navigator.userAgent);
+                if (browserVersion.browser = 'msie' && parseFloat(browserVersion.version) < 9) {
                     $(".nav-frame ul li:not(.selected) a").removeClass('pie_first-child');
                     $(".nav-frame ul .selected").addClass('active')
                 }
