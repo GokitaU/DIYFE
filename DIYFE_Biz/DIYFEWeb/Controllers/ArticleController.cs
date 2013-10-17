@@ -16,5 +16,15 @@ namespace MVC4Template.Controllers
             return View();
         }
 
+        public ActionResult ArticleList(string URL1, string URL2, string URL3)
+        {
+            return View();
+        }
+
+        public ActionResult ArticleDetails(string URL1, string URL2, string URL3, string URL4)
+        {
+            return View();
+        }
+
     }
 }

@@ -28,8 +28,6 @@ C:\JT-Workspace\DIYFE\DIYFE_Biz\MVC4Template\bin\System.Web.WebPages.Razor.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\MVC4Template\bin\WebMatrix.Data.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\MVC4Template\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\MVC4Template\bin\WebMatrix.WebData.xml
-C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\MVC4Template.dll
-C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\MVC4Template.pdb
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\DIYFE.EF.dll
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\Microsoft.Web.Infrastructure.dll
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\Microsoft.Web.WebPages.OAuth.dll
@@ -59,8 +57,6 @@ C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\WebMatrix.Data.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\WebMatrix.WebData.xml
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\DIYFEWeb.csprojResolveAssemblyReference.cache
-C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\MVC4Template.dll
-C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\MVC4Template.pdb
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\DIYFEWeb.csprojResolveAssemblyReference.cache
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\MVC4Template.dll
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\bin\MVC4Template.dll
@@ -94,3 +90,7 @@ D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\bin\WebMatrix.Data.xml
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\bin\Microsoft.Web.WebPages.OAuth.xml
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\bin\WebMatrix.WebData.xml
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\MVC4Template.pdb
+C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\DIYFEWeb.dll
+C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\bin\DIYFEWeb.pdb
+C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\DIYFEWeb.dll
+C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFEWeb\obj\Debug\DIYFEWeb.pdb
