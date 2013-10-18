@@ -17,7 +17,6 @@ D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolve
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\bin\Debug\DIYFE.EF.dll.config
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\bin\Debug\DIYFE.EF.dll
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\bin\Debug\DIYFE.EF.pdb
-C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\obj\Debug\DIYFE.EF.csprojResolveAssemblyReference.cache
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\obj\Debug\DIYFE.EF.dll
 C:\JT-Workspace\DIYFE\DIYFE_Biz\DIYFE.EF\obj\Debug\DIYFE.EF.pdb
 D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFE.EF\bin\Debug\DIYFE.EF.dll.config

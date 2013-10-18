@@ -13,32 +13,157 @@ namespace DIYFEWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+        
+            //#region ProjectMaps
+
+            //routes.MapRoute(
+            //    "ProjectRoot", // Route name
+            //    "Project", // URL with parameters
+            //    new { controller = "Article", action = "ArticleList" } // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "ProjectContent", // Route name
+            //    "Project/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+
+            //routes.MapRoute(
+            //    "ProjectContent1", // Route name
+            //    "Project/{categoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+
+            //routes.MapRoute(
+            //    "ProjectContent2", // Route name
+            //    "Project/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            ////-------------------
+            //routes.MapRoute(
+            //    "ProjectSubSubCategory", // Route name
+            //    "Project/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}", // URL with parameters
+            //    new { controller = "Article", action = "ArticleList", categoryUrl = "", subCategoryUrl = "", subSubCategoryUrl = "" } // Parameter defaults
+            //);
+            //routes.MapRoute(
+            //    "ProjectContent3", // Route name
+            //    "Project/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //#endregion
+
+            #region PostMaps
+
             routes.MapRoute(
-                name: "PostArticle",
-                url: "post/{URL1}/{URL2}/{URL3}/{URL4}",
-                defaults: new
-                {
-                    controller = "Article",
-                    action = "ArticleDetails",
-                    URL1 = UrlParameter.Optional,
-                    URL2 = UrlParameter.Optional,
-                    URL3 = UrlParameter.Optional,
-                    URL4 = UrlParameter.Optional
-                },
-                constraints: new { URL1 = @"*.html", URL2 = @"*.html", URL3 = @"*.html", URL4 = @"*.html" } 
-            );
-            
-            routes.MapRoute(
-                name: "Post",
-                url: "post/{URL1}/{URL2}/{URL3}",
-                defaults: new { controller = "Article", action = "ArticleList",
-                                URL1 = UrlParameter.Optional,
-                                URL2 = UrlParameter.Optional,
-                                URL3 = UrlParameter.Optional
-                }
+                "PostRoot", // Route name
+                "Post", // URL with parameters
+                new { controller = "Article", action = "Index" } // Parameter defaults
             );
 
-            
+            routes.MapRoute(
+                "PostContent", // Route name
+                "Post/{html}.html", // URL with parameters,
+                new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "PostContent1", // Route name
+                "Post/{categoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "PostContent2", // Route name
+                "Post/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            );
+
+            //-------------------
+            routes.MapRoute(
+                "PostSubSubCategory", // Route name
+                "Post/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}", // URL with parameters
+                new { controller = "Article", action = "ArticleList", categoryUrl = "", subCategoryUrl = "", subSubCategoryUrl = "" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "PostContent3", // Route name
+                "Post/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+                new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            );
+
+            #endregion
+
+            //#region BlogMaps
+
+            //routes.MapRoute(
+            //    "BlogRoot", // Route name
+            //    "Blog", // URL with parameters
+            //    new { controller = "Article", action = "ArticleList" } // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "BlogContent", // Route name
+            //    "Blog/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "BlogContent1", // Route name
+            //    "Blog/{categoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "BlogContent2", // Route name
+            //    "Blog/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "BlogContent3", // Route name
+            //    "Blog/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleList" }//, // Parameter defaults
+            //);
+
+            //#endregion
+
+            //#region NewsMaps
+
+            //routes.MapRoute(
+            //    "NewsRoot", // Route name
+            //    "News", // URL with parameters
+            //    new { controller = "Article", action = "ArticleList" } // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "NewsContent", // Route name
+            //    "News/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "NewsContent1", // Route name
+            //    "News/{categoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "NewsContent2", // Route name
+            //    "News/{categoryUrl}/{subCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "NewsContent3", // Route name
+            //    "News/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{html}.html", // URL with parameters,
+            //    new { controller = "Article", action = "ArticleDetails" }//, // Parameter defaults
+            //);
+
+            //#endregion
 
             routes.MapRoute(
                 name: "Default",
