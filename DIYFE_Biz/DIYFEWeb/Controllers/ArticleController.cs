@@ -16,19 +16,26 @@ namespace DIYFEWeb.Controllers
 
         private int pageSize = 10;
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
-        public ActionResult ArticleList1(string prefix)
-        {
+        //public ActionResult ArticleTest(string articleType, string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, string articleName)
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        public ActionResult ArticleList(string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, int? page)
+        //public ActionResult ArticleList1(string articleType, string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, int? page)
+        //{
+
+        //    return View();
+        //}
+
+        public ActionResult ArticleList(string articleType, string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, int? page)
         {
+           
             ArticleListModel model = new ArticleListModel();
             var linkPrefix = HttpContext.Request.RawUrl.Split('/')[1];
             
@@ -39,6 +46,7 @@ namespace DIYFEWeb.Controllers
 
             string url = HttpContext.Request.RawUrl;
             //int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
+     
             Category cat = StaticConfig.GetCatigory(categoryUrl, subCategoryUrl, subSubCategoryUrl);
 
             model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(cat, linkPrefix);
@@ -48,19 +56,23 @@ namespace DIYFEWeb.Controllers
             {
                 //BASED ON CAT
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.CreatedDate);
-                model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
-
+                if (categoryUrl != null)
+                {
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                }
+                else
+                {
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                }
                 //CHECK PAGING
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1);
                 //model.PagedArticle = model.ArticleList.Concat(db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2)).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
             }
             //model.PagedArticle = model.ArticleList.ToPagedList(page ?? 1, pageSize);
             return View(model);
-
-            return View();
         }
 
-        public ActionResult ArticleDetails(string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, string html)
+        public ActionResult ArticleDetails(string articleType, string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, string articleName)
         {
             int categoryRowId = 0;
            
@@ -70,7 +82,7 @@ namespace DIYFEWeb.Controllers
             Category cat = new Category();
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
-                model.Article = db.Articles.Include("ArticleComments").Where(a => a.URLLink == html + ".html").FirstOrDefault();
+                model.Article = db.Articles.Include("ArticleComments").Where(a => a.URLLink == articleName + ".html").FirstOrDefault();
                 model.Article.ViewRequests++;
                 db.Entry(model.Article).State = System.Data.EntityState.Modified;
                 db.SaveChanges();

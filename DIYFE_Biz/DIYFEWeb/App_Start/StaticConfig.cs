@@ -152,7 +152,11 @@ namespace DIYFEWeb
             }
             else
             {
-                throw (new Exception("Generate Crumb Links - - -  Unable to find correct category."));
+                CustomHtmlLink link = new CustomHtmlLink();
+                link.LinkText = linkPrefix;
+                link.Href = "/" + linkPrefix;
+                link.Title = linkPrefix;
+                linkList.Add(link);
             }
 
             return linkList;
@@ -160,6 +164,11 @@ namespace DIYFEWeb
 
         public static List<CustomHtmlLink> GenerateRelatedTreeView(Category cat, string linkPrefix)
         {
+
+            if (cat == null)
+            {
+                cat = StaticConfig.Categories.FirstOrDefault();
+            }
 
             List<CustomHtmlLink> linkList = new List<CustomHtmlLink>();
             //ListAccess la = new ListAccess();
@@ -324,32 +333,40 @@ namespace DIYFEWeb
 
         public static Category GetCatigory(string catOne, string catTwo, string catThree)
         {
+            
             Category cat = new Category();
             catOne = catOne.ToLower();
             catTwo = catTwo.ToLower();
             catThree = catThree.ToLower();
             if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
             {
-                cat = StaticConfig.Categories
-                                .Where(c => c.CategoryUrl == catOne
-                                        && c.SecondLevCategoryUrl == catTwo
-                                        && c.ThirdLevCategoryUrl == catThree)
-                                .FirstOrDefault();
-            }
-            else if (catOne.Length > 0 && catTwo.Length > 0)
-            {
-                cat = StaticConfig.Categories
-                                .Where(c => c.CategoryUrl == catOne
-                                        && c.SecondLevCategoryUrl == catTwo
-                                        && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
-                                .FirstOrDefault();
+                if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
+                {
+                    cat = StaticConfig.Categories
+                                    .Where(c => c.CategoryUrl == catOne
+                                            && c.SecondLevCategoryUrl == catTwo
+                                            && c.ThirdLevCategoryUrl == catThree)
+                                    .FirstOrDefault();
+                }
+                else if (catOne.Length > 0 && catTwo.Length > 0)
+                {
+                    cat = StaticConfig.Categories
+                                    .Where(c => c.CategoryUrl == catOne
+                                            && c.SecondLevCategoryUrl == catTwo
+                                            && String.IsNullOrEmpty(c.ThirdLevCategoryUrl))
+                                    .FirstOrDefault();
+                }
+                else
+                {
+                    cat = StaticConfig.Categories
+                                    .Where(c => c.CategoryUrl == catOne
+                                            && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
+                                    .FirstOrDefault();
+                }
             }
             else
             {
-                cat = StaticConfig.Categories
-                                .Where(c => c.CategoryUrl == catOne
-                                        && String.IsNullOrEmpty(c.SecondLevCategoryUrl))
-                                .FirstOrDefault();
+                cat = null;
             }
 
             return cat;

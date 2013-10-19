@@ -1,0 +1,52 @@
+﻿@*@model DIYFE.EF.Category
+
+<div class="row-fluid">
+        <ul class="breadcrumb">
+
+            @if (String.IsNullOrEmpty(Model.SecondLevCategoryUrl))
+            {
+                <li class="active">@Html.Link(</li>
+                <li>@Html.Raw(link.GenerateHtml) <span class="divider">/</span></li>                
+            }else{
+            
+                
+            }
+
+            
+
+            @foreach(DIYFELib.CustomHtmlLink link in Model){
+    
+                if (link == Model.Last())
+                {
+                     
+                }else{
+                    <li>@Html.Raw(link.GenerateHtml) <span class="divider">/</span></li>
+                }
+            }
+         </ul>
+    </div>*@
+
+@model List<DIYFEWeb.Models.CustomHtmlLink>
+@if (Model.Count > 0){
+@*<div id="breadcrumb"><ul class="breadcrumb">
+                    <li><a title="Base diyfe categor" href="http://diyfe.org/post/">Posts</a> <span class="divider"></span></li>
+                    <li><a title="Water" href="http://diyfe.org/post/water">Water</a> <span class="divider"></span></li>
+                    <li><a title="Access" href="/post/water/access">Access</a> <span class="divider"></span></li>
+                     <li class="active">Wells</li>
+         </ul></div> 
+
+
+    *@<div id="breadcrumb">
+        <ul class="breadcrumb">
+            @foreach (DIYFEWeb.Models.CustomHtmlLink link in Model)
+            {
+                if (link == Model.Last())
+                {
+                     <li class="active">@link.LinkText</li>
+                }else{
+                    <li>@Html.Raw(link.GenerateHtml) <span class="divider"></span></li>
+                }
+            }
+         </ul>
+    </div>
+}

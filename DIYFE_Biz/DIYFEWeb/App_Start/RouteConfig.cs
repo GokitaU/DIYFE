@@ -13,7 +13,48 @@ namespace DIYFEWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-        
+            routes.MapRoute("ArticleDeaitls", "{articleType}/{articleName}.html",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleDetails",
+                },
+                new { articleType = @"(post|project|blog|news)" });
+
+            routes.MapRoute("ArticleDeaitls1", "{articleType}/{categoryUrl}/{articleName}.html",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleDetails"
+                },
+                new { articleType = @"(post|project|blog|news)" });
+
+            routes.MapRoute("ArticleDeaitls2", "{articleType}/{categoryUrl}/{subCategoryUrl}/{articleName}.html",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleDetails"
+                },
+                new { articleType = @"(post|project|blog|news)" });
+
+            routes.MapRoute("ArticleDeaitls3", "{articleType}/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}/{articleName}.html",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleDetails"
+                },
+                new { articleType = @"(post|project|blog|news)" });
+
+            routes.MapRoute("ArticleList", "{articleType}/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleList",
+                    categoryUrl = "",
+                    subCategoryUrl = "",
+                    subSubCategoryUrl = ""
+                },
+                new { articleType = @"(post|project|blog|news)" });
             //#region ProjectMaps
 
             //routes.MapRoute(
@@ -57,6 +98,20 @@ namespace DIYFEWeb
             //#endregion
 
             #region PostMaps
+            routes.MapRoute(
+                "PostSubSubCategoryTEST", // Route name
+                "Post/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}", // URL with parameters
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleList",
+                    categoryUrl = UrlParameter.Optional,
+                    subCategoryUrl = UrlParameter.Optional,
+                    subSubCategoryUrl = UrlParameter.Optional
+                } // Parameter defaults
+            );
+
+
 
             routes.MapRoute(
                 "PostRoot", // Route name
@@ -86,7 +141,10 @@ namespace DIYFEWeb
             routes.MapRoute(
                 "PostSubSubCategory", // Route name
                 "Post/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}", // URL with parameters
-                new { controller = "Article", action = "ArticleList", categoryUrl = "", subCategoryUrl = "", subSubCategoryUrl = "" } // Parameter defaults
+                new { controller = "Article", action = "ArticleList", 
+                    categoryUrl = "", 
+                    subCategoryUrl = "", 
+                    subSubCategoryUrl = "" } // Parameter defaults
             );
 
             routes.MapRoute(
