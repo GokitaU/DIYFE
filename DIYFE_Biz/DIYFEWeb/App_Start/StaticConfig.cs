@@ -120,7 +120,7 @@ namespace DIYFEWeb
             CustomHtmlLink rootLink = new CustomHtmlLink();
             rootLink.LinkText = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.ToTitleCase(linkPrefix) + "s";
             rootLink.Href = StaticConfig.BaseSiteUrl + linkPrefix + "/";
-            rootLink.Title = "Base diyfe categor";
+            rootLink.Title = linkPrefix;
             linkList.Add(rootLink);
 
             if (cat != null)
@@ -149,14 +149,6 @@ namespace DIYFEWeb
                     link.Title = cat.ThirdLevCategoryName;
                     linkList.Add(link);
                 }
-            }
-            else
-            {
-                CustomHtmlLink link = new CustomHtmlLink();
-                link.LinkText = linkPrefix;
-                link.Href = "/" + linkPrefix;
-                link.Title = linkPrefix;
-                linkList.Add(link);
             }
 
             return linkList;
@@ -338,7 +330,7 @@ namespace DIYFEWeb
             catOne = catOne.ToLower();
             catTwo = catTwo.ToLower();
             catThree = catThree.ToLower();
-            if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
+            if (catOne.Length > 0 | catTwo.Length > 0 | catThree.Length > 0)
             {
                 if (catOne.Length > 0 && catTwo.Length > 0 && catThree.Length > 0)
                 {
