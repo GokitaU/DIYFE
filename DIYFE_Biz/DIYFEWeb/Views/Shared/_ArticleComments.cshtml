@@ -1,0 +1,146 @@
+﻿@model List<DIYFE.EF.ArticleComment>    
+
+
+        <div class="sfcommentsListWrp  box-content">
+            <h2 class="sfcommentsTitle" id="comments">
+              @Model.Count() Comments
+            </h2>
+            <ol class="sfcommentsList" id="commentsList">
+              
+              @foreach (DIYFE.EF.ArticleComment comment in Model.OrderByDescending(c => c.CreatedDate))
+              {
+                          <li class="sfcommentDetails" id="@comment.CommentId">
+                            <span class="sfcommentNumber">@(Model.IndexOf(comment) + 1)</span>
+                            <strong class="sfcommentAuthor">
+                                @comment.PosterName
+                            </strong>
+                            <em class="sfcommentDate">
+                                @comment.CreatedDate.ToShortDateString()
+                            </em>
+                            <div class="sfcommentText">
+                                @comment.CommentText
+                            </div>
+                              <div><a href="#">reply to comment</a></div>
+                        </li>
+              }  
+
+            </ol>
+            <br />
+@*            <div class="row-fluid">
+                <div class="pagination" style="float:right;">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>*@
+
+           <div class="sfcommentsFormWrp  box-content">
+
+            <h2 class="sfcommentsTitle">Add Comment</h2>
+            <fieldset class="sfcommentsForm">
+                <ol class="sfcommentsFieldsList">
+                    <li class="sfcommentsField" >
+                        <div>
+			
+                    <label class="sfTxtLbl">Your name</label>
+                    <div class="sfFieldWrp" >
+                        <input type="text" id="txtPosterName" class="sfTxt">
+			        </div>
+        
+                <div style="display:none;">
+			        <div id="ClientTemplatePanel_authorName">
+                        <div class="sfTxtLbl" id="titleLabel_read_authorName"></div>
+                        <div class="sfTxtContent" id="textLabel_read_authorName"></div>
+                        <p class="sfDescription" id="descriptionLabel_read_authorName"></p>
+                    </div>
+	            </div>
+		        </div>
+                    </li>
+                    <li class="sfcommentsField">
+                        <div >
+			
+                    <label class="sfTxtLbl" >Email <em class="sfNote">(optional)</em></label>
+                    <div class="sfFieldWrp" >
+                        <input type="text" id="txtPosterEmail" class="sfTxt" >
+			        </div>
+        
+        <div style="display:none;" >
+				        <div id="ClientTemplatePanel_email">
+	        
+                    <div class="sfTxtLbl" id="titleLabel_read_email">
+		
+	        </div>
+                    <div class="sfTxtContent" id="textLabel_read_email">
+		
+	        </div>
+                    <p class="sfDescription" id="descriptionLabel_read_email"></p>
+        
+        </div>
+			        </div>
+		        </div>
+                    </li>           
+                    <li class="sfcommentsField" >
+                        <div>
+			
+                    <label class="sfTxtLbl">Website <em class="sfNote">(optional)</em></label>
+                    <div class="sfFieldWrp">
+                        <input type="text" id="txtPosterWebSite" class="sfTxt">
+			        </div>
+		        </div>
+                    </li>
+                    <li class="sfcommentEditor sfcommentsField">
+                        <div>
+			
+            
+                    <label class="sfTxtLbl">Comment</label>
+
+                    <div class="sfEditorWrp sfClearfix">
+				
+                        <div style="height: 200px; width: 100%; min-height: 200px; min-width: 480px;" class="RadEditor Sitefinity reWrapper sfMoreTools" >
+					        <div class="reRibbonBarWrapper"></div>
+                            <table cellspacing="0" cellpadding="0" style="table-layout:auto;width:100%;height:200px;" >
+						        <tbody>
+							        <tr>
+								        <td class="reWrapper_corner reCorner_top_left">&nbsp;</td>
+                                        <td colspan="3" class="reWrapper_center reCenter_top">&nbsp;</td>
+                                        <td class="reWrapper_corner reCorner_top_right">&nbsp;</td>
+							        </tr>
+                                    <tr>
+								        <td valign="top" style="height:100%;" class="reContentCell">
+                                            <textarea cols="20" rows="8" id="txtCommentText" style="width:57%" ></textarea>
+                                         </td>
+							        </tr>
+                                    <tr>
+								        <td class="reWrapper_corner reCorner_bottom_left">&nbsp;</td>
+                                        <td colspan="3" class="reWrapper_center reCenter_bottom">&nbsp;</td>
+                                        <td class="reWrapper_corner reCorner_bottom_right">&nbsp;</td>
+							        </tr>
+						        </tbody>
+					        </table>
+				        </div>
+           
+			        </div>
+        
+		        </div>
+                
+                    </li>
+            
+                </ol>
+                <div class="sfcommentsSubmitBtnWrp">
+                    <input type="submit" id="btnSubmitComment" class="sfcommentsSubmitBtn" value="Submit" >
+                </div>
+            </fieldset>
+
+	        </div>
+
+        </div>
+
+    <br />
+
+

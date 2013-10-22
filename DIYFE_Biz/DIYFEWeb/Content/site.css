@@ -281,7 +281,7 @@
                 }
 
                 #treeMenu {
-                    height:300px;
+                    height:auto;
                     border:1px solid black;
 
                 }
@@ -294,3 +294,11 @@
                     height:150px;
                     border:1px solid black;
                 }
+
+
+                
+ /* ===== Article Details ====== */
+
+article {
+    margin-left:15px;
+}
