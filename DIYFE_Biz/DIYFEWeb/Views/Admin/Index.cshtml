@@ -1,0 +1,263 @@
+﻿@model DIYFEWeb.Models.AdminModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    tr:first-child {
+        width:100px;
+    }
+    input[type="text"] {
+        width:600px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#FirstLevCat').change(function () {
+
+            $('#SecondLevCat .dropDownOption').hide();
+            $('#SecondLevCat [FirstLevCatId="' + $(this).val() + '"]').show();
+
+            //alert($('#FirstLevCat option:selected').attr('catname'));
+            $('#NewFirstLevCatName').val($('#FirstLevCat option:selected').attr('catname'));
+            $('#NewFirstLevCatUrl').val($('#FirstLevCat option:selected').attr('caturl'));
+        });
+
+        $('#SecondLevCat').change(function () {
+
+            $('#ThirdLevCat .dropDownOption').hide();
+            $('#ThirdLevCat [SecondLevCatId="' + $(this).val() + '"]').show();
+
+            $('#NewSecondLevCatName').val($('#SecondLevCat option:selected').attr('catname'));
+            $('#NewSecondLevCatUrl').val($('#SecondLevCat option:selected').attr('caturl'));
+        });
+
+        $('#btnAddNewArtical').click(function () {
+            var catRowId = 0;
+
+            if ($('#ThirdLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#ThirdLevCat option:selected').attr('catRowId')
+            } else if ($('#SecondLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#SecondLevCat option:selected').attr('catRowId')
+            } else if ($('#FirstLevCat option:selected').attr('catRowId') != '0') {
+                catRowId = $('#FirstLevCat option:selected').attr('catRowId')
+            }
+
+
+            if (catRowId > 0 && $('#artType').val() != 5) {
+                var artical = {
+                    ArticleTypeId: $('#artType').val(),
+                    CategoryRowId: catRowId,
+                    //CategoryId: $('#FirstLevCat').val(),
+                    //SecondLevCategoryId: $('#SecondLevCat').val(),
+                    //ThirdLevCategoryId: $('#ThirdLevCat').val(),
+                    ViewRequests: 0,
+                    URLLink: $('#txtUrlLink').val(),
+                    NameId: $('#txtNameId').val(),
+                    Title: $('#txtTitle').val(),
+                    Description: $('#txtDescription').val(),
+                    Author: $('#txtAuthor').val(),
+                    Keywords: $('#txtKeywords').val(),
+                    MainContent: $('#txtMainContent').val(),
+                    SideContent: $('#txtSideContent').val(),
+                    ListItemContent: $('#txtListItemContent').val(),
+                    Name: $('#txtName').val(),
+                }
+
+
+                $.ajax({
+                    url: GetRootURL() + 'Admin/AddArticle',
+                    data: JSON.stringify(artical),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        if (data.success) {
+                            alert('done');
+                            //loadingDiv.hide();
+                            //mediator.publish('BetLoadDone', {});
+                        } else {
+                            //show error
+                            alert(data.message);
+                            mediator.publish('pageError', { error: data.message, method: 'Insert Article' });
+                        }
+                    },
+                    error: function () {
+                        mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                    }
+                });
+            } else {
+                alert('DOOOD...pick a cat');
+            }
+
+        });
+
+        //$('#btnAddNewCategory').click(function () {
+
+        //    var category = {
+        //        CategoryId: $('#FirstLevCat').val(),
+        //        SecondLevCategoryId: $('#SecondLevCat').val(),
+        //        ThirdLevCategoryId: $('#ThirdLevCat').val(),
+        //        CategoryName: $('#NewFirstLevCatName').val(),
+        //        CategoryUrl: $('#NewFirstLevCatUrl').val().toLowerCase(),
+        //        SecondLevCategoryName: $('#NewSecondLevCatName').val(),
+        //        SecondLevCategoryUrl: $('#NewSecondLevCatUrl').val().toLowerCase(),
+        //        ThirdLevCategoryName: $('#NewThirdLevCatName').val(),
+        //        ThirdLevCategoryUrl: $('#NewThirdLevCatUrl').val().toLowerCase()
+        //    }
+
+        //    //if (comment.PosterName == '') {
+        //    //    alert('Post Name is required.');
+        //    //    return;
+        //    //}
+        //    //if (comment.Text == '') {
+        //    //    alert('Comment Text is required.');
+        //    //    return;
+        //    //}
+
+        //    $.ajax({
+        //        url: GetRootURL() + 'Admin/AddCategory',
+        //        data: JSON.stringify(category),
+        //        type: 'POST',
+        //        contentType: 'application/json; charset=utf-8',
+        //        success: function (data) {
+        //            if (data.success) {
+        //                alert('done');
+        //                //loadingDiv.hide();
+        //                //mediator.publish('BetLoadDone', {});
+        //            } else {
+        //                //show error
+        //                mediator.publish('pageError', { error: data.message, method: 'Insert Category' });
+        //            }
+        //        },
+        //        error: function () {
+        //            mediator.publish('logError', { error: 'Error with service for adding category', method: 'insert category' });
+        //        }
+        //    });
+
+        //});
+
+    });
+
+</script>
+
+<div class="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-lg-8">
+<h1>New Article</h1>
+
+            <table class="table">
+    <tr style="height:30px;">
+        <td>Category <select style="height:40px;" id="FirstLevCat">
+            <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId == 0 && c.ThirdLevCategoryId == 0))
+            {
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" catName="@cat.CategoryName" catUrl ="@cat.CategoryUrl" value="@cat.CategoryId">@cat.CategoryName (@cat.TopNavIndex)</option>
+            }
+                     </select>
+
+        name: <input type="text" id="NewFirstLevCatName" /> 
+        url: <input type="text" id="NewFirstLevCatUrl" /> 
+        
+        </td>
+        </tr>
+        <tr>
+        <td>Second Lev Category
+            <select style="height:40px;" id="SecondLevCat">
+                <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0))
+            {
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" catName="@cat.SecondLevCategoryName" catUrl ="@cat.SecondLevCategoryUrl"  FirstLevCatId="@cat.CategoryId" value="@cat.SecondLevCategoryId">@cat.SecondLevCategoryName (@cat.SubNavIndex)</option>
+            }
+                     </select>
+        name: <input type="text" id="NewSecondLevCatName" /> 
+        url: <input type="text" id="NewSecondLevCatUrl" /> 
+        </td>
+        </tr>
+    <tr>
+        <td>Third Lev Category
+            <select style="height:40px;" id="ThirdLevCat">
+                <option value="0" catRowId="0">Please Select</option>
+            @foreach (DIYFE.EF.Category cat in Model.Categories.Where(c => c.ThirdLevCategoryId > 0))
+            {
+                <option class="dropDownOption" catRowId="@cat.CategoryRowId" SecondLevCatId="@cat.SecondLevCategoryId" value="@cat.ThirdLevCategoryId">@cat.ThirdLevCategoryName  (@cat.SubNavIndex)</option>
+            }
+                     </select>
+            name:<input type="text" id="NewThirdLevCatName" /> 
+            url:<input type="text" id="NewThirdLevCatUrl" /> 
+        </td>
+    </tr>
+@*    <tr>
+        <td><input type="button" value="add cat" id="btnAddNewCategory" /> </td>
+    </tr>*@
+</table>
+<table>
+    <tr>
+        <td>art type</td>
+        <td><select id="artType">
+            <option value="1">Post</option>
+            <option value="2">Project</option>
+            <option value="3">Bog</option>
+            <option value="4">New</option>
+            <option value="5">Info</option>
+            </select> 
+        </td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td><input type="text" id="txtName" /></td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td><input type="text" id="txtTitle" /></td>
+    </tr>
+    <tr>
+        <td>description</td>
+        <td><input type="text" id="txtDescription" /></td>
+    </tr>
+    <tr>
+        <td>author</td>
+        <td><input type="text" id="txtAuthor" /></td>
+    </tr>
+    <tr>
+        <td>Keywords</td>
+        <td><input type="text" id="txtKeywords" /></td>
+    </tr>
+    <tr>
+        <td>Main Content</td>
+        <td><input type="text" id="txtMainContent" /></td>
+    </tr>
+    <tr>
+        <td>side content</td>
+        <td><input type="text" id="txtSideContent" /></td>
+    </tr>
+    <tr>
+        <td>ListItemContent</td>
+        <td><input type="text" id="txtListItemContent" /></td>
+    </tr>
+    <tr>
+        <td>ViewRequest</td>
+        <td><input type="text" id="txtViewRequest" /></td>
+    </tr>
+    <tr>
+        <td>URLLink</td>
+        <td><input type="text" id="txtUrlLink" /></td>
+    </tr>
+    <tr>
+        <td>NameId</td>
+        <td><input type="text" id="txtNameId" /></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="add art" id="btnAddNewArtical" /></td>
+        <td></td>
+    </tr>
+
+</table>
+
+<h1>Category</h1>
+
+
+        </div>
+    </div>
+</div>

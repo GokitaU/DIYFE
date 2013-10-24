@@ -80,11 +80,18 @@ namespace DIYFEWeb.Controllers
 
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
+                
                 //BASED ON CAT
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.CreatedDate);
                 if (categoryUrl != "")
                 {
                     model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                    if (subSubCategoryUrl != "")
+                    { model.Into = db.Articles.Where(a => a.URLLink == subSubCategoryUrl).FirstOrDefault(); }
+                    else if (subCategoryUrl != "")
+                    { model.Into = db.Articles.Where(a => a.URLLink == subCategoryUrl).FirstOrDefault(); }
+                    else
+                    { model.Into = db.Articles.Where(a => a.URLLink == categoryUrl).FirstOrDefault(); }
                 }
                 else
                 {
