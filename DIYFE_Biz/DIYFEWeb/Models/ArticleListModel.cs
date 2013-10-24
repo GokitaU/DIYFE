@@ -18,6 +18,8 @@ namespace DIYFEWeb.Models
         public List<CustomHtmlLink> MostViewed { get; set; }
         //COMMENTS
         public List<ArticleComment> Comments { get; set; }
+
+        public Article Into { get; set; }
         //public List<Article> ArticleList { get; set; }
         //DATA LIST
         public IEnumerable<Article> ArticleList { get; set; }

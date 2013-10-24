@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-md-4"><h2>Popular</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)).Take(10))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }
@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-4"><h2>New Posts</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 1))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 1).Take(10))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }
@@ -89,7 +89,7 @@
             </div>
             <div class="col-md-4"><h2>News</h2>
                 <ul>
-                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 4))
+                    @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 4).Take(10))
                         {
                         <li>@Html.ArticleLink(article)</li>
                         }
