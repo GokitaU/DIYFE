@@ -45,6 +45,14 @@ namespace DIYFEWeb
                 },
                 new { articleType = @"(post|project|blog|news)" });
 
+            routes.MapRoute("ArticleListRoot", "{articleType}",
+                new
+                {
+                    controller = "Article",
+                    action = "ArticleListRoot"
+                },
+                new { articleType = @"(post|project|blog|news)" });
+
             routes.MapRoute("ArticleList", "{articleType}/{categoryUrl}/{subCategoryUrl}/{subSubCategoryUrl}",
                 new
                 {

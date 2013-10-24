@@ -33,11 +33,37 @@ namespace DIYFEWeb.Controllers
         //    return View();
         //}
 
+        public ActionResult ArticleListRoot(string articleType, int? page)
+        {
+
+            ArticleListModel model = new ArticleListModel();
+
+            PageModel.Title = "";
+            PageModel.Description = "";
+            PageModel.Author = "";
+            PageModel.Keywords = "";
+
+//            string url = HttpContext.Request.RawUrl;
+            //int categoryRowId = DIYFEHelper.GetCatigoryRowId(categoryUrl, "", "");
+
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                //BASED ON CAT
+                //mo
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleType.ArticleTypeName == articleType && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                
+                //CHECK PAGING
+                //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1);
+                //model.PagedArticle = model.ArticleList.Concat(db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2)).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+            }
+            //model.PagedArticle = model.ArticleList.ToPagedList(page ?? 1, pageSize);
+            return View(model);
+        }
+
         public ActionResult ArticleList(string articleType, string categoryUrl, string subCategoryUrl, string subSubCategoryUrl, int? page)
         {
            
             ArticleListModel model = new ArticleListModel();
-            var linkPrefix = HttpContext.Request.RawUrl.Split('/')[1];
             
             PageModel.Title = "";
             PageModel.Description = "";
@@ -49,20 +75,20 @@ namespace DIYFEWeb.Controllers
      
             Category cat = StaticConfig.GetCatigory(categoryUrl, subCategoryUrl, subSubCategoryUrl);
 
-            model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(cat, linkPrefix);
-            model.RelatedTreeView = StaticConfig.GenerateRelatedTreeView(cat, linkPrefix);
+            model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(cat, articleType);
+            model.RelatedTreeView = StaticConfig.GenerateRelatedTreeView(cat, articleType);
 
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                 //BASED ON CAT
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.CreatedDate);
-                if (categoryUrl != null)
+                if (categoryUrl != "")
                 {
-                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
                 }
                 else
                 {
-                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleType.ArticleTypeName == articleType && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
                 }
                 //CHECK PAGING
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1);
@@ -76,8 +102,6 @@ namespace DIYFEWeb.Controllers
         {
             int categoryRowId = 0;
            
-            var linkPrefix = HttpContext.Request.RawUrl.Split('/')[1];
-
             ArticleModel model = new ArticleModel();
             Category cat = new Category();
             using (var db = new DIYFE.EF.DIYFEEntities())
@@ -91,9 +115,9 @@ namespace DIYFEWeb.Controllers
             if (model.Article != null)
             {
                 cat = StaticConfig.GetCatigroy(model.Article.CategoryRowId);
-                
-                model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(cat, linkPrefix);
-                model.RelatedTreeView = StaticConfig.GenerateRelatedTreeView(cat, linkPrefix);
+
+                model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(cat, articleType);
+                model.RelatedTreeView = StaticConfig.GenerateRelatedTreeView(cat, articleType);
 
                 PageModel.Title = model.Article.Title;
                 PageModel.Description = model.Article.Description;
@@ -103,7 +127,7 @@ namespace DIYFEWeb.Controllers
             else
             {
                 //JUST TO GET BY -- REPLACE WITH 404 SOULATION
-                model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(new Category(), linkPrefix);
+                model.CrumbLinkList = StaticConfig.GenerateCrumbLinks(new Category(), articleType);
                 model.Article = new Article();
                 model.Comments = new List<ArticleComment>();
                 //model.RelatedTreeView = DIYFEHelper.GenerateTreeViewThirdLev(model.Article.CategoryRowId, linkPrefix);
@@ -119,14 +143,14 @@ namespace DIYFEWeb.Controllers
 
             //model.MostViewed = la.MostViewed(11, 20);
             // model.CrumbLinkList = DIYFEHelper.GenerateCrumbLinks(categoryRowId, linkPrefix);
-            model.RelatedTreeView = StaticConfig.GenerateTreeViewThirdLev(cat, linkPrefix);
+            model.RelatedTreeView = StaticConfig.GenerateTreeViewThirdLev(cat, articleType);
 
             ////PageModel.Title = model.Article.Title;
             ////PageModel.Description = model.Article.Description;
             ////PageModel.Author = model.Article.Author;
             ////PageModel.Keywords = model.Article.Keywords;
 
-            return View();
+            return View(model);
         }
 
     }
