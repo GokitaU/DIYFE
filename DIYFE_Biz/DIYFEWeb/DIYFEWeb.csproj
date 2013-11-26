@@ -228,10 +228,27 @@
     <Content Include="Content\Frameworks\Bootstrap\js\bootstrap.js" />
     <Content Include="Content\Frameworks\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Frameworks\JQueryUI\jquery.treeview.js" />
+    <Content Include="Content\Img\sprite-vertical-editfromspring.png" />
     <Content Include="Content\jquery.treeview.css" />
     <Content Include="Content\mobile-responsive.css" />
     <Content Include="Content\page-list.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\Img\treeview\ajax-loader.gif" />
+    <Content Include="Content\Img\treeview\file.gif" />
+    <Content Include="Content\Img\treeview\folder-closed.gif" />
+    <Content Include="Content\Img\treeview\folder.gif" />
+    <Content Include="Content\Img\treeview\minus.gif" />
+    <Content Include="Content\Img\treeview\plus.gif" />
+    <Content Include="Content\Img\treeview\treeview-black-line.gif" />
+    <Content Include="Content\Img\treeview\treeview-black.gif" />
+    <Content Include="Content\Img\treeview\treeview-default-line.gif" />
+    <Content Include="Content\Img\treeview\treeview-default.gif" />
+    <Content Include="Content\Img\treeview\treeview-famfamfam-line.gif" />
+    <Content Include="Content\Img\treeview\treeview-famfamfam.gif" />
+    <Content Include="Content\Img\treeview\treeview-gray-line.gif" />
+    <Content Include="Content\Img\treeview\treeview-gray.gif" />
+    <Content Include="Content\Img\treeview\treeview-red-line.gif" />
+    <Content Include="Content\Img\treeview\treeview-red.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
@@ -287,7 +304,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Downloads\" />
-    <Folder Include="Content\Img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -341,6 +357,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

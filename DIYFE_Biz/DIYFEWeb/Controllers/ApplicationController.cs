@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using DIYFE.EF;
+
 using DIYFEWeb.Models;
 
 namespace DIYFEWeb.Controllers
@@ -35,13 +37,33 @@ namespace DIYFEWeb.Controllers
             base.OnResultExecuting(ctx);
 
             string _ipAddress;
+            string _sessionId;
             _ipAddress = ctx.HttpContext.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             if (string.IsNullOrEmpty(_ipAddress))
             { _ipAddress = ctx.HttpContext.Request.ServerVariables["REMOTE_ADDR"]; }
+            if (Request.Cookies["sessionKey"] != null)
+            {
+                _sessionId = Request.Cookies["sessionKey"].Value;
+            }
+            else
+            {
+                Response.Cookies.Add(new System.Web.HttpCookie("sessionKey", ctx.HttpContext.Session.SessionID));
+                Response.Cookies["sessionKey"].Expires = DateTime.Now.AddHours(12);
+                _sessionId = ctx.HttpContext.Session.SessionID;
+            }
 
-            //DIYFELib.Tracking.InsertTracking(ctx.HttpContext.Session.SessionID,
-            //                                _ipAddress,
-            //                                ctx.HttpContext.Request.Url.PathAndQuery);
+            Tracking track = new Tracking();
+            track.IP = _ipAddress;
+            track.Session = _sessionId;
+            track.URL = ctx.HttpContext.Request.Url.PathAndQuery;
+            track.CreatedDate = DateTime.Now;
+            
+            using (var db = new DIYFE.EF.DIYFEEntities())
+            {
+                db.Trackings.Add(track);
+                db.SaveChanges();
+            }
+
 
             ViewBag.PageModel = PageModel;
         }

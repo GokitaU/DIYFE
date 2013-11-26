@@ -19,6 +19,9 @@ namespace DIYFEWeb.Models
         //COMMENTS
         public List<ArticleComment> Comments { get; set; }
 
+        //USED FOR PAGED LINK BASE URL
+        public string PageLinkBase { get; set; }
+
         public Article Into { get; set; }
         //public List<Article> ArticleList { get; set; }
         //DATA LIST
