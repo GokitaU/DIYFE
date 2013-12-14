@@ -264,5 +264,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NewsLetters">
+      <EntityTypeMapping TypeName="DIYFEModel.NewsLetter">
+        <MappingFragment StoreEntitySet="NewsLetter">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NewLetterId" ColumnName="NewLetterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

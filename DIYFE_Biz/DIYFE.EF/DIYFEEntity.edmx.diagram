@@ -43,6 +43,7 @@
         <AssociationConnector Association="DIYFEModel.FK_RecipeIngredient_Recipe" />
         <EntityTypeShape EntityType="DIYFEModel.DailyRecipe" Width="1.5" PointX="3.223759807284809" PointY="15.208713762093668" />
         <EntityTypeShape EntityType="DIYFEModel.IngredientShopping" Width="1.5" PointX="2.4124656982777948" PointY="28.855740664925307" />
+        <EntityTypeShape EntityType="DIYFEModel.NewsLetter" Width="1.5" PointX="6.2339405576856528" PointY="10.01363999117801" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

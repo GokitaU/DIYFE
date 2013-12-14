@@ -82,6 +82,8 @@ namespace DIYFEWeb.Controllers
             if (subCategoryUrl != "") { model.PageLinkBase += "/" + cat.SecondLevCategoryUrl; }
             if (subSubCategoryUrl != "") { model.PageLinkBase += "/" + cat.ThirdLevCategoryUrl; }
             //model.PageLinkBase = model.CrumbLinkList.Last().Href;
+            //model.RelatedTreeView = StaticConfig.TreeView(cat, model.PageLinkBase);
+
             using (var db = new DIYFE.EF.DIYFEEntities())
             {
                 
@@ -89,8 +91,8 @@ namespace DIYFEWeb.Controllers
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.Category.CategoryId == cat.CategoryId).OrderBy(a => a.CreatedDate);
                 if (categoryUrl != "")
                 {
-                    //model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
-                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                    model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.Category.CategoryId == cat.CategoryId && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
+                    //model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
                     if (subSubCategoryUrl != "")
                     { model.Into = db.Articles.Where(a => a.URLLink == subSubCategoryUrl).FirstOrDefault(); }
                     else if (subCategoryUrl != "")
@@ -102,6 +104,9 @@ namespace DIYFEWeb.Controllers
                 {
                     model.PagedArticle = db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleType.ArticleTypeName == articleType && a.ArticleStatus.Any(aStat => aStat.StatusId == 1)).OrderByDescending(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);
                 }
+
+                model.Into = new Article();
+                model.Into.Title = "Text of H1 in work";
                 //CHECK PAGING
                 //model.ArticleList = db.Articles.Include("ArticleComments").Where(a => a.ArticleTypeId == 1);
                 //model.PagedArticle = model.ArticleList.Concat(db.Articles.Include("ArticleComments").Include("ArticleStatus.StatusType").Where(a => a.ArticleTypeId == 2)).OrderBy(a => a.CreatedDate).ToPagedList(page ?? 1, pageSize);

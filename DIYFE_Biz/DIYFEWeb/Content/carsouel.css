@@ -4,11 +4,11 @@
 {
     position:relative;
     margin-bottom:0px;
-    background:url(../images/bg_banner.gif) repeat 0 0;
+    background:url(Img/bg_banner.gif) repeat 0 0;
     width:980px;
     background-color:gray;
     height:325px;
-    border-top:3px solid #000;
+
 }
 
 .barousel_image
@@ -46,7 +46,7 @@
     position:absolute;
     padding:15px 18px 0 18px;    
     z-index:50;
-    background:url(../images/bg_barousel_content.png) repeat 0 0;
+    background:url(Img/bg_barousel_content.png) repeat 0 0;
     color:#fff;
     width:247px;
     bottom:36px;
@@ -89,7 +89,7 @@
 {
     position:absolute;
     padding:3px 3px 0px 0;
-    height:23px;    
+    height:26px;    
     background:#000;
     bottom:0;
     z-index:20;
@@ -143,14 +143,14 @@
 
 .barousel_nav li.prev a
 {
-    background-image:url(../images/barousel_link_previous.gif);
+    background-image:url(Img/barousel_link_previous.gif);
     background-repeat:no-repeat;
     background-position:0 0;
 }
 
 .barousel_nav li.next a
 {
-    background-image:url(../images/barousel_link_next.gif);
+    background-image:url(Img/barousel_link_next.gif);
     background-repeat:no-repeat;
     background-position:0 0;
 }

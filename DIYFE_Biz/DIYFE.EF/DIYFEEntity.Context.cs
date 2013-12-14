@@ -51,6 +51,7 @@ namespace DIYFE.EF
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<DailyRecipe> DailyRecipes { get; set; }
         public DbSet<IngredientShopping> IngredientShoppings { get; set; }
+        public DbSet<NewsLetter> NewsLetters { get; set; }
     
         public virtual int sp_LoadArticle(string articleName, Nullable<int> articleId)
         {

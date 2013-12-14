@@ -5,19 +5,28 @@
 
  @Html.Partial("Error/_ErrorPageHandler")
 
-<div class="content">
+
+<div class="content" style="margin-top:45px;">
+   <div class="row">
+        <div class="col-xs-12">
+     @{
+              @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
+            }
+            </div>
+       </div>
+</div>
+
+<div class="content" id="articleDetails" style="margin-top:30px;">
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-lg-8">
-              @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
                 <article>
                     <h1>@Model.Article.Name</h1>
-                    <span class="small">@Model.Article.CreatedDate.ToShortDateString()</span>
                     @Html.Raw(Model.Article.MainContent)
                     <section id="comments">
-                         @if (Model.Article.ArticleComments != null){
-                             @Html.Partial("_ArticleComments", Model.Article.ArticleComments.ToList())
+                            @if (Model.Article.ArticleComments != null){
+                                @Html.Partial("_ArticleComments", Model.Article.ArticleComments.ToList())
                             }else{
-                             @Html.Partial("_ArticleComments", new List<DIYFE.EF.ArticleComment>())
+                                @Html.Partial("_ArticleComments", new List<DIYFE.EF.ArticleComment>())
                     }
                     </section>
                 </article>  
@@ -29,10 +38,7 @@
                 @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
             </div>
             <div class="productPromo">
-                product or project promotion area
-            </div>
-            <div id="topLevelLinkList">
-                top level link list that isn't covered in the tree menu
+                <img src="~/Content/Img/promo.png" />
             </div>
         </div>
         </div>

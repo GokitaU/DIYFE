@@ -2,9 +2,13 @@
 
 
 <div class="listItem">
-    <div class="listItemHeader"><h2>@Model.Title</h2></div>
-    <div class="listItemLinks">in line link list</div>
-    <div class="listItemDescription">@Model.ListItemContent</div>
-    <div class="listItemReadMore">@Html.ArticleLink(Model, "btn", "Read More")</div>
+    <div class="listItemHeader"><h2>@Html.ArticleLink(Model, "", Model.Title)</h2></div>
+    <div class="listItemDescription">@Html.Raw(Model.ListItemContent)</div>
+    <div class="listItemLinks">
+        <ul>
+            <li><span class="glyphicon glyphicon-calendar"></span> @Model.CreatedDate.ToShortDateString()</li>
+            <li><span class="glyphicon glyphicon-comment"></span> @Model.ArticleComments.Count() comments</li>
+        </ul>
+    </div>
+    <div class="listItemReadMore">@Html.ArticleLink(Model, "", "Read More") <span class="glyphicon glyphicon-chevron-right"></span></div>
 </div>   
- 

@@ -1,5 +1,29 @@
-#masterErrorDiv{display:none}#pageErrorDiv{display:none}
-        <!-- main site wrap -->
+
+body {
+    font-family:'raleway';
+}
+h1 {
+font-family:'raleway';
+margin-bottom:20px;
+margin-top:0px;
+}
+h3 {
+color:#B2E34B;
+padding:0px;
+margin:0px;
+margin-bottom:3px;
+font-weight:bold;
+font-family:'raleway';
+text-transform:uppercase;
+font-size:18px;
+
+}
+
+.greenLinks a {
+    color:#B2E34B;
+}                   
+
+ <!-- main site wrap -->
         #container {
         }
        ul {
@@ -9,22 +33,74 @@
     display: none;
 }
         header {
-            height:90px; border:1px solid black;
+            height:90px;
+            background-image:url(../content/Img/headerBackground.png);
+            background-repeat:repeat;
         }
             header #headerBar {
-             height:5px;background-color:#086FA1;
+             height:5px;background-color:#B2E34B;
+             box-shadow: 0px 0px 5px #888888;
             }
         header .content {
-           width:980px; border:1px solid black; margin: 0 auto; position: relative;
+           width:980px;  margin: 0 auto; position: relative;
         }
         header #logoFlag {
-            width:100px; top:-245px; position:absolute; cursor:pointer; background-color:#034769;
+            width:100px; top:-245px; position:absolute; cursor:pointer; 
             height:350px;
+            /*border-left:solid 5px #B2E34B;
+            border-right:solid 5px #B2E34B;*/
+            z-index:1;
+            font-family:'Raleway', serif;
+            color:white;
+            
+        }
+        #logoFlag #logoFlagBackground {
+            background-image:url('Img/flagBackground.png');
+            background-position:bottom;
+            background-repeat:no-repeat;
+            background-size:100px;
+            background-color:transparent;
+            width:100px;
+            height:24px;
         }
 
+#logoFlagText {
+    padding:5px 3px 0px 3px;
+    font-family:Arial;
+}
+#logoFlagText ul {
+    margin-left:11px;
+    margin-top:80px;
+}
+#logoFlagText li:first-letter {
+text-decoration:underline;
+margin-right:3px;
+}
+    #logoFlagText p {
+     font-size:10px;
+     text-align:center;
+     font-family:Arial;
+    }
+    #logoFlagText a {
+     font-size:8px;
+
+    }
+        #logoFlag #diyfeLogo {
+            background-image:url('Img/logoBackground.png');
+            background-position:top center;
+            background-repeat:no-repeat;
+            background-size:60px;
+            display:table-cell;
+            font-size:24px;
+            text-align:center;
+            vertical-align:bottom;
+            height:87px;
+            width:90px;
+            
+         }
         header #topContent, header #bottomContent {
-            margin-left: 115px;
-            height:41px;
+            margin-left: 125px;
+            height:47px;
         }
         /*header #topContent ul {
                 margin: 0;
@@ -42,47 +118,158 @@
                 margin-right:10px;
             }
 
-            header .socialShare ul {
-            background-image:url('img/sprite-vertical-editfromspring.png');
-            height:25px;
-            width:121px;
+#topContent #social-media {
+}
+#topContent #social-media {
+    background: none repeat scroll 0 0;
+    height: 27px;
+    margin: 8px 0px 0px 17px;
+}
+#topContent #social-media ul {
+    border-right: 0px solid #000000;
+    margin: 0;
+    padding: 0;
+}
+
+#topContent #social-media ul li {
+    display: inline;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+}
+
+
+#social-media ul li a:link, #social-media ul li a:visited {
+    background-repeat: no-repeat;
+    border-right:0px solid #000000;
+    display: block;
+    height: 27px;
+    text-indent: -9999px;
+    width: 27px;
+}
+#social-media .facebook > a {
+    background: url("img/social-sprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#social-media .facebook:hover > a, #social-media .facebook:active > a {
+    background-position: 0 -27px;
+}
+#social-media .twitter > a {
+    background: url("img/social-sprite.png") no-repeat scroll -27px 0 rgba(0, 0, 0, 0);
+}
+#social-media .twitter:hover > a, #social-media .twitter:active > a {
+    background-position: -27px -27px;
+}
+#social-media .google-plus > a {
+    background: url("img/social-sprite.png") no-repeat scroll -54px 0 rgba(0, 0, 0, 0);
+}
+#social-media .google-plus:hover > a, #social-media .google-plus:active > a {
+    background-position: -54px -27px;
+}
+#social-media .youtube > a {
+    background: url("img/social-sprite.png") no-repeat scroll -81px 0 rgba(0, 0, 0, 0);
+}
+#social-media .youtube:hover > a, #social-media .youtube:active > a {
+    background-position: -81px -27px;
+}
+#social-media .foursquare > a {
+    background: url("img/social-sprite.png") no-repeat scroll -108px 0 rgba(0, 0, 0, 0);
+}
+#social-media .foursquare:hover > a, #social-media .foursquare:active > a {
+    background-position: -108px -27px;
+}
+            #header {
+            margin-left:125px;
+            }
+            header #navWrap {
+                background-color: black;
+                font-family: 'Roboto', sans-serif;
+               box-shadow:0 5px 5px #888;
             }
         main {
-           border:1px solid black;
-           margin-top:43px;
+          
         }
         main .content {
-           width:980px; border:1px solid black; margin: 0 auto; position: relative; 
+           width:980px; margin: 0 auto; position: relative; 
         }
             main #navSpace {
             margin-left:115px; height:50px; vertical-align:central;
             }
             main #breadcrumb {
-               margin-left:15px; height:50px; vertical-align:central;
+             
+               height:43px; vertical-align:central; background-color:#B2E34B;
+               font-family: 'Raleway', sans-serif;
+               border-radius:2px;
             }
             main  #breadcrumb ul .breadcrumb {
                 background-color:none;
                 position: relative;
-                top: 34%;
             }
             .breadcrumb {
                 background-color:none;
                 margin:0px; padding:0px;
                 position: relative;
-                top: 34%;
+                text-transform:uppercase;
+                margin-left:22px;
+            }
+            .breadcrumb a {
+                color:white;
+            }
+            .breadcrumb a:hover {
+                font-weight:bold;
             }
         footer {
-            border:1px solid black;
+            box-shadow: 0px 0px 10px #888888;
+            background-image:url(../content/Img/headerBackground.png);
+            background-repeat:repeat;
+            border-top:solid 1px #888888;
+            height:200px;
         }
+            footer h5 {
+              
+                font-family:Arial;
+
+                color:#B2E34B;
+                text-transform:uppercase;
+                  font-weight:bold;
+                  margin-top:30px;
+                  margin-bottom:6px;
+            }
             footer .content {
-                  width:980px; border:1px solid black; margin: 0 auto; position: relative; 
+                  width:980px; margin: 0 auto; position: relative; 
             }
             footer ul {
                 list-style-type: none;
             }
+                footer ul li {
+                  font-size:12px;
+                  font-family:Arial;
+                  margin-top:3px;
+                  margin-bottom:3px;
+                }
+            footer a {
+                color:white;    
+                font-weight:bold;
+            }
 
 
 /* ===== NAVIGATION ====== */
+#searchWrap {
+    height: 38px; width: 200px; position: absolute; right: 0px;
+}
+.searchGlass {
+    background-color: rgb(178, 227, 75); width:38px; height:38px; float:right;
+    cursor:pointer;
+    background-image:url('Img/search.png');
+    background-position:center;
+    background-repeat:no-repeat;
+}
+#searchTextBox {
+    clear:right;background-color: rgb(178, 227, 75); padding:10px; padding-left:15px; display:none;
+}
+    #searchTextBox input[type=text] {
+    width:170px
+    }
+
 #header #nav {
     margin: 0 0 0 -11px;
     background: url(../images/bg-nav-l.png) no-repeat;
@@ -112,17 +299,26 @@
         list-style-type: none;
         float: left;
         white-space: nowrap;
-        width: 850px;
+        width: 770px;
     }
-
+        #header #nav ul li.active {
+            background-color:white;
+            border-left:solid 2px #B2E34B;
+            border-right:solid 2px #B2E34B;
+            border-top:solid 2px #B2E34B;
+            border-bottom:solid 5px white;
+            z-index:1;
+            border-top-right-radius:4px;
+            border-top-left-radius:4px;
+        }
         #header #nav ul li {
-            background: url(../images/separator-nav.png) no-repeat 100% 4px;
             float: left;
             margin: 0 4px 0 -4px;
-            padding: 4px 6px 0;
+            padding: 8px 6px 0;
             white-space: normal;
             display: table-cell;
             height: 38px;
+            
         }
 
             #header #nav ul li a:link,
@@ -136,6 +332,7 @@
                 float: left;
                 cursor: pointer;
                 background: url(../images/transparent.gif);
+                color:white;
             }
 
             #header #nav ul li a:hover,
@@ -146,6 +343,10 @@
                 -webkit-border-top-left-radius: 6px;
                 -webkit-border-top-right-radius: 6px;
             }
+
+            #header #nav ul li.active a {
+            color:black;
+        }
 
             #header #nav ul li a div {
                 display: table-cell;
@@ -207,14 +408,14 @@
 /* Sub Navigation */
 
 .subnav {
-    height: 40px;
-    margin-left: -10px;
-    width: 960px;
-    margin-top: -1px;
+    height: 42px;
+    width: 980px;
+    margin-top: -2px;
     visibility: visible;
     padding: 8px 5px 5px 15px;
     margin-bottom: -5px;
-    border-bottom: 1px inset #CCC;
+    border-bottom: solid 2px #B2E34B;
+    border-top:solid 2px #B2E34B;
     background: #ffffff;
     background: -moz-linear-gradient(top, #ffffff 0%, #f3f4f6 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f3f4f6));
@@ -222,13 +423,14 @@
     background: -o-linear-gradient(top, #ffffff 0%,#f3f4f6 100%);
     background: -ms-linear-gradient(top, #ffffff 0%,#f3f4f6 100%);
     background: linear-gradient(top, #ffffff 0%,#f3f4f6 100%);
+    box-shadow:0 3px 10px #888888;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3f4f6',GradientType=0 );
 }
 
     .subnav .submenu {
         display: none;
         list-style-type: none;
-        margin-left: 0px;
+        margin-left: 115px;
     }
 
         .subnav .submenu li {
@@ -253,10 +455,13 @@
 
             .subnav .submenu li a {
                 font-weight: bold;
-                font-size: 0.95em;
-                color: #555555;
+                font-size: 1.1em;
+                color: black;
             }
-
+            .subnav .submenu li a:hover { 
+                text-decoration:none;
+                color:#558C26;
+            }
             .subnav .submenu li.optional-subnav-content a {
                 color: #74a402;
             }
@@ -267,38 +472,873 @@
 
  .listItem {
                     margin-left:15px;
+                    margin-right:15px;
+                    margin-top:5px;
+                    margin-bottom:35px;
                 }
                 .listItemHeader {
                 }
-                .listItemLinks {
+                .listItemHeader h2 {
+                    color:#B2E34B;
+                    padding:0px;
+                    margin:0px;
+                    margin-bottom:3px;
+                    font-weight:bold;
+                    font-family:'raleway';
+                    text-transform:uppercase;
+                    font-size:22px;
+                 }
+                .listItemHeader a {
+                color:#B2E34B;
                 }
+                .listItemLinks {
+                    font-size:12px;
+                    height:20px;
+                    margin-bottom:8px;
+                }
+.listItemLinks ul {
+    height:20px;
+}
+.listItemLinks li {
+    float:left;
+    margin-right:10px;
+}
                 .listItemDescription {
+                    clear:both;
+                    margin-bottom:8px;
                 }
                 .listItemReadMore {
+                    clear:both;
+                    /*text-align:center;*/
+                }
+                .listItemReadMore a {
+                    color:#22272A;
+                    font-family:'raleway';
+                    font-weight:bold;
+                    text-transform:uppercase;
+                    font-size:12px;
                 }
                 .paging {
-                    margin-left:15px; margin-top:20px; height:40px; border:1px solid black;
+                    margin-left:15px; margin-top:20px; height:40px;
                 }
 
                 #treeMenu {
                     height:auto;
-                    border:1px solid black;
-
+                    
                 }
                 .productPromo {
-                    height:150px;
-                    border:1px solid black;
+                   
+                    margin:10px 0px 10px 0px;
 
                 }
                 #topLevelLinkList {
-                    height:150px;
+                   
                     border:1px solid black;
                 }
 
+/* =========== landing ============*/
+.newsLetter {
+    background-color:#B2E34B;
+    width:401px;
+    height:27px;
+    margin-top:27px;
+    float:right;
+    color:white;
+    font-size:12px;
+}
+    .newsLetter div {
+        float:left;
+        height:27px;
+    }
+    .newsLetter input[type=text] {
+        background-color:#558C26;
+        padding:5px;color:white;border:none; border-left:solid 3px grey;
+        height:27px;
+    }
+    .newsLetter div:first-child {
+        background-color:#6cae36;
+        font-weight:bold;
+        padding:5px 18px 5px 18px;
+    }
+    .newsLetter div:last-child {
+      background-color: #1B2E10;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 30px;
+    }
 
-                
+.newsLetter ul {
+list-style-type:none;
+
+}
+.newsLetter li {
+    position:relative;
+    float: left;
+}          
  /* ===== Article Details ====== */
 
 article {
     margin-left:15px;
+}
+
+article .resourceItem {
+    margin-top:25px;
+    margin-bottom:30px;
+}
+
+#articleDetails h3 {
+    margin-top:25px;
+}
+
+
+/* ============ END Article Deatils ========= */
+
+.loadMoreWrap {
+    cursor:pointer;
+    margin-top:60px;
+    margin-bottom:5px;
+}
+.loadMore {
+    width:50px;
+    background-color:black;
+    font-weight:bold;
+    text-align:center;
+    margin-left:90px;
+}
+.loadMoreText {
+    background-color:white;
+    color:black;
+    text-transform:uppercase;
+    font-weight:bold;
+    line-height:15px;
+}
+.loadMoreButton {
+    border:8px solid #FFFFFF;
+    font-family:'Source Sans Pro',Helvetica,Arial,sans-serif;
+    height:50px;
+    width:50px;
+    font-size:30px;
+    color:white;
+    line-height:28px;
+}
+
+#copyRight {
+    
+    font-family:Arial;
+    font-weight:bold;
+    font-size:12px;
+}
+    #copyRight ul {
+    text-transform:uppercase;
+    }
+#copyRight li {
+    margin-top:10px;
+    border-right:solid 1px #99e100;
+}
+#copyRight a{
+    color:white;
+}
+#copyRight a:hover{
+    color:white;
+}
+
+#designedByWrap {
+    float:right;
+}
+#designedBy {
+    float:right;
+   height:35px;
+    color:white;
+    padding:9px 8px 9px 0px;
+}
+#designedByLink {
+    float:right;   
+    background-color:black;
+    color:white;
+    height:35px;
+    font-size:18px;
+    padding:4px 10px 4px 10px;
+    font-weight:normal;
+    font-family:Arial;
+    letter-spacing:1px;
+}
+    #designedByLink span {
+        font-weight:bold;
+        font-size:19px;
+    }
+#designedByLink a {
+   
+    color:white;
+}
+
+/*  ---------------  SITE ERROR and SUCCESS MESSAGE*/
+/* info and errors  */
+
+StaticConfig{display:none}#pageErrorDiv{display:none}
+
+#masterErrorDiv, #pageErrorDiv
+{
+    display:none;
+    border:solid 1px #B94A48;
+    padding: 10px;
+    color:#B94A48;
+}
+
+#masterErrorText, #pageErrorText
+{color:#B94A48;
+}
+
+
+.alert {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.alert, .alert h4 {
+    color: #C09853;
+}
+.alert {
+    background-color: #FCF8E3;
+    border: 1px solid #FBEED5;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.alert-danger, .alert-error {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
+
+.alert-danger, .alert-error {
+    color: #E90000;
+}
+
+.alert-success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
+
+/*  ------------ CONTACT FORM ----------------  */
+
+    /*form, fieldset, legend, label {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+    form *, *:before, form *:after {
+    -moz-box-sizing:content-box;
+}
+input, select, textarea {
+    margin: 0;
+    padding: 0;
+}
+.multicols {
+    display: inline-block;
+    float: left;
+}
+.input-border {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.focus {
+    border-color: #AEB0B3;
+}
+.ouiForm label {
+    color: #5A5B5E;
+}
+.ouiForm input {
+    font: 12px Arial;
+}
+.ouiForm textarea {
+    font: 12px Arial;
+}
+.ouiForm fieldset {
+}
+.ouiForm fieldset .field_holder {
+    display: block;
+    margin: 0px 0px 10px 0px;
+    position: relative;
+    vertical-align: top;
+}
+.ouiForm fieldset .field_holder label {
+    display: inline-block;
+    margin: 0px 0px 2px 0px;
+    vertical-align: top;
+}
+.ouiForm fieldset .field_holder label .required {
+    display: inline-block;
+}
+.ouiForm fieldset .field_holder .input_holder {
+    display: inline-block;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+.ouiForm fieldset .field_holder .input_holder input[type="text"] {
+    height: 15px;
+    padding: 3px;
+    width: 270px;
+}
+.ouiForm fieldset .field_holder .input_holder input.text {
+    height: 15px;
+    padding: 3px;
+    width: 270px;
+}
+.ouiForm fieldset .field_holder .input_holder textarea {
+    height: 216px;
+    padding: 4px;
+    width: 590px;
+}
+.ouiForm fieldset .field_holder .input_holder input[type="text"] {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .field_holder .input_holder input.text {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .field_holder .input_holder textarea {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .btn {
+    background-color: #E0E0E0;
+    border: medium none;
+    color: #5A5B5E;
+    cursor: pointer;
+    font: 11px Lucida Grande;
+    padding: 8px 35px 7px;
+}
+.ouiForm fieldset .btn:hover {
+    background-color: #C7C7C7;
+}
+.ouiForm fieldset .btn-hover {
+    background-color: #C7C7C7;
+}
+.ouiForm fieldset.onecol .field_holder {
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+.ouiForm fieldset.twocols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+.ouiForm fieldset.threecols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 33.3%;
+}
+.ouiForm fieldset.fourcols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 25%;
+}
+.ouiForm fieldset.twocols .field_holder {
+    width: 279px;
+}
+.ouiForm fieldset.twocols .field_gutter {
+    margin-right: 41px;
+}
+.ouiForm fieldset.message .field_holder {
+    margin: 0 0 10px;
+}
+.ouiForm fieldset.message .field_holder label {
+    display: block;
+}
+.ouiForm fieldset .field_error .input_holder {
+    background-color: #E90000 !important;
+    padding: 1px;
+}
+.ouiForm fieldset .field_error .input_holder input[type="text"] {
+    height: 13px;
+    width: 268px;
+}
+.ouiForm fieldset .field_error .input_holder input.text {
+    height: 13px;
+    width: 268px;
+}
+.ouiForm fieldset .field_error .input_holder textarea {
+    height: 213px;
+    width: 588px;
+}
+.ouiForm fieldset .field_error .input_holder select {
+}
+.oneborder input {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oneborder textarea {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oneborder fieldset .field_holder .input_holder {
+    background-color: #D4D5D6;
+    padding: 1px;
+}
+.oneborder fieldset .field_holder .input_holder input[type="text"] {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder input.text {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder textarea {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder select {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder input[type="text"] {
+    border: medium none;
+    height: 19px;
+    width: 272px;
+}
+.oneborder fieldset .field_holder .input_holder input.text {
+    border: medium none;
+    height: 19px;
+    width: 272px;
+}
+.oneborder fieldset .field_holder .input_holder textarea {
+    border: medium none;
+    height: 217px;
+    width: 590px;
+}
+.oneborder fieldset .field_error .input_holder {
+}
+.oi input {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oi textarea {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oi textarea {
+    resize: none;
+}
+.oi fieldset .field_holder .input_holder {
+    background-color: #D4D5D6;
+    padding: 0;
+}
+.oi fieldset .field_holder .input_holder input[type="text"] {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder input.text {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder textarea {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder input[type="text"] {
+    height: 18px;
+    width: 272px;
+}
+.oi fieldset .field_holder .input_holder input.text {
+    height: 18px;
+    width: 272px;
+}
+.oi fieldset .field_holder .input_holder select {
+    left: 11px;
+    position: absolute;
+    top: 0;
+}
+.oi fieldset .field_holder .input_holder textarea {
+    height: 216px;
+    width: 589px;
+}
+.oi fieldset .field_holder .input_text {
+    height: 26px;
+    width: 279px;
+}
+.oi fieldset .field_holder .input_select {
+    height: 18px;
+    width: 1px;
+}
+.oi fieldset .field_holder .input_textarea {
+    height: 226px;
+    width: 598px;
+}
+.oi fieldset .field_holder .input_checkbox {
+    background-color: rgba(0, 0, 0, 0);
+}
+.oi fieldset .field_holder .input_checkbox input {
+    border: medium none;
+}
+.oi fieldset .field_holder .input_focus {
+    background-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus input[type="text"] {
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus input.text {
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus textarea {
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_required label .required {
+    display: none;
+}
+.oi fieldset .field_required .input_holder input[type="text"] {
+    left: 4px;
+    width: 269px;
+}
+.oi fieldset .field_required .input_holder input.text {
+    left: 4px;
+    width: 269px;
+}
+.oi fieldset .field_required .input_holder textarea {
+    left: 4px;
+    width: 588px;
+}
+.oi fieldset .field_required .input_select {
+    width: 4px;
+}
+.oi fieldset .field_error .input_holder {
+    background-color: #E90000;
+}
+.mac.safari .oi fieldset .field_holder .input_checkbox input {
+    margin: 3px 0 0;
+}
+   .tR {
+        text-align:right;
+    }*/
+
+  .tR {
+        text-align:right;
+    }  
+form, fieldset, legend, label {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+input, select, textarea {
+    margin: 0;
+    padding: 0;
+}
+.multicols {
+    display: inline-block;
+    float: left;
+}
+.input-border {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.focus {
+    border-color: #AEB0B3;
+}
+.ouiForm label {
+    color: #5A5B5E;
+}
+.ouiForm input {
+    font: 12px Arial;
+}
+.ouiForm textarea {
+    font: 12px Arial;
+}
+.ouiForm fieldset {
+}
+.ouiForm fieldset .field_holder {
+    display: block;
+    margin: 0 0 21px;
+    position: relative;
+    vertical-align: top;
+}
+.ouiForm fieldset .field_holder label {
+    display: inline-block;
+    margin: 0 0 6px;
+    vertical-align: top;
+}
+.ouiForm fieldset .field_holder label .required {
+    display: inline-block;
+}
+.ouiForm fieldset .field_holder .input_holder {
+    display: inline-block;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+.ouiForm fieldset .field_holder .input_holder input[type="text"] {
+    height: 15px;
+    padding: 3px;
+    width: 270px;
+}
+.ouiForm fieldset .field_holder .input_holder input.text {
+    height: 15px;
+    padding: 3px;
+    width: 270px;
+}
+.ouiForm fieldset .field_holder .input_holder textarea {
+    height: 216px;
+    padding: 4px;
+    width: 226px;
+}
+.ouiForm fieldset .field_holder .input_holder input[type="text"] {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .field_holder .input_holder input.text {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .field_holder .input_holder textarea {
+    color: #5A5B5E;
+}
+.ouiForm fieldset .btn {
+    background-color: #E0E0E0;
+    border: medium none;
+    color: #5A5B5E;
+    cursor: pointer;
+    font: 11px Lucida Grande;
+    padding: 8px 35px 7px;
+}
+.ouiForm fieldset .btn:hover {
+    background-color: #C7C7C7;
+}
+.ouiForm fieldset .btn-hover {
+    background-color: #C7C7C7;
+}
+.ouiForm fieldset.onecol .field_holder {
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+.ouiForm fieldset.twocols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+.ouiForm fieldset.threecols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 33.3%;
+}
+.ouiForm fieldset.fourcols .field_holder {
+    display: inline-block;
+    float: left;
+    width: 25%;
+}
+.ouiForm fieldset.twocols .field_holder {
+    width: 279px;
+}
+.ouiForm fieldset.twocols .field_gutter {
+    margin-right: 41px;
+}
+.ouiForm fieldset.message .field_holder {
+    margin: 0 0 10px;
+}
+.ouiForm fieldset.message .field_holder label {
+    display: block;
+}
+.ouiForm fieldset .field_error .input_holder {
+    background-color: #E90000 !important;
+    padding: 1px;
+}
+.ouiForm fieldset .field_error .input_holder input[type="text"] {
+    height: 13px;
+    width: 268px;
+}
+.ouiForm fieldset .field_error .input_holder input.text {
+    height: 13px;
+    width: 268px;
+}
+.ouiForm fieldset .field_error .input_holder textarea {
+    height: 213px;
+    width: 588px;
+}
+.ouiForm fieldset .field_error .input_holder select {
+}
+.oneborder input {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oneborder textarea {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oneborder fieldset .field_holder .input_holder {
+    background-color: #D4D5D6;
+    padding: 1px;
+}
+.oneborder fieldset .field_holder .input_holder input[type="text"] {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder input.text {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder textarea {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder select {
+    left: 0;
+    position: relative;
+}
+.oneborder fieldset .field_holder .input_holder input[type="text"] {
+    border: medium none;
+    height: 19px;
+    width: 272px;
+}
+.oneborder fieldset .field_holder .input_holder input.text {
+    border: medium none;
+    height: 19px;
+    width: 272px;
+}
+.oneborder fieldset .field_holder .input_holder textarea {
+    border: medium none;
+    height: 217px;
+    width: 590px;
+}
+.oneborder fieldset .field_error .input_holder {
+}
+.oi input {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oi textarea {
+    border-color: #D4D5D6;
+    border-style: solid;
+    border-width: 1px;
+}
+.oi textarea {
+    resize: none;
+}
+.oi fieldset .field_holder .input_holder {
+    background-color: #D4D5D6;
+    padding: 0;
+}
+.oi fieldset .field_holder .input_holder input[type="text"] {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder input.text {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder textarea {
+    border-left: medium none;
+    left: 1px;
+    position: absolute;
+}
+.oi fieldset .field_holder .input_holder input[type="text"] {
+    height: 18px;
+    width: 272px;
+}
+.oi fieldset .field_holder .input_holder input.text {
+    width: 275px;
+    height: 26px;
+    left:4px;
+}
+.oi fieldset .field_holder .input_holder select {
+    left: 11px;
+    position: absolute;
+    top: 0;
+}
+.oi fieldset .field_holder .input_holder textarea {
+    height: 226px;
+    width: 589px;
+}
+.oi fieldset .field_holder .input_text {
+    height: 26px;
+    width: 279px;
+}
+.oi fieldset .field_holder .input_select {
+    height: 18px;
+    width: 1px;
+}
+.oi fieldset .field_holder .input_textarea {
+    height: 226px;
+    width: 598px;
+}
+.oi fieldset .field_holder .input_checkbox {
+    background-color: rgba(0, 0, 0, 0);
+}
+.oi fieldset .field_holder .input_checkbox input {
+    border: medium none;
+}
+.oi fieldset .field_holder .input_focus {
+    background-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus input[type="text"] {
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus input.text {
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_holder .input_focus textarea {.oi fieldset .field_required .input_holder textarea
+    border-color: #AEB0B3;
+}
+.oi fieldset .field_required label .required {
+    display: none;
+}
+.oi fieldset .field_required .input_holder input[type="text"] {
+       left: 4px;
+width: 275px;
+height: 26px;
+}
+.oi fieldset .field_required .input_holder input.text {
+    left: 4px;
+width: 275px;
+height: 26px;
+}
+.oi fieldset .field_required .input_holder textarea {
+    left: 4px;
+    width: 595px;
+}
+.oi fieldset .field_required .input_select {
+    width: 4px;
+}
+.oi fieldset .field_error .input_holder {
+    background-color: #E90000;
+}
+.mac.safari .oi fieldset .field_holder .input_checkbox input {
+    margin: 3px 0 0;
+}
+
+                #contact-info {
+    -moz-box-sizing: border-box;
+    border: 10px solid #FFFFFF;
+    height: 100%;
+    height:350px;
+    width: 306px;
+}
+                #contact-info dt {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+                #contact-info dd a {
+    /*color: #204A65;*/
+}
+                #contact-info dd {
+    margin-bottom: 25px;
+}
+                #contact-info dt {
+    color: #B2E34B;
+    font-size: 14px;
+    font-weight:bolder;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }

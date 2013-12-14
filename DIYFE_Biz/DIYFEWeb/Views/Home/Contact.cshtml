@@ -1,50 +1,120 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
+﻿@model DIYFE.EF.Article
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
+ @Html.Partial("Error/_ErrorPageHandler")
 
-<section class="contact">
-    <header>
-        <h3>Phone</h3>
-    </header>
-    <p>
-        <span class="label">Main:</span>
-        <span>425.555.0100</span>
-    </p>
-    <p>
-        <span class="label">After Hours:</span>
-        <span>425.555.0199</span>
-    </p>
-</section>
+<script src="@Url.Content("~/Scripts/AppSupport/contact.js")" type="text/javascript"></script>
 
-<section class="contact">
-    <header>
-        <h3>Email</h3>
-    </header>
-    <p>
-        <span class="label">Support:</span>
-        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">Marketing:</span>
-        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">General:</span>
-        <span><a href="mailto:General@example.com">General@example.com</a></span>
-    </p>
-</section>
+<script type="text/javascript">
+    $(document).ready(function () {
 
-<section class="contact">
-    <header>
-        <h3>Address</h3>
-    </header>
-    <p>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399
-    </p>
-</section>
+        $('#Subject').val('@Model.URLLink');
+    });
+</script>
+
+<div class="content" style="margin-top:45px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+            <h1>@Model.Name</h1>
+                @Html.Raw(Model.MainContent)
+            </div><br />
+           <div class="col-xs-12 col-sm-8 col-lg-8"> 
+            <div id="formErrorDiv" class="alert alert-error" style="display:none;"></div>
+            <div id="formSuccess" class="alert alert-success" style="display:none;">
+                <p>Message Has Been Sent</p>
+            </div>
+            <form class="ouiForm oi" method="post" action="/contact">
+                <fieldset class="twocols">
+                    <div class="field_holder field_gutter field_required ">
+                        <label for="firstName">First name<span class="required">*</span></label>
+                        <span class="input_holder input_text">
+                            <input type="text" class="text" tabindex="1" value="" name="contact_first_name" id="FirstName"></span>
+                    </div>
+                    <div class="field_holder field_required">
+                        <label for="lastName">Last name<span class="required">*</span></label>
+                        <span class="input_holder input_text">
+                            <input type="text" class="text" tabindex="2" value="" name="contact_last_name" id="LastName"></span>
+                    </div>
+                    <div class="field_holder field_gutter field_required">
+                        <label for="email">Email address<span class="required">*</span></label>
+                        <span class="input_holder input_text">
+                            <input type="text" class="text" tabindex="3" value="" name="contact_email_address" id="Email"></span>
+                    </div>
+                    <div class="field_holder">
+                        <label for="phone">Phone number</label>
+                        <span class="input_holder input_text">
+                            <input type="text" class="text" tabindex="4" value="" name="contact_telephone" id="Phone"></span>
+                    </div>
+                </fieldset>
+                <fieldset class="message">
+                    <div class="field_holder field_required">
+                        <label for="subject">Subject<span class="required">*</span></label>
+                        <span class="input_holder input_select">
+                            <select tabindex="5" name="contact_contactsubject_id" id="Subject">
+                                <option selected="selected" value="">Select</option>
+                                <option value="promo">Product and Project Promotions</option>
+                                <option value="adSpace">Purchasing Ad Space</option>
+                                <option value="feedBack">Feedback on this website</option>
+                                <option value="other">Other</option>
+                            </select></span>
+                    </div>
+                    <div class="field_holder field_required">
+                        <span class="input_holder input_textarea">
+                            <textarea class="text" tabindex="6" rows="14" cols="92" name="contact_message" id="Message"></textarea></span>
+                    </div>
+                </fieldset>
+                <fieldset class="twocols">
+                    <div class="field_holder field_gutter field_required">
+                        <label for="verification">We need to verify you are human.<br>
+                            How much is 2 + 1 ?<span class="required">*</span></label>
+                        <span class="input_holder input_text">
+                            <input type="text" class="text" value="" name="contact_verification" id="verification"></span>
+                    </div>
+                    <div class="field_holder tR">
+                        <input type="hidden" value="0" name="contact_newsletter_subscribe"><label for="join_newsletter">Add me to the newsletter</label>
+                        <span class="input_holder input_checkbox">
+                            <input type="checkbox" value="1" name="contact_newsletter_subscribe" id="Newsletter"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <input type="button" id="btnSendMail" class="submit btn" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+            <aside id="contact-info">
+    <dl>
+      <dt>Email</dt>
+      <dd><a title="Click to send us an email" href="mailto:info@diyfe.org">info@diyfe.org</a></dd>
+      <dt>Telephone</dt>
+      <dd><a title="Click to call us" href="tel:972-555-5555">972-555-555</a></dd>
+@*      <dt>Skype</dt>
+      <dd><a title="Click to call us on Skype" href="skype:combaditravel?call">combaditravel</a></dd>*@
+      <dt>Address</dt>
+      <dd>
+        <address>
+            Dallas<br />
+            Texas
+@*          Combadi Ltd.<br>
+          1 Kings Avenue<br>
+          London<br>
+          N21 3NA<br>
+          England<br><br>
+          Company No. 08714000*@
+        </address>
+      </dd>
+@*      <dd class="social-links">
+        <a title="Find us on Facebook" href="http://www.facebook.com/Combadi" class="fb">Facebook</a>
+        <a title="Find us on Twitter" href="http://twitter.com/combaditravel" class="tt">Twitter</a>
+      </dd>*@
+    </dl>
+  </aside>
+            <div class="productPromo">
+                <img src="~/Content/Img/promo.png" />
+            </div>
+            <div id="productPromo">
+                <img src="~/Content/Img/promo.png" />
+            </div>
+        </div>
+        </div>
+
+</div>

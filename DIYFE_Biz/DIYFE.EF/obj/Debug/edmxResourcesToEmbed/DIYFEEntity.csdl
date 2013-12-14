@@ -95,6 +95,7 @@
     <FunctionImport Name="ClearWeek" />
     <EntitySet Name="DailyRecipes" EntityType="DIYFEModel.DailyRecipe" />
     <EntitySet Name="IngredientShoppings" EntityType="DIYFEModel.IngredientShopping" />
+    <EntitySet Name="NewsLetters" EntityType="DIYFEModel.NewsLetter" />
   </EntityContainer>
   <EntityType Name="ArticleComment">
     <Key>
@@ -556,5 +557,13 @@
     </Key>
     <Property Type="Int32" Name="ShoppingItemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="IngredientId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsLetter">
+    <Key>
+      <PropertyRef Name="NewLetterId" />
+    </Key>
+    <Property Type="Int32" Name="NewLetterId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Projects";
+}
+
+<div class="content" style="margin-top:45px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-lg-8">
+            <h1>Help Fund Projects</h1>
+@*            @if(Model.Into != null){
+            <article>
+                <h1>@Model.Into.Title</h1>
+                    @Html.Raw(Model.Into.MainContent)
+            </article>
+            }
+            @for (int i = 0; i < @Model.PagedArticle.PageSize; i++)
+            {
+                if (i < Model.PagedArticle.Count()){
+                 @Html.Partial("_DataListItem", Model.PagedArticle[i])
+                 }
+            }
+            
+            <div class="paging">
+                @Html.PagedListPager(Model.PagedArticle, page => Model.PageLinkBase + "?page=" + page.ToString())
+            </div>*@
+        </div>
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+            <div>
+                <ul>
+                    <li>test</li>
+                </ul>
+            </div>
+            <div class="productPromo">
+                <img src="~/Content/Img/promo.png" />
+            </div>
+            <div id="productPromo">
+                <img src="~/Content/Img/promo.png" />
+            </div>
+        </div>
+        </div>
+
+</div>

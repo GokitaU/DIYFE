@@ -131,6 +131,74 @@
 
     //mediator.publish('masterPageError', { error: err.message, method: 'core.js, on document ready' });
 
+    $('#searchWrap').mouseover(function () {
+        $('#searchTextBox').show();
+        $('body').unbind('mousemove');
+        $('.subnav').hide();
+        $(".submenu").hide();
+        $(".nav-frame ul li").removeClass('active');
+    });
+    $('#searchWrap').mouseout(function () {
+        if (!$("#searchText").is(":focus")) {
+            $('#searchTextBox').hide();
+        }
+    });
+    $('#searchText').focusout(function () {
+        $('#searchTextBox').hide();
+    });
+    $('#searchWrap .searchGlass').click(function () {
+        var searchText = $('#searchText').val();
+        if (searchText != "") {
+            window.location = '/home/search?searchVal=' + searchText;
+        } else {
+            $('#searchTextBox').show();
+            $('body').unbind('mousemove');
+            $('.subnav').hide();
+            $(".submenu").hide();
+            $(".nav-frame ul li").removeClass('active');
+        }
+    });
+
+    $('#searchText').bind('keypress', function (e) {
+        var searchText = $('#searchText').val();
+        if (e.keyCode == 13 && searchText != "") {
+            // Enter pressed... do anything here...
+            window.location = '/home/search?searchVal=' + searchText;
+
+        }
+    });
+    //$('#newLetterText').focus(function () {
+        
+    //    if ($(this).val() == 'enter email address') {
+    //        alert($(this).val());
+    //        $(this).val() == '';
+    //    }
+    //});
+
+    //$('#newLetterText').focusout(function () {
+    //    alert('weari');
+    //    if ($(this).val() == 'enter email address') {
+    //        $(this).val() == '';
+    //    }
+    //});
+
+    $('#diyfeLogo').click(function () {
+        var topLevel = 0;
+        var logoFlag = $('#logoFlag');
+      
+        if (logoFlag.attr('style') == 'top: -75px;') {
+            topLevel = -245;
+        } else {
+            topLevel = -75;
+        }
+
+        $('#logoFlag').animate({
+            top: topLevel,
+        }, 800, 'swing', function() {
+            // Animation complete.
+        });
+    });
+
     $('#btnSubmitComment').click(function () {
 
         var comment = {
@@ -191,6 +259,7 @@
                     var b = $(a).attr("rel");
                     $(".submenu").hide();
                     $("#" + b + "").show();
+                    $(".subnav").show();
                     $('.btn-register').removeClass('active');
                     $('body').bind("mousemove", watchPos);
                 })
@@ -199,6 +268,7 @@
                 var b = $(".subnav").offset(), d = b.left, c = b.top, b = d + $(".subnav").outerWidth(), c = c + $(".subnav").outerHeight();
                 if (a.pageX < d || a.pageX > b || a.pageY > c || a.pageY < $(".nav-frame").offset().top) {
                     $(".submenu").hide();
+                    $('.subnav').hide();
                     $('.submenu:eq(' + activeItem + ')').show();
                     $(".nav-frame ul li").removeClass('active');
                     $(".nav-frame ul .selected").addClass('active');
@@ -212,7 +282,7 @@
                     $('body').unbind('mousemove', watchPos);
                 }
             }
-
+            $('.subnav').hide();
             $(".submenu").hide();
         }
     }

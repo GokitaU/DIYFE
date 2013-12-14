@@ -8,6 +8,8 @@ using RazorEngine;
 using System.IO;
 using System.Text;
 
+using DIYFEWeb.Models;
+
 namespace DIYFEWeb
 {
     //public enum EmailTemplate
@@ -39,6 +41,22 @@ namespace DIYFEWeb
     public static class EmailMessageFactory
     {
         #region Methods
+
+        public static MailMessage GetContactEmail(ContactMailModel model )
+        {
+
+            var templatePath = HttpContext.Current.Server.MapPath("~/Views/EmailTemplates/Contact.cshtml");
+
+            var body = EmailTemplateResolver.GetEmailBody(
+                templatePath,
+                model);
+
+            return new MailMessage(
+                    StaticConfig.MailSenderAddress,
+                    "jonathan.tipps@diyfe.org",
+                    "Conatct From DIYFE",
+                    body);
+        }
 
         public static MailMessage GetWelcomeEmail(string toAddress, string userName, string userFullName, string password, string loginUrl)
         {

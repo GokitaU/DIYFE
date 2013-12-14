@@ -1,11 +1,75 @@
 ﻿@model DIYFEWeb.Models.ArticleListModel
 
+
+<style>
+    .listItemPopular {
+        font-family:'raleway';
+        font-weight:bold;
+        margin-bottom:45px;
+    }
+    .listItemPopular h5 {
+        font-family:'raleway';
+        font-weight:bold;
+        font-size:16px;
+        margin-top:3px;
+        margin-bottom:15px;
+
+    }
+    .listItemPopular a {
+        
+    }
+    .listItemPopular p {
+        
+    }
+
+    .postedDate {
+        border-radius: 25px;
+        height: 50px;
+        width: 50px;
+        background-color: #B2E34B;
+        color: white;
+        font-family: 'raleway';
+        font-weight: bold;
+        line-height: 14px;
+        padding: 11px 0 0 1px;
+        text-align: center;
+        margin:0 0 15px 100px;
+    }
+
+</style>
+
 @section JS{
      <script src="@Url.Content("~/Scripts/Plugins/carsouel.js")" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
             $('#barousel_prevnextnav').barousel({
                 navType: 2
+            });
+
+            $('#newLetterBtn').click(function () {
+
+                var emailVal = $('#newLetterText').val();
+                if (emailVal != "") {
+                    $.ajax({
+                        url: GetRootURL() + 'Home/SignUpNewLetter?email=' + emailVal,
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data.success) {
+                                //loadingDiv.hide();
+                                //$('.success').show();
+                                //mediator.publish('BetLoadDone', {});
+                                alert('You have been signed up for new letter');
+                            } else {
+                                //show error
+                                alert(data.message);
+                            }
+                        },
+                        error: function () {
+                            mediator.publish('logError', { error: 'Error with service for Insert Article', method: 'Insert Article' });
+                        }
+                    });
+                }
             });
         });
     </script>
@@ -15,8 +79,8 @@
 }
 
 
-@Html.Partial("Error/_ErrorPageHandler")
-    <div class="content">
+@Html.Partial("Error/_ErrorPageHandler")<br /><br />
+    <div class="content">  @* style="z-index:-1"*@
             <div class="hero" style="height:300px;">
                 @*<h3>Ok, get jquery 1.10 working with naviation</h3>
                 <h1>hero unit</h1>
@@ -64,35 +128,99 @@
        </div>
             </div>
     </div>
-    <br /><br />
     <div class="content">
+        <div class="newsLetter">
+            <div>SIGNUP FOR OUR NEWSLETTER</div>
+            <div><input type="text" id="newLetterText" placeholder="enter email address" /></div>
+            <div id="newLetterBtn" >&#10161;</div>
+@*            <ul>
+                <li style="padding:10px;padding-bottom:7px; font-weight:bold;">SIGNUP FOR OUR NEWSLETTER</li>
+                <li></li>
+                <li style="background-color:#1B2E10;padding:2px 0 0 9px;width:41px;font-size:25px;cursor:pointer;">&#10161; </li>
+            </ul>*@
+        </div>
+    </div>
+    <br /><br /><br /><br />
+    <div class="content greenLinks">
         <div class="row">
-            <div class="col-md-4"><h2>Popular</h2>
+            <div class="col-md-4">
+                <div class="rowWrap" style="width:250px;">
+                <h1>popular</h1>
                 <ul>
                     @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleStatus.Any(arts => arts.StatusId == 4)).Take(10))
                         {
-                        <li>@Html.ArticleLink(article)</li>
+                        <li>
+                            <div class="listItemPopular">
+                            @Html.ArticleLink(article,"","<img src=\"Content/Img/test1.png\" width=\"250px\" />")
+                               <h5>@Html.ArticleLink(article)</h5>                            
+                                @Html.Raw(@article.ListItemContent)
+                            </div>
+                        </li>
                         }
-                    <li>@Html.Link("project","View All","Link too all of our projects", "btn")</li>
                 </ul>
+                    <div class="loadMoreWrap">
+                    <div class="loadMore">
+                        <div class="loadMoreText">
+                            view all
+                        </div>
+                            <div class="loadMoreButton">
+                                &#x2192;
+                            </div>
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="col-md-4"><h2>New Posts</h2>
+            <div class="col-md-4">
+                <div class="rowWrap" style="width:250px;">
+                <h1>recent</h1>
                 <ul>
                     @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 1).Take(10))
                         {
-                        <li>@Html.ArticleLink(article)</li>
+                        <li style="font-weight:bold; margin-bottom:25px;">
+                            <h3>@Html.ArticleLink(article)</h3>
+                            @Html.Raw(@article.ListItemContent)
+                        </li>
                         }
-                    <li>@Html.Link("post","View All","Link too all of our posts", "btn")</li>
                 </ul>
+                <div class="loadMoreWrap">
+                    <div class="loadMore">
+                        <div class="loadMoreText">
+                            view all
+                        </div>
+                            <div class="loadMoreButton">
+                                &#x2192;
+                            </div>
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="col-md-4"><h2>News</h2>
+            <div class="col-md-4">
+                <div class="rowWrap">
+                <h1 style="margin-left:80px;">news</h1>
                 <ul>
                     @foreach (DIYFE.EF.Article article in Model.ArticleList.Where(a => a.ArticleTypeId == 4).Take(10))
                         {
-                        <li>@Html.ArticleLink(article)</li>
+                        <li>
+                            <div class="postedDate">
+                                nov<br />1
+                            </div>
+                            <b>@Html.ArticleLink(article)</b>
+                            <p>Talk about going nowhere fast. Damage report! That might've been one of the shortest assignments in the history of Starfleet. We finished our first sensor sweep of the neutral zone. Shields up! Rrrrred alert!</p>
+                            
+                        </li>
                         }
-                    <li>@Html.Link("news","View All","Link too all of our news", "btn")</li>
                 </ul>
+                    <div class="loadMoreWrap">
+                    <div class="loadMore">
+                        <div class="loadMoreText">
+                            view all
+                        </div>
+                            <div class="loadMoreButton">
+                                &#x2192;
+                            </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>

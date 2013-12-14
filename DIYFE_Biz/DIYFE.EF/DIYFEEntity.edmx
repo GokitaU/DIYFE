@@ -16,6 +16,7 @@
           <EntitySet Name="ContentSection" EntityType="DIYFEModel.Store.ContentSection" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewsLetter" EntityType="DIYFEModel.Store.NewsLetter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tracking" EntityType="DIYFEModel.Store.Tracking" store:Type="Tables" Schema="dbo" />
@@ -225,6 +226,14 @@
           <Property Name="ErrorMethod" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="ErrorText" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="NewLetterId" />
+          </Key>
+          <Property Name="NewLetterId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Notifications">
           <Key>
@@ -650,6 +659,7 @@
           <FunctionImport Name="ClearWeek" />
           <EntitySet Name="DailyRecipes" EntityType="DIYFEModel.DailyRecipe" />
           <EntitySet Name="IngredientShoppings" EntityType="DIYFEModel.IngredientShopping" />
+          <EntitySet Name="NewsLetters" EntityType="DIYFEModel.NewsLetter" />
         </EntityContainer>
         <EntityType Name="ArticleComment">
           <Key>
@@ -1112,6 +1122,14 @@
           <Property Type="Int32" Name="ShoppingItemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="IngredientId" Nullable="false" />
         </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="NewLetterId" />
+          </Key>
+          <Property Type="Int32" Name="NewLetterId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1378,6 +1396,15 @@
               <MappingFragment StoreEntitySet="IngredientShopping">
                 <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
                 <ScalarProperty Name="ShoppingItemId" ColumnName="ShoppingItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetters">
+            <EntityTypeMapping TypeName="DIYFEModel.NewsLetter">
+              <MappingFragment StoreEntitySet="NewsLetter">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NewLetterId" ColumnName="NewLetterId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

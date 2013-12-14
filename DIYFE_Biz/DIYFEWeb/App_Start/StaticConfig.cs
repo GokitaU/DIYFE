@@ -29,8 +29,8 @@ namespace DIYFEWeb
 
             //BUILD TOP NAVIGATION ITEMS HTML
             #region
-            string topNav = "<div id=\"header\"><nav id=\"nav\"><div class=\"nav-holder\"><div class=\"nav-frame\"><ul class=\"nav\" style=\"display: block;\">";
-            string subNav = "<div class=\"subnav\">";
+            string topNav = "<div id=\"navWrap\"><div class=\"content\"><div id=\"header\"><nav id=\"nav\"><div class=\"nav-holder\"><div class=\"nav-frame\"><ul class=\"nav\" style=\"display: block;\">";
+            string subNav = "<div class=\"content\"><div class=\"subnav\">";
             int topNavIndex = 0;
             foreach (Category firstCat in allCats.Where(c => c.SecondLevCategoryId == 0 && c.TopNavIndex > 0).OrderBy(c => c.TopNavIndex))
             {
@@ -43,8 +43,8 @@ namespace DIYFEWeb
                 subNav += "</ul>";
                 topNavIndex++;
             }
-            topNav += "</ul></div></nav></div>";
-            subNav += "</div>";
+            topNav += "</ul><div id=\"searchWrap\"><div class=\"searchGlass\"></div><div id=\"searchTextBox\"><input id=\"searchText\" type=\"text\"></div></div></div></nav></div></div></div>";
+            subNav += "</div></div>";
 
             HtmlString hString = new HtmlString(topNav + subNav);
 
@@ -109,6 +109,137 @@ namespace DIYFEWeb
             {
                 return HttpContext.Current.Application["TopNavHtml"] as HtmlString;
             }
+        }
+
+        private static List<CustomHtmlLink> htmlLinkList = new List<CustomHtmlLink>();
+        private static List<CustomHtmlLink> TreeView(List<Category> catList, string linkPrefix)
+        {
+             string href = "";
+             string linkText = "";
+             List<Category> nextCatList = null;
+             
+             foreach (Category catItem in catList)
+                {
+                    href = StaticConfig.BaseSiteUrl + linkPrefix + "/";
+                    //if (!String.IsNullOrEmpty(catItem.CategoryUrl))
+                    //{
+                    //    href += catItem.CategoryUrl + "/";
+                    //    linkText = catItem.CategoryName;
+                    //    nextCatList = StaticConfig.Categories.Where(c => c.CategoryId == catItem.CategoryId && c.SecondLevCategoryId > 0).ToList();
+                    //}
+                    if (!String.IsNullOrEmpty(catItem.SecondLevCategoryUrl))
+                    {
+                        href += catItem.SecondLevCategoryUrl + "/";
+                        linkText = catItem.SecondLevCategoryName;
+                        nextCatList = StaticConfig.Categories.Where(c => c.CategoryId == catItem.CategoryId && c.SecondLevCategoryId == catItem.SecondLevCategoryId && c.ThirdLevCategoryId > 0).ToList();
+                    }
+                    
+                    if (!String.IsNullOrEmpty(catItem.ThirdLevCategoryUrl))
+                    {
+                        href += catItem.ThirdLevCategoryUrl + "/";
+                        linkText = catItem.ThirdLevCategoryName;
+                        nextCatList = null;
+                    }
+                    if (nextCatList != null && nextCatList.Count > 0)
+                    {
+                        htmlLinkList.Add(new CustomHtmlLink
+                        {
+                            LinkText = linkText,
+                            Href = href,
+                            Title = linkText,
+                            SubLinks = TreeView(nextCatList, linkPrefix)
+                        });
+                    }
+                    else
+                    {
+                        htmlLinkList.Add(new CustomHtmlLink
+                        {
+                            LinkText = linkText,
+                            Href = href,
+                            Title = linkText,
+                            SubLinks = new List<CustomHtmlLink>()
+                        });
+                    }
+
+                    //foreach (string f in Directory.GetFiles(d))
+                    //{
+                    //    Console.WriteLine(f);
+                    //}
+                    //DirSearch(d);
+                }
+
+             return htmlLinkList;
+        }
+
+        public static List<CustomHtmlLink> TreeView(Category cat, string linkPrefix)
+        {
+            //try
+            //{
+                List<Category> catList = null;
+                //START WITH SECOND LEVEL
+                if (cat.SecondLevCategoryId > 0 && cat.ThirdLevCategoryId == 0){
+                    catList = StaticConfig.Categories.Where(c => c.CategoryId == cat.CategoryId && c.SecondLevCategoryId > 0 && c.ThirdLevCategoryId == 0).ToList(); 
+                }else if (cat.ThirdLevCategoryId >0 ){
+                    catList = StaticConfig.Categories.Where(c => c.SecondLevCategoryId == cat.SecondLevCategoryId && c.ThirdLevCategoryId == 0).ToList();
+                }else{
+                    catList = StaticConfig.Categories.Where(c => c.CategoryId == cat.CategoryId && c.SecondLevCategoryId == 0).ToList();
+                }
+                return TreeView(catList, linkPrefix);
+                //string href = "";
+                //string linkText = "";
+                //List<Category> nextCatList = new List<Category>();
+                //foreach (Category catItem in catList)
+                //{
+                //    href = StaticConfig.BaseSiteUrl + linkPrefix + "/";
+                //    if (!String.IsNullOrEmpty(catItem.CategoryUrl))
+                //    {
+                //        href += catItem.CategoryUrl + "/";
+                //        linkText = catItem.CategoryName;
+                //       // nextCatList = StaticConfig.Categories.Where(c => c.CategoryId == catItem.CategoryId && c != catItem).ToList();
+                //    }
+                //    if (!String.IsNullOrEmpty(catItem.SecondLevCategoryUrl))
+                //    {
+                //        href += catItem.SecondLevCategoryUrl + "/";
+                //        linkText = catItem.SecondLevCategoryName;
+                //        //nextCatList = StaticConfig.Categories.Where(c => c.CategoryId == catItem.CategoryId && c.SecondLevCategoryId == catItem.SecondLevCategoryId && c != catItem).ToList();
+                //    }
+                //    if (!String.IsNullOrEmpty(catItem.ThirdLevCategoryUrl))
+                //    {
+                //        href += catItem.ThirdLevCategoryUrl + "/";
+                //        linkText = catItem.ThirdLevCategoryName;
+                //        //nextCatList = null;
+                //    }
+                //    if (nextCatList != null)
+                //    {
+                //        treeLinks.Add(new CustomHtmlLink
+                //        {
+                //            LinkText = linkText,
+                //            Href = href,
+                //            Title = linkText,
+                //            SubLinks = TreeView(catItem, linkPrefix, treeLinks)
+                //        });
+                //    }
+                //    else
+                //    {
+                //        treeLinks.Add(new CustomHtmlLink
+                //        {
+                //            LinkText = linkText,
+                //            Href = href,
+                //            Title = linkText
+                //        });
+                //    }
+                    //foreach (string f in Directory.GetFiles(d))
+                    //{
+                    //    Console.WriteLine(f);
+                    //}
+                    //DirSearch(d);
+               // }
+            //}
+            //catch (System.Exception excpt)
+            //{
+            //    Console.WriteLine(excpt.Message);
+            //}
+            
         }
 
         public static List<CustomHtmlLink> GenerateCrumbLinks(DIYFE.EF.Category cat, string linkPrefix)

@@ -1,4 +1,4 @@
-﻿// Default code generation is disabled for model 'D:\VSProjects\GitHub\DIYFE\DIYFE\DIYFE\DIYFE.EF\DIYFEEntity.edmx'. 
+﻿// Default code generation is disabled for model 'D:\VSProjects\GitHub\DIYFE\DIYFE_Biz\DIYFE.EF\DIYFEEntity.edmx'. 
 // To enable default code generation, change the value of the 'Code Generation Strategy' designer
 // property to an alternate value. This property is available in the Properties Window when the model is
 // open in the designer.

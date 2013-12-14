@@ -199,7 +199,9 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\FundController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlHelper.cs" />
@@ -215,6 +217,7 @@
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\CustomHtmlLink.cs" />
     <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\MailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +231,10 @@
     <Content Include="Content\Frameworks\Bootstrap\js\bootstrap.js" />
     <Content Include="Content\Frameworks\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Frameworks\JQueryUI\jquery.treeview.js" />
+    <Content Include="Content\Img\promo.png" />
+    <Content Include="Content\Img\search.gif" />
     <Content Include="Content\Img\sprite-vertical-editfromspring.png" />
+    <Content Include="Content\Img\test.gif" />
     <Content Include="Content\jquery.treeview.css" />
     <Content Include="Content\mobile-responsive.css" />
     <Content Include="Content\page-list.css" />
@@ -249,6 +255,7 @@
     <Content Include="Content\Img\treeview\treeview-gray.gif" />
     <Content Include="Content\Img\treeview\treeview-red-line.gif" />
     <Content Include="Content\Img\treeview\treeview-red.gif" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.js" />
@@ -360,6 +367,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="Views\Fund\Index.cshtml" />
+    <Content Include="Views\Fund\Projects.cshtml" />
+    <Content Include="Views\Fund\Products.cshtml" />
+    <Content Include="Views\Fund\Research.cshtml" />
+    <Content Include="Views\Home\Connect.cshtml" />
+    <Content Include="Views\Home\Kickstarter.cshtml" />
+    <Content Include="Views\EmailTemplates\Contact.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,6 +11,7 @@
     <EntitySet Name="ContentSection" EntityType="DIYFEModel.Store.ContentSection" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Email" EntityType="DIYFEModel.Store.Email" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Error" EntityType="DIYFEModel.Store.Error" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NewsLetter" EntityType="DIYFEModel.Store.NewsLetter" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="DIYFEModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StatusType" EntityType="DIYFEModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tracking" EntityType="DIYFEModel.Store.Tracking" store:Type="Tables" Schema="dbo" />
@@ -220,6 +221,14 @@
     <Property Name="ErrorMethod" Type="nvarchar" Nullable="false" MaxLength="500" />
     <Property Name="ErrorText" Type="nvarchar" Nullable="false" MaxLength="500" />
     <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsLetter">
+    <Key>
+      <PropertyRef Name="NewLetterId" />
+    </Key>
+    <Property Name="NewLetterId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Notifications">
     <Key>

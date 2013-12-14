@@ -5,21 +5,23 @@
 
  @Html.Partial("Error/_ErrorPageHandler")
 
-<div class="content">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-lg-8">
-            @{
+<div class="content" style="margin-top:45px;">
+   <div class="row">
+        <div class="col-xs-12">
+     @{
               @Html.Partial("_BreadCrumb", Model.CrumbLinkList)
             }
-           @* <div id="breadcrumb"><ul class="breadcrumb">
-        <li><a title="Base diyfe categor" href="http://diyfe.org/post/">Posts</a> <span class="divider"></span></li>
-        <li><a title="Water" href="http://diyfe.org/post/water">Water</a> <span class="divider"></span></li>
-        <li><a title="Access" href="/post/water/access">Access</a> <span class="divider"></span></li>
-            <li class="active">Wells</li>
-</ul></div> *@
+            </div>
+       </div>
+</div>
+
+<div class="content" style="margin-top:30px;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-lg-8">
+            
             @if(Model.Into != null){
             <article>
-                <h1>@Model.Into.Name</h1>
+                <h1>@Model.Into.Title</h1>
                     @Html.Raw(Model.Into.MainContent)
             </article>
             }
@@ -39,10 +41,10 @@
                 @Html.Partial("_RelatedTreeView", Model.RelatedTreeView)
             </div>
             <div class="productPromo">
-                product or project promotion area -- DESIGNER NOTE -- YOU DON'T HAVE TO PUT ANYTHING REAL IN HERE, WHATEVER YOU WANT, MORE OF A PLACE HOLDER...WHAT EVER YOU FEEL
+                <img src="~/Content/Img/promo.png" />
             </div>
-            <div id="topLevelLinkList">
-                top level link list that isn't covered in the tree menu  -- DESIGNER NOTE --  PUT WHATEVER YOU WANT
+            <div id="productPromo">
+                <img src="~/Content/Img/promo.png" />
             </div>
         </div>
         </div>

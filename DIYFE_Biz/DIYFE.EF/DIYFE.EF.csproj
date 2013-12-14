@@ -104,6 +104,9 @@
     <Compile Include="IngredientShopping.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="NewsLetter.cs">
+      <DependentUpon>DIYFEEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Notification.cs">
       <DependentUpon>DIYFEEntity.tt</DependentUpon>
     </Compile>
